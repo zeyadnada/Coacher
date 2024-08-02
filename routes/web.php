@@ -20,14 +20,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
 
 
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
-    Route::get('/home', HomePage::class)->name('home');
-    Route::resource('trainers', TrainerController::class);
-    Route::resource('training-packages', TrainingPackageController::class);
-    Route::resource('subscriptions', SubscriptionController::class);
-    route::get('final', function () {
-        return view('dashboard.settings.result_photos');
-    })->name('result_photos');
-});
+
+Route::get('/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login']);
+Route::post('/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
+
+Route::middleware(['admin'])
+    ->prefix('dashboard')
+    ->as('dashboard.')
+    ->group(function () {
+        Route::get('/home', HomePage::class)->name('home');
+        Route::resource('trainers', TrainerController::class);
+        Route::resource('training-packages', TrainingPackageController::class);
+        Route::resource('subscriptions', SubscriptionController::class);
+        Route::get('final', function () {
+            return view('dashboard.settings.result_photos');
+        })->name('result_photos');
+    });
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
