@@ -344,7 +344,7 @@
 
                         <!-- Logout -->
                         <li class="nav-item">
-                            <form id="logout-form" action="" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                             <a href="#" class="nav-link"
