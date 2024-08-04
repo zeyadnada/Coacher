@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('description');
             $table->string('notes')->nullable();
-            $table->integer('duration'); // Duration in days, weeks, etc.
+            $table->string('duration');
             $table->decimal('price', 10, 2);
             $table->timestamps();
         });

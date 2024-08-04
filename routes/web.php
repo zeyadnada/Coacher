@@ -26,6 +26,10 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/home', HomePage::class)->name('home');
     Route::resource('trainers', TrainerController::class);
     Route::resource('training-packages', TrainingPackageController::class);
+    // Custom routes for specific subscription statuses
+    Route::get('/subscriptions/paid', [SubscriptionController::class, 'paid'])->name('subscriptions.paid');
+    Route::get('/subscriptions/pending', [SubscriptionController::class, 'pending'])->name('subscriptions.pending');
+    Route::get('/subscriptions/canceled', [SubscriptionController::class, 'canceled'])->name('subscriptions.canceled');
     Route::resource('subscriptions', SubscriptionController::class);
     route::get('final', function () {
         return view('dashboard.settings.result_photos');

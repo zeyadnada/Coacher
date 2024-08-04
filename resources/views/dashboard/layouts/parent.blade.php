@@ -189,15 +189,21 @@
                     // Check if the current route matches any of the child routes
                     $isActiveTrainers =
                         request()->routeIs('dashboard.trainers.index') ||
+                        request()->routeIs('dashboard.trainers.edit') ||
+                        request()->routeIs('dashboard.trainers.show') ||
                         request()->routeIs('dashboard.trainers.create');
                     $isActivePackages =
                         request()->routeIs('dashboard.training-packages.index') ||
+                        request()->routeIs('dashboard.training-packages.edit') ||
+                        request()->routeIs('dashboard.training-packages.show') ||
                         request()->routeIs('dashboard.training-packages.create');
                     $isActiveSubscriptions =
                         request()->routeIs('dashboard.subscriptions.index') ||
-                        request()->routeIs('dashboard.subscriptions.create');
-                        $isActiveSettings =
-                        request()->routeIs('dashboard.result_photos');
+                        request()->routeIs('dashboard.subscriptions.create') ||
+                        request()->routeIs('dashboard.subscriptions.paid') ||
+                        request()->routeIs('dashboard.subscriptions.pending') ||
+                        request()->routeIs('dashboard.subscriptions.canceled');
+                    $isActiveSettings = request()->routeIs('dashboard.result_photos');
                 @endphp
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -274,6 +280,27 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('dashboard.subscriptions.paid') }}"
+                                        class="nav-link {{ request()->routeIs('dashboard.subscriptions.paid') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Paid Subscriptions') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.subscriptions.pending') }}"
+                                        class="nav-link {{ request()->routeIs('dashboard.subscriptions.pending') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Pending Subscriptions') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.subscriptions.canceled') }}"
+                                        class="nav-link {{ request()->routeIs('dashboard.subscriptions.canceled') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Cancled Subscriptions') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('dashboard.subscriptions.create') }}"
                                         class="nav-link {{ request()->routeIs('dashboard.subscriptions.create') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
@@ -285,21 +312,22 @@
 
                         <!-- Settings Section -->
                         <li class="nav-item {{ $isActiveSettings ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ $isActiveSettings ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-bars"></i>
-                            <p>
-                                {{ __('Settings') }}
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('dashboard.result_photos') }}" class="nav-link {{ request()->routeIs('dashboard.result_photos') ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>{{ __('Side Effects') }}</p>
-                                </a>
-                            </li>
-                            {{-- <li class="nav-item">
+                            <a href="#" class="nav-link {{ $isActiveSettings ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-bars"></i>
+                                <p>
+                                    {{ __('Settings') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.result_photos') }}"
+                                        class="nav-link {{ request()->routeIs('dashboard.result_photos') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Side Effects') }}</p>
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item">
                                 <a href="{{ route('dashboard.settings.contraindications') }}" class="nav-link {{ request()->routeIs('dashboard.settings.contraindications') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Contraindications') }}</p>
@@ -311,8 +339,8 @@
                                     <p>{{ __('Users') }}</p>
                                 </a>
                             </li> --}}
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
 
                         <!-- Logout -->
                         <li class="nav-item">

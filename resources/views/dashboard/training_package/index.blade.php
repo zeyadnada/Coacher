@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.parent')
 
-@section('title', 'All Training Packages')
+@section('title', 'All Training packages')
 
 @section('css')
     <!-- DataTables -->
@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="{{ url('/dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ url('/dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
-@section('dashboard-img')
-    <img src="img/dashboardLogo.png" alt="Dpill" class="brand-image img-circle elevation-3" style="opacity: .8">
-@endsection
+
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -23,44 +22,70 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Mozilla 1.3</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1.3</td>
-                            <td>A</td>
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Mozilla 1.4</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1.4</td>
-                            <td>A</td>
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Mozilla 1.5</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1.5</td>
-                            <td>A</td>
-                        </tr>
+                        @forelse ($packages as $package)
+                            <tr>
+                                <td>{{ @$loop->iteration }}</td>
+                                <td>{{ $package->title }}</td>
+                                <td>{{ $package->duration }}</td>
+                                <td>{{ $package->price }}</td>
+                                <td>
+                                    <a href="{{ route('dashboard.training-packages.show', $package->id) }}"
+                                        class="btn btn-info">Show</a>
+                                    <a href="{{ route('dashboard.training-packages.edit', $package->id) }}"
+                                        class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-danger" data-toggle="modal"
+                                        data-target="#deleteModal{{ $package->id }}">Delete</button>
+                                </td>
+                            </tr>
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade" id="deleteModal{{ $package->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete {{ '  ' . $package->title }}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <form action="{{ route('dashboard.training-packages.destroy', $package->id) }}"
+                                                method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <tr>
+                                <td colspan="5">Nothing to Show...</td>
+                            </tr>
+                        @endforelse
 
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                            <th>Actions</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -69,7 +94,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                {{-- {{ $jobs->withQueryString()->links() }} --}}
+                {{-- {{ $packages->withQueryString()->links() }} --}}
             </div>
         </div>
     </div>
@@ -89,11 +114,7 @@
     <script src="/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/dashboard/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/dashboard//plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    {{-- <script>
-        $(document).ready(function() {
-            $('#example1').DataTable();
-        });
-    </script> --}}
+
     <script>
         $(function() {
             $("#example1").DataTable({

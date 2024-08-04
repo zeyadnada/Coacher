@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\TrainerRequest;
+use App\Models\Trainer;
+use Illuminate\Support\Facades\Storage;
 
 class TrainerController extends Controller
 {
@@ -12,7 +14,8 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        return view('dashboard.trainer.index');
+        $trainers = Trainer::all();
+        return view('dashboard.trainer.index', compact('trainers'));
     }
 
     /**
@@ -26,40 +29,62 @@ class TrainerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TrainerRequest $request)
     {
-        //
+        $data = $request->except('image');
+        if ($request->hasFile('image')) {
+            $imagePath = Storage::disk('public')->put('trainer',  $request->image);
+            $data['image'] = $imagePath;
+        }
+        $trainer = Trainer::create($data);
+        return redirect()->route('dashboard.trainers.show', $trainer->id)->with('success', 'Trainer Updated successfully');
     }
-
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $trainer = Trainer::findOrFail($id);
+        return view('dashboard.trainer.show', compact('trainer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $trainer = Trainer::findOrFail($id);
+        return view('dashboard.trainer.edit', compact('trainer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TrainerRequest $request, $id)
     {
-        //
+        $trainer = Trainer::findOrFail($id);
+        $data = $request->except('image');
+        if ($request->hasFile('image')) {
+            if ($trainer->image && Storage::disk('public')->exists($trainer->image)) {
+                Storage::disk('public')->delete($trainer->image);
+            }
+            $imagePath = Storage::disk('public')->put('trainer', $request->image);
+            $data['image'] = $imagePath;
+        }
+        $trainer->update($data);
+        return redirect()->route('dashboard.trainers.show', $trainer->id)->with('success', 'Trainer Updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $trainer = Trainer::findOrFail($id);
+        if ($trainer->image && Storage::disk('public')->exists($trainer->image)) {
+            Storage::disk('public')->delete($trainer->image);
+        }
+        $trainer->delete();
+        return back()->with('success', 'Trainer Deleted Successfully.');
     }
 }

@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('job_title');
-            $table->string('phone', 15);
-            $table->integer('age');
+            $table->date('birth_date');
             $table->enum('gender', ['male', 'female']);
-            $table->string('image')->nullable();
+            $table->string('location', 255)->nullable();
+            $table->string('phone', 15)->unique();
             $table->string('email')->unique();
+            $table->string('image')->nullable();
             $table->text('experiences')->nullable();
             $table->text('certificates')->nullable();
             $table->timestamps();

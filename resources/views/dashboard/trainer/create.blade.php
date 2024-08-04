@@ -28,139 +28,130 @@
                 <form action="{{ route('dashboard.trainers.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row mb-3">
-                        <div class="col-8">
+                        <div class="col-6">
+                            <label for="title">Name</label>
+                            <input type="text" name="name" id="name"
+                                class="form-control @error('name') is-invalid @enderror" placeholder="Enter Trainer Name"
+                                aria-describedby="helpId" value="{{ old('name') }}" dir="auto">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-6">
                             <label for="title">Job title</label>
-                            <input type="text" name="title" id="title" class="form-control"
-                                placeholder="Enter Job Title" aria-describedby="helpId" value="{{ old('title') }}">
-                            {{-- @error('title')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+                            <input type="text" name="job_title" id="job_title"
+                                class="form-control @error('job_title') is-invalid @enderror" placeholder="Enter Job Title"
+                                aria-describedby="helpId" value="{{ old('job_title') }}">
+                            @error('job_title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        {{-- <div class="col-4">
-                            <label>Job Category</label>
-                            <select class="select2" name="category_id" data-placeholder="Select Category" style="width: 100%;">
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-9">
+                        <div class="col-8">
                             <label for="name">Location</label>
-                            <input type="text" name="location" id="location" class="form-control"
-                                placeholder="Enter Job Location" aria-describedby="helpId" value="{{ old('location') }}">
-                            {{-- @error('name')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+                            <input type="text" name="location" id="location"
+                                class="form-control @error('location') is-invalid @enderror"
+                                placeholder="Enter Trainer Location" aria-describedby="helpId"
+                                value="{{ old('location') }}">
+                            @error('location')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="col-3">
-                            <label for="vacancy">vacancy</label>
-                            <input type="number" name="vacancy" id="vacancy" class="form-control"
-                                placeholder="Enter vacancy Number" aria-describedby="helpId" value="{{ old('vacancy') }}">
-                            {{-- @error('vacany')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+                        <div class="col-2">
+                            <label for="birth_date">Birth Date</label>
+                            <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}"
+                                class="form-control @error('birth_date') is-invalid @enderror">
+                            @error('birth_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                        <div class="col-2">
+                            <label>Gender</label>
+                            <select class="form-control @error('gender') is-invalid @enderror" name="gender"
+                                data-placeholder="Select Gender" style="width: 100%;">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            @error('gender')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-3">
-                            <label>Workplace</label>
-                            <select class="select2" name="workplace" data-placeholder="Select Workplace"
-                                style="width: 100%;">
-                                <option value="Office">Office</option>
-                                <option value="Remote">Remote</option>
-                                <option value="Hybrid">Hybrid</option>
-                                {{-- @foreach ($sideEffects as $sideEffect)
-                                    <option value="{{ $sideEffect->name }}">{{ $sideEffect->name }}</option>
-                                @endforeach --}}
-                            </select>
-                        </div>
-                        <div class="col-3">
-                            <label>Job Type</label>
-                            <select class="select2" name="type" data-placeholder="Select Jop Type" style="width: 100%;">
+                        <div class="col-4">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                value="{{ old('phone') }}" id="phone" placeholder="Phone Number">
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
-                                <option value="Full Time">Full Time</option>
-                                <option value="Part Time">Part Time</option>
-                                <option value="Freelance project">Freelance Project</option>
-                                {{-- @foreach ($contraindications as $contraindication)
-                                    <option value="{{ $contraindication->name }}">{{ $contraindication->name }}</option>
-                                @endforeach --}}
-                            </select>
                         </div>
-                        <div class="col-3">
-                            <label>Experience Level</label>
-                            <select class="select2" name="experience" data-placeholder="Select Career Level"
-                                style="width: 100%;">
-
-                                <option value="Internship">Internship</option>
-                                <option value="Entry Level">Entry Level</option>
-                                <option value="Junior">Junior</option>
-                                <option value="Intermediate">Intermediate</option>
-                                <option value="Senior">Senior</option>
-                                <option value="Lead">Lead</option>
-                                <option value="Manager">Manager</option>
-                                {{-- @foreach ($contraindications as $contraindication)
-                                    <option value="{{ $contraindication->name }}">{{ $contraindication->name }}</option>
-                                @endforeach --}}
-                            </select>
+                        <div class="col-4">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ old('email') }}" id="email" placeholder="name@example.com">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-
-                        <div class="col-3">
-                            <label for="salary">Sallary</label>
-                            <input type="number" name="salary" id="salary" class="form-control"
-                                placeholder="Enter Salary in $ (Optional)" aria-describedby="helpId"
-                                value="{{ old('salary') }}">
-                            {{-- @error('vacany')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+                        <div class="col-4">
+                            <label for="image">Trainer Image</label>
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
+                                id="image">
+                            @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row mb-4">
                         <div class="col-12">
-                            <label for="description">Description</label>
-                            <textarea class="editor form-control form-control custom-file" id="description" name="description"
-                                placeholder="Enter Job Description" rows="6">{{ old('description') }}</textarea>
-                            {{-- @error('description')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+                            <label for="experiences">Experiences</label>
+                            <textarea class="editor form-control form-control custom-file @error('experiences') is-invalid @enderror"
+                                id="experiences" name="experiences" placeholder="Enter Trainer Experiences" rows="6">{{ old('experiences') }}</textarea>
+                            @error('experiences')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-row mb-4">
                         <div class="col-12">
-                            <label for="responsibilities">Responsibilities</label>
-                            <textarea class="editor form-control form-control custom-file" id="responsibilities" name="responsibilities"
-                                placeholder="Enter Job Responsibilities" rows="6">{{ old('requirements') }}</textarea>
-                            {{-- @error('description')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+                            <label for="certificates">Certificates</label>
+                            <textarea class="editor form-control form-control custom-file @error('certificates') is-invalid @enderror"
+                                id="certificates" name="certificates" placeholder="Enter Trainer Certificates" rows="6">{{ old('certificates') }}</textarea>
+                            @error('certificates')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
-                    <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="description">Job Requirements</label>
-                            <textarea class="editor form-control form-control custom-file" id="requirements" name="requirements"
-                                placeholder="Enter Job Requirements" rows="6">{{ old('requirements') }}</textarea>
-                            {{-- @error('description')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
-                    </div>
-                    <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="benefits">Benefits</label>
-                            <textarea class="editor form-control form-control custom-file" id="benefits" name="benefits"
-                                placeholder="Enter Job Benefits (Optional)" rows="6">{{ old('benefits') }}</textarea>
-                            {{-- @error('benefits')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
-                    </div>
+
 
                     <div class="form-row my-4">
                         <div class="col-2">
-                            <input type="submit" class="btn btn-primary">
+                            <input type="submit" class="btn btn-primary" value="Add Trainer">
                         </div>
 
                     </div>
@@ -200,23 +191,6 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script> --}}
     <!-- Page specific script -->
-
-    {{-- ////////////// --}}
-    <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $('.select2').select2()
-
-            //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
-        })
-    </script>
-    <script>
-        $("input").tagsinput('items')
-    </script>
-
 
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script>

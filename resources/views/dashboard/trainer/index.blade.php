@@ -22,44 +22,79 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Mozilla 1.3</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1.3</td>
-                            <td>A</td>
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Mozilla 1.4</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1.4</td>
-                            <td>A</td>
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Mozilla 1.5</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1.5</td>
-                            <td>A</td>
-                        </tr>
+                        @forelse ($trainers as $trainer)
+                            <tr>
+                                <td>{{ @$loop->iteration }}</td>
+                                <td>{{ $trainer->name }}</td>
+                                <td>{{ $trainer->job_title }}</td>
+                                <td>{{ $trainer->location }}</td>
+                                <td>{{ \Carbon\Carbon::parse($trainer->birth_date)->age }}</td>
+                                <td>{{ $trainer->email }}</td>
+                                <td>{{ $trainer->phone }}</td>
+                                <td>
+                                    <a href="{{ route('dashboard.trainers.show', $trainer->id) }}"
+                                        class="btn btn-info">Show</a>
+                                    <a href="{{ route('dashboard.trainers.edit', $trainer->id) }}"
+                                        class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-danger" data-toggle="modal"
+                                        data-target="#deleteModal{{ $trainer->id }}">Delete</button>
+                                </td>
+                            </tr>
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade" id="deleteModal{{ $trainer->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete {{ '  ' . $trainer->name }}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <form action="{{ route('dashboard.trainers.destroy', $trainer->id) }}"
+                                                method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <tr>
+                                <td colspan="8">Nothing to Show...</td>
+                            </tr>
+                        @endforelse
 
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -68,7 +103,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                {{-- {{ $jobs->withQueryString()->links() }} --}}
+                {{-- {{ $trainers->withQueryString()->links() }} --}}
             </div>
         </div>
     </div>
@@ -87,12 +122,8 @@
     <script src="/dashboard/plugins/pdfmake/vfs_fonts.js"></script>
     <script src="/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/dashboard/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="/dashboard//plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    {{-- <script>
-        $(document).ready(function() {
-            $('#example1').DataTable();
-        });
-    </script> --}}
+    <script src="/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
     <script>
         $(function() {
             $("#example1").DataTable({

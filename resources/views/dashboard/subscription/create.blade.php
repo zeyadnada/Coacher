@@ -26,146 +26,148 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('dashboard.trainers.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('dashboard.subscriptions.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row mb-3">
-                        <div class="col-8">
-                            <label for="title">Job title</label>
-                            <input type="text" name="title" id="title" class="form-control"
-                                placeholder="Enter Job Title" aria-describedby="helpId" value="{{ old('title') }}">
-                            {{-- @error('title')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
-                        {{-- <div class="col-4">
-                            <label>Job Category</label>
-                            <select class="select2" name="category_id" data-placeholder="Select Category" style="width: 100%;">
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <div class="col-6">
+                            <label for="user_id">User</label>
+                            <select class="select2 form-control @error('user_id') is-invalid @enderror" name="user_id"
+                                id="user_id" class="form-control" style="width: 100%;">
+                                <option value="" disabled selected>Select a user</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
-                        </div> --}}
+                            @error('user_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-6">
+                            <label for="whatsapp_phone">Whatsapp Phone</label>
+                            <input type="text" class="form-control @error('whatsapp_phone') is-invalid @enderror"
+                                name="whatsapp_phone" value="{{ old('whatsapp_phone') }}" id="whatsapp_phone"
+                                placeholder="Enter Whatsapp Phone">
+                            @error('whatsapp_phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-9">
-                            <label for="name">Location</label>
-                            <input type="text" name="location" id="location" class="form-control"
-                                placeholder="Enter Job Location" aria-describedby="helpId" value="{{ old('location') }}">
-                            {{-- @error('name')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+
+                        <div class="col-4">
+                            <label for="age">Age</label>
+                            <input id="age" type="number" name="age" value="{{ old('age') }}"
+                                class="form-control @error('age') is-invalid @enderror">
+                            @error('age')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="col-3">
-                            <label for="vacancy">vacancy</label>
-                            <input type="number" name="vacancy" id="vacancy" class="form-control"
-                                placeholder="Enter vacancy Number" aria-describedby="helpId" value="{{ old('vacancy') }}">
-                            {{-- @error('vacany')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
+                        <div class="col-4">
+                            <label for="height">Height (cm)</label>
+                            <input id="height" type="number" name="height" value="{{ old('height') }}"
+                                placeholder="Enter User height" class="form-control @error('height') is-invalid @enderror">
+                            @error('height')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                        <div class="col-4">
+                            <label for="weight">Weight (kg)</label>
+                            <input id="weight" type="number" name="weight" value="{{ old('weight') }}"
+                                placeholder="Enter User weight" class="form-control @error('weight') is-invalid @enderror">
+                            @error('weight')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                    </div>
+
+                    <div class="form-row mb-3">
+                        <div class="col-6">
+                            <label for="package_id">Package</label>
+                            <select class="select2 form-control @error('package_id') is-invalid @enderror" name="package_id"
+                                id="package_id" style="width: 100%;">
+                                <option value="" disabled selected>Select a Package</option>
+                                @foreach ($packages as $package)
+                                    <option value="{{ $package->id }}">{{ $package->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('package_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-6">
+                            <label for="starting_date">Starting Date</label>
+                            <input id="starting_date" type="date" name="starting_date"
+                                value="{{ old('starting_date') }}"
+                                class="form-control @error('starting_date') is-invalid @enderror">
+                            @error('starting_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-3">
-                            <label>Workplace</label>
-                            <select class="select2" name="workplace" data-placeholder="Select Workplace"
-                                style="width: 100%;">
-                                <option value="Office">Office</option>
-                                <option value="Remote">Remote</option>
-                                <option value="Hybrid">Hybrid</option>
-                                {{-- @foreach ($sideEffects as $sideEffect)
-                                    <option value="{{ $sideEffect->name }}">{{ $sideEffect->name }}</option>
-                                @endforeach --}}
+                        <div class="col-6">
+                            <label for="trainer_id">Trainer</label>
+                            <select class="select2 form-control @error('trainer_id') is-invalid @enderror" name="trainer_id"
+                                id="trainer_id" style="width: 100%;">
+                                <option value="" disabled selected>Select a Trainer</option>
+                                <option value="">No Trainer</option>
+                                @foreach ($trainers as $trainer)
+                                    <option value="{{ $trainer->id }}">{{ $trainer->name }}</option>
+                                @endforeach
                             </select>
+                            @error('trainer_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="col-3">
-                            <label>Job Type</label>
-                            <select class="select2" name="type" data-placeholder="Select Jop Type" style="width: 100%;">
 
-                                <option value="Full Time">Full Time</option>
-                                <option value="Part Time">Part Time</option>
-                                <option value="Freelance project">Freelance Project</option>
-                                {{-- @foreach ($contraindications as $contraindication)
-                                    <option value="{{ $contraindication->name }}">{{ $contraindication->name }}</option>
-                                @endforeach --}}
+
+                        <div class="col-6">
+                            <label for="status">Payment Status</label>
+                            <select class="select2 form-control @error('status') is-invalid @enderror" name="status"
+                                id="status" style="width: 100%;">
+                                <option value="" disabled {{ old('status') == '' ? 'selected' : '' }}>Select a
+                                    Status</option>
+                                <option value="Pending" {{ old('status') == 'Pending' ? 'selected' : '' }}>Pending
+                                </option>
+                                <option value="Paid" {{ old('status') == 'Paid' ? 'selected' : '' }}>Paid</option>
+                                <option value="Cancelled" {{ old('status') == 'Canceled' ? 'selected' : '' }}>Cancelled
+                                </option>
                             </select>
-                        </div>
-                        <div class="col-3">
-                            <label>Experience Level</label>
-                            <select class="select2" name="experience" data-placeholder="Select Career Level"
-                                style="width: 100%;">
-
-                                <option value="Internship">Internship</option>
-                                <option value="Entry Level">Entry Level</option>
-                                <option value="Junior">Junior</option>
-                                <option value="Intermediate">Intermediate</option>
-                                <option value="Senior">Senior</option>
-                                <option value="Lead">Lead</option>
-                                <option value="Manager">Manager</option>
-                                {{-- @foreach ($contraindications as $contraindication)
-                                    <option value="{{ $contraindication->name }}">{{ $contraindication->name }}</option>
-                                @endforeach --}}
-                            </select>
+                            @error('status')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="col-3">
-                            <label for="salary">Sallary</label>
-                            <input type="number" name="salary" id="salary" class="form-control"
-                                placeholder="Enter Salary in $ (Optional)" aria-describedby="helpId"
-                                value="{{ old('salary') }}">
-                            {{-- @error('vacany')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
-                    </div>
-                    <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="description">Description</label>
-                            <textarea class="editor form-control form-control custom-file" id="description" name="description"
-                                placeholder="Enter Job Description" rows="6">{{ old('description') }}</textarea>
-                            {{-- @error('description')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
-                    </div>
-
-                    <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="responsibilities">Responsibilities</label>
-                            <textarea class="editor form-control form-control custom-file" id="responsibilities" name="responsibilities"
-                                placeholder="Enter Job Responsibilities" rows="6">{{ old('requirements') }}</textarea>
-                            {{-- @error('description')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
-                    </div>
-                    <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="description">Job Requirements</label>
-                            <textarea class="editor form-control form-control custom-file" id="requirements" name="requirements"
-                                placeholder="Enter Job Requirements" rows="6">{{ old('requirements') }}</textarea>
-                            {{-- @error('description')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
-                    </div>
-                    <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="benefits">Benefits</label>
-                            <textarea class="editor form-control form-control custom-file" id="benefits" name="benefits"
-                                placeholder="Enter Job Benefits (Optional)" rows="6">{{ old('benefits') }}</textarea>
-                            {{-- @error('benefits')
-                                <div class="error alert alert-danger">{{ $message }}</div>
-                            @enderror --}}
-                        </div>
                     </div>
 
                     <div class="form-row my-4">
                         <div class="col-2">
                             <input type="submit" class="btn btn-primary">
                         </div>
-
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
