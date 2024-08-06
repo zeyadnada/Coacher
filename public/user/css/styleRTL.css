@@ -1,0 +1,739 @@
+#preloder {
+  right: 0;
+  left: auto;
+}
+
+@keyframes loader {
+  0% {
+    border-right-color: transparent;
+  }
+  50% {
+    border-right-color: transparent;
+  }
+  100% {
+    border-right-color: transparent;
+  }
+}
+
+.spacial-controls {
+  left: 0;
+  right: auto;
+}
+
+.search-model {
+  right: 0;
+  left: auto;
+  top: 0;
+}
+
+.header-section {
+  left: auto;
+  right: 0;
+  top: 0;
+}
+
+.nav-menu ul li {
+  margin-left: 32px;
+  margin-right: 0;
+}
+
+.nav-menu ul li .dropdown {
+  text-align: right;
+  right: -30px;
+  left: auto;
+}
+
+.nav-menu ul li .dropdown li {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.nav-menu ul li .dropdown li a {
+  padding: 6px 30px 6px 0;
+}
+
+.nav-menu ul li:last-child {
+  margin-left: 0;
+}
+
+.nav-menu ul li a:after {
+  right: 0;
+  left: auto;
+}
+
+.top-option {
+  text-align: left;
+}
+
+.top-option .to-search {
+  padding-right: 0;
+  padding-left: 20px;
+}
+
+.top-option .to-search:after {
+  left: 0;
+  right: auto;
+}
+
+.top-option .to-social a {
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+/*---------------------
+  Hero Section
+-----------------------*/
+.hs-slider.owl-carousel .owl-nav button {
+  left: auto;
+  right: 30px;
+}
+
+.hs-slider.owl-carousel .owl-nav button.owl-next {
+  right: auto;
+  left: 30px;
+}
+
+/*---------------------
+  Classes Section
+-----------------------*/
+
+.class-item .ci-text:after {
+  left: auto;
+  right: -5px;
+}
+
+.class-item .ci-text a {
+  left: 30px;
+  right: auto;
+}
+
+/*---------------------
+  Pricing Section
+-----------------------*/
+.ps-item .thumb-icon {
+  right: 50px;
+  left: auto;
+}
+
+/*---------------------
+  Gallery Section
+----------------------*/
+
+.gallery {
+  margin-left: -10px;
+  margin-right: 0;
+}
+
+.gallery .gs-item {
+  float: right;
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+/*---------------------
+  Team Section
+-----------------------*/
+
+.team-section.team-page .ts-item .tt_social a {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+.team-section.team-page .ts-item .tt_social a:last-child {
+  margin-left: 0;
+}
+
+.team-title .section-title {
+  text-align: right;
+  float: right;
+}
+
+.primary-btn.appoinment-btn {
+  float: left;
+}
+
+.ts-slider.owl-carousel .owl-dots button {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+.ts-slider.owl-carousel .owl-dots button:last-child {
+  margin-left: 0;
+}
+
+.ts-item .ts_text {
+  left: auto;
+  right: 0;
+}
+
+/*---------------------
+  Get Touch Section
+-----------------------*/
+
+.gt-text i {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.gt-text ul li {
+  margin-left: 25px;
+  margin-right: 0;
+}
+
+.gt-text ul li:after {
+  left: -18px;
+  right: auto;
+}
+.gt-text ul li:last-child {
+  margin-left: 0;
+}
+
+/*---------------------
+  Footer
+-----------------------*/
+
+.fs-about .fa-social a {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+.fs-about .fa-social a:last-child {
+  margin-left: 0;
+}
+
+.fs-widget .fw-recent ul li {
+  margin-right: 0;
+  margin-left: 25px;
+}
+
+.fs-widget .fw-recent ul li:after {
+  right: auto;
+  left: -16px;
+}
+
+/* ----------------------------------- Other Pages Styles ----------------------------------- */
+
+/*---------------------
+  Breadcrumb Section
+-----------------------*/
+
+.breadcrumb-text .bt-option a {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+.breadcrumb-text .bt-option a:after {
+  left: -14px;
+  right: auto;
+  content: "\3c";
+}
+
+/*---------------------
+  About Us Section
+-----------------------*/
+
+.about-text .section-title {
+  text-align: right;
+}
+
+.about-text .about-bar .ab-item .barfiller .tip {
+  float: left;
+}
+/*---------------------
+  Testimonial Section
+-----------------------*/
+
+.ts_slider.owl-carousel .owl-nav button {
+  right: 30px;
+  left: auto;
+}
+
+.ts_slider.owl-carousel .owl-nav button.owl-next {
+  left: 30px;
+  right: auto;
+}
+
+/*---------------------
+  Services Section
+-----------------------*/
+
+.ss-text:after {
+  left: auto;
+  right: -15px;
+}
+
+.ss-text.second-row:after {
+  right: auto;
+  left: 0;
+}
+
+/*---------------------
+  Class Timetable Section
+-----------------------*/
+
+.class-timetable-section .section-title {
+  text-align: right;
+}
+
+.table-controls {
+  text-align: left;
+}
+
+.table-controls ul li {
+  margin-left: 35px;
+  margin-right: 0;
+}
+.table-controls ul li:after {
+  left: -22px;
+  right: auto;
+}
+
+.table-controls ul li:last-child {
+  margin-left: 0;
+}
+
+.class-timetable table thead tr th {
+  border-left: 1px solid #363636;
+  border-right: 0;
+}
+
+.class-timetable table tbody tr td.blank-td:after {
+  right: -47px;
+  left: auto;
+}
+
+/*---------------------
+  Class Details Section
+-----------------------*/
+
+.class-details-text .cd-trainer .cd-trainer-text .trainer-social {
+  left: 0;
+  right: auto;
+}
+
+.class-details-text .cd-trainer .cd-trainer-text .trainer-social a {
+  margin-right: 0;
+  margin-left: 9px;
+}
+
+.class-details-text .cd-trainer .cd-trainer-text .trainer-social a:last-child {
+  margin-left: 0;
+}
+
+.sidebar-option {
+  padding-right: 40px;
+}
+
+.sidebar-option .so-categories ul li a span {
+  float: left;
+}
+
+.sidebar-option .so-latest .latest-large .ll-text {
+  right: 0;
+  left: auto;
+}
+
+.sidebar-option .so-latest .latest-large .ll-text ul li {
+  margin-left: 25px;
+  margin-right: 0;
+}
+
+.sidebar-option .so-latest .latest-large .ll-text ul li:last-child {
+  margin-left: 0;
+}
+
+.sidebar-option .so-latest .latest-large .ll-text ul li:after {
+  left: -16px;
+  right: auto;
+}
+
+.sidebar-option .so-latest .latest-item .li-pic {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.sidebar-option .so-banner h5 {
+  right: 0;
+  left: auto;
+}
+
+.sidebar-option .so-tags a {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+/*------------------------
+  Bmi Calculator Section
+-------------------------*/
+
+.section-title.chart-title {
+  text-align: right;
+}
+
+.chart-table table thead tr th {
+  border-left: 1px solid #363636;
+  border-right: 0;
+  padding: 14px 50px 11px 0;
+}
+
+.chart-table table tbody tr td {
+  border-left: 1px solid #363636;
+  border-right: 0;
+  padding: 17px 50px 17px 0;
+}
+
+.section-title.chart-calculate-title {
+  text-align: right;
+}
+
+.chart-calculate-form form input {
+  padding-right: 20px;
+  padding-left: 5px;
+}
+
+/*---------------------
+  Blog Section
+-----------------------*/
+
+.blog-section .sidebar-option {
+  padding-right: 70px;
+  padding-left: 0;
+}
+
+.blog-item .bi-pic {
+  float: right;
+}
+
+.blog-item .bi-text ul li {
+  margin-right: 0;
+  margin-left: 25px;
+}
+
+.blog-item .bi-text ul li:after {
+  left: -15px;
+  right: auto;
+}
+
+.blog-item .bi-text ul li:last-child {
+  margin-left: 0;
+}
+
+.blog-pagination a {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+.blog-pagination a:last-child {
+  margin-left: 0;
+}
+
+/*--------------------------
+  Blog Detils Hero Section
+--------------------------*/
+
+.bh-text ul li {
+  margin-left: 25px;
+  margin-right: 0;
+}
+
+.bh-text ul li:after {
+  left: -15px;
+  right: auto;
+}
+
+.bh-text ul li:last-child {
+  margin-left: 0;
+}
+
+.blog-details-text .blog-details-pic {
+  margin-left: -10px;
+  margin-right: 0;
+}
+
+.blog-details-text .blog-details-pic .blog-details-pic-item {
+  float: right;
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+.blog-details-text .blog-details-quote .quote-icon {
+  left: auto;
+  right: 50%;
+}
+
+.blog-details-text .blog-details-tag-share .tags a {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.blog-details-text .blog-details-tag-share .tags a:last-child {
+  margin-left: 0;
+}
+
+.blog-details-text .blog-details-tag-share .share span {
+  margin-left: 30px;
+  margin-right: 0;
+}
+
+.blog-details-text .blog-details-tag-share .share a {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+.blog-details-text .blog-details-tag-share .share a:last-child {
+  margin-left: 0;
+}
+
+.blog-details-text .blog-details-tag-share .share a i {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.blog-details-text .blog-details-author .ba-pic {
+  right: 50%;
+  left: auto;
+}
+
+.blog-details-text .blog-details-author .ba-text .bp-social a {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+.blog-details-text .blog-details-author .ba-text .bp-social a:last-child {
+  margin-left: 0;
+}
+
+.blog-details-text .comment-option .co-widget {
+  left: 0;
+  right: auto;
+}
+
+.blog-details-text .comment-option .co-widget a {
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+.blog-details-text .comment-option .co-item {
+  padding-right: 30px;
+  padding-left: 0;
+}
+
+.blog-details-text .comment-option .co-item.reply-comment {
+  margin-right: 30px;
+  margin-left: 0;
+}
+
+.blog-details-text .comment-option .co-item:after {
+  right: 0;
+  left: auto;
+}
+
+.blog-details-text .comment-option .co-item .co-pic img {
+  float: right;
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+.leave-comment form input {
+  padding-left: 5px;
+  padding-right: 20px;
+}
+
+.leave-comment form textarea {
+  padding-right: 20px;
+  padding-left: 5px;
+}
+
+/*---------------------
+  Contact Section
+-----------------------*/
+
+.section-title.contact-title {
+  text-align: right;
+}
+
+.contact-widget .cw-text i {
+  float: rigth;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.contact-widget .cw-text ul li {
+  margin-left: 25px;
+  margin-right: 0;
+}
+
+.contact-widget .cw-text ul li:after {
+  left: -18px;
+  right: auto;
+}
+
+.contact-widget .cw-text ul li:last-child {
+  margin-left: 0;
+}
+
+/*---------------------
+  404 Section
+-----------------------*/
+
+.text-404 .search-404 input {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+.text-404 .search-404 button {
+  left: 0;
+  right: auto;
+}
+
+.text-404 a:after {
+  right: 0;
+  left: auto;
+}
+
+.text-404 a i {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+/*--------------------------------- Responsive Media Quaries -----------------------------*/
+
+@media only screen and (min-width: 1650px) and (max-width: 1920px) {
+  .nav-menu ul li {
+    margin-left: 60px;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .nav-menu ul li {
+    margin-left: 5px;
+    margin-right: 0;
+  }
+  .ps-item .thumb-icon {
+    right: 15px;
+    left: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .blog-section .sidebar-option {
+    padding-right: 0;
+  }
+
+  .sidebar-option {
+    padding-right: 0;
+  }
+
+  .table-controls {
+    text-align: right;
+  }
+  .ts_slider.owl-carousel .owl-nav button {
+    right: 0;
+    left: auto;
+  }
+  .ts_slider.owl-carousel .owl-nav button.owl-next {
+    left: 0;
+    right: auto;
+  }
+  .hs-slider.owl-carousel .owl-nav button {
+    right: 0;
+    left: auto;
+  }
+  .hs-slider.owl-carousel .owl-nav button.owl-next {
+    left: 0;
+    right: auto;
+  }
+
+  .offcanvas-menu-overlay {
+    right: 0;
+    left: auto;
+  }
+
+  .canvas-open {
+    left: 40px;
+    right: auto;
+  }
+  .offcanvas-menu-wrapper {
+    right: -300px;
+    left: auto;
+  }
+  .offcanvas-menu-wrapper.show-offcanvas-menu-wrapper {
+    left: auto;
+    right: 0;
+  }
+
+  .offcanvas-menu-wrapper .canvas-close {
+    left: 20px;
+    right: auto;
+  }
+  .offcanvas-menu-wrapper .canvas-social a {
+    margin-left: 6px;
+    margin-right: 0;
+  }
+
+  .offcanvas-menu-wrapper .canvas-social a:last-child {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .offcanvas-menu-overlay {
+    right: 0;
+    left: auto;
+  }
+
+  .canvas-open {
+    left: 40px;
+    right: auto;
+  }
+  .offcanvas-menu-wrapper {
+    right: -300px;
+    left: auto;
+  }
+  .offcanvas-menu-wrapper.show-offcanvas-menu-wrapper {
+    left: auto;
+    right: 0;
+  }
+  .offcanvas-menu-wrapper .canvas-close {
+    left: 20px;
+    right: auto;
+  }
+
+  .offcanvas-menu-wrapper .canvas-social a {
+    margin-left: 6px;
+    margin-right: 0;
+  }
+  .offcanvas-menu-wrapper .canvas-social a:last-child {
+    margin-left: 0;
+  }
+  .blog-section .sidebar-option {
+    padding-right: 0;
+  }
+
+  .sidebar-option {
+    padding-right: 0;
+  }
+  .table-controls {
+    text-align: right;
+  }
+
+  .ts_slider.owl-carousel .owl-nav button {
+    right: 0;
+    left: auto;
+  }
+  .ts_slider.owl-carousel .owl-nav button.owl-next {
+    left: 0;
+    right: auto;
+  }
+  .hs-slider.owl-carousel .owl-nav button {
+    right: 0;
+    left: auto;
+  }
+  .hs-slider.owl-carousel .owl-nav button.owl-next {
+    left: 0;
+    right: auto;
+  }
+}
