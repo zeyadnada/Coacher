@@ -10,7 +10,7 @@ class HomePageController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function index(Request $request)
     {
         return view('user.index');
     }

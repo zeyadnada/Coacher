@@ -179,7 +179,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
                     </div>
                 </div>
 

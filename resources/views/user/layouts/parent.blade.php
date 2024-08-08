@@ -49,10 +49,10 @@
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="{{ route('user.home') }}">الصفحة الرئيسية</a></li>
+                <li><a href="">الصفحة الرئيسية</a></li>
                 <li><a href="./about-us.html">حولنا </a></li>
                 <li><a href="./classes.html"> الصفوف </a></li>
-                <li><a href="{{ route('user.training-packages.index') }}"> الخدمات </a></li>
+                <li><a href=""> الخدمات </a></li>
                 <li><a href="./team.html"> فريقنا </a></li>
                 <li>
                     <a href="#">الصفحات</a>
@@ -96,7 +96,7 @@
                     <nav class="nav-menu">
                         <ul>
                             <li class="@yield('home')">
-                                <a href="{{ route('user.home') }}"> الصفحة الرئيسية </a>
+                                <a href=""> الصفحة الرئيسية </a>
                             </li>
                             <li><a href="./about-us.html"> حولنا </a></li>
                             <li><a href="./class-details.html"> الصفوف </a></li>
