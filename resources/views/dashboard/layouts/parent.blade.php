@@ -179,7 +179,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
+                        <a href="{{ route('dashboard.showProfile') }}" class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
                     </div>
                 </div>
 
