@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminEditProfileRequest;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $admins = Admin::all();
+
+        return view('dashboard.admin.index', compact('admins'));
     }
 
     /**
@@ -22,15 +25,21 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.Admin.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminEditProfileRequest $request)
     {
-        //
+        $data = $request->except('image', 'password_confirmation');
+        if ($request->hasFile('image')) {
+            $imagePath = Storage::disk('public')->put('admin',  $request->image);
+            $data['image'] = $imagePath;
+        }
+        $admin = Admin::create($data);
+        return redirect()->route('dashboard.admin.show', $admin->id)->with('success', 'Admin Updated successfully');
     }
 
     /**
@@ -38,7 +47,8 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        return view('dashboard.Admin.profile', compact('admin'));
     }
 
     /**
@@ -46,37 +56,19 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        return view('dashboard.Admin.edit', compact('admin'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminEditProfileRequest $request, string $id)
     {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-    public function showProfile()
-    {
-        return view('dashboard.Admin.profile');
-    }
-    public function editProfile(Request $request)
-    {
-        return view('dashboard.Admin.edit-profile');
-    }
-    public function UpdateAdminProfile(AdminEditProfileRequest $request)
-    {
-        $admin = auth()->guard('admin')->user();
+        $admin = Admin::findOrFail($id);
+        dd($admin);
         $data = $request->except('image');
-
         if ($request->hasFile('image')) {
             if ($admin->image && Storage::disk('public')->exists($admin->image)) {
                 Storage::disk('public')->delete($admin->image);
@@ -84,9 +76,20 @@ class AdminController extends Controller
             $imagePath = Storage::disk('public')->put('admin', $request->image);
             $data['image'] = $imagePath;
         }
-
         $admin->update($data);
+        return redirect()->route('dashboard.admin.show', $admin->id)->with('success', 'Admin Updated successfully');
+    }
 
-        return redirect()->route('dashboard.showProfile')->with('success', 'Admin updated successfully');
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $admin = Admin::findOrFail($id);
+        if ($admin->image && Storage::disk('public')->exists($admin->image)) {
+            Storage::disk('public')->delete($admin->image);
+        }
+        $admin->delete();
+        return back()->with('success', 'Admin Deleted Successfully.');
     }
 }

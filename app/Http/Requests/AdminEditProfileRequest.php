@@ -25,6 +25,8 @@ class AdminEditProfileRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             // 'job_title' => ['required', 'string', 'max:255'],
             // 'birth_date' => ['required', 'date'],
+            'admin_type' => ['required', 'in:super_admin,admin'],
+            'password' => ['required','min:8','confirmed'],
             'gender' => ['required', 'in:male,female'],
             'location' => ['nullable', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:15', 'unique:admins,phone'],

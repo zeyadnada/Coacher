@@ -71,26 +71,26 @@
                     <img src="" alt="trainer image" class="img-full">
                     <div class="card-body">
                         <div class="mb-4">
-                            <h3 class="h4 mb-0">{{ auth()->guard('admin')->user()->name }}</h3>
-                            <span class="text-primary">{{ auth()->guard('admin')->user()->admin_type }}</span>
+                            <h3 class="h4 mb-0">{{ $admin->name }}</h3>
+                            <span class="text-primary">{{ $admin->admin_type }}</span>
                         </div>
                         <ul class="list-unstyled mb-4">
                             <li class="mb-3"><i
-                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{ auth()->guard('admin')->user()->email }}
+                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{$admin->email }}
                             </li>
                             <li class="mb-3"><i class="fas fa-mobile-alt display-25 me-3 text-secondary mr-2"></i>
-                                {{ auth()->guard('admin')->user()->phone }}</li>
+                                {{ $admin->phone }}</li>
                             </li>
                             <li class="mb-3"><i class="fas fa-mobile-alt display-25 me-3 text-secondary mr-2"></i>
-                                {{ auth()->guard('admin')->user()->gender }}</li>
+                                {{ $admin->gender }}</li>
                             </li>
 
                             <li><i
-                                    class="fas fa-map-marker-alt display-25 me-3 text-secondary mr-2"></i>{{ auth()->guard('admin')->user()->location }}
+                                    class="fas fa-map-marker-alt display-25 me-3 text-secondary mr-2"></i>{{ $admin->location }}
                             </li>
                         </ul>
                     </div>
-                    <a href="{{ route('dashboard.editProfile') }}" class="btn btn-danger">Edit Admin Profile</a>
+                    <a href="{{ route('dashboard.admin.edit',$admin->id) }}" class="btn btn-danger">Edit Admin Profile</a>
                 </div>
             </div>
             {{-- <div class="col-lg-8">
