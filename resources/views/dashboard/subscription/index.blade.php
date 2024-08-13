@@ -39,7 +39,14 @@
                                 <td>{{ $subscription->user->name }}</td>
                                 <td>{{ $subscription->whatsapp_phone }}</td>
                                 <td>{{ $subscription->package->title }}</td>
-                                <td>{{ $subscription->trainer->name ? $subscription->trainer->name : 'No Trainer' }}</td>
+                                <td>
+                                    @if ($subscription->trainer)
+                                        {{ $subscription->trainer->name }}
+                                    @else
+                                        <span class="text-danger fw-bold">No Trainer</span>
+                                    @endif
+                                </td>
+
                                 <td>{{ $subscription->starting_date }}</td>
                                 <td>{{ $subscription->status }}</td>
                                 <td>

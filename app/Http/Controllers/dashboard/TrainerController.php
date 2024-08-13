@@ -4,7 +4,10 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TrainerRequest;
+use App\Models\Admin;
 use App\Models\Trainer;
+use App\Notifications\TrainerCreatedNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class TrainerController extends Controller
@@ -37,6 +40,10 @@ class TrainerController extends Controller
             $data['image'] = $imagePath;
         }
         $trainer = Trainer::create($data);
+        //notification event
+        $admins = Admin::all();
+        Notification::send($admins, new TrainerCreatedNotification($trainer));
+
         return redirect()->route('dashboard.trainers.show', $trainer->id)->with('success', 'Trainer Updated successfully');
     }
     /**

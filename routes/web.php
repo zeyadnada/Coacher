@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\appendages\NotificationController;
 use App\Http\Controllers\dashboard\HomePage;
 use App\Http\Controllers\dashboard\SubscriptionController;
 use App\Http\Controllers\dashboard\TrainerController;
 use App\Http\Controllers\dashboard\TrainingPackageController;
 use App\Http\Controllers\user\HomePageController;
+use App\Http\Controllers\user\SubscriptionController as UserSubscriptionController;
+use App\Http\Controllers\user\TrainerController as UserTrainerController;
 use App\Http\Controllers\user\TrainingPackageController as UserTrainingPackageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,12 +53,14 @@ Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::c
 
 Route::get('/', [HomePageController::class, 'index'])->middleware(['auth.user'])->name('home');
 Route::middleware(['auth.user'])
-->prefix('user')
-->as('user.')
-->group(function () {
-    Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
-    Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
-});
+    ->as('user.')
+    ->group(function () {
+        Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
+        Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
+        Route::post('/subscribe', [UserSubscriptionController::class, 'store'])->name('subscription.store');
+        Route::put('/subscribe/{id}', [UserSubscriptionController::class, 'update'])->name('subscription.update');
+        Route::get('/trainer/{id}', [UserTrainerController::class, 'show'])->name('trainer.show');
+    });
 
 // Route::group(['as' => 'user.'], function () {
 //     Route::get('/', HomePageController::class)->name('home');
@@ -94,3 +99,7 @@ Route::middleware(['admin'])
     });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/////////////////////////////////////////////{*-- Notifications Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+Route::get('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');

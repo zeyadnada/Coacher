@@ -2,7 +2,7 @@
 
 
 @section('title', 'Gym')
-@section('home','active')
+@section('home', 'active')
 
 @section('content')
     <!-- Hero Section Begin -->
@@ -84,7 +84,7 @@
     <!-- ChoseUs Section End -->
 
     <!-- Classes Section Begin -->
-    <section class="classes-section spad">
+    {{-- <section class="classes-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -143,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="class-item">
                         <div class="ci-pic">
                             <img src="/user/img/classes/class-5.jpg" alt="" />
@@ -157,7 +157,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ChoseUs Section End -->
 
     <!-- Banner Section Begin -->
@@ -177,7 +177,7 @@
     <!-- Banner Section End -->
 
     <!-- Pricing Section Begin -->
-    <section class="pricing-section spad">
+    {{-- <section class="pricing-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -247,11 +247,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Pricing Section End -->
 
     <!-- Gallery Section Begin -->
-    <div class="gallery-section">
+    {{-- <div class="gallery-section">
         <div class="gallery">
             <div class="grid-sizer"></div>
             <div class="gs-item grid-wide set-bg" data-setbg="/user/img/gallery/gallery-1.jpg">
@@ -279,7 +279,7 @@
                         class="fa fa-picture-o"></i></a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Gallery Section End -->
 
     <!-- Team Section Begin -->
@@ -300,54 +300,20 @@
             </div>
             <div class="row">
                 <div class="ts-slider owl-carousel">
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="/user/img/team/team-1.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span> مدرب </span>
-                            </div>
+                    @forelse ($trainers as $trainer)
+                        <div class="col-lg-4">
+                            <a href="{{ route('user.trainer.show', $trainer->id) }}">
+                                <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $trainer->image }}">
+                                    <div class="ts_text">
+                                        <h4>{{ $trainer->name }}</h4>
+                                        <span>{{ $trainer->job_title }}</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="/user/img/team/team-2.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>مدرب</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="/user/img/team/team-3.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>مدرب</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="/user/img/team/team-4.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>مدرب</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="/user/img/team/team-5.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>مدرب</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="/user/img/team/team-6.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>مدرب</span>
-                            </div>
-                        </div>
-                    </div>
+                    @empty
+                    @endforelse
+
                 </div>
             </div>
         </div>
