@@ -11,4 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
+    protected $guarded = [];
+
 }

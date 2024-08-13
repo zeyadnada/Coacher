@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Trainer;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class TrainerRequest extends FormRequest
+class AdminEditProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +23,17 @@ class TrainerRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'job_title' => ['required', 'string', 'max:255'],
-            'birth_date' => ['required', 'date'],
+            // 'job_title' => ['required', 'string', 'max:255'],
+            // 'birth_date' => ['required', 'date'],
+            'admin_type' => ['required', 'in:super_admin,admin'],
+            'password' => ['required','min:8','confirmed'],
             'gender' => ['required', 'in:male,female'],
             'location' => ['nullable', 'string', 'max:255'],
-            // 'phone' => ['required', 'string', 'max:15', Rule::unique('trainers', 'phone')->ignore(2)],
-            // 'email' => ['required', 'email', Rule::unique('trainers', 'email')->ignore(2)],
+            'phone' => ['required', 'string', 'max:15', 'unique:admins,phone'],
+            'email' => ['required', 'email', 'unique:admins,email'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
-            'experiences' => ['nullable', 'string'],
-            'certificates' => ['nullable', 'string'],
+            // 'experiences' => ['nullable', 'string'],
+            // 'certificates' => ['nullable', 'string'],
         ];
     }
 }

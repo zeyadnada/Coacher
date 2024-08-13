@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\appendages\NotificationController;
+use App\Http\Controllers\dashboard\AdminController;
 use App\Http\Controllers\dashboard\HomePage;
 use App\Http\Controllers\dashboard\SubscriptionController;
 use App\Http\Controllers\dashboard\TrainerController;
@@ -22,10 +23,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 // Custom login route
 Route::get('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('user.login');
@@ -51,7 +48,7 @@ Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::c
 
 ///////////////////////////////////////////{*--User Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-Route::get('/', [HomePageController::class, 'index'])->middleware(['auth.user'])->name('home');
+Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::middleware(['auth.user'])
     ->as('user.')
     ->group(function () {
@@ -61,12 +58,6 @@ Route::middleware(['auth.user'])
         Route::put('/subscribe/{id}', [UserSubscriptionController::class, 'update'])->name('subscription.update');
         Route::get('/trainer/{id}', [UserTrainerController::class, 'show'])->name('trainer.show');
     });
-
-// Route::group(['as' => 'user.'], function () {
-//     Route::get('/', HomePageController::class)->name('home');
-//     Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
-//     Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
-// });
 Auth::routes();
 
 
@@ -86,6 +77,11 @@ Route::middleware(['admin'])
     ->as('dashboard.')
     ->group(function () {
         Route::get('/home', HomePage::class)->name('home');
+        Route::resource('admin', AdminController::class);
+        // Route::get('showProfile', [AdminController::class, 'showProfile'])->name('showProfile');
+        // Route::get('editProfile', [AdminController::class, 'editProfile'])->name('editProfile');
+        // Route::put('UpdateAdminProfile', [AdminController::class, 'UpdateAdminProfile'])->name('UpdateAdminProfile');
+
         Route::resource('trainers', TrainerController::class);
         Route::resource('training-packages', TrainingPackageController::class);
         // Custom routes for specific subscription statuses
