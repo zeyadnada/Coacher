@@ -15,7 +15,8 @@
                 <img src="/dashboard/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
+                <a href="{{ route('dashboard.admin.show', ['admin' => auth()->guard('admin')->user()->id]) }}"
+                    class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
             </div>
         </div>
 
@@ -28,6 +29,11 @@
                 request()->routeIs('dashboard.trainers.edit') ||
                 request()->routeIs('dashboard.trainers.show') ||
                 request()->routeIs('dashboard.trainers.create');
+            $isActiveAdmin =
+                request()->routeIs('dashboard.admin.index') ||
+                request()->routeIs('dashboard.admin.edit') ||
+                request()->routeIs('dashboard.admin.show') ||
+                request()->routeIs('dashboard.admin.create');
             $isActivePackages =
                 request()->routeIs('dashboard.training-packages.index') ||
                 request()->routeIs('dashboard.training-packages.edit') ||
@@ -150,6 +156,32 @@
                         </li>
                     </ul>
                 </li>
+                {{-- Admin Section --}}
+                <li class="nav-item {{ $isActiveAdmin ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ $isActiveAdmin ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-pills"></i>
+                        <p>
+                            {{ __('Admins') }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.admin.index') }}"
+                                class="nav-link {{ request()->routeIs('dashboard.admin.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('All Admins') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.admin.create') }}"
+                                class="nav-link {{ request()->routeIs('dashboard.admin.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Add Admin') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!-- Settings Section -->
                 <li class="nav-item {{ $isActiveSettings ? 'menu-open' : '' }}">
@@ -185,7 +217,8 @@
 
                 <!-- Logout -->
                 <li class="nav-item">
-                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                        style="display: none;">
                         @csrf
                     </form>
                     <a href="#" class="nav-link"
