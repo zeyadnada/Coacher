@@ -312,7 +312,9 @@
             // var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
             var areaChartData = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                    'October', 'November', 'December'
+                ],
                 datasets: [{
                         label: 'Paid',
                         backgroundColor: 'rgba(60,141,188,0.9)',
@@ -388,17 +390,16 @@
             var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
             var donutData = {
                 labels: [
-                    'Pending',
                     'Paid',
                     'Canceled',
 
                 ],
                 datasets: [{
                     data: [{{ \App\Models\Subscription::where('status', 'Pending')->count() }},
-                        {{ \App\Models\Subscription::where('status', 'Paid')->count() }},
+
                         {{ \App\Models\Subscription::where('status', 'Canceled')->count() }}
                     ],
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12'],
+                    backgroundColor: [ '#00a65a','#f56954'],
                 }]
             }
             var donutOptions = {
