@@ -38,6 +38,13 @@ class SubscriptionController extends Controller
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
             return (new PaymobController('w'))->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
         }
+        // if(session()->has('coupon')){
+        //     //must store in different way
+        //     session()->forget('coupon');
+        // }else{
+
+            // Subscription::create($request->all());
+        // }
     }
 
     public function update(SubscriptionRequet $request, $id)
