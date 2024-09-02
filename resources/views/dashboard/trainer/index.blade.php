@@ -43,41 +43,15 @@
                                 <td>{{ $trainer->email }}</td>
                                 <td>{{ $trainer->phone }}</td>
                                 <td>
-                                    <a href="{{ route('dashboard.trainers.show', $trainer->id) }}"
-                                        class="btn btn-info">Show</a>
+                                    <a href="{{ route('dashboard.trainers.show', $trainer->id) }}" class="btn btn-info"><i
+                                            class="fas fa-eye"></i></a>
                                     <a href="{{ route('dashboard.trainers.edit', $trainer->id) }}"
-                                        class="btn btn-warning">Edit</a>
-                                    <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal{{ $trainer->id }}">Delete</button>
+                                        class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                        data-id="{{ $trainer->id }}"><i class="fas fa-trash"></i></a>
+
                                 </td>
                             </tr>
-                            <!-- Delete Confirmation Modal -->
-                            <div class="modal fade" id="deleteModal{{ $trainer->id }}" tabindex="-1" role="dialog"
-                                aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete {{ '  ' . $trainer->name }}?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
-                                            <form action="{{ route('dashboard.trainers.destroy', $trainer->id) }}"
-                                                method="post">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         @empty
                             <tr>
                                 <td colspan="8">Nothing to Show...</td>
@@ -98,6 +72,33 @@
                         </tr>
                     </tfoot>
                 </table>
+
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form id="deleteForm" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Delete Confirmation Modal -->
 
             </div>
         </div>
@@ -141,6 +142,15 @@
                 "autoWidth": false,
                 "responsive": true,
             });
+        });
+    </script>
+    <script>
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var trainerId = button.data('id'); // Extract info from data-* attributes
+            var formAction = "{{ route('dashboard.trainers.destroy', '') }}/" + trainerId;
+            var modal = $(this);
+            modal.find('#deleteForm').attr('action', formAction);
         });
     </script>
 @endsection

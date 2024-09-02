@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('weight');
             $table->string('whatsapp_phone', 15);
             $table->date('starting_date')->nullable();
-            $table->enum('status', ['Pending', 'Paid', 'Canceled'])->default('Pending');
+            $table->enum('status', ['Pending', 'Paid', 'Cancelled'])->default('Pending');
             $table->timestamps();
         });
     }

@@ -2,7 +2,6 @@
 @section('title', $package->title)
 
 @section('css')
-
     <style>
         .rtl {
             direction: rtl;
@@ -138,7 +137,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="{{ route('user.subscription.store') }}" method="post"
+                            {{-- <form action="{{ route('user.subscription.store') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
 
@@ -206,7 +205,154 @@
                                 </div>
 
                                 <button type="submit">تأكيد الاشتراك</button>
+                            </form> --}}
+                            <form action="{{ route('user.subscription.store') }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+
+                                <div>
+                                    <input type="text" name="user_id" value="{{ Auth::user()->id }}" hidden>
+                                    <input type="text" name="package_id" value="{{ $package->id }}" hidden>
+                                </div>
+
+                                <!-- WhatsApp Phone -->
+                                <div class="pb-3">
+                                    <input type="text" class="@error('whatsapp_phone') is-invalid @enderror"
+                                        name="whatsapp_phone" value="{{ old('whatsapp_phone') }}" id="whatsapp_phone"
+                                        placeholder="رقم الهاتف للتواصل">
+                                    @error('whatsapp_phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- Age -->
+                                <div class="pb-3">
+                                    <input id="age" type="number" name="age" value="{{ old('age') }}"
+                                        class="@error('age') is-invalid @enderror" placeholder="ادخل العمر">
+                                    @error('age')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- Height -->
+                                <div class="pb-3">
+                                    <input id="height" type="number" name="height" value="{{ old('height') }}"
+                                        placeholder="ادخل الطول (سـم)" class="@error('height') is-invalid @enderror">
+                                    @error('height')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- Weight -->
+                                <div class="pb-3">
+                                    <input id="weight" type="number" name="weight" value="{{ old('weight') }}"
+                                        placeholder="ادخل الوزن (كيلوجرام)" class="@error('weight') is-invalid @enderror">
+                                    @error('weight')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- starting_date -->
+                                <div class="pb-3 rtl form-floating custom-date-input">
+                                    <input id="starting_date" type="date" name="starting_date"
+                                        value="{{ old('starting_date', \Carbon\Carbon::now()->format('Y-m-d')) }}"
+                                        class="@error('starting_date') is-invalid @enderror" placeholder=" ">
+                                    <label for="starting_date">متي تود ان يبدا اشتراكك؟</label>
+                                    @error('starting_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <!-- Payment Method Cards -->
+                                <div class="pb-3">
+                                    <label for="payment_method">اختر طريقة الدفع</label>
+                                    <div class="row">
+                                        <!-- Credit Card -->
+                                        <div class="col-md-3">
+                                            <div class="card payment-card">
+                                                <input type="radio" id="paymob_card_payment" name="payment_method"
+                                                    value="paymob_card_payment" hidden>
+                                                <label for="paymob_card_payment" class="card-body text-center">
+                                                    <img src="/user/img/visa.png" alt="Credit Card Logo"
+                                                        class="img-fluid mb-3">
+                                                    <h5 class="card-title">بطاقة ائتمان</h5>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card payment-card">
+                                                <input type="radio" id="paymob_wallet_payment" name="payment_method"
+                                                    value="paymob_wallet_payment" hidden>
+                                                <label for="paymob_wallet_payment" class="card-body text-center">
+                                                    <img src="/user/img/visa.png" alt="Credit Card Logo"
+                                                        class="img-fluid mb-3">
+                                                    <h5 class="card-title">محفظة الكترونيه</h5>
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- PayPal -->
+                                        <div class="col-md-3">
+                                            <div class="card payment-card">
+                                                <input type="radio" id="paymob_value_payment" name="payment_method"
+                                                    value="paymob_value_payment" hidden>
+                                                <label for="paymob_value_payment" class="card-body text-center">
+                                                    <img src="path_to_paypal_logo.png" alt="PayPal Logo"
+                                                        class="img-fluid mb-3">
+                                                    <h5 class="card-title">باي بال</h5>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Bank Transfer -->
+                                        <div class="col-md-3">
+                                            <div class="card payment-card">
+                                                <input type="radio" id="paymob_bank_installement_payment"
+                                                    name="payment_method" value="paymob_bank_installement_payment" hidden>
+                                                <label for="paymob_bank_installement_payment"
+                                                    class="card-body text-center">
+                                                    <img src="path_to_bank_transfer_logo.png" alt="Bank Transfer Logo"
+                                                        class="img-fluid mb-3">
+                                                    <h5 class="card-title">تحويل بنكي</h5>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @error('payment_method')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <button type="submit">تأكيد الاشتراك</button>
                             </form>
+
+                            <style>
+                                .payment-card {
+                                    border: 1px solid #ccc;
+                                    cursor: pointer;
+                                }
+
+                                .payment-card:hover {
+                                    border-color: #165190;
+                                }
+
+                                .payment-card input[type="radio"]:checked+label {
+                                    border-color: #165190;
+                                    background-color: #f0f8ff;
+                                }
+                            </style>
                         @else
                             <div class="row">
                                 <div class="col-lg-12">
@@ -298,6 +444,7 @@
                             </form>
                         @endif
                     </div>
+                    <a href="{{ route('paymob.refund', [210792757, $package->price]) }}">refunddd</a>
                 </div>
             </div>
         </div>

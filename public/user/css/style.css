@@ -99,9 +99,6 @@ h6 {
 p {
   font-size: 14px;
   font-family: "Zain", sans-serif;
-  font-family: "Zain", sans-serif;
-  font-family: "Zain", sans-serif;
-  font-family: "Zain", sans-serif;
   color: #a9a9a9;
   font-weight: 400;
   line-height: 24px;
@@ -130,6 +127,29 @@ ul,
 ol {
   padding: 0;
   margin: 0;
+}
+
+.btn-outline-primary {
+  color: #f36100 !important;
+  border-color: #f36100 !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background: #f36100 !important;
+  border-color: #f36100 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  box-shadow: none !important;
+  background: #f36100 !important;
+  border-color: #f36100 !important;
 }
 
 /*---------------------
@@ -351,17 +371,25 @@ ol {
 -----------------------*/
 
 .header-section {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  padding: 0 15px;
-  padding-top: 55px;
+  padding: 15px;
+  /* padding-top: 10px; */
   z-index: 99;
+}
+
+.header-section.scrolled {
+  backdrop-filter: blur(20px);
 }
 
 .logo a {
   display: inline-block;
+}
+
+.logo a img {
+  height: 40px;
 }
 
 .nav-menu {
@@ -509,6 +537,14 @@ ol {
 
 .canvas-open {
   display: none;
+}
+
+.profile-header {
+  padding-top: 40px;
+}
+
+.profile-header .nav-menu ul li a {
+  color: #f36100;
 }
 
 /*---------------------
@@ -667,7 +703,13 @@ ol {
   margin-bottom: 30px;
 }
 
+.class-item .ci-pic {
+  height: 370px;
+}
+
 .class-item .ci-pic img {
+  height: 100%;
+  object-fit: cover;
   min-width: 100%;
 }
 
@@ -695,7 +737,7 @@ ol {
 
 .class-item .ci-text span {
   color: #f36100;
-  font-size: 12px;
+  /* font-size: 12px; */
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -709,26 +751,24 @@ ol {
 }
 
 .class-item .ci-text h4 {
+  display: -webkit-box;
   font-size: 26px;
   color: #ffffff;
   font-weight: 600;
   text-transform: uppercase;
   margin-top: 4px;
+  height: 65px;
+  /* width: 400px; */
+  -webkit-line-clamp: 2;
+  /* Number of lines */
+  -webkit-box-orient: vertical;
+  /*adjust the width to the wanted width to make the content stops at a certain amount */
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  overflow: hidden;
 }
 
-.class-item .ci-text a {
-  display: inline-block;
-  width: 46px;
-  height: 46px;
-  background: rgba(255, 255, 255, 0.1);
-  line-height: 46px;
-  text-align: center;
-  font-size: 24px;
-  color: #ffffff;
-  position: absolute;
-  right: 30px;
-  bottom: 26px;
-}
+
 
 /*---------------------
   Banner Section
@@ -1172,6 +1212,10 @@ ol {
 
 .fs-about .fa-logo a {
   display: inline-block;
+}
+
+.fa-logo a img {
+  height: 50px;
 }
 
 .fs-about p {
@@ -2002,6 +2046,7 @@ ol {
   margin-bottom: 10px;
 }
 
+
 /*------------------------
   Bmi Calculator Section
 -------------------------*/
@@ -2795,6 +2840,22 @@ ol {
   margin-right: 5px;
 }
 
+.whatsapp-icon {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 999;
+  background: #25d366;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1650px) and (max-width: 1920px) {
@@ -2924,7 +2985,7 @@ ol {
   .canvas-open {
     position: absolute;
     right: 40px;
-    top: 61px;
+    top: 20px;
     font-size: 22px;
     width: 30px;
     height: 30px;
@@ -3093,7 +3154,7 @@ ol {
   .canvas-open {
     position: absolute;
     right: 40px;
-    top: 61px;
+    top: 20px;
     font-size: 22px;
     width: 30px;
     height: 30px;
@@ -3395,4 +3456,16 @@ ol {
 
 * {
   letter-spacing: 0 !important;
+}
+
+.profile-section {
+  padding-top: 150px;
+}
+
+.dropdown-item {
+  text-align: right;
+}
+
+.dropdown-menu {
+  transform: translate(0, 50px) !important;
 }

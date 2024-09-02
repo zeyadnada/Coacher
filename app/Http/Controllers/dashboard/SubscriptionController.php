@@ -18,25 +18,29 @@ class SubscriptionController extends Controller
     public function index()
     {
         $subscriptions = Subscription::with(['user', 'package', 'trainer'])->get();
-        return view('dashboard.subscription.index', compact('subscriptions'));
+        $title =  'All Subscriptions';
+        return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function paid()
     {
         $subscriptions = Subscription::with(['user', 'package', 'trainer'])->where('status', 'Paid')->get();
-        return view('dashboard.subscription.index', compact('subscriptions'));
+        $title =  'All Paid Subscriptions';
+        return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function pending()
     {
         $subscriptions = Subscription::with(['user', 'package', 'trainer'])->where('status', 'Pending')->get();
-        return view('dashboard.subscription.index', compact('subscriptions'));
+        $title =  'All Pending Subscriptions';
+        return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function canceled()
     {
         $subscriptions = Subscription::with(['user', 'package', 'trainer'])->where('status', 'Canceled')->get();
-        return view('dashboard.subscription.index', compact('subscriptions'));
+        $title =  'All Canceled Subscriptions';
+        return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     /**

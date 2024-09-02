@@ -4,8 +4,11 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TrainingPackageRequest;
+use App\Models\Admin;
 use App\Models\TrainingPackage;
+use App\Notifications\TrainingPackageCreatedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class TrainingPackageController extends Controller
@@ -16,7 +19,7 @@ class TrainingPackageController extends Controller
     public function index()
     {
         $packages = TrainingPackage::all();
-        return view('dashboard.training_package.index',compact('packages'));
+        return view('dashboard.training_package.index', compact('packages'));
     }
 
     /**
@@ -38,6 +41,9 @@ class TrainingPackageController extends Controller
             $data['image'] = $imagePath;
         }
         $package = TrainingPackage::create($data);
+        //notification event
+        $admins = Admin::all();
+        Notification::send($admins, new TrainingPackageCreatedNotification($package));
         return redirect()->route('dashboard.training-packages.show', $package->id)->with('success', 'Training Package Created Successfully');
     }
 

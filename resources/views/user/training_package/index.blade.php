@@ -4,9 +4,7 @@
 @section('title', 'Training Packages')
 @section('package', 'active')
 
-
 @section('content')
-
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="/user/img/breadcrumb-bg.jpg">
         <div class="container">
@@ -25,46 +23,29 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <!-- Services Section Begin -->
-    <section class="services-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>ماذا نقدمة </span>
-                        <h2>تخطى حدودك</h2>
-                    </div>
+    <div class="container">
+        <div class="row">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
                 </div>
-            </div>
-            <div class="row">
-
-                @forelse ($packages as $package)
-                    <div class="col-lg-3 col-md-6 p-0">
-                        <div class="ss-pic">
-                            <img src="{{ '/storage/' . $package->image }}" alt="package" />
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 p-0">
-                        <div class="ss-text">
-                            <h4>{{ $package->title }}</h4>
-                            <p>{{ $package->price }} رس</p>
-                            <a href="{{ route('user.training-packages.show', $package->id) }}"> اكتشف </a>
-                        </div>
-                    </div>
-                @empty
-                    <h2>No Packages Yet</h2>
-                @endforelse
-            </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
         </div>
-    </section>
-    <!-- Services Section End -->
+    </div>
+
+    <!-- Start Packages section-->
     <section class="classes-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span> صفوفنا </span>
-                        <h2>اختر الصف الذي يناسبك</h2>
+                        <span> باقاتنا </span>
+                        <h2>اختر الباقة الذي تناسبك</h2>
                     </div>
                 </div>
             </div>
@@ -76,18 +57,30 @@
                                 <img src="{{ '/storage/' . $package->image }}" alt="package" />
                             </div>
                             <div class="ci-text">
-                                <h4 class="pb-3">{{ $package->title }}</h4>
-                                <span>{{ $package->price }} رس</span>
-                                <a href="{{ route('user.training-packages.show', $package->id) }}"><i
-                                        class="fa fa-angle-left"></i></a>
+                                <div class="mb-3">
+                                    <h4 data-bs-toggle="tooltip" data-bs-placement="top"
+                                        data-bs-title="{{ $package->title }}">{{ $package->title }}</h4>
+                                    <!-- data-bs-placement for the placement of the tooltip && data-bs-title should be the same conent of the h4 like shown -->
+                                    <!-- <a href="#"><i class="fa fa-angle-left"></i></a> -->
+                                    <span class="ml-2">{{ $package->price }} ر.س </span>
+                                    <span>{{ $package->duration }}</span>
+                                </div>
+                                <div class="text-left">
+                                    <a href="{{ route('user.training-packages.show', $package->id) }}" role="button"
+                                        class="btn btn-outline-primary mb-3 mb-md-0">
+                                        اشترك الان
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 @empty
-                    <h2>No Packages Yet</h2>
+                    <h2>لا توجد باقات متاحة الأن</h2>
                 @endforelse
 
             </div>
         </div>
     </section>
+    <!-- End Packages section-->
+
 @endsection

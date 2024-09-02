@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.parent')
 
-@section('title', 'All subscriptions')
+@section('title', $title)
 
 @section('css')
     <!-- DataTables -->
@@ -51,42 +51,13 @@
                                 <td>{{ $subscription->status }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.subscriptions.show', $subscription->id) }}"
-                                        class="btn btn-info">Show</a>
+                                        class="btn btn-info"><i class="fas fa-eye"></i></a>
                                     <a href="{{ route('dashboard.subscriptions.edit', $subscription->id) }}"
-                                        class="btn btn-warning">Edit</a>
-                                    <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal{{ $subscription->id }}">Delete</button>
+                                        class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                        data-id="{{ $subscription->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
-                            <!-- Delete Confirmation Modal -->
-                            <div class="modal fade" id="deleteModal{{ $subscription->id }}" tabindex="-1" role="dialog"
-                                aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete ({{ '  ' . $subscription->user->name }})
-                                            Subscription?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
-                                            <form
-                                                action="{{ route('dashboard.subscriptions.destroy', $subscription->id) }}"
-                                                method="post">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         @empty
                             <tr>
                                 <td colspan="8">Nothing to Show...</td>
@@ -107,7 +78,32 @@
                         </tr>
                     </tfoot>
                 </table>
-
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form id="deleteForm" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Delete Confirmation Modal -->
             </div>
         </div>
         <div class="row">
@@ -150,6 +146,15 @@
                 "autoWidth": false,
                 "responsive": true,
             });
+        });
+    </script>
+    <script>
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var subscriptionId = button.data('id'); // Extract info from data-* attributes
+            var formAction = "{{ route('dashboard.subscriptions.destroy', '') }}/" + subscriptionId;
+            var modal = $(this);
+            modal.find('#deleteForm').attr('action', formAction);
         });
     </script>
 @endsection

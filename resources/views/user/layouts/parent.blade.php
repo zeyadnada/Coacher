@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="{{ route('home') }}">
                             <img src="/user/img/logo.png" alt="" />
                         </a>
                     </div>
@@ -281,6 +281,15 @@
         </div>
     </div>
     <!-- Search model end -->
+
+    <!--start WhatsApp Contact-->
+    <div class="whatsapp-icon">
+        <a href="https://wa.me/201028829262" target="_blank">
+            <img src="/user/img/whatsapp.png" alt="whatsapp" />
+        </a>
+    </div>
+    <!--end WhatsApp Contact-->
+
 
     <!-- Js Plugins -->
     <script src="/user/js/jquery-3.3.1.min.js"></script>

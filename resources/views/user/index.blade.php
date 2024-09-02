@@ -7,6 +7,16 @@
 @section('content')
     <!-- Hero Section Begin -->
     <section class="hero-section">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="hs-slider owl-carousel">
             <div class="hs-item set-bg" data-setbg="/user/img/hero/hero-1.jpg">
                 <div class="container">
@@ -15,7 +25,7 @@
                             <div class="hi-text">
                                 <span> كون جسدك </span>
                                 <h1>كن <strong>قويا </strong> تمرن جيدا</h1>
-                                <a href="#" class="primary-btn"> المزيد من المعلومات </a>
+                                <a href="{{ route('user.training-packages.index') }}" class="primary-btn">عرض الباقات</a>
                             </div>
                         </div>
                     </div>
@@ -289,24 +299,26 @@
                 <div class="col-lg-12">
                     <div class="team-title">
                         <div class="section-title">
-                            <span> فريقنا </span>
-                            <h2>تدرب مع <strong>فريقنا</strong> المحترف</h2>
+                            <span> قصص نجاح أبطالنا </span>
+                            <h2>إنجازات المشتركين</h2>
                         </div>
-                        <a href="#" class="primary-btn btn-normal appoinment-btn">
-                            احجز الان
-                        </a>
+                        <a href="{{ route('user.training-packages.index') }}"
+                            class="primary-btn btn-normal appoinment-btn">اشترك الان</a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="ts-slider owl-carousel">
-                    @forelse ($trainers as $trainer)
+                    @forelse ($transformations as $transformation)
                         <div class="col-lg-4">
-                            <a href="{{ route('user.trainer.show', $trainer->id) }}">
-                                <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $trainer->image }}">
+                            <a href="{{ route('user.trainer.show', $transformation->id) }}">
+                                <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $transformation->photo_path }}">
                                     <div class="ts_text">
-                                        <h4>{{ $trainer->name }}</h4>
-                                        <span>{{ $trainer->job_title }}</span>
+                                        <h4>بطلنا أحمد وائل 22 سنة طالب بكلية صيدلة اشترك معانا بهدف الحياة الصحية 📌ايه
+                                            الخطوات اللي اتبعناها مع يوسف؟ *بدأنا نطلب منه اختبارات تحديد القوة والمرونة
+                                            واللياقة وتحليل الـ inbody وقياساته عشان نصممله البرامج المتناسبة مع احتياجات
+                                            جسمه وقدرته </h4>
+                                        {{-- <span>{{ $trainer->job_title }}</span> --}}
                                     </div>
                                 </div>
                             </a>

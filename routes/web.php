@@ -3,9 +3,13 @@
 use App\Http\Controllers\appendages\NotificationController;
 use App\Http\Controllers\dashboard\AdminController;
 use App\Http\Controllers\dashboard\HomePage;
+use App\Http\Controllers\dashboard\PaymentconfigController;
 use App\Http\Controllers\dashboard\SubscriptionController;
 use App\Http\Controllers\dashboard\TrainerController;
 use App\Http\Controllers\dashboard\TrainingPackageController;
+use App\Http\Controllers\dashboard\TransformationController;
+use App\Http\Controllers\dashboard\WhatsAppConfigontroller;
+use App\Http\Controllers\Payment\PaymobController;
 use App\Http\Controllers\user\HomePageController;
 use App\Http\Controllers\user\SubscriptionController as UserSubscriptionController;
 use App\Http\Controllers\user\TrainerController as UserTrainerController;
@@ -89,9 +93,12 @@ Route::middleware(['admin'])
         Route::get('/subscriptions/pending', [SubscriptionController::class, 'pending'])->name('subscriptions.pending');
         Route::get('/subscriptions/canceled', [SubscriptionController::class, 'canceled'])->name('subscriptions.canceled');
         Route::resource('subscriptions', SubscriptionController::class);
-        Route::get('final', function () {
-            return view('dashboard.settings.result_photos');
-        })->name('result_photos');
+        Route::get('/payment-settings', [PaymentconfigController::class, 'index'])->name('setting.paymentConfig.index');
+        Route::post('/payment-settings/update', [PaymentconfigController::class, 'updatePaymentConfig'])->name('setting.paymentConfig.update');
+        Route::get('/whatsApp-settings', [WhatsAppConfigontroller::class, 'index'])->name('setting.whatsApp.index');
+        Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
+        Route::resource('/transformation', TransformationController::class);
+
     });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -99,3 +106,8 @@ Route::middleware(['admin'])
 /////////////////////////////////////////////{*-- Notifications Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 Route::get('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
+
+
+///////////////////////////////////////////////{*--PAYMENT--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Route::get('/paymob/callback', [PaymobController::class, 'callback']);
+Route::get('/paymob/refund/{transaction_id}/{amount}', [PaymobController::class, 'refund'])->name('paymob.refund');

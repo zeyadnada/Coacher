@@ -39,7 +39,10 @@
                 request()->routeIs('dashboard.subscriptions.paid') ||
                 request()->routeIs('dashboard.subscriptions.pending') ||
                 request()->routeIs('dashboard.subscriptions.canceled');
-            $isActiveSettings = request()->routeIs('dashboard.result_photos');
+            $isActiveSettings =
+                request()->routeIs('dashboard.transformation.index') ||
+                request()->routeIs('dashboard.setting.paymentConfig.index') ||
+                request()->routeIs('dashboard.setting.whatsApp.index');
         @endphp
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -162,10 +165,24 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard.result_photos') }}"
-                                class="nav-link {{ request()->routeIs('dashboard.result_photos') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard.transformation.index') }}"
+                                class="nav-link {{ request()->routeIs('dashboard.transformation.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Side Effects') }}</p>
+                                <p>{{ __('Transformation') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.setting.whatsApp.index') }}"
+                                class="nav-link {{ request()->routeIs('dashboard.setting.whatsApp.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('WhatsApp-config') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.setting.paymentConfig.index') }}"
+                                class="nav-link {{ request()->routeIs('dashboard.setting.paymentConfig.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Payment-config') }}</p>
                             </a>
                         </li>
                         {{-- <li class="nav-item">

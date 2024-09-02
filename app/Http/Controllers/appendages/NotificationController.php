@@ -12,18 +12,23 @@ class NotificationController extends Controller
         $user = $this->getAuthenticatedUser();
 
         if ($user) {
-            $notification = $user->unreadNotifications->find($id);
+            // Fetch the specific unread notification
+            $notification = $user->notifications->find($id);
 
             if ($notification) {
+                // Mark the notification as read
                 $notification->markAsRead();
+
+                // Redirect based on notification data
+                return redirect($notification->data['url']);
             }
 
-            // Redirect to a specific URL or fallback
-            return redirect($notification->data['url'] ?? '/');
+            return redirect()->back();
         }
 
-        return redirect('/'); // Fallback if no user is authenticated
+        return redirect()->back();
     }
+
 
     public function markAllAsRead()
     {
