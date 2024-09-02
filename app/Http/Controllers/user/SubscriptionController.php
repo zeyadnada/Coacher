@@ -11,7 +11,13 @@ class SubscriptionController extends Controller
 {
     public function store(SubscriptionRequet $request)
     {
-        Subscription::create($request->all());
+        // if(session()->has('coupon')){
+        //     //must store in different way
+        //     session()->forget('coupon');
+        // }else{
+
+            Subscription::create($request->all());
+        // }
     }
 
     public function update(SubscriptionRequet $request, $id)

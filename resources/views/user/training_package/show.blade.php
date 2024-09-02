@@ -67,6 +67,23 @@
     <!-- Class Details Section Begin -->
     <section class="class-details-section spad">
         <div class="container">
+            @if (session()->has('success_message'))
+                <div class="spacer"></div>
+                <div class="alert alert-success">
+                    {{ session()->get('success_message') }}
+                </div>
+            @endif
+
+            @if (count($errors) > 0)
+                <div class="spacer"></div>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{!! $error !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-8">
                     <div class="class-details-text">
@@ -83,6 +100,17 @@
                             <div class="cd-single-item">
                                 <h4>{{ $package->price }} رس</h4>
                             </div>
+                            {{-- <div class="cd-single-item"> --}}
+                            @if (!session()->has("coupon_$package->id"))
+                                <form action="{{ route('coupon.store', ['id' => $package->id]) }}" method="POST">
+                                    @csrf
+                                    {{-- @method('delete') --}}
+                                    <label for="coupon_code" style="color: white">هل يوجد اى كود خصم؟</label> <br>
+                                    <input type="text" name="coupon_code" id="coupon_code"><br>
+                                    <input type="submit" value="خصم">
+                                </form>
+                            @endif
+                            {{-- </div> --}}
                         </div>
                     </div>
                 </div>
@@ -97,6 +125,30 @@
                                 <li>
                                     <a href="#"> السعر <span>{{ $package->price }} رس</span></a>
                                 </li>
+                                @if (session()->has("coupon_$package->id"))
+                                    <li>
+                                        <a href="#"> كود الخصم <span>{{ session()->get("coupon_$package->id")['code'] }}
+                                            </span></a>
+                                        <form action="{{ route('coupon.destroy',['id'=>$package->id]) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="submit" value="حذف الكود">
+                                        </form>
+                                    </li>
+                                    <li>
+                                        @if (session()->get("coupon_$package->id")['type'] == 'percent')
+                                            <a href="#"> الخصم <span> {{ session()->get("coupon_$package->id")['percent'] }} %
+                                                    رس</span></a>
+                                        @elseif (session()->get("coupon_$package->id")['type'] == 'fixed')
+                                            <a href="#"> الخصم <span>- {{ session()->get("coupon_$package->id")['value'] }}
+                                                    رس</span></a>
+                                        @endif
+                                    </li>
+                                    <li>
+                                        <a href="#"> اجمالى السعر بعد الخصم
+                                            <span>{{ session()->get("coupon_$package->id")['discount'] }} رس</span></a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                         {{-- <div class="so-latest">

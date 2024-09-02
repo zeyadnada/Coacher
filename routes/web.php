@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\appendages\NotificationController;
+use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\dashboard\AdminController;
 use App\Http\Controllers\dashboard\HomePage;
 use App\Http\Controllers\dashboard\SubscriptionController;
@@ -93,6 +94,9 @@ Route::middleware(['admin'])
             return view('dashboard.settings.result_photos');
         })->name('result_photos');
     });
+    //Coupons
+    Route::post('/coupon/{id}', [CouponsController::class, "store"])->name('coupon.store');
+    Route::delete('/coupon/{id}', [CouponsController::class, "destroy"])->name('coupon.destroy');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
