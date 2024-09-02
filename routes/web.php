@@ -82,6 +82,12 @@ Route::middleware(['admin'])
         // Route::get('showProfile', [AdminController::class, 'showProfile'])->name('showProfile');
         // Route::get('editProfile', [AdminController::class, 'editProfile'])->name('editProfile');
         // Route::put('UpdateAdminProfile', [AdminController::class, 'UpdateAdminProfile'])->name('UpdateAdminProfile');
+        Route::get('/coupon/index', [CouponsController::class, 'index'])->name("coupon.index");
+        Route::get('/coupon', [CouponsController::class, 'create'])->name("coupon.create");
+        Route::post('/coupon/save', [CouponsController::class, 'save'])->name("coupon.save");
+        Route::get('/coupon/edit/{id}', [CouponsController::class, 'edit'])->name("coupon.edit");
+        Route::put('/coupon/update/{id}', [CouponsController::class, 'update'])->name("coupon.update");
+        Route::delete('/coupon/delete/{id}', [CouponsController::class, 'delete'])->name("coupon.delete");
 
         Route::resource('trainers', TrainerController::class);
         Route::resource('training-packages', TrainingPackageController::class);
@@ -94,9 +100,9 @@ Route::middleware(['admin'])
             return view('dashboard.settings.result_photos');
         })->name('result_photos');
     });
-    //Coupons
-    Route::post('/coupon/{id}', [CouponsController::class, "store"])->name('coupon.store');
-    Route::delete('/coupon/{id}', [CouponsController::class, "destroy"])->name('coupon.destroy');
+//Coupons
+Route::post('/coupon/{id}', [CouponsController::class, "store"])->name('coupon.store');
+Route::delete('/coupon/{id}', [CouponsController::class, "destroy"])->name('coupon.destroy');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

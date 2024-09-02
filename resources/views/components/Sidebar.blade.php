@@ -39,6 +39,9 @@
                 request()->routeIs('dashboard.training-packages.edit') ||
                 request()->routeIs('dashboard.training-packages.show') ||
                 request()->routeIs('dashboard.training-packages.create');
+            $isActiveCoupon =
+                request()->routeIs('dashboard.coupon.index') ||
+                request()->routeIs('dashboard.coupon.create');
             $isActiveSubscriptions =
                 request()->routeIs('dashboard.subscriptions.index') ||
                 request()->routeIs('dashboard.subscriptions.create') ||
@@ -178,6 +181,32 @@
                                 class="nav-link {{ request()->routeIs('dashboard.admin.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Add Admin') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- Coupons Section --}}
+                <li class="nav-item {{ $isActiveCoupon ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ $isActiveCoupon ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-pills"></i>
+                        <p>
+                            {{ __('Coupons') }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.coupon.index') }}"
+                                class="nav-link {{ request()->routeIs('dashboard.coupon.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('All Coupons') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.coupon.create') }}"
+                                class="nav-link {{ request()->routeIs('dashboard.coupon.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Add Coupon') }}</p>
                             </a>
                         </li>
                     </ul>
