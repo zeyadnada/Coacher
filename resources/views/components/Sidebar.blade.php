@@ -41,6 +41,7 @@
                 request()->routeIs('dashboard.training-packages.create');
             $isActiveCoupon =
                 request()->routeIs('dashboard.coupon.index') ||
+                request()->routeIs('dashboard.coupon.edit') ||
                 request()->routeIs('dashboard.coupon.create');
             $isActiveSubscriptions =
                 request()->routeIs('dashboard.subscriptions.index') ||
