@@ -225,7 +225,7 @@
     <!-- Summernote -->
     <script src="{{ url('/dashboard/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
-    <script src="{{ url('/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    {{-- <script src="{{ url('/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script> --}}
     <!-- AdminLTE App -->
     <script src="{{ url('/dashboard/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->

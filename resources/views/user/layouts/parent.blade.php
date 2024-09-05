@@ -44,31 +44,16 @@
         <div class="canvas-close">
             <i class="fa fa-close"></i>
         </div>
-        <div class="canvas-search search-switch">
-            <i class="fa fa-search"></i>
-        </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="">الصفحة الرئيسية</a></li>
-                <li><a href="./about-us.html">حولنا </a></li>
-                <li><a href="./classes.html"> الصفوف </a></li>
-                <li><a href=""> الخدمات </a></li>
-                <li><a href="./team.html"> فريقنا </a></li>
-                <li>
-                    <a href="#">الصفحات</a>
-                    <ul class="dropdown">
-                        <li><a href="./about-us.html"> حولنا </a></li>
-                        <li><a href="./class-timetable.html"> جدول الصفوف </a></li>
-                        <li>
-                            <a href="./bmi-calculator.html"> حاسبة مؤشر كتلة الجسم </a>
-                        </li>
-                        <li><a href="./team.html"> فريقنا </a></li>
-                        <li><a href="./gallery.html"> معرض الصور </a></li>
-                        <li><a href="./blog.html"> مدونتنا </a></li>
-                        <li><a href="./404.html"> 404 </a></li>
-                    </ul>
+                <li class="@yield('home')">
+                    <a href="{{ route('home') }}"> الصفحة الرئيسية </a>
                 </li>
-                <li><a href="./contact.html"> اتصل بنا </a></li>
+                <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
+                    </a></li>
+                <li><a href="#transformations">انجازات المشتركين</a></li>
+                <li><a href="">المدربين</a></li>
+                <li><a href="#footer"> اتصل بنا </a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -88,7 +73,7 @@
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="{{ route('home') }}">
-                            <img src="/user/img/logo.png" alt="" />
+                            <img src="/user/img/logo.png" alt="Logo" />
                         </a>
                     </div>
                 </div>
@@ -96,40 +81,21 @@
                     <nav class="nav-menu">
                         <ul>
                             <li class="@yield('home')">
-                                <a href=""> الصفحة الرئيسية </a>
+                                <a href="{{ route('home') }}"> الصفحة الرئيسية </a>
                             </li>
-                            <li><a href="./about-us.html"> حولنا </a></li>
-                            <li><a href="./class-details.html"> الصفوف </a></li>
-                            <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}"> الخدمات
+                            <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
                                 </a></li>
-                            <li><a href="./team.html"> فريقنا </a></li>
-                            <li>
-                                <a href="#"> الصفحات </a>
-                                <ul class="dropdown">
-                                    <li><a href="./about-us.html"> حولنا </a></li>
-                                    <li>
-                                        <a href="./class-timetable.html"> جدول الصفوف </a>
-                                    </li>
-                                    <li>
-                                        <a href="./bmi-calculator.html">
-                                            حاسبة مؤشر كتلة الجسم
-                                        </a>
-                                    </li>
-                                    <li><a href="./team.html"> فريقنا </a></li>
-                                    <li><a href="./gallery.html"> معرض الصور </a></li>
-                                    <li><a href="./blog.html"> مدونتنا </a></li>
-                                    <li><a href="./404.html">404</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./contact.html"> اتصل بنا </a></li>
+                            <li><a href="#transformations">انجازات المشتركين</a></li>
+                            <li><a href="#">المدربين</a></li>
+                            <li><a href="#footer"> اتصل بنا </a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="top-option">
-                        <div class="to-search search-switch">
+                        {{-- <div class="to-search search-switch">
                             <i class="fa fa-search"></i>
-                        </div>
+                        </div> --}}
                         <div class="to-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -180,7 +146,7 @@
     <!-- Get In Touch Section End -->
 
     <!-- Footer Section Begin -->
-    <section class="footer-section">
+    <section class="footer-section" id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">

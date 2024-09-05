@@ -30,20 +30,31 @@
                     @csrf
                     <div class="form-row mb-3">
                         <div class="col-6">
-                            <label for="user_id">User</label>
-                            <select class="select2 form-control @error('user_id') is-invalid @enderror" name="user_id"
-                                id="user_id" class="form-control" style="width: 100%;">
-                                <option value="" disabled selected>Select a user</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('user_id')
+                            <label for="name">Subscriber Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                value="{{ old('name') }}" placeholder="Enter Subscriber Name" id="name"
+                                class="form-control" style="width: 100%;">
+                            </input>
+                            @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
+                        <div class="col-6">
+                            <label for="email">Subscriber Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ old('email') }}" placeholder="Enter Subscriber Email" id="email"
+                                class="form-control" style="width: 100%;">
+                            </input>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
                         <div class="col-6">
                             <label for="whatsapp_phone">Whatsapp Phone</label>
                             <input type="text" class="form-control @error('whatsapp_phone') is-invalid @enderror"
@@ -54,42 +65,17 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-
                         </div>
-                    </div>
-                    <div class="form-row mb-3">
 
-                        <div class="col-4">
-                            <label for="age">Age</label>
-                            <input id="age" type="number" name="age" value="{{ old('age') }}"
-                                class="form-control @error('age') is-invalid @enderror" placeholder="Enter User Age">
-                            @error('age')
+                        <div class="col-6">
+                            <label for="starting_date">Starting Date</label>
+                            <input id="starting_date" type="date" name="starting_date" value="{{ old('starting_date') }}"
+                                class="form-control @error('starting_date') is-invalid @enderror">
+                            @error('starting_date')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="col-4">
-                            <label for="height">Height (cm)</label>
-                            <input id="height" type="number" name="height" value="{{ old('height') }}"
-                                placeholder="Enter User height" class="form-control @error('height') is-invalid @enderror">
-                            @error('height')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                        <div class="col-4">
-                            <label for="weight">Weight (kg)</label>
-                            <input id="weight" type="number" name="weight" value="{{ old('weight') }}"
-                                placeholder="Enter User weight" class="form-control @error('weight') is-invalid @enderror">
-                            @error('weight')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
                         </div>
                     </div>
 
@@ -111,20 +97,6 @@
                         </div>
 
                         <div class="col-6">
-                            <label for="starting_date">Starting Date</label>
-                            <input id="starting_date" type="date" name="starting_date"
-                                value="{{ old('starting_date') }}"
-                                class="form-control @error('starting_date') is-invalid @enderror">
-                            @error('starting_date')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                    </div>
-                    <div class="form-row mb-3">
-                        <div class="col-6">
                             <label for="trainer_id">Trainer</label>
                             <select class="select2 form-control @error('trainer_id') is-invalid @enderror" name="trainer_id"
                                 id="trainer_id" style="width: 100%;">
@@ -140,9 +112,22 @@
                                 </span>
                             @enderror
                         </div>
+                    </div>
 
+                    <div class="form-row mb-3">
+                        <div class="col-4">
+                            <label for="amount_paid">Amount Paid</label>
+                            <input id="amount_paid" type="number" name="amount_paid" value="{{ old('amount_paid') }}"
+                                placeholder="Enter Amount Paid "
+                                class="form-control @error('amount_paid') is-invalid @enderror">
+                            @error('amount_paid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
-                        <div class="col-6">
+                        </div>
+                        <div class="col-4">
                             <label for="status">Payment Status</label>
                             <select class="select2 form-control @error('status') is-invalid @enderror" name="status"
                                 id="status" style="width: 100%;">
@@ -159,11 +144,23 @@
                             @enderror
                         </div>
 
+                        <div class="col-4">
+                            <label for="transaction_id">Tranaction ID</label>
+                            <input type="text" class="form-control @error('transaction_id') is-invalid @enderror"
+                                name="transaction_id" placeholder="Pay First to Get This ID" id="transaction_id"
+                                class="form-control" style="width: 100%;">
+                            </input>
+                            @error('transaction_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-row my-4">
                         <div class="col-2">
-                            <input type="submit" class="btn btn-primary">
+                            <input type="submit" value="Add Subscription" class="btn btn-primary">
                         </div>
                     </div>
                 </form>

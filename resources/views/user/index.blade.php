@@ -17,7 +17,10 @@
                 {{ session('error') }}
             </div>
         @endif
-        <div class="hs-slider owl-carousel">
+
+        <!--header option 1 -->
+
+        {{-- <div class="hs-slider owl-carousel">
             <div class="hs-item set-bg" data-setbg="/user/img/hero/hero-1.jpg">
                 <div class="container">
                     <div class="row">
@@ -44,7 +47,23 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
+
+        <!--header option 2 -->
+        <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="bs-text">
+                            <h2>سجل الان للحصول على صفقات جديدة</h2>
+                            <div class="bt-tips">حيث الصحة والجمال واللياقة يلتقون</div>
+                            <a href="{{ route('user.training-packages.index') }}" class="primary-btn btn-normal"> اشترك الان
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
     <!-- Hero Section End -->
 
@@ -187,7 +206,7 @@
     <!-- Banner Section End -->
 
     <!-- Pricing Section Begin -->
-    {{-- <section class="pricing-section spad">
+    <section class="pricing-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -202,7 +221,7 @@
                     <div class="ps-item">
                         <h3>المتقطع</h3>
                         <div class="pi-price">
-                            <h2>39.0 ر.س</h2>
+                            <h2>6000 EGP</h2>
                             <span> الحصة الواحدة </span>
                         </div>
                         <ul>
@@ -214,14 +233,14 @@
                             <li>لا يوجد قيود زمنية</li>
                         </ul>
                         <a href="#" class="primary-btn pricing-btn"> اشترك الان </a>
-                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                        {{-- <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a> --}}
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-8">
                     <div class="ps-item">
                         <h3>الاشتراك السنوي</h3>
                         <div class="pi-price">
-                            <h2>99.0 ر.س</h2>
+                            <h2>9000 EGP</h2>
                             <span> الحصة الواحدة </span>
                         </div>
                         <ul>
@@ -233,14 +252,14 @@
                             <li>لا يوجد قيود زمنية</li>
                         </ul>
                         <a href="#" class="primary-btn pricing-btn"> اشترك الان </a>
-                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                        {{-- <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a> --}}
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-8">
                     <div class="ps-item">
                         <h3>الاشتراك النصف سنوي</h3>
                         <div class="pi-price">
-                            <h2>59.0 ر.س</h2>
+                            <h2>12000 EGP</h2>
                             <span> الحصة الواحدة </span>
                         </div>
                         <ul>
@@ -252,48 +271,16 @@
                             <li>لا يوجد قيود زمنية</li>
                         </ul>
                         <a href="#" class="primary-btn pricing-btn"> اشترك الان </a>
-                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                        {{-- <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a> --}}
                     </div>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
     <!-- Pricing Section End -->
 
-    <!-- Gallery Section Begin -->
-    {{-- <div class="gallery-section">
-        <div class="gallery">
-            <div class="grid-sizer"></div>
-            <div class="gs-item grid-wide set-bg" data-setbg="/user/img/gallery/gallery-1.jpg">
-                <a href="/user/img/gallery/gallery-1.jpg" class="thumb-icon image-popup"><i
-                        class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="/user/img/gallery/gallery-2.jpg">
-                <a href="/user/img/gallery/gallery-2.jpg" class="thumb-icon image-popup"><i
-                        class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="/user/img/gallery/gallery-3.jpg">
-                <a href="/user/img/gallery/gallery-3.jpg" class="thumb-icon image-popup"><i
-                        class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="/user/img/gallery/gallery-4.jpg">
-                <a href="/user/img/gallery/gallery-4.jpg" class="thumb-icon image-popup"><i
-                        class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="/user/img/gallery/gallery-5.jpg">
-                <a href="/user/img/gallery/gallery-5.jpg" class="thumb-icon image-popup"><i
-                        class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item grid-wide set-bg" data-setbg="/user/img/gallery/gallery-6.jpg">
-                <a href="/user/img/gallery/gallery-6.jpg" class="thumb-icon image-popup"><i
-                        class="fa fa-picture-o"></i></a>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Gallery Section End -->
-
-    <!-- Team Section Begin -->
-    <section class="team-section spad">
+    <!-- Transformation Section Begin -->
+    <section class="team-section spad" id="transformations">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -314,10 +301,7 @@
                             <a href="{{ route('user.trainer.show', $transformation->id) }}">
                                 <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $transformation->photo_path }}">
                                     <div class="ts_text">
-                                        <h4>بطلنا أحمد وائل 22 سنة طالب بكلية صيدلة اشترك معانا بهدف الحياة الصحية 📌ايه
-                                            الخطوات اللي اتبعناها مع يوسف؟ *بدأنا نطلب منه اختبارات تحديد القوة والمرونة
-                                            واللياقة وتحليل الـ inbody وقياساته عشان نصممله البرامج المتناسبة مع احتياجات
-                                            جسمه وقدرته </h4>
+                                        <span>{{ $transformation->description }}</span>
                                         {{-- <span>{{ $trainer->job_title }}</span> --}}
                                     </div>
                                 </div>
@@ -330,10 +314,10 @@
             </div>
         </div>
     </section>
-    <!-- Team Section End -->
+    <!-- Transformation Section End -->
 
 
-    <!-- Banner Section Begin -->
+    <!-- Video Banner Section Begin -->
     <section class="banner-section set-bg" data-setbg="/user/img/banner-bg.jpg">
         <div class="container">
             <div class="row">
@@ -348,6 +332,6 @@
             </div>
         </div>
     </section>
-    <!-- Banner Section End -->
+    <!--Video Banner Section End -->
 
 @endsection

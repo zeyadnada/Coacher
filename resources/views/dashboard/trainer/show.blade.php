@@ -73,9 +73,13 @@
                     <div class="card-body">
                         <div class="mb-4">
                             <h3 class="h4 mb-0">{{ $trainer->name }}</h3>
+
                             <span class="text-primary">{{ $trainer->job_title }}</span>
                         </div>
                         <ul class="list-unstyled mb-4">
+                            <li class="mb-3"><i class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>
+                                {{ \Carbon\Carbon::parse($trainer->birth_date)->age }}
+                            </li>
                             <li class="mb-3"><i
                                     class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{ $trainer->email }}
                             </li>
@@ -84,6 +88,9 @@
                             </li>
                             <li><i
                                     class="fas fa-map-marker-alt display-25 me-3 text-secondary mr-2"></i>{{ $trainer->location }}
+                            </li>
+                            <li><i
+                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{ $trainer->subscriptions->count() }}
                             </li>
                         </ul>
                     </div>

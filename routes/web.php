@@ -30,49 +30,48 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Custom login route
-Route::get('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('user.login');
-Route::post('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('user.login');
+// Route::get('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('user.login');
+// Route::post('/user/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('user.login');
 
 // Custom logout route
-Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+// Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 // Custom registration routes
-Route::get('/user/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('user.register');
-Route::post('/user/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('user.register');
+// Route::get('/user/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('user.register');
+// Route::post('/user/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('user.register');
 
 // Password reset routes
-Route::get('password/reset', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])->name('password.update');
+// Route::get('password/reset', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+// Route::post('password/email', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Route::get('password/reset/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+// Route::post('password/reset', [App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Email verification routes
-Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
-Route::get('email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
-Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::class, 'resend'])->name('verification.resend');
+// Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
+// Route::get('email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
+// Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::class, 'resend'])->name('verification.resend');
 
 ///////////////////////////////////////////{*--User Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
-Route::middleware(['auth.user'])
-    ->as('user.')
+Route::as('user.')
     ->group(function () {
         Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
         Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
         Route::post('/subscribe', [UserSubscriptionController::class, 'store'])->name('subscription.store');
         Route::put('/subscribe/{id}', [UserSubscriptionController::class, 'update'])->name('subscription.update');
         Route::get('/trainer/{id}', [UserTrainerController::class, 'show'])->name('trainer.show');
+        Route::post('/coupon/{id}', [CouponsController::class, "store"])->name('coupon.store');
+        Route::delete('/coupon/{id}', [CouponsController::class, "destroy"])->name('coupon.destroy');
     });
 Auth::routes();
 
 
-///////////////////////////////////////////{*--AUTH Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////{*--Admin AUTH Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 Route::get('/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login']);
 Route::post('/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
-
-
 
 
 ///////////////////////////////////////////{*--Admin Dashboard Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -105,11 +104,7 @@ Route::middleware(['admin'])
         Route::get('/whatsApp-settings', [WhatsAppConfigontroller::class, 'index'])->name('setting.whatsApp.index');
         Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
         Route::resource('/transformation', TransformationController::class);
-
     });
-//Coupons
-Route::post('/coupon/{id}', [CouponsController::class, "store"])->name('coupon.store');
-Route::delete('/coupon/{id}', [CouponsController::class, "destroy"])->name('coupon.destroy');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

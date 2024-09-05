@@ -20,6 +20,7 @@ class Sidebar extends Component
         $this->noTrainerCount = Cache::remember('no_trainer_subscription_count', 60, function () {
             return DB::table('subscriptions')
                 ->whereNull('trainer_id')
+                ->where('payment_status', 'Paid')
                 ->count();
         });
     }

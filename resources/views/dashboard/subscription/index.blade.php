@@ -23,12 +23,13 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Subscriber Name</th>
+                            <th>Name</th>
                             <th>phone</th>
                             <th>Package</th>
                             <th>Trainer</th>
                             <th>Starting Date</th>
                             <th>Payment Status</th>
+                            <th>Transaction ID</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -36,7 +37,7 @@
                         @forelse ($subscriptions as $subscription)
                             <tr>
                                 <td>{{ @$loop->iteration }}</td>
-                                <td>{{ $subscription->user->name }}</td>
+                                <td>{{ $subscription->name }}</td>
                                 <td>{{ $subscription->whatsapp_phone }}</td>
                                 <td>{{ $subscription->package->title }}</td>
                                 <td>
@@ -48,7 +49,9 @@
                                 </td>
 
                                 <td>{{ $subscription->starting_date }}</td>
-                                <td>{{ $subscription->status }}</td>
+                                <td>{{ $subscription->payment_status }}</td>
+                                <td>{{ $subscription->transaction_id }}</td>
+
                                 <td>
                                     <a href="{{ route('dashboard.subscriptions.show', $subscription->id) }}"
                                         class="btn btn-info"><i class="fas fa-eye"></i></a>
@@ -74,6 +77,7 @@
                             <th>Trainer</th>
                             <th>Starting Date</th>
                             <th>Payment Status</th>
+                            <th>Transaction ID</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
@@ -106,11 +110,11 @@
                 <!-- end Delete Confirmation Modal -->
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12">
-                {{-- {{ $subscriptions->withQueryString()->links() }} --}}
+                {{ $subscriptions->withQueryString()->links() }}
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 
@@ -132,20 +136,13 @@
     <script>
         $(function() {
             $("#example1").DataTable({
-                "responsive": true,
                 "lengthChange": false,
+                "responsive": true,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
                 "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+                "searching": true,
+                "buttons": ["copy", "excel", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
     <script>

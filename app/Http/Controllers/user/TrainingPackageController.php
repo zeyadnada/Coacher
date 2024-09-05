@@ -20,15 +20,6 @@ class TrainingPackageController extends Controller
     {
         // Retrieve the package
         $package = TrainingPackage::findOrFail($id);
-
-        $hasActiveSubscription = null;
-
-        // Check if the user is authenticated
-        if (Auth::check()) {
-            $subscription = Subscription::where('user_id', Auth::id())
-                ->where('package_id', $id)
-                ->first(); // Efficiently check existence
-        }
-        return view('user.training_package.show', compact('package', 'subscription'));
+        return view('user.training_package.show', compact('package'));
     }
 }

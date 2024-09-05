@@ -62,7 +62,7 @@
                                         data-bs-title="{{ $package->title }}">{{ $package->title }}</h4>
                                     <!-- data-bs-placement for the placement of the tooltip && data-bs-title should be the same conent of the h4 like shown -->
                                     <!-- <a href="#"><i class="fa fa-angle-left"></i></a> -->
-                                    <span class="ml-2">{{ $package->price }} ر.س </span>
+                                    <span class="ml-2">{{ $package->price }}EGP</span>
                                     <span>{{ $package->duration }}</span>
                                 </div>
                                 <div class="text-left">

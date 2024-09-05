@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transformations', function (Blueprint $table) {
             $table->id();
             $table->string('photo_path');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null')->onUpdate('cascade');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -8,7 +8,6 @@ use App\Models\Subscription;
 use App\Models\Trainer;
 use App\Models\TrainingPackage;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
@@ -17,28 +16,28 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscription::with(['user', 'package', 'trainer'])->get();
+        $subscriptions = Subscription::with(['package', 'trainer'])->get();
         $title =  'All Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function paid()
     {
-        $subscriptions = Subscription::with(['user', 'package', 'trainer'])->where('status', 'Paid')->get();
+        $subscriptions = Subscription::with(['package', 'trainer'])->where('payment_status', 'Paid')->get();
         $title =  'All Paid Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function pending()
     {
-        $subscriptions = Subscription::with(['user', 'package', 'trainer'])->where('status', 'Pending')->get();
+        $subscriptions = Subscription::with(['package', 'trainer'])->where('payment_status', 'Pending')->get();
         $title =  'All Pending Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function canceled()
     {
-        $subscriptions = Subscription::with(['user', 'package', 'trainer'])->where('status', 'Canceled')->get();
+        $subscriptions = Subscription::with(['package', 'trainer'])->where('payment_status', 'Cancelled')->get();
         $title =  'All Canceled Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
@@ -77,10 +76,9 @@ class SubscriptionController extends Controller
     public function edit($id)
     {
         $subscription = Subscription::findOrFail($id);
-        $users = User::select('id', 'name')->get();
         $packages = TrainingPackage::select('id', 'title')->get();
         $trainers = Trainer::select('id', 'name')->get();
-        return view('dashboard.subscription.edit', compact('subscription', 'users', 'packages', 'trainers'));
+        return view('dashboard.subscription.edit', compact('subscription', 'packages', 'trainers'));
     }
 
     /**

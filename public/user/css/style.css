@@ -2047,6 +2047,7 @@ ol {
 }
 
 
+
 /*------------------------
   Bmi Calculator Section
 -------------------------*/
@@ -2854,6 +2855,51 @@ ol {
   line-height: 50px;
   font-size: 25px;
   cursor: pointer;
+}
+
+
+/*---------------------------
+  Payment Methods card Style
+----------------------------*/
+
+.payment-methods-container {
+  display: flex;
+  gap: 15px;
+}
+
+.payment-card {
+  background-color: #cfcecd;
+  border: 1px solid #f36100;
+  border-radius: 8px;
+  padding: 0.2rem;
+  text-align: center;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.payment-card:hover {
+  transform: scale(1.05);
+}
+
+.payment-card img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.payment-card h5 {
+  font-size: 1rem;
+}
+
+.payment-card input[type="radio"]:checked+label {
+  background-color: #f36100;
+  border-radius: 8px;
+  border: 1px solid #cfcecd;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

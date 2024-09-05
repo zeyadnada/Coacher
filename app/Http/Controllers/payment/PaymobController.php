@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Subscription;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class PaymobController extends Controller
 {
     private $paymob_api_key;
     private $paymob_iframe_id;
+
 
     public function __construct()
     {
@@ -39,18 +39,17 @@ class PaymobController extends Controller
 
 
         // step 2: send order data
+        $merchant_order_id = $order['id'] . '_' . time();
         $paymob_order  = Http::withHeaders([
             'content-type' => 'application/json'
         ])->post('https://accept.paymobsolutions.com/api/ecommerce/orders', [
             "auth_token" => $request_new_token['token'],
             "delivery_needed" => "false",
-            "amount_cents" => $order['price'] * 100,
-            "merchant_order_id" => $order['id']
+            "amount_cents" => $order['amount_paid'] * 100,
+            "merchant_order_id" => $merchant_order_id
         ])->json();
-        // dd($get_order);
+        // dd($paymob_order);
 
-        $user = Auth::user();
-        $name = $user->name;
 
         //  step 3: send customer data (payment token request)
         $payment_token = Http::withHeaders([
@@ -61,10 +60,10 @@ class PaymobController extends Controller
             "amount_cents" => $paymob_order['amount_cents'],
             "order_id" => $paymob_order['id'],
             "billing_data" => [
-                "first_name"            => $name,
+                "first_name"            => $order['name'],
                 "last_name"             => "NA",
-                "phone_number"          => $user->phone ?: "NA",
-                "email"                 => $user->email,
+                "phone_number"          => $order['whatsapp_phone'],
+                "email"                 => $order['email'],
                 "apartment"             => "NA",
                 "floor"                 => "NA",
                 "street"                => "NA",
@@ -106,9 +105,10 @@ class PaymobController extends Controller
             if ($request['success'] == "true") {
                 $subscription = Subscription::findOrFail($request->merchant_order_id);
                 $subscription->update([
-                    'status' => 'paid'
+                    'amount_paid' => $request['amount_cents'] / 100,
+                    'payment_status' => 'Paid',
+                    'transaction_id' => $request['id']
                 ]);
-                $name = Auth::user()->name;
                 (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), 'zeeyyaadd', '201208776273', $subscription->package->title);
                 return  redirect()->route('home')->with('success', 'you subscripe to package successfully');
             } else {

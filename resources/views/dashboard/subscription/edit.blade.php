@@ -28,66 +28,25 @@
                 <form action="{{ route('dashboard.subscriptions.update', $subscription->id) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
-                    @method('PUT') 
+                    @method('PUT')
                     <div class="form-row mb-3">
                         <div class="col-6">
-                            <label for="user_id">User</label>
-                            <select class="select2 form-control @error('user_id') is-invalid @enderror" name="user_id"
-                                id="user_id" class="form-control" style="width: 100%;">
-                                <option value="" disabled>Select a user</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        {{ $user->id == $subscription->user_id ? 'selected' : '' }}>
-                                        {{ $user->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('user_id')
+                            <label for="name">Subscriber Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                placeholder="Enter Subscriber Name" id="name"
+                                value="{{ old('name', $subscription->name) }}" style="width: 100%;">
+                            @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="col-6">
-                            <label for="whatsapp_phone">Whatsapp Phone</label>
-                            <input type="text" class="form-control @error('whatsapp_phone') is-invalid @enderror"
-                                name="whatsapp_phone" value="{{ old('whatsapp_phone', $subscription->whatsapp_phone) }}"
-                                id="whatsapp_phone" placeholder="Enter Whatsapp Phone">
-                            @error('whatsapp_phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-row mb-3">
-                        <div class="col-4">
-                            <label for="age">Age</label>
-                            <input id="age" type="number" name="age" value="{{ old('age', $subscription->age) }}"
-                                class="form-control @error('age') is-invalid @enderror">
-                            @error('age')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="col-4">
-                            <label for="height">Height (cm)</label>
-                            <input id="height" type="number" name="height"
-                                value="{{ old('height', $subscription->height) }}" placeholder="Enter User height"
-                                class="form-control @error('height') is-invalid @enderror">
-                            @error('height')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="col-4">
-                            <label for="weight">Weight (kg)</label>
-                            <input id="weight" type="number" name="weight"
-                                value="{{ old('weight', $subscription->weight) }}" placeholder="Enter User weight"
-                                class="form-control @error('weight') is-invalid @enderror">
-                            @error('weight')
+                            <label for="email">Subscriber Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                placeholder="Enter Subscriber Email" id="email"
+                                value="{{ old('email', $subscription->email) }}" style="width: 100%;">
+                            @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -97,18 +56,11 @@
 
                     <div class="form-row mb-3">
                         <div class="col-6">
-                            <label for="package_id">Package</label>
-                            <select class="select2 form-control @error('package_id') is-invalid @enderror" name="package_id"
-                                id="package_id" style="width: 100%;">
-                                <option value="" disabled>Select a Package</option>
-                                @foreach ($packages as $package)
-                                    <option value="{{ $package->id }}"
-                                        {{ $package->id == $subscription->package_id ? 'selected' : '' }}>
-                                        {{ $package->title }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('package_id')
+                            <label for="whatsapp_phone">Whatsapp Phone</label>
+                            <input type="text" class="form-control @error('whatsapp_phone') is-invalid @enderror"
+                                name="whatsapp_phone" value="{{ old('whatsapp_phone', $subscription->whatsapp_phone) }}"
+                                id="whatsapp_phone" placeholder="Enter Whatsapp Phone">
+                            @error('whatsapp_phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -127,17 +79,38 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="form-row mb-3">
+                        <div class="col-6">
+                            <label for="package_id">Package</label>
+                            <select class="select2 form-control @error('package_id') is-invalid @enderror" name="package_id"
+                                id="package_id" style="width: 100%;">
+                                <option value="" disabled>Select a Package</option>
+                                @foreach ($packages as $package)
+                                    <option value="{{ $package->id }}"
+                                        {{ old('package_id', $subscription->package_id) == $package->id ? 'selected' : '' }}>
+                                        {{ $package->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('package_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                         <div class="col-6">
                             <label for="trainer_id">Trainer</label>
                             <select class="select2 form-control @error('trainer_id') is-invalid @enderror" name="trainer_id"
                                 id="trainer_id" style="width: 100%;">
-                                <option value="" disabled selected>Select a Trainer</option>
-                                <option value="" {{ is_null($subscription->trainer_id) ? 'selected' : '' }}>No
-                                    Trainer</option>
+                                <option value="" disabled>Select a Trainer</option>
+                                <option value=""
+                                    {{ old('trainer_id', $subscription->trainer_id) == '' ? 'selected' : '' }}>No Trainer
+                                </option>
                                 @foreach ($trainers as $trainer)
                                     <option value="{{ $trainer->id }}"
-                                        {{ $trainer->id == $subscription->trainer_id ? 'selected' : '' }}>
+                                        {{ old('trainer_id', $subscription->trainer_id) == $trainer->id ? 'selected' : '' }}>
                                         {{ $trainer->name }}
                                     </option>
                                 @endforeach
@@ -148,33 +121,70 @@
                                 </span>
                             @enderror
                         </div>
+                    </div>
 
-                        <div class="col-6">
-                            <label for="status">Payment Status</label>
-                            <select class="select2 form-control @error('status') is-invalid @enderror" name="status"
-                                id="status" style="width: 100%;">
-                                <option value="" disabled>Select a Status</option>
+                    <div class="form-row mb-3">
+                        <div class="col-4">
+                            <label for="amount_paid">Amount Paid</label>
+                            <input id="amount_paid" type="number" name="amount_paid"
+                                value="{{ old('amount_paid', $subscription->amount_paid) }}"
+                                placeholder="Enter Amount Paid"
+                                class="form-control @error('amount_paid') is-invalid @enderror">
+                            @error('amount_paid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-4">
+                            <label for="payment_status">Payment Status</label>
+                            <select class="select2 form-control @error('payment_status') is-invalid @enderror"
+                                name="payment_status" id="payment_status" style="width: 100%;">
+                                <option value="" disabled
+                                    {{ old('payment_status', $subscription->payment_status) == '' ? 'selected' : '' }}>
+                                    Select a
+                                    Status
+                                </option>
                                 <option value="Pending"
-                                    {{ old('status', $subscription->status) == 'Pending' ? 'selected' : '' }}>Pending
+                                    {{ old('payment_status', $subscription->payment_status) == 'Pending' ? 'selected' : '' }}>
+                                    Pending
                                 </option>
                                 <option value="Paid"
-                                    {{ old('status', $subscription->status) == 'Paid' ? 'selected' : '' }}>Paid</option>
+                                    {{ old('payment_status', $subscription->payment_status) == 'Paid' ? 'selected' : '' }}>
+                                    Paid
+                                </option>
                                 <option value="Cancelled"
-                                    {{ old('status', $subscription->status) == 'Cancelled' ? 'selected' : '' }}>Cancelled
+                                    {{ old('payment_status', $subscription->payment_status) == 'Cancelled' ? 'selected' : '' }}>
+                                    Cancelled
                                 </option>
                             </select>
-                            @error('status')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            @error('payment_status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-4">
+                            <label for="transaction_id">Transaction ID</label>
+                            <input type="text" class="form-control @error('transaction_id') is-invalid @enderror"
+                                name="transaction_id" value="{{ old('transaction_id', $subscription->transaction_id) }}"
+                                disabled placeholder="Enter Transaction ID" id="transaction_id" style="width: 100%;">
+                            @error('transaction_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                     </div>
 
                     <div class="form-row my-4">
                         <div class="col-2">
-                            <input type="submit" class="btn btn-primary" value="Update">
+                            <input type="submit" value="Update Subscription" class="btn btn-warning">
                         </div>
                     </div>
                 </form>
+
 
 
             </div>

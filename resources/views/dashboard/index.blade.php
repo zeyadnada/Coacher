@@ -395,11 +395,11 @@
 
                 ],
                 datasets: [{
-                    data: [{{ \App\Models\Subscription::where('status', 'Pending')->count() }},
+                    data: [{{ \App\Models\Subscription::where('payment_status', 'Paid')->count() }},
 
-                        {{ \App\Models\Subscription::where('status', 'Canceled')->count() }}
+                        {{ \App\Models\Subscription::where('payment_status', 'Cancelled')->count() }}
                     ],
-                    backgroundColor: [ '#00a65a','#f56954'],
+                    backgroundColor: ['#00a65a', '#f56954'],
                 }]
             }
             var donutOptions = {

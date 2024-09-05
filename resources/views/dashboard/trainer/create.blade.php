@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-8">
+                        <div class="col-7">
                             <label for="name">Location</label>
                             <input type="text" name="location" id="location"
                                 class="form-control @error('location') is-invalid @enderror"
@@ -64,7 +64,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <label for="birth_date">Birth Date</label>
                             <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}"
                                 class="form-control @error('birth_date') is-invalid @enderror">

@@ -36,6 +36,7 @@
                     <tr>
                         <th>#</th>
                         <th>Photo</th>
+                        <th>Description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -45,6 +46,9 @@
                             <td>{{ $loop->iteration }}</td>
                             <td><img src="{{ '/storage/' . $transformation->photo_path }}" alt=""
                                     style="max-width: 150px;"></td>
+                            <td>{{ $transformation->description }}</td>
+
+
                             <td>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
                                     data-id="{{ $transformation->id }}"><i class="fas fa-solid fa-pen"></i></button>
@@ -62,6 +66,7 @@
                     <tr>
                         <th>#</th>
                         <th>Photo</th>
+                        <th>Description</th>
                         <th>Actions</th>
                     </tr>
                 </tfoot>
@@ -87,6 +92,11 @@
                                     <label for="photo_path" class="col-form-label">Result Photo:</label>
                                     <input type="file" name="photo_path" class="form-control" id="photo_path">
                                 </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-form-label">Result Description/Story:</label>
+                                    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
+                                </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Add</button>
@@ -118,6 +128,10 @@
                                 <div class="form-group">
                                     <label for="photo_path" class="col-form-label">Result Photo:</label>
                                     <input type="file" name="photo_path" class="form-control" id="photo_path">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-form-label">Result Description/Story:</label>
+                                    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
                                 </div>
                                 <!-- Add other fields if needed -->
                                 <div class="modal-footer">
@@ -159,7 +173,6 @@
             <!-- end Delete Confirmation Modal -->
         </div>
     </div>
-    {{-- {{ $sideEffects->withQueryString()->links() }} --}}
 @endsection
 
 
@@ -177,28 +190,17 @@
     <script src="/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/dashboard/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/dashboard//plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    {{-- <script>
-        $(document).ready(function() {
-            $('#example1').DataTable();
-        });
-    </script> --}}
+
     <script>
         $(function() {
             $("#example1").DataTable({
-                "responsive": true,
                 "lengthChange": false,
+                "responsive": true,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
                 "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+                "searching": true,
+                "buttons": ["copy", "excel", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
 

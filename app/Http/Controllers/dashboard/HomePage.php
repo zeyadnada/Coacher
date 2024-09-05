@@ -23,12 +23,12 @@ class HomePage extends Controller
 
         // return view('dashboard.index');
         $paidSubscriptions = Subscription::select(DB::raw('COUNT(*) as count'), DB::raw('MONTH(created_at) as month'))
-        ->where('status', 'Pending')
+        ->where('payment_status', 'Paid')
             ->groupBy(DB::raw('MONTH(created_at)'))
             ->pluck('count', 'month');
 
         $canceledSubscriptions = Subscription::select(DB::raw('COUNT(*) as count'), DB::raw('MONTH(created_at) as month'))
-        ->where('status', 'Canceled')
+        ->where('payment_status', 'Cancelled')
         ->groupBy(DB::raw('MONTH(created_at)'))
         ->pluck('count', 'month');
 

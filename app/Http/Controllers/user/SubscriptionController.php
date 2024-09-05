@@ -4,29 +4,27 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Payment\PaymobController;
-use App\Http\Requests\SubscriptionRequet;
+use App\Http\Requests\UserSubscriptionRequest;
 use App\Models\Subscription;
-use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    public function store(SubscriptionRequet $request)
+    public function store(UserSubscriptionRequest $request)
     {
         // $subscription = Subscription::create($request->all());
         $subscription = Subscription::create([
-            'user_id' => $request->input('user_id'),
-            'package_id' => $request->input('package_id'),
-            'trainer_id' => $request->input('trainer_id'),
-            'age' => $request->input('age'),
-            'height' => $request->input('height'),
-            'weight' => $request->input('weight'),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
             'whatsapp_phone' => $request->input('whatsapp_phone'),
             'starting_date' => $request->input('starting_date'),
-            'status' => $request->input('status', 'Pending'), // Default to 'Pending' if not provided
+            'package_id' => $request->input('package_id'),
+
         ]);
         $order = $subscription->toArray();
         $order['payment_method'] = $request->payment_method;
-        $order['price'] = $subscription->package->price;
+
+        // add amount paid at the following line
+        $order['amount_paid'] = $subscription->package->price;
 
 
         if ($request->payment_method === "paymob_card_payment") {
@@ -36,20 +34,7 @@ class SubscriptionController extends Controller
         } elseif ($request->payment_method === "paymob_value_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
-            return (new PaymobController('w'))->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
+            return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
         }
-        // if(session()->has('coupon')){
-        //     //must store in different way
-        //     session()->forget('coupon');
-        // }else{
-
-            // Subscription::create($request->all());
-        // }
-    }
-
-    public function update(SubscriptionRequet $request, $id)
-    {
-        $subscription = Subscription::findOrFail($id);
-        $subscription->update($request->all());
     }
 }

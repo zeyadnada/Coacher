@@ -24,11 +24,10 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Title</th>
-                            <th>Location</th>
-                            <th>Age</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Title</th>
+                            <th>subscribers</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -37,11 +36,10 @@
                             <tr>
                                 <td>{{ @$loop->iteration }}</td>
                                 <td>{{ $trainer->name }}</td>
-                                <td>{{ $trainer->job_title }}</td>
-                                <td>{{ $trainer->location }}</td>
-                                <td>{{ \Carbon\Carbon::parse($trainer->birth_date)->age }}</td>
                                 <td>{{ $trainer->email }}</td>
                                 <td>{{ $trainer->phone }}</td>
+                                <td>{{ $trainer->job_title }}</td>
+                                <td>{{ $trainer->subscriptions->count() }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.trainers.show', $trainer->id) }}" class="btn btn-info"><i
                                             class="fas fa-eye"></i></a>
@@ -63,11 +61,10 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Title</th>
-                            <th>Location</th>
-                            <th>Age</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Title</th>
+                            <th>training</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
@@ -102,11 +99,11 @@
 
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12">
-                {{-- {{ $trainers->withQueryString()->links() }} --}}
+                {{ $trainers->withQueryString()->links() }}
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 
@@ -128,20 +125,13 @@
     <script>
         $(function() {
             $("#example1").DataTable({
-                "responsive": true,
                 "lengthChange": false,
+                "responsive": true,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
                 "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+                "searching": true,
+                "buttons": ["copy", "excel", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
     <script>
