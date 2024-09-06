@@ -9,7 +9,7 @@ use App\Models\Subscription;
 
 class SubscriptionController extends Controller
 {
-    public function store(UserSubscriptionRequest $request)
+    public function store(UserSubscriptionRequest $request, $id)
     {
         // $subscription = Subscription::create($request->all());
         $subscription = Subscription::create([
@@ -24,7 +24,8 @@ class SubscriptionController extends Controller
         $order['payment_method'] = $request->payment_method;
 
         // add amount paid at the following line
-        $order['amount_paid'] = $subscription->package->price;
+        $order['amount_paid'] = session()->get("coupon_$id")["discount"];
+        // dd($order);
 
 
         if ($request->payment_method === "paymob_card_payment") {
@@ -36,5 +37,6 @@ class SubscriptionController extends Controller
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
         }
+        session()->forget("coupon_$id");
     }
 }

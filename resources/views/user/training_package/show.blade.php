@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="{{ route('user.subscription.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('user.subscription.store',['id'=>$package->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <!-- Package Id -->
