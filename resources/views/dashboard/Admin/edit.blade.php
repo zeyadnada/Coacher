@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('dashboard.admin.update',$admin->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('dashboard.admin.update', $admin->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-row mb-3">
@@ -167,7 +167,7 @@
 
                     <div class="form-row my-4">
                         <div class="col-2">
-                            <input type="submit" class="btn btn-primary" value="update Admin">
+                            <input type="submit" class="btn btn-warning" value="Update Admin">
                         </div>
 
                     </div>
@@ -180,9 +180,9 @@
 @section('js')
 
     <!-- jQuery -->
-    <script src="/dashboard/plugins/jquery/jquery.min.js"></script>
+    {{-- <script src="/dashboard/plugins/jquery/jquery.min.js"></script> --}}
     <!-- Bootstrap 4 -->
-    <script src="/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
     <!-- Select2 -->
     <script src="/dashboard/plugins/select2/js/select2.full.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->

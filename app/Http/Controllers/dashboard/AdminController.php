@@ -67,7 +67,7 @@ class AdminController extends Controller
     {
 
         $admin = Admin::findOrFail($id);
-        dd($admin);
+        // dd($admin);
         $data = $request->except('image');
         if ($request->hasFile('image')) {
             if ($admin->image && Storage::disk('public')->exists($admin->image)) {

@@ -88,39 +88,46 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form id="paymentConfigForm" action="{{ route('dashboard.setting.paymentConfig.update') }}" method="POST">
+                        <form id="paymentConfigForm" action="{{ route('dashboard.setting.paymentConfig.update') }}"
+                            method="POST">
                             @csrf
-    
+
                             <div class="form-group">
                                 <label for="PAYMOB_API_KEY">Paymob API Key</label>
-                                <textarea name="PAYMOB_API_KEY" class="form-control" rows="3" disabled>{{ env('PAYMOB_API_KEY') }}</textarea>
+                                <textarea name="PAYMOB_API_KEY" class="form-control" rows="3" readonly>{{ env('PAYMOB_API_KEY') }}</textarea>
                             </div>
-    
+
                             <div class="form-group">
                                 <label for="PAYMOB_CARD_INTEGRATION_ID">Paymob Card Integration ID</label>
-                                <input type="text" name="PAYMOB_CARD_INTEGRATION_ID" class="form-control" value="{{ env('PAYMOB_CARD_INTEGRATION_ID') }}" disabled>
+                                <input type="text" name="PAYMOB_CARD_INTEGRATION_ID" class="form-control"
+                                    value="{{ env('PAYMOB_CARD_INTEGRATION_ID') }}" readonly>
                             </div>
-    
+
                             <div class="form-group">
                                 <label for="PAYMOB_CARD_IFRAME_ID">Paymob Card Iframe ID</label>
-                                <input type="text" name="PAYMOB_CARD_IFRAME_ID" class="form-control" value="{{ env('PAYMOB_CARD_IFRAME_ID') }}" disabled>
+                                <input type="text" name="PAYMOB_CARD_IFRAME_ID" class="form-control"
+                                    value="{{ env('PAYMOB_CARD_IFRAME_ID') }}" readonly>
                             </div>
-    
+
                             <div class="form-group">
                                 <label for="PAYMOB_MOBILE_WALLET_INTEGRATION_ID">Paymob Mobile Wallet Integration ID</label>
-                                <input type="text" name="PAYMOB_MOBILE_WALLET_INTEGRATION_ID" class="form-control" value="{{ env('PAYMOB_MOBILE_WALLET_INTEGRATION_ID') }}" disabled>
+                                <input type="text" name="PAYMOB_MOBILE_WALLET_INTEGRATION_ID" class="form-control"
+                                    value="{{ env('PAYMOB_MOBILE_WALLET_INTEGRATION_ID') }}" readonly>
                             </div>
+
                             <div class="form-group">
                                 <label for="PAYMOB_HMAC">Paymob HMAC</label>
-                                <input type="text" name="PAYMOB_HMAC" class="form-control" value="{{ env('PAYMOB_HMAC') }}" disabled>
+                                <input type="text" name="PAYMOB_HMAC" class="form-control"
+                                    value="{{ env('PAYMOB_HMAC') }}" readonly>
                             </div>
-    
+
                             <button type="submit" class="btn btn-primary">SAVE</button>
                         </form>
-    
+
                         <!-- Add the enable button here -->
                         <button id="toggleInputs" class="btn btn-secondary mt-3">Enable</button>
                     </div>
+
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -130,29 +137,17 @@
 @endsection
 
 @section('js')
-    <!-- DataTables  & Plugins -->
-    <script src="/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="/dashboard/plugins/jszip/jszip.min.js"></script>
-    <script src="/dashboard/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="/dashboard/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="/dashboard//plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
     <script>
         document.getElementById('toggleInputs').addEventListener('click', function() {
             var inputs = document.querySelectorAll('#paymentConfigForm input, #paymentConfigForm textarea');
             inputs.forEach(function(input) {
-                input.disabled = !input.disabled;
+                input.readOnly = !input.readOnly;
             });
-    
+
             // Optionally, change the button text based on the current state
             var button = document.getElementById('toggleInputs');
-            if (!inputs[0].disabled) {
+            if (!inputs[0].readOnly) {
                 button.textContent = 'Disable';
             } else {
                 button.textContent = 'Enable';
@@ -160,4 +155,3 @@
         });
     </script>
 @endsection
-

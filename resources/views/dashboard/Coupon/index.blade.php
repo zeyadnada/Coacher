@@ -45,9 +45,9 @@
                                 @endif
                                 <td>
                                     <a href="{{ route('dashboard.coupon.edit', ['id' => $coupon->id]) }}"
-                                        class="btn btn-warning">Edit</a>
+                                        class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a>
                                     <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal{{ $coupon->id }}">Delete</button>
+                                        data-target="#deleteModal{{ $coupon->id }}"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             <!-- Delete Confirmation Modal -->
@@ -129,7 +129,32 @@
                 "autoWidth": false,
                 "paging": true,
                 "searching": true,
-                "buttons": ["copy", "excel", "print", "colvis"]
+                "buttons": [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible' // Only export visible columns
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible' // Only export visible columns
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible' // Only print visible columns
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible' // Only export visible columns
+                        }
+                    },
+                    'colvis' // Column visibility button
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>

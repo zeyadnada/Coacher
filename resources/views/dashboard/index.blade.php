@@ -1,13 +1,6 @@
 @extends('dashboard.layouts.parent')
 
 @section('title', 'Dashboard')
-@section('css')
-    <link rel="stylesheet" href="{{ url('/dashboard/dist/css/adminlte.min.css') }}">
-
-@endsection
-@section('dashboard-img')
-    <img src="img/dashboardLogo.png" alt="Dpill" class="brand-image img-circle elevation-3" style="opacity: .8">
-@endsection
 
 @section('content')
 
@@ -293,19 +286,18 @@
         </section>
         <!-- /.content -->
     </div>
-
-
 @endsection
+
 @section('js')
-    <script src="{{ url('/dashboard/plugins/jquery/jquery.min.js') }}"></script>
+    {{-- <script src="{{ url('/dashboard/plugins/jquery/jquery.min.js') }}"></script> --}}
     <!-- Bootstrap 4 -->
-    <script src="{{ url('/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ url('/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
     <!-- ChartJS -->
     <script src="{{ url('/dashboard/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ url('/dashboard/dist/js/adminlte.min.js') }}"></script>
+    {{-- <script src="{{ url('/dashboard/dist/js/adminlte.min.js') }}"></script> --}}
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ url('/dashboard/dist/js/demo.js') }}"></script>
+    {{-- <script src="{{ url('/dashboard/dist/js/demo.js') }}"></script> --}}
     <!-- Page specific script -->
     <script>
         $(function() {

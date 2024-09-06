@@ -22,7 +22,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>#SUBID</th>
                             <th>Name</th>
                             <th>phone</th>
                             <th>Package</th>
@@ -36,7 +36,7 @@
                     <tbody>
                         @forelse ($subscriptions as $subscription)
                             <tr>
-                                <td>{{ @$loop->iteration }}</td>
+                                <td>{{ $subscription->id }}</td>
                                 <td>{{ $subscription->name }}</td>
                                 <td>{{ $subscription->whatsapp_phone }}</td>
                                 <td>{{ $subscription->package->title }}</td>
@@ -70,7 +70,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>#</th>
+                            <th>#SUBID</th>
                             <th>Subscriber</th>
                             <th>phone</th>
                             <th>Package</th>
@@ -141,17 +141,35 @@
                 "autoWidth": false,
                 "paging": true,
                 "searching": true,
-                "buttons": ["copy", "excel", "print", "colvis"]
+                "ordering": false,
+                "buttons": [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible' // Only export visible columns
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible' // Only export visible columns
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible' // Only print visible columns
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible' // Only export visible columns
+                        }
+                    },
+                    'colvis' // Column visibility button
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
-    <script>
-        $('#deleteModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var subscriptionId = button.data('id'); // Extract info from data-* attributes
-            var formAction = "{{ route('dashboard.subscriptions.destroy', '') }}/" + subscriptionId;
-            var modal = $(this);
-            modal.find('#deleteForm').attr('action', formAction);
-        });
-    </script>
+
 @endsection

@@ -16,41 +16,52 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])->get();
-        $title =  'All Subscriptions';
+        $subscriptions = Subscription::with(['package', 'trainer'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $title = 'All Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function paid()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])->where('payment_status', 'Paid')->get();
-        $title =  'All Paid Subscriptions';
+        $subscriptions = Subscription::with(['package', 'trainer'])
+            ->where('payment_status', 'Paid')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $title = 'All Paid Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function pending()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])->where('payment_status', 'Pending')->get();
-        $title =  'All Pending Subscriptions';
+        $subscriptions = Subscription::with(['package', 'trainer'])
+            ->where('payment_status', 'Pending')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $title = 'All Pending Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function canceled()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])->where('payment_status', 'Cancelled')->get();
-        $title =  'All Canceled Subscriptions';
+        $subscriptions = Subscription::with(['package', 'trainer'])
+            ->where('payment_status', 'Cancelled')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $title = 'All Canceled Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $users = User::all();
         $packages = TrainingPackage::all();
         $trainers = Trainer::all();
-        return view('dashboard.subscription.create', compact('users', 'packages', 'trainers'));
+        return view('dashboard.subscription.create', compact('packages', 'trainers'));
     }
 
     /**

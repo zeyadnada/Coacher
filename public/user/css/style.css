@@ -2728,11 +2728,11 @@ ol {
   width: 100%;
 }
 
-/*---------------------
-  404 Section
------------------------*/
+/*-------------------------------------
+ payment Succes Message & 404 Section
+--------------------------------------*/
 
-.section-404 {
+.section-modalAlert {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -2746,11 +2746,11 @@ ol {
   align-items: center;
 }
 
-.text-404 {
+.modalAlert-text {
   text-align: center;
 }
 
-.text-404 h1 {
+.modalAlert-text h1 {
   font-size: 200px;
   color: #ffffff;
   font-weight: 700;
@@ -2758,66 +2758,25 @@ ol {
   margin-bottom: 15px;
 }
 
-.text-404 h3 {
+.modalAlert-text h2 {
   color: #ffffff;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
-.text-404 p {
+.modalAlert-text h4 {
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.modalAlert-text {
   font-size: 15px;
   color: #c4c4c4;
   margin-bottom: 43px;
 }
 
-.text-404 .search-404 {
-  position: relative;
-  width: 470px;
-  margin: 0 auto 35px;
-}
-
-.text-404 .search-404 input {
-  font-size: 15px;
-  color: #ffffffb3;
-  height: 46px;
-  width: 100%;
-  background: #f36100;
-  border: none;
-  padding-left: 20px;
-}
-
-.text-404 .search-404 input::-webkit-input-placeholder {
-  color: #ffffffb3;
-}
-
-.text-404 .search-404 input::-moz-placeholder {
-  color: #ffffffb3;
-}
-
-.text-404 .search-404 input:-ms-input-placeholder {
-  color: #ffffffb3;
-}
-
-.text-404 .search-404 input::-ms-input-placeholder {
-  color: #ffffffb3;
-}
-
-.text-404 .search-404 input::placeholder {
-  color: #ffffffb3;
-}
-
-.text-404 .search-404 button {
-  font-size: 16px;
-  color: #ffffff;
-  background: transparent;
-  border: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 11px 20px 11px;
-}
-
-.text-404 a {
+.modalAlert-text a {
   font-size: 15px;
   color: #ffffff;
   font-weight: 700;
@@ -2826,7 +2785,7 @@ ol {
   display: inline-block;
 }
 
-.text-404 a:after {
+.modalAlert-text a:after {
   position: absolute;
   left: 0;
   bottom: -5px;
@@ -2836,9 +2795,19 @@ ol {
   content: "";
 }
 
-.text-404 a i {
+.modalAlert-text a i {
   color: #f36100;
   margin-right: 5px;
+}
+
+.success-icon img {
+  width: 130px;
+  /* Adjust size as needed */
+  height: 130px;
+  /* Adjust size as needed */
+
+  margin-bottom: 15px;
+
 }
 
 .whatsapp-icon {
@@ -2901,6 +2870,7 @@ ol {
   border-radius: 8px;
   border: 1px solid #cfcecd;
 }
+
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 

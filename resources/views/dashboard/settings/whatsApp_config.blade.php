@@ -74,16 +74,15 @@
                         <form id="whatsAppConfigForm" action="{{ route('dashboard.setting.whatsApp.update') }}"
                             method="POST">
                             @csrf
-
                             <div class="form-group">
                                 <label for="WHATSAPP_ACCESS_TOKEN">WhatsApp Access Token</label>
-                                <textarea name="WHATSAPP_ACCESS_TOKEN" class="form-control" rows="3" disabled>{{ env('WHATSAPP_ACCESS_TOKEN') }}</textarea>
+                                <textarea name="WHATSAPP_ACCESS_TOKEN" class="form-control" rows="3" readonly>{{ env('WHATSAPP_ACCESS_TOKEN') }}</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="WHATSAPP_PHONE_NUMBER_ID">WhatsApp Phone Number ID</label>
                                 <input type="text" name="WHATSAPP_PHONE_NUMBER_ID" class="form-control"
-                                    value="{{ env('WHATSAPP_PHONE_NUMBER_ID') }}" disabled>
+                                    value="{{ env('WHATSAPP_PHONE_NUMBER_ID') }}" readonly>
                             </div>
 
                             <button type="submit" class="btn btn-primary">SAVE</button>
@@ -101,30 +100,16 @@
 @endsection
 
 @section('js')
-    <!-- DataTables  & Plugins -->
-    <script src="/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="/dashboard/plugins/jszip/jszip.min.js"></script>
-    <script src="/dashboard/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="/dashboard/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="/dashboard/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="/dashboard//plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
     <script>
         document.getElementById('toggleWhatsAppInputs').addEventListener('click', function() {
             var inputs = document.querySelectorAll('#whatsAppConfigForm input, #whatsAppConfigForm textarea');
             inputs.forEach(function(input) {
-                input.disabled = !input.disabled;
+                input.readOnly = !input.readOnly;
             });
 
             // Optionally, change the button text based on the current state
             var button = document.getElementById('toggleWhatsAppInputs');
-            if (!inputs[0].disabled) {
+            if (!inputs[0].readOnly) {
                 button.textContent = 'Disable';
             } else {
                 button.textContent = 'Enable';

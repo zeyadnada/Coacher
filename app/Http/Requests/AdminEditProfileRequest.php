@@ -26,14 +26,15 @@ class AdminEditProfileRequest extends FormRequest
             // 'job_title' => ['required', 'string', 'max:255'],
             // 'birth_date' => ['required', 'date'],
             'admin_type' => ['required', 'in:super_admin,admin'],
-            'password' => ['required','min:8','confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'gender' => ['required', 'in:male,female'],
-            'location' => ['nullable', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:15', 'unique:admins,phone'],
             'email' => ['required', 'email', 'unique:admins,email'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
             // 'experiences' => ['nullable', 'string'],
             // 'certificates' => ['nullable', 'string'],
+            'password' => ['sometimes']
         ];
     }
 }

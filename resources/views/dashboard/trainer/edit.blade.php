@@ -165,9 +165,9 @@
 @section('js')
 
     <!-- jQuery -->
-    <script src="/dashboard/plugins/jquery/jquery.min.js"></script>
+    {{-- <script src="/dashboard/plugins/jquery/jquery.min.js"></script> --}}
     <!-- Bootstrap 4 -->
-    <script src="/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
     <!-- Select2 -->
     <script src="/dashboard/plugins/select2/js/select2.full.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->

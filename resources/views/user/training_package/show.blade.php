@@ -4,7 +4,7 @@
 @section('css')
     <style>
         label {
-            margin-bottom:0;
+            margin-bottom: 0;
             color: #b5bdc3
         }
 
@@ -17,6 +17,7 @@
             direction: rtl;
             text-align: right;
         }
+
         .custom-date-input input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
         }
@@ -256,7 +257,7 @@
                                 @enderror
                             </div> --}}
                             <div class="pb-3">
-                                <label for="payment_method">اختر طريقة الدفع</label>
+                                <label for="payment_method" class="pb-2">اختر طريقة الدفع</label>
                                 <div class="payment-methods-container">
                                     <!-- Credit Card -->
                                     <div class="payment-card">
@@ -286,6 +287,7 @@
                                     </span>
                                 @enderror
                             </div>
+                            <br>
                             <button type="submit">تأكيد الاشتراك</button>
                         </form>
                     </div>

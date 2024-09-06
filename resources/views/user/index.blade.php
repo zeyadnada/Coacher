@@ -5,6 +5,33 @@
 @section('home', 'active')
 
 @section('content')
+
+    <!--Success Payment Section Begin (appear only in success payment) -->
+    @if (session('paymentSuccess'))
+        <section class="section-modalAlert" id="success-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modalAlert-text">
+                            <!-- Green circle with checkmark image -->
+                            <div class="success-icon">
+                                <img src="/user/img/confirm-icon.svg" alt="Success" />
+                            </div>
+                            <h2>تم اشتراكك</h2>
+                            <h4>تمت عملية الدفع بنجاح</h4>
+                            <p>نشكركم على إتمام عملية الدفع. تم تأكيد الطلب الخاص بكم، وسنقوم بالاتصال بك قريبًا.</p>
+                            <a href="javascript:void(0)" class="pt-4" id="close-section">
+                                <i class="fa fa-home"></i>
+                                العودة للصفحة الرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+    <!--Success Payment Section End (appear only in success payment) -->
+
     <!-- Hero Section Begin -->
     <section class="hero-section">
         @if (session('success'))
@@ -334,4 +361,13 @@
     </section>
     <!--Video Banner Section End -->
 
+@endsection
+
+@section('js')
+    <script>
+        // this script belong to success payment alert
+        document.getElementById('close-section').addEventListener('click', function() {
+            document.getElementById('success-section').style.display = 'none';
+        });
+    </script>
 @endsection

@@ -68,7 +68,8 @@
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
                 <div class="card border-0 shadow">
-                    <img src="" alt="trainer image" class="img-full">
+                    <img src="{{ $admin->image ? asset('storage/' . $admin->image) : '' }}" alt="Profile Image"
+                        class="img-full">
                     <div class="card-body">
                         <div class="mb-4">
                             <h3 class="h4 mb-0">{{ $admin->name }}</h3>
@@ -76,7 +77,7 @@
                         </div>
                         <ul class="list-unstyled mb-4">
                             <li class="mb-3"><i
-                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{$admin->email }}
+                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{ $admin->email }}
                             </li>
                             <li class="mb-3"><i class="fas fa-mobile-alt display-25 me-3 text-secondary mr-2"></i>
                                 {{ $admin->phone }}</li>
@@ -90,7 +91,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="{{ route('dashboard.admin.edit',$admin->id) }}" class="btn btn-danger">Edit Admin Profile</a>
+                    <a href="{{ route('dashboard.admin.edit', $admin->id) }}" class="btn btn-warning">Edit My Profile</a>
                 </div>
             </div>
             {{-- <div class="col-lg-8">

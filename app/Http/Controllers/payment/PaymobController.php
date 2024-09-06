@@ -110,7 +110,7 @@ class PaymobController extends Controller
                     'transaction_id' => $request['id']
                 ]);
                 (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), 'zeeyyaadd', '201208776273', $subscription->package->title);
-                return  redirect()->route('home')->with('success', 'you subscripe to package successfully');
+                return  redirect()->route('home')->with('paymentSuccess', 'you subscripe to package successfully');
             } else {
                 return  redirect()->route('user.training-packages.index')->with('error', 'payment proccess not secure');
             }
