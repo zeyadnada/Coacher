@@ -52,7 +52,7 @@
                 <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
                     </a></li>
                 <li><a href="#transformations">انجازات المشتركين</a></li>
-                <li><a href="">المدربين</a></li>
+                <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
                 <li><a href="#footer"> اتصل بنا </a></li>
             </ul>
         </nav>
@@ -86,7 +86,7 @@
                             <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
                                 </a></li>
                             <li><a href="#transformations">انجازات المشتركين</a></li>
-                            <li><a href="#">المدربين</a></li>
+                            <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
                             <li><a href="#footer"> اتصل بنا </a></li>
                         </ul>
                     </nav>

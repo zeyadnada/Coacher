@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/user/img/breadcrumb-bg.jpg">
+    {{-- <section class="breadcrumb-section set-bg" data-setbg="/user/img/breadcrumb-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Breadcrumb Section End -->
 
     <div class="container">
@@ -58,12 +58,21 @@
                             </div>
                             <div class="ci-text">
                                 <div class="mb-3">
-                                    <h4 data-bs-toggle="tooltip" data-bs-placement="top"
-                                        data-bs-title="{{ $package->title }}">{{ $package->title }}</h4>
+                                    <h4 data-toggle="tooltip" data-placement="top" title="{{ $package->title }}">
+                                        {{ $package->title }}</h4>
                                     <!-- data-bs-placement for the placement of the tooltip && data-bs-title should be the same conent of the h4 like shown -->
                                     <!-- <a href="#"><i class="fa fa-angle-left"></i></a> -->
-                                    <span class="ml-2">{{ $package->price }}EGP</span>
-                                    <span>{{ $package->duration }}</span>
+                                    <span class="ml-5">{{ $package->duration }}</span>
+                                    @if ($package->discount_price)
+                                        <span style="font-size: 17px"><del>{{ $package->price }}</del></span>
+                                        <span class="pr-1">{{ $package->discount_price}}</span>
+                                        <span style="font-size: 15px">جنيه</span>
+                                    @else
+                                        <span>{{ $package->price }}EGP</span>
+                                    @endif
+
+
+
                                 </div>
                                 <div class="text-left">
                                     <a href="{{ route('user.training-packages.show', $package->id) }}" role="button"

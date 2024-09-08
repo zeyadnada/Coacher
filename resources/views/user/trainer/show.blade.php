@@ -1,10 +1,10 @@
 @extends('user.layouts.parent')
-@section('title',"ReFit | $trainer->name")
+@section('title',"ReFit Academy | $trainer->name")
 
 @section('content')
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/user/img/breadcrumb-bg.jpg">
+    {{-- <section class="breadcrumb-section set-bg" data-setbg="/user/img/breadcrumb-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <div>
         <i class="fa-solid fa-less-than"></i>
     </div>

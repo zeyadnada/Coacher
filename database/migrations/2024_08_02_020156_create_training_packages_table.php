@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('notes')->nullable();
             $table->string('duration');
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 8);
+            $table->decimal('discount_price', 8)->nullable(); // Discounted price
             $table->timestamps();
         });
     }

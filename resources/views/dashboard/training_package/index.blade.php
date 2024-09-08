@@ -26,6 +26,7 @@
                             <th>Title</th>
                             <th>Duration</th>
                             <th>Price</th>
+                            <th>Discount Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -36,6 +37,7 @@
                                 <td>{{ $package->title }}</td>
                                 <td>{{ $package->duration }}</td>
                                 <td>{{ $package->price }}</td>
+                                <td>{{ $package->discount_price ?? $package->price }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.training-packages.show', $package->id) }}"
                                         class="btn btn-info"><i class="fas fa-eye"></i></a>
@@ -58,6 +60,7 @@
                             <th>Title</th>
                             <th>Duration</th>
                             <th>Price</th>
+                            <th>Discount Price</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>

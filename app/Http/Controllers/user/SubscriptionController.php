@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Http\Controllers\appendages\WhatsAppController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Payment\PaymobController;
 use App\Http\Requests\UserSubscriptionRequest;
@@ -9,22 +10,24 @@ use App\Models\Subscription;
 
 class SubscriptionController extends Controller
 {
-    public function store(UserSubscriptionRequest $request, $id)
+    public function store(UserSubscriptionRequest $request)
     {
+        // dd($request->all());
         // $subscription = Subscription::create($request->all());
         $subscription = Subscription::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'whatsapp_phone' => $request->input('whatsapp_phone'),
+            'whatsapp_phone' => $request->input('full_phone'),
             'starting_date' => $request->input('starting_date'),
             'package_id' => $request->input('package_id'),
 
         ]);
         $order = $subscription->toArray();
         $order['payment_method'] = $request->payment_method;
+        $order['amount_paid'] = $subscription->package->final_price;
 
         // add amount paid at the following line
-        $order['amount_paid'] = session()->get("coupon_$id")["discount"];
+        // $order['amount_paid'] = session()->get("coupon_$id")["discount"];
         // dd($order);
 
 
@@ -37,6 +40,28 @@ class SubscriptionController extends Controller
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
         }
-        session()->forget("coupon_$id");
+        // session()->forget("coupon_$id");
+    }
+
+    public  function success_payment($payment_details)
+    {
+        $subscription = Subscription::findOrFail($payment_details['merchant_order_id']);
+        $subscription->update([
+            'amount_paid' => $payment_details['amount_cents'] / 100,
+            'payment_status' => 'Paid',
+            'transaction_id' => $payment_details['id']
+        ]);
+        (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
+        return  redirect()->route('home')->with('paymentSuccess', 'you subscripe to package successfully');
+    }
+
+    public  function failed_payment()
+    {
+        return  redirect()->route('user.training-packages.index')->with('error', 'Payment Proccess Failed Try Again!');
+    }
+
+    public  function notSecure_payment()
+    {
+        return  redirect()->route('user.training-packages.index')->with('error', 'payment proccess not secure');
     }
 }

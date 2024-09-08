@@ -28,7 +28,7 @@
                 <form action="{{ route('dashboard.training-packages.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row mb-3">
-                        <div class="col-12">
+                        <div class="col-8">
                             <label for="title">Title</label>
                             <input type="text" name="title" id="title"
                                 class="form-control @error('title') is-invalid @enderror" placeholder="Enter Package Title"
@@ -38,31 +38,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                    </div>
-                    <div class="form-row mb-3">
-                        <div class="col-4">
-                            <label for="duration">package Duration</label>
-                            <input type="text" name="duration" id="duration"
-                                class="form-control @error('duration') is-invalid @enderror"
-                                placeholder="Enter Package month duration" aria-describedby="helpId"
-                                value="{{ old('duration') }}">
-                            @error('duration')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="col-4">
-                            <label for="price">package Price</label>
-                            <input id="price" type="number" name="price" value="{{ old('price') }}"
-                                placeholder="Enter Pachage Price" class="form-control @error('price') is-invalid @enderror">
-                            @error('price')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
                         </div>
                         <div class="col-4">
                             <label for="image">Package Image</label>
@@ -74,6 +49,43 @@
                                 </span>
                             @enderror
                         </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col-4">
+                            <label for="duration">Duration</label>
+                            <input dir="rtl" type="text" name="duration" id="duration"
+                                class="form-control @error('duration') is-invalid @enderror"
+                                placeholder="Enter Package month duration" aria-describedby="helpId"
+                                value="{{ old('duration') }}">
+                            @error('duration')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-4">
+                            <label for="price">Package Price</label>
+                            <input id="price" type="number" name="price" value="{{ old('price') }}"
+                                placeholder="Enter Pachage Price" class="form-control @error('price') is-invalid @enderror">
+                            @error('price')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                        <div class="col-4">
+                            <label for="discount_price">Discount Price</label>
+                            <input id="price" type="number" name="discount_price" value="{{ old('discount_price') }}"
+                                placeholder="Enter Final Price"
+                                class="form-control @error('discount_price') is-invalid @enderror">
+                            @error('discount_price')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                     </div>
                     <div class="form-row mb-3">
                         <div class="col-12">
@@ -93,7 +105,7 @@
                         <div class="col-12">
                             <label for="description">Description</label>
                             <textarea class="editor form-control form-control custom-file @error('description') is-invalid @enderror"
-                                id="experiences" name="description" placeholder="Enter Package Description" rows="6">{{ old('description') }}</textarea>
+                                id="experiences" name="description" placeholder="Enter Package Description" rows="6" dir="rtl">{{ old('description') }}</textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -101,6 +113,7 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="form-row my-4">
                         <div class="col-2">
                             <input type="submit" class="btn btn-primary" value="Add Package">

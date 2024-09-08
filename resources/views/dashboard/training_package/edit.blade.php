@@ -30,7 +30,7 @@
                     @csrf
                     @method('PUT')
                     <div class="form-row mb-3">
-                        <div class="col-12">
+                        <div class="col-8">
                             <label for="title">Title</label>
                             <input type="text" name="title" id="title"
                                 class="form-control @error('title') is-invalid @enderror" placeholder="Enter Package Title"
@@ -41,11 +41,21 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="col-4">
+                            <label for="image">Package Image</label>
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
+                                id="image">
+                            @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-row mb-3">
                         <div class="col-4">
-                            <label for="duration">Package Duration</label>
+                            <label for="duration">Duration</label>
                             <input type="text" name="duration" id="duration"
                                 class="form-control @error('duration') is-invalid @enderror"
                                 placeholder="Enter Package month duration" aria-describedby="helpId"
@@ -67,15 +77,18 @@
                             @enderror
                         </div>
                         <div class="col-4">
-                            <label for="image">Package Image</label>
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
-                                id="image">
-                            @error('image')
+                            <label for="discount_price">Discount Price</label>
+                            <input id="discount_price" type="number" name="discount_price"
+                                value="{{ old('discount_price', $package->discount_price) }}"
+                                placeholder="Enter Final Price"
+                                class="form-control @error('discount_price') is-invalid @enderror">
+                            @error('discount_price')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
+
                     </div>
 
                     <div class="form-row mb-3">

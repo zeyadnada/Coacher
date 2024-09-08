@@ -25,6 +25,7 @@ class TrainingPackageRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
             'price' => ['required', 'numeric', 'min:0'],
+            'discount_price' => ['nullable', 'numeric', 'min:0'],
             'duration' => ['required'],
             'description' => ['required', 'string'],
             'notes' => ['nullable', 'string'],

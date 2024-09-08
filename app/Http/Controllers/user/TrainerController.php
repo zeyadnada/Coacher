@@ -9,9 +9,16 @@ use Illuminate\Http\Request;
 class TrainerController extends Controller
 {
 
-    public function show($id) 
+
+    public function index()
     {
-        $trainer=Trainer::findOrFail($id);
-        return view('user.trainer.show',compact('trainer'));
+        $trainers = Trainer::all();
+        return view('user.trainer.index', compact('trainers'));
+    }
+
+    public function show($id)
+    {
+        $trainer = Trainer::findOrFail($id);
+        return view('user.trainer.show', compact('trainer'));
     }
 }

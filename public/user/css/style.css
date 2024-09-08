@@ -183,8 +183,8 @@ ol {
 }
 
 .spad {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 
 .spad-2 {
@@ -378,10 +378,11 @@ ol {
   padding: 15px;
   /* padding-top: 10px; */
   z-index: 99;
+  background-color: #f3610009;
 }
 
 .header-section.scrolled {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(50px);
 }
 
 .logo a {
@@ -740,6 +741,7 @@ ol {
   /* font-size: 12px; */
   text-transform: uppercase;
   font-weight: 700;
+  font-size: 23px;
 }
 
 .class-item .ci-text h5 {
@@ -894,15 +896,17 @@ ol {
   transform: skewY(4deg);
 }
 
-.ps-item .pi-price h2 {
+.ps-item .pi-price h2,
+.ps-item .pi-price h5 {
   font-size: 60px;
   color: #f36100;
   font-weight: 600;
+  display: inline-block;
 }
 
 .ps-item .pi-price span {
   color: #c4c4c4;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -912,13 +916,15 @@ ol {
   -webkit-transform: skewY(4deg);
   -ms-transform: skewY(4deg);
   transform: skewY(4deg);
+  text-align: right;
 }
 
 .ps-item ul li {
-  font-size: 14px;
+  font-size: 15px;
   color: #c4c4c4;
   line-height: 32px;
-  list-style: none;
+  /* list-style: none; */
+
 }
 
 .ps-item .primary-btn.pricing-btn {
@@ -1006,7 +1012,7 @@ ol {
 -----------------------*/
 
 .team-section {
-  background: #151515;
+  background: #0a0a0a;
 }
 
 .team-section.team-page {
@@ -2570,15 +2576,15 @@ ol {
 }
 
 .leave-comment form input {
-  font-size: 13px;
+  font-size: 16px;
   color: #c4c4c4;
   width: 100%;
   height: 46px;
-  border: 1px solid #363636;
+  border: 3px solid #363636;
   padding-left: 20px;
   padding-right: 5px;
   background: transparent;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .leave-comment form input::-webkit-input-placeholder {
@@ -2651,7 +2657,7 @@ ol {
 -----------------------*/
 
 .contact-section {
-  background: #151515;
+  background: #0a0a0a;
 }
 
 .section-title.contact-title {
@@ -2872,6 +2878,54 @@ ol {
 }
 
 
+/*---------
+  FAQ
+----------*/
+.accordion-section {
+  background-color: #151515;
+}
+
+.accordion .card {
+  background-color: #151515;
+  color: #fff;
+}
+
+.accordion .card .card-body {
+  padding: 0 20px 20px 20px
+}
+
+.accordion .card .card-header,
+.accordion .card .card-body {
+  font-size: 16px !important;
+}
+
+.accordion .card .card-header a {
+  color: #f36100;
+  padding: 10px 0;
+  border-bottom: 3px solid #4A4A4A;
+  font-size: 28px;
+}
+
+.accordion .card .card-header a:focus {
+  box-shadow: none;
+}
+
+.accordion-title {
+  padding-top: 60px;
+  color: #ffffff;
+
+}
+
+.accordion-title h2 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 8px;
+
+}
+
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1650px) and (max-width: 1920px) {
@@ -2938,7 +2992,7 @@ ol {
 
   .sidebar-option {
     padding-left: 0;
-    padding-top: 30px;
+    /* padding-top: 30px; */
   }
 
   .chart-table {
@@ -3346,7 +3400,6 @@ ol {
 
   .sidebar-option {
     padding-left: 0;
-    padding-top: 30px;
   }
 
   .chart-table {

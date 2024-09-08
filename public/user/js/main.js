@@ -176,3 +176,19 @@
     });
 
 })(jQuery);
+
+document.addEventListener('scroll', function() {
+    const navbar = document.getElementsByClassName('header-section')[0];
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// To Activate the Tooltip bootstrap 
+// const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+// const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('whatsapp_phone', 15);
+            $table->string('whatsapp_phone', 16);
             $table->date('starting_date')->nullable();
-            $table->decimal('amount_paid', 10, 2)->default(0);
+            $table->decimal('amount_paid',8)->default(0);
             $table->enum('payment_status', ['Pending', 'Paid', 'Cancelled'])->default('Pending');
             $table->string('transaction_id')->nullable();
             $table->foreignId('package_id')->constrained('training_packages')->onDelete('restrict')->onUpdate('cascade');

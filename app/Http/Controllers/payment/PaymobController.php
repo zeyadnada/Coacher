@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\appendages\WhatsAppController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\user\SubscriptionController;
 use App\Models\Subscription;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -103,34 +104,28 @@ class PaymobController extends Controller
 
         if (hash_equals(hash_hmac('sha512', $string, env('PAYMOB_HMAC')), $request['hmac'])) {
             if ($request['success'] == "true") {
-                $subscription = Subscription::findOrFail($request->merchant_order_id);
-                $subscription->update([
-                    'amount_paid' => $request['amount_cents'] / 100,
-                    'payment_status' => 'Paid',
-                    'transaction_id' => $request['id']
-                ]);
-                (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), 'zeeyyaadd', '201208776273', $subscription->package->title);
-                return  redirect()->route('home')->with('paymentSuccess', 'you subscripe to package successfully');
+                $payment_details = ($request->all());
+                return (new SubscriptionController())->success_payment($payment_details);
             } else {
-                return  redirect()->route('user.training-packages.index')->with('error', 'payment proccess not secure');
+                return (new SubscriptionController())->notSecure_payment();
             }
         } else {
-            return  redirect()->route('user.training-packages.index')->with('error', 'Payment Proccess Failed Try Again!');
+            return (new SubscriptionController())->failed_payment();
         }
     }
-    public function refund($transaction_id, $amount): array
-    {
-        $request_new_token = Http::withHeaders(['content-type' => 'application/json'])
-            ->post('https://accept.paymobsolutions.com/api/auth/tokens', [
-                "api_key" => $this->paymob_api_key
-            ])->json();
-        $refund_process = Http::withHeaders(['content-type' => 'application/json', 'Authorization' => $request_new_token['token']])
-            ->post('https://accept.paymob.com/api/acceptance/void_refund/refund', ['auth_token' => $request_new_token['token'], 'transaction_id' => $transaction_id, 'amount_cents' => $amount])->json();
+    // public function refund($transaction_id, $amount): array
+    // {
+    //     $request_new_token = Http::withHeaders(['content-type' => 'application/json'])
+    //         ->post('https://accept.paymobsolutions.com/api/auth/tokens', [
+    //             "api_key" => $this->paymob_api_key
+    //         ])->json();
+    //     $refund_process = Http::withHeaders(['content-type' => 'application/json', 'Authorization' => $request_new_token['token']])
+    //         ->post('https://accept.paymob.com/api/acceptance/void_refund/refund', ['auth_token' => $request_new_token['token'], 'transaction_id' => $transaction_id, 'amount_cents' => $amount])->json();
 
-        dd($refund_process);
-        return [
-            'transaction_id' => $transaction_id,
-            'amount' => $amount,
-        ];
-    }
+    //     dd($refund_process);
+    //     return [
+    //         'transaction_id' => $transaction_id,
+    //         'amount' => $amount,
+    //     ];
+    // }
 }

@@ -58,8 +58,9 @@ Route::as('user.')
     ->group(function () {
         Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
         Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
-        Route::post('/subscribe/{id}', [UserSubscriptionController::class, 'store'])->name('subscription.store');
+        Route::post('/subscribe', [UserSubscriptionController::class, 'store'])->name('subscription.store');
         Route::put('/subscribe/{id}', [UserSubscriptionController::class, 'update'])->name('subscription.update');
+        Route::get('/trainers', [UserTrainerController::class, 'index'])->name('trainer.index');
         Route::get('/trainer/{id}', [UserTrainerController::class, 'show'])->name('trainer.show');
         Route::post('/coupon/{id}', [CouponsController::class, "store"])->name('coupon.store');
         Route::delete('/coupon/{id}', [CouponsController::class, "destroy"])->name('coupon.destroy');

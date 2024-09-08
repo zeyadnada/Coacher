@@ -56,10 +56,10 @@
             margin: 0 0 20px;
         }
 
-        /* .mb-1-6,
-                                                        .my-1-6 {
-                                                            margin-bottom: 1.6rem;
-                                                        } */
+        /*
+                        .my-1-6 {
+                        margin-bottom: 1.6rem;
+                    } */
     </style>
 @endsection
 
@@ -82,7 +82,9 @@
                         <ul class="list-unstyled mb-4">
                             <li class="mb-3"><i class="fa fa-solid fa-clock mr-3"></i>{{ $package->duration }}
                             </li>
-                            <li class="mb-3"><i class="fa fa-solid fa-money-bill-wave mr-3"></i>{{ $package->price }}
+                            <li class="mb-3"><i class="fa fa-solid fa-money-bill-wave mr-3"></i>{{ $package->price }}$
+                            </li>
+                            <li class="mb-3"><i class="fa fa-solid fa-money-check mr-3"></i>{{ $package->discount_price ?? $package->price }}$
                             </li>
                         </ul>
                     </div>
