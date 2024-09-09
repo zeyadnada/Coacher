@@ -96,7 +96,7 @@ class CouponsController extends Controller
         $coupon = Coupon::where('code', $request->coupon_code)->first();
 
         if (!$coupon) {
-            return back()->withErrors('Invalid coupon code. Please try again.');
+            return back()->withErrors('هذا الكوبون غير موجود');
         }
 
         // Store coupon details in session
@@ -109,7 +109,7 @@ class CouponsController extends Controller
         ]);
 
         // Return with a success message
-        return back()->with('success_message', 'Coupon has been applied!');
+        return back()->with('success', 'تم تفعيل الكوبون');
     }
 
 
@@ -118,6 +118,6 @@ class CouponsController extends Controller
     public function destroy($id)
     {
         session()->forget("coupon_$id");
-        return back()->with('success_message', 'Coupon has been Removed!');
+        return back()->with('success', 'تم الغاء تفعيل الكوبون');
     }
 }

@@ -107,7 +107,7 @@ class PaymobController extends Controller
                 $payment_details = ($request->all());
                 return (new SubscriptionController())->success_payment($payment_details);
             } else {
-                return (new SubscriptionController())->notSecure_payment();
+                return (new SubscriptionController())->failed_payment();
             }
         } else {
             return (new SubscriptionController())->failed_payment();

@@ -52,16 +52,16 @@ class SubscriptionController extends Controller
             'transaction_id' => $payment_details['id']
         ]);
         (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
-        return  redirect()->route('home')->with('paymentSuccess', 'you subscripe to package successfully');
+        return  redirect()->route('home')->with('paymentSuccess','تم اشتراكك');
     }
 
     public  function failed_payment()
     {
-        return  redirect()->route('user.training-packages.index')->with('error', 'Payment Proccess Failed Try Again!');
+        return  redirect()->route('home')->with('paymentFailed','فشل الاشتراك');
     }
 
-    public  function notSecure_payment()
-    {
-        return  redirect()->route('user.training-packages.index')->with('error', 'payment proccess not secure');
-    }
+    // public  function notSecure_payment()
+    // {
+    //     return  redirect()->route('home')->with('error', 'فشلت عملية الدفع! حاول  مرة أخرى');
+    // }
 }

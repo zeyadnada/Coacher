@@ -5,39 +5,6 @@
 @section('package', 'active')
 
 @section('content')
-    <!-- Breadcrumb Section Begin -->
-    {{-- <section class="breadcrumb-section set-bg" data-setbg="/user/img/breadcrumb-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb-text">
-                        <h2>الخدمات</h2>
-                        <div class="bt-option">
-                            <a href="./index.html"> الصفحة الرئيسية </a>
-                            <span> الخدمات </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Breadcrumb Section End -->
-
-    <div class="container">
-        <div class="row">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-        </div>
-    </div>
-
     <!-- Start Packages section-->
     <section class="classes-section spad">
         <div class="container">
@@ -65,7 +32,7 @@
                                     <span class="ml-5">{{ $package->duration }}</span>
                                     @if ($package->discount_price)
                                         <span style="font-size: 17px"><del>{{ $package->price }}</del></span>
-                                        <span class="pr-1">{{ $package->discount_price}}</span>
+                                        <span class="pr-1">{{ $package->discount_price }}</span>
                                         <span style="font-size: 15px">جنيه</span>
                                     @else
                                         <span>{{ $package->price }}EGP</span>

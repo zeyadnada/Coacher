@@ -8,16 +8,16 @@
 
     <!--Success Payment Section Begin (appear only in success payment) -->
     @if (session('paymentSuccess'))
-        <section class="section-modalAlert" id="success-section">
+        <section class="section-modalAlert" id="paymeny-status">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="modalAlert-text">
                             <!-- Green circle with checkmark image -->
-                            <div class="success-icon">
+                            <div class="status-icon">
                                 <img src="/user/img/confirm-icon.svg" alt="Success" />
                             </div>
-                            <h2>تم اشتراكك</h2>
+                            <h2> {{ session('paymentSuccess') }}</h2>
                             <h4>تمت عملية الدفع بنجاح</h4>
                             <p>نشكركم على إتمام عملية الدفع. تم تأكيد الطلب الخاص بكم، وسنقوم بالاتصال بك قريبًا.</p>
                             <a href="javascript:void(0)" class="pt-4" id="close-section">
@@ -32,51 +32,35 @@
     @endif
     <!--Success Payment Section End (appear only in success payment) -->
 
-    <!-- Hero Section Begin -->
+    <!-- Failed Payment Section Begin (appear only in failed payment) -->
+    @if (session('paymentFailed'))
+        <section class="section-modalAlert" id="paymeny-status">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modalAlert-text">
+                            <!-- Red circle with cross mark image -->
+                            <div class="status-icon">
+                                <img src="/user/img/error-icon.svg" alt="Failed Payment" />
+                            </div>
+                            <h2> {{ session('paymentFailed') }}</h2>
+                            <h4>لم تتم عملية الدفع</h4>
+                            <p>نأسف، ولكن حدث خطأ أثناء محاولة الدفع. يرجى التحقق من تفاصيل الدفع أو المحاولة مرة أخرى.</p>
+                            <a href="javascript:void(0)" class="pt-4" id="close-section">
+                                <i class="fa fa-home"></i>
+                                العودة للصفحة الرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+    <!-- Failed Payment Section End (appear only in failed payment) -->
+
+
+    <!-- Header Section Begin -->
     <section class="hero-section">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <!--header option 1 -->
-
-        {{-- <div class="hs-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="/user/img/hero/hero-1.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 offset-lg-6">
-                            <div class="hi-text">
-                                <span> كون جسدك </span>
-                                <h1>كن <strong>قويا </strong> تمرن جيدا</h1>
-                                <a href="{{ route('user.training-packages.index') }}" class="primary-btn">عرض الباقات</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hs-item set-bg" data-setbg="/user/img/hero/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 offset-lg-6">
-                            <div class="hi-text">
-                                <span>Shape your body</span>
-                                <h1>Be <strong>strong</strong> traning hard</h1>
-                                <a href="#" class="primary-btn">Get info</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-        <!--header option 2 -->
         <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
             <div class="container">
                 <div class="row">
@@ -92,7 +76,7 @@
             </div>
         </section>
     </section>
-    <!-- Hero Section End -->
+    <!-- Header Section End -->
 
     <!-- ChoseUs Section Begin -->
     <section class="choseus-section spad">
@@ -138,99 +122,6 @@
         </div>
     </section>
     <!-- ChoseUs Section End -->
-
-    <!-- Classes Section Begin -->
-    {{-- <section class="classes-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span> صفوفنا </span>
-                        <h2>اختر الصف الذي يناسبك</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/user/img/classes/class-1.jpg" alt="" />
-                        </div>
-                        <div class="ci-text">
-                            <span> التحمل والقوة </span>
-                            <h5>رفع الاثقال</h5>
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/user/img/classes/class-2.jpg" alt="" />
-                        </div>
-                        <div class="ci-text">
-                            <span> كارديو </span>
-                            <h5>تمارين الركض</h5>
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/user/img/classes/class-3.jpg" alt="" />
-                        </div>
-                        <div class="ci-text">
-                            <span> التحمل والقوة </span>
-                            <h5>تمارين القوة</h5>
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/user/img/classes/class-4.jpg" alt="" />
-                        </div>
-                        <div class="ci-text">
-                            <span> كارديو </span>
-                            <h4>ركوب الدراجات</h4>
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/user/img/classes/class-5.jpg" alt="" />
-                        </div>
-                        <div class="ci-text">
-                            <span> التدريبات </span>
-                            <h4>المصارعة</h4>
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- ChoseUs Section End -->
-
-    <!-- Banner Section Begin -->
-    {{-- <section class="banner-section set-bg" data-setbg="/user/img/banner-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="bs-text">
-                        <h2>سجل الان للحصول على صفقات جديدة</h2>
-                        <div class="bt-tips">حيث الصحة والجمال واللياقة يلتقون</div>
-                        <a href="#" class="primary-btn btn-normal"> اشترك الان </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Banner Section End -->
 
     <!-- Pricing Section Begin -->
     <section class="pricing-section spad">
@@ -280,8 +171,53 @@
     </section>
     <!-- Pricing Section End -->
 
+    <!-- Subscriptions Steps Section Begin -->
+    <section class="choseus-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>ماذا تنتظر?</span>
+                        <h2>خطوات الاشتراك</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-034-stationary-bike"></span>
+                        <h4>معدات متقدمة</h4>
+                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-033-juice"></span>
+                        <h4>خطة تدريبية صحية</h4>
+                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-002-dumbell"></span>
+                        <h4>تدريبات مخصصة</h4>
+                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-014-heart-beat"></span>
+                        <h4>تدريبات متنوعة</h4>
+                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Subscriptions Steps Section Begin -->
+
     <!-- Transformation Section Begin -->
-    <section class="team-section spad" id="transformations">
+    <section class="team-section transformation spad" id="transformations">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -343,7 +279,8 @@
                             <span> فريقنا </span>
                             <h2>تدرب مع <strong>فريقنا</strong> المحترف</h2>
                         </div>
-                        <a href="{{route('user.training-packages.index')}}" class="primary-btn btn-normal appoinment-btn">
+                        <a href="{{ route('user.training-packages.index') }}"
+                            class="primary-btn btn-normal appoinment-btn">
                             احجز الان
                         </a>
                     </div>
@@ -472,7 +409,7 @@
     <script>
         // this script belong to success payment alert
         document.getElementById('close-section').addEventListener('click', function() {
-            document.getElementById('success-section').style.display = 'none';
+            document.getElementById('paymeny-status').style.display = 'none';
         });
     </script>
 @endsection

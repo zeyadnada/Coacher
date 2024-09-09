@@ -923,7 +923,6 @@ ol {
   font-size: 15px;
   color: #c4c4c4;
   line-height: 32px;
-  /* list-style: none; */
 
 }
 
@@ -1128,6 +1127,10 @@ ol {
   -webkit-transform: skewY(5deg);
   -ms-transform: skewY(5deg);
   transform: skewY(5deg);
+}
+
+.transformation {
+  background: #151515;
 }
 
 /*---------------------
@@ -1792,7 +1795,7 @@ ol {
 }
 
 .class-details-text .cd-text {
-  margin-bottom: 33px;
+  margin-bottom: 12px;
 }
 
 .class-details-text .cd-text .cd-single-item h2,
@@ -1802,6 +1805,10 @@ ol {
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 28px;
+}
+
+.class-details-text .cd-text .cd-single-item ul li {
+  list-style: disc
 }
 
 
@@ -2735,7 +2742,7 @@ ol {
 }
 
 /*-------------------------------------
- payment Succes Message & 404 Section
+ payment  Message & 404 Section
 --------------------------------------*/
 
 .section-modalAlert {
@@ -2806,7 +2813,7 @@ ol {
   margin-right: 5px;
 }
 
-.success-icon img {
+.status-icon img {
   width: 130px;
   /* Adjust size as needed */
   height: 130px;

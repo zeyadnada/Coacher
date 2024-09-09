@@ -21,8 +21,6 @@
 
         .custom-date-input input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
-
-
         }
 
         .iti {
@@ -38,10 +36,14 @@
     <!-- Class Details Section Begin -->
     <section class="class-details-section spad">
         <div class="container">
-            @if (session()->has('success_message'))
-                <div class="spacer"></div>
-                <div class="alert alert-success">
-                    {{ session()->get('success_message') }}
+            @if (session('success'))
+            <div class="alert alert-success text-center mx-auto">
+                {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+            <div class="alert alert-danger text-center mx-auto">
+                {{ session('error') }}
                 </div>
             @endif
             <div class="row">
@@ -83,11 +85,28 @@
                                         {!! $package->description !!}
 
                                     </div>
-                                    @if ($package->discount_price)
-                                        <span class="pl-1">{{ $package->discount_price }}</span>
-                                        <span style="font-size: 17px"><del>{{ $package->price }}</del></span>
+                                    {{-- @if ($package->discount_price)
+                                        <h3 class="pl-1" style="display: inline-block">{{ $package->discount_price }}</h3>
+                                        <span
+                                            style="font-size: 17px;color:aliceblue"><del>{{ $package->price }}</del></span>
                                     @else
-                                        <span>{{ $package->price }}EGP</span>
+                                        <h3>{{ $package->price }}EGP</h3>
+                                    @endif --}}
+
+                                    @if ($package->discount_price)
+                                        <div>
+                                            <h3 style="display: inline-block; color:#f36100" class="pr-1">
+                                                {{ $package->discount_price }}
+                                            </h3>
+                                            <h5 style="font-size: 18px;display:inline-block;color:#f36100">جنيه</h5>
+                                            <span class="pr-1"
+                                                style="font-size: 17px; color:#b5bdc3"><del>{{ $package->price }}</del></span>
+                                        </div>
+                                    @else
+                                        <div>
+                                            <h2 style="display: inline-block" class="pr-1">{{ $package->price }}</h2>
+                                            <h5 style="font-size: 18px">جنيه</h5>
+                                        </div>
                                     @endif
                                     {{-- <div class="cd-single-item">
                                         <h4>{{ $package->price }}EGP</h4>
@@ -150,23 +169,6 @@
                                 </form>
                             @endif
                         </div>
-                        {{-- <div class="so-latest">
-                            <h5 class="title">اخر الاخبار</h5>
-                            <div class="latest-large set-bg" data-setbg="/user/img/letest-blog/latest-1.jpg">
-                                <div class="ll-text">
-                                    <h5>
-                                        <a href="#">
-                                            طريقة تحضير هذة القهوة اليبانية هي الافضل للصحة
-                                        </a>
-                                    </h5>
-                                    <ul>
-                                        <li>20 اغسطس 2024</li>
-                                        <li>20 تعليق</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -270,9 +272,19 @@
                                         <input type="radio" id="paymob_wallet_payment" name="payment_method"
                                             value="paymob_wallet_payment" hidden>
                                         <label for="paymob_wallet_payment" class="card-body text-center">
-                                            <img src="/user/img/mobile-wallet.png" alt="Credit Card Logo"
+                                            <img src="/user/img/mobile-wallet.png" alt="Wallet Payment Logo"
                                                 class="img-fluid mb-3">
                                             <h5 class="card-title">محفظة الكترونيه</h5>
+                                        </label>
+                                    </div>
+
+                                    <!-- Instapay Payment -->
+                                    <div class="payment-card">
+                                        <input type="radio" id="instapay" name="payment_method" value="instapay"
+                                            hidden>
+                                        <label for="instapay" class="card-body text-center">
+                                            <img src="/user/img/instapay.png" alt="Instapay Logo" class="img-fluid mb-3">
+                                            {{-- <h5 class="card-title">Instapay</h5> --}}
                                         </label>
                                     </div>
                                 </div>
@@ -282,6 +294,7 @@
                                     </span>
                                 @enderror
                             </div>
+
                             <br>
                             <button type="submit">تأكيد الاشتراك</button>
                         </form>
