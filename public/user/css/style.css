@@ -39,6 +39,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   text-align: right;
+  scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
@@ -67,7 +68,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  color: #111111;
+  color: #f1f1f1;
   font-weight: 400;
   font-family: "Zain", sans-serif;
 }
@@ -169,8 +170,8 @@ ol {
 }
 
 .section-title h2 {
-  color: #ffffff;
-  font-size: 32px;
+  color: #c9c9c9;
+  font-size: 23px;
   font-weight: 600;
   text-transform: uppercase;
   margin-top: 8px;
@@ -369,21 +370,30 @@ ol {
 /*---------------------
   Header
 -----------------------*/
+.offer-section {
+  color: #fff;
+  background: #f36100;
+  padding: 10px 0;
+}
+
+
 
 .header-section {
   position: fixed;
+  background-color: transparent;
   left: 0;
-  top: 0;
+  /* top: 50px; */
   width: 100%;
   padding: 15px;
   /* padding-top: 10px; */
   z-index: 99;
-  background-color: #f3610009;
 }
 
 .header-section.scrolled {
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(20px);
+  top: 0;
 }
+
 
 .logo a {
   display: inline-block;
@@ -795,6 +805,13 @@ ol {
 
 .bs-text h2 {
   font-size: 48px;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.bs-text h1 {
   color: #ffffff;
   font-weight: 700;
   text-transform: uppercase;

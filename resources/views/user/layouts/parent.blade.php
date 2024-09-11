@@ -116,16 +116,7 @@
     <div class="gettouch-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="gt-text">
-                        <i class="fa fa-map-marker"></i>
-                        <p>
-                            333 Middle Winchendon Rd, Rindge,<br />
-                            NH 03461
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="gt-text">
                         <i class="fa fa-mobile"></i>
                         <ul>
@@ -134,7 +125,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="gt-text email">
                         <i class="fa fa-envelope"></i>
                         <p>Support.gymcenter@gmail.com</p>
@@ -155,9 +146,8 @@
                             <a href="#"><img src="/user/img/logo.png" alt="" /></a>
                         </div>
                         <p>
-                            لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.
-                            لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.
-                            لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.
+                            قدارين نوصلك لاحسن نسخة من نفسك في اسرع وقت وباقل الامكانيات زي الآلاف اللي ساعدناهم في
+                            الخمس سنين اللي فاتوا
                         </p>
                         <div class="fa-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>

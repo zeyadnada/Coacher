@@ -17,7 +17,7 @@ class HomePageController extends Controller
     {
         $packages = TrainingPackage::all();
         $transformations = Transformation::all();
-        $trainers = Trainer::all();
+        $trainers = Trainer::select('id', 'name', 'job_title', 'image')->get();
         return view('user.index', compact('packages', 'transformations', 'trainers'));
     }
 }

@@ -3,6 +3,13 @@
 
 @section('title', 'Refit Academy')
 @section('home', 'active')
+@section('css')
+    <style>
+        .header-section {
+            top: 50px;
+        }
+    </style>
+@endsection
 
 @section('content')
 
@@ -59,6 +66,15 @@
     <!-- Failed Payment Section End (appear only in failed payment) -->
 
 
+    <!-- promotion Section Begin -->
+    <div class="offer-section">
+        <p class="mb-0 text-center text-white">
+            الحق العروض, العروض متاحة لفترة محدودة
+        </p>
+    </div>
+    <!-- promotion Section End -->
+
+
     <!-- Header Section Begin -->
     <section class="hero-section">
         <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
@@ -66,8 +82,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="bs-text">
-                            <h2>سجل الان للحصول على صفقات جديدة</h2>
-                            <div class="bt-tips">حيث الصحة والجمال واللياقة يلتقون</div>
+                            <h2>مع بعض هنغير الواقع</h2>
+                            <div class="bt-tips">سجل الان لبداية رحلتك مع Refit</div>
                             <a href="{{ route('user.training-packages.index') }}" class="primary-btn btn-normal"> اشترك الان
                             </a>
                         </div>
@@ -84,8 +100,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span> لماذا تختارنا ؟ </span>
-                        <h2>تخطى حدودك</h2>
+                        <span>ليه refit academy الاختيار الامثل ؟</span>
+                        <h2>لاننا قدارين نوصلك لاحسن نسخة من نفسك في اسرع وقت وباقل الامكانيات زي الآلاف اللي ساعدناهم في
+                            الخمس سنين اللي فاتوا وده لأن معانا
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -93,29 +111,30 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
                         <span class="flaticon-034-stationary-bike"></span>
-                        <h4>معدات متقدمة</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                        <h4>رعاية طبية</h4>
+                        <p>استشاريين باطنة ، جراحة ، عظام ، مخ واعصاب ، علاج طبيعي ، تغذية علاجية عشان تضمن رعاية طبية على
+                            اعلى مستوى</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
                         <span class="flaticon-033-juice"></span>
-                        <h4>خطة تدريبية صحية</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                        <h4>اخصائيين تغذية</h4>
+                        <p>مسئولين عن توفير الدايت بلان المخصصة ليك حسب امكانياتك وتفضيلاتك.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
                         <span class="flaticon-002-dumbell"></span>
-                        <h4>تدريبات مخصصة</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                        <h4>مدربين معتمدين</h4>
+                        <p>علي اعلي مستوي معاك طوال الوقت</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
                         <span class="flaticon-014-heart-beat"></span>
-                        <h4>تدريبات متنوعة</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                        <h4>متابعة يومية</h4>
+                        <p>طوال ايام الاسبوع على مدار الساعة.</p>
                     </div>
                 </div>
             </div>
@@ -329,17 +348,15 @@
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
                                         data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        من نحن ؟
-                                    </a>
+                                        ما الذي يضمن جودة الخدمة والوصول للنتيجة المطلوبة؟ </a>
                                 </h2>
                             </div>
 
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordionExample">
                                 <div class="card-body">
-                                    أكاديمية ريفيت هي منصة تدريب إلكترونية متخصصة في اللياقة البدنية. نقدم مجموعة متنوعة من
-                                    الدورات والبرنامج التدريبية التي تساعدك على تحقيق أهدافك الصحية واللياقة البدنية. لدينا
-                                    فريق من المدربين المحترفين الذين يلتزمون بتوفير تجربة تعليمية ممتازة لجميع متعلمينا.
+                                    احنا بنتبع المعايير الدولية في (السعودية ومصر والإمارات) ونحن ملتزمون بجودة تطبيق تلك
+                                    المعايير،يمكنك الإطلاع على بعض نتائج وآراء العملاء السابقين
                                 </div>
                             </div>
                         </div>
@@ -348,16 +365,15 @@
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
                                         data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                        لقد اشتركت ولم يصلني الرد
+                                        ايه مده الأشتراك المناسبة الي اقدر اوصل فيها لهدفي؟
                                     </a>
                                 </h2>
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordionExample">
-                                <div class="card-body">
-                                    بيتم مراجعة وتأكيد التحويلات خلال 24 ساعة عمل وفريقنا بيتواصل معاك علي رقمك المسجل, لكن
-                                    اتأكد ان الرقم المسجل في بيانات الدفع صحيح وعليه واتساب، ولو عندك اي استفسار بخصوص الدفع
-                                    تواصل مع خدمة العملاء واتساب على رقم: 1050001587(20+)
+                                <div class="card-body">المده بتختلف من شخص لأخر علي حسب هدفك وحالتك الصحية ونقطة البداية
+                                    بتاعتك تقدر تتواصل معانا علي الواتساب وهنساعدك تحدد مده الأشتراك المناسبة ليك ان شاء
+                                    الله
                                 </div>
                             </div>
                         </div>
@@ -366,16 +382,15 @@
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
                                         data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                        ما الذي يضمن جودة الخدمة والوصول للنتيجة المطلوبة؟
+                                        هل سأواجه صعوبة أثناء تنفيذ النظام الغذائي والتمارين الرياضية؟
                                     </a>
                                 </h2>
                             </div>
 
                             <div id="collapseThree" class="collapse " aria-labelledby="headingOne"
                                 data-parent="#accordionExample">
-                                <div class="card-body">
-                                    شركتنا تتبع المعايير الدولية في (السعودية ومصر والإمارات) ونحن ملتزمون بجودة تطبيق تلك
-                                    المعايير،يمكنك الإطلاع على بعض نتائج وآراء العملاء السابقين.
+                                <div class="card-body">لا، فكل شئ مصمم خصيصًا ليتوافق مع ظروفك اليومية ومع نظام المتابعة
+                                    يمكن تغيير البرنامج ليتناسب معك في حالة حدوث أي تغيير في يومك.
                                 </div>
                             </div>
                         </div>
@@ -384,15 +399,33 @@
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
                                         data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                        ايه مده الأشتراك المناسبة الي اقدر اوصل فيها لهدفي ؟ </a>
+                                        هل يمكن الوصول لنتيجة في حالة عدم توفر وقت كافي؟
+                                    </a>
                                 </h2>
                             </div>
 
                             <div id="collapseFour" class="collapse " aria-labelledby="headingOne"
                                 data-parent="#accordionExample">
-                                <div class="card-body">
-                                    المده بتختلف من شخص لأخر علي حسب هدفك وحالتك الصحية ونقطة البداية بتاعتك تقدر تتواصل
-                                    معايا علي الواتساب وهساعدك تحدد مده الأشتراك المناسبة ليك ان شاء الله.
+                                <div class="card-body">نعم لأن الوجبات يتم تقسيمها على مدار اليوم بالشكل المناسب ليك كما
+                                    إنه يمكنك أداء التمارين في المنزل مثل عدد كبير من عملائنا الذين حققوا نتائج ممتازة من
+                                    المنزل.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <a class="w-100 text-start" type="button" data-toggle="collapse"
+                                        data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                        مرونة تغيير النظام الغذائي والتدريبي؟ </a>
+                                </h2>
+                            </div>
+
+                            <div id="collapseFive" class="collapse " aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+                                <div class="card-body">نعم لأن الوجبات يتم تقسيمها على مدار اليوم بالشكل المناسب ليك كما
+                                    إنه يمكنك أداء التمارين في المنزل مثل عدد كبير من عملائنا الذين حققوا نتائج ممتازة من
+                                    المنزل.
                                 </div>
                             </div>
                         </div>

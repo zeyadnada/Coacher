@@ -29,7 +29,7 @@
 .header-section {
   left: auto;
   right: 0;
-  top: 0;
+  /* top: 0; */
 }
 
 .nav-menu ul li {

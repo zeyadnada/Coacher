@@ -16,14 +16,14 @@ class Coupon extends Model
         return self::where('code', $code)->first();
     }
 
-    public function discount($total)
-    {
-        if ($this->type == 'fixed') {
-            return $total-$this->value;
-        } elseif ($this->type == 'percent') {
-            return $total- round(($this->percent_off / 100) * $total);
-        } else {
-            return 0;
-        }
-    }
+    // public function discount($total)
+    // {
+    //     if ($this->type == 'fixed') {
+    //         return $total-$this->value;
+    //     } elseif ($this->type == 'percent') {
+    //         return $total- round(($this->percent_off / 100) * $total);
+    //     } else {
+    //         return 0;
+    //     }
+    // }
 }

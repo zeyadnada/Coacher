@@ -39,6 +39,8 @@ class SubscriptionController extends Controller
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
+        } elseif ($request->payment_method === "instapay") {
+            return view('user.transaction_pages.instapay');
         }
         // session()->forget("coupon_$id");
     }
@@ -52,12 +54,12 @@ class SubscriptionController extends Controller
             'transaction_id' => $payment_details['id']
         ]);
         (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
-        return  redirect()->route('home')->with('paymentSuccess','تم اشتراكك');
+        return  redirect()->route('home')->with('paymentSuccess', 'تم اشتراكك');
     }
 
     public  function failed_payment()
     {
-        return  redirect()->route('home')->with('paymentFailed','فشل الاشتراك');
+        return  redirect()->route('home')->with('paymentFailed', 'فشل الاشتراك');
     }
 
     // public  function notSecure_payment()

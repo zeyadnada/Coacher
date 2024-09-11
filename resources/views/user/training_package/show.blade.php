@@ -37,21 +37,21 @@
     <section class="class-details-section spad">
         <div class="container">
             @if (session('success'))
-            <div class="alert alert-success text-center mx-auto">
-                {{ session('success') }}
+                <div class="alert alert-success text-center mx-auto">
+                    {{ session('success') }}
                 </div>
             @endif
             @if (session('error'))
-            <div class="alert alert-danger text-center mx-auto">
-                {{ session('error') }}
+                <div class="alert alert-danger text-center mx-auto">
+                    {{ session('error') }}
                 </div>
             @endif
             <div class="row">
                 <div class="col-lg-6">
                     <div class="class-details-text">
-                        <div class="cd-pic">
+                        {{-- <div class="cd-pic">
                             <img src="{{ '/storage/' . $package->image }}" alt="" />
-                        </div>
+                        </div> --}}
                         {{-- <div class="cd-text">
                             <div class="cd-single-item">
                                 <h3>{{ $package->title }}</h3>
@@ -71,16 +71,30 @@
                                 </form>
                             @endif
                         </div> --}}
+                        <div class="cd-single-item">
+                            <h2>باقة الجوكر</h2>
+                            <div class="mt-5">
+                                <h4 style="font-size: 19px; margin-bottom:12px">حابب تغير من شكل جسمك ؟
+                                    نفسك تكون فورمة ؟
+                                    تعبت من النهجان كل ما تطلع السلم ؟ وبعدين نهجان ايه وانت ف عز شبابك !!</h4>
+                                <h4 style="font-size: 17px;">الباقة دي هتكون الاختيار الامثل ليك لو مش بتشتكي من اي اصابات
+                                    او امراض مزمنة تستدعي
+                                    متابعة
+                                    طبية متخصصة</h4>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-8">
                     <div class="sidebar-option">
                         <div class="so-categories">
-                            {{-- <h4 class="title">تفاصيل</h4> --}}
+                            <h4 class="title">تفاصيل</h4>
                             <div class="class-details-text">
                                 <div class="cd-text">
                                     <div class="cd-single-item">
-                                        <h3>{{ $package->title }}</h3>
+                                        {{-- <h3>{{ $package->title }}</h3> --}}
 
                                         {!! $package->description !!}
 
@@ -140,7 +154,7 @@
                                     </li>
                                     <li>
                                         <a href="#"> اجمالى السعر بعد الخصم
-                                            <span>{{ session()->get("coupon_$package->id")['discount'] }} رس</span></a>
+                                            <span>{{ $package->final_price }} رس</span></a>
                                     </li>
                                 @endif
                             </ul>
