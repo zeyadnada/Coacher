@@ -111,9 +111,6 @@ class CouponsController extends Controller
         return back()->with('success', 'تم تفعيل الكوبون');
     }
 
-
-
-
     public function destroy($id)
     {
         session()->forget("coupon");
