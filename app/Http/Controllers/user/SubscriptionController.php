@@ -25,7 +25,7 @@ class SubscriptionController extends Controller
         $order = $subscription->toArray();
         $order['payment_method'] = $request->payment_method;
         $order['amount_paid'] = $subscription->package->final_price;
-
+        dd($order);
         // add amount paid at the following line
         // $order['amount_paid'] = session()->get("coupon_$id")["discount"];
         // dd($order);
@@ -42,7 +42,7 @@ class SubscriptionController extends Controller
         } elseif ($request->payment_method === "instapay") {
             return view('user.transaction_pages.instapay');
         }
-        // session()->forget("coupon_$id");
+        session()->forget("coupon");
     }
 
     public  function success_payment($payment_details)

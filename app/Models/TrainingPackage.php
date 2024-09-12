@@ -13,14 +13,19 @@ class TrainingPackage extends Model
     public function getFinalPriceAttribute()
     {
         // Check if there is a coupon applied in the session
-        $couponType = session()->get('coupon_type'); // 'percentage' or 'fixed'
-        $couponValue = session()->get('coupon_value', 0); // Value of the coupon (either percentage or fixed)
+        $couponType = session()->get('coupon')['type'];
+        if ($couponType === 'percent') {
+
+            $couponValue = session()->get('coupon')['percent'];
+        } elseif ($couponType === 'fixed') {
+            $couponValue = session()->get('coupon')['value'];
+        }
 
         // Calculate the base discounted price (if discount_price exists)
         $basePrice = $this->discount_price ?? $this->price;
 
         // Apply the coupon discount based on the type
-        if ($couponType === 'percentage') {
+        if ($couponType === 'percent') {
             // Calculate percentage discount
             $discount = ($basePrice * $couponValue) / 100;
             return $basePrice - $discount;

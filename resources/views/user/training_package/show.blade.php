@@ -62,7 +62,7 @@
                             <div class="cd-single-item">
                                 <h4>{{ $package->price }}EGP</h4>
                             </div>
-                            @if (!session()->has("coupon_$package->id"))
+                            @if (!session()->has("coupon"))
                                 <form action="{{ route('user.coupon.store', ['id' => $package->id]) }}" method="POST">
                                     @csrf
                                     <label for="coupon_code" style="color: white">هل يوجد اى كود خصم؟</label> <br>
@@ -135,20 +135,20 @@
                                 {{-- <li>
                                     <a href="#"> السعر <span>{{ $package->price }} رس</span></a>
                                 </li> --}}
-                                @if (session()->has("coupon_$package->id"))
+                                @if (session()->has("coupon"))
                                     <li>
                                         <a href="#"> كود الخصم
-                                            <span>{{ session()->get("coupon_$package->id")['code'] }}
+                                            <span>{{ session()->get("coupon")['code'] }}
                                             </span></a>
                                     </li>
                                     <li>
-                                        @if (session()->get("coupon_$package->id")['type'] == 'percent')
+                                        @if (session()->get("coupon")['type'] == 'percent')
                                             <a href="#"> الخصم <span>
-                                                    {{ session()->get("coupon_$package->id")['percent'] }} %
+                                                    {{ session()->get("coupon")['percent'] }} %
                                                     رس</span></a>
-                                        @elseif (session()->get("coupon_$package->id")['type'] == 'fixed')
+                                        @elseif (session()->get("coupon")['type'] == 'fixed')
                                             <a href="#"> الخصم <span>-
-                                                    {{ session()->get("coupon_$package->id")['value'] }}
+                                                    {{ session()->get("coupon")['value'] }}
                                                     رس</span></a>
                                         @endif
                                     </li>
@@ -158,7 +158,7 @@
                                     </li>
                                 @endif
                             </ul>
-                            @if (!session()->has("coupon_$package->id"))
+                            @if (!session()->has("coupon"))
                                 <div class="leave-comment">
                                     <form action="{{ route('user.coupon.store', ['id' => $package->id]) }}" method="POST">
                                         @csrf
@@ -175,7 +175,7 @@
                                     </form>
                                 </div>
                             @endif
-                            @if (session()->has("coupon_$package->id"))
+                            @if (session()->has("coupon"))
                                 <form action="{{ route('user.coupon.destroy', ['id' => $package->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')

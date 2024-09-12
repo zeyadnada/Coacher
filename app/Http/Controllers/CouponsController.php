@@ -100,12 +100,11 @@ class CouponsController extends Controller
         }
 
         // Store coupon details in session
-        session()->put("coupon_$id", [
+        session()->put("coupon", [
             'code' => $coupon->code,
             'type' => $coupon->type,
             'value' => $coupon->value,
             'percent' => $coupon->percent_off,
-            'discount' => $coupon->discount($subscription->price),
         ]);
 
         // Return with a success message
@@ -117,7 +116,7 @@ class CouponsController extends Controller
 
     public function destroy($id)
     {
-        session()->forget("coupon_$id");
+        session()->forget("coupon");
         return back()->with('success', 'تم الغاء تفعيل الكوبون');
     }
 }
