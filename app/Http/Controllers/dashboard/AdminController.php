@@ -92,4 +92,17 @@ class AdminController extends Controller
         $admin->delete();
         return back()->with('success', 'Admin Deleted Successfully.');
     }
+    public function makeAdmin($id){
+        $user = Admin::findOrFail($id);
+        $user->admin_type = "admin";
+        $user->save();
+        return back()->with('success', 'User Made Admin Successfully.');
+    }
+    public function makeSuperAdmin($id)
+    {
+        $user = Admin::findOrFail($id);
+        $user->admin_type = "super_admin";
+        $user->save();
+        return back()->with('success', 'User Made Super Admin Successfully.');
+    }
 }
