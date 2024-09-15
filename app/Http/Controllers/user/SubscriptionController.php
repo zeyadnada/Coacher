@@ -20,16 +20,15 @@ class SubscriptionController extends Controller
             'whatsapp_phone' => $request->input('full_phone'),
             'starting_date' => $request->input('starting_date'),
             'package_id' => $request->input('package_id'),
-
         ]);
         $order = $subscription->toArray();
         $order['payment_method'] = $request->payment_method;
         $order['amount_paid'] = $subscription->package->final_price;
-        dd($order);
+        session()->forget("coupon");
+        // dd($order);
         // add amount paid at the following line
         // $order['amount_paid'] = session()->get("coupon_$id")["discount"];
         // dd($order);
-
 
         if ($request->payment_method === "paymob_card_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
@@ -38,11 +37,10 @@ class SubscriptionController extends Controller
         } elseif ($request->payment_method === "paymob_value_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
-            return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
+            return (new PaymobController())->checkingOut($order, env('PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID'));
         } elseif ($request->payment_method === "instapay") {
             return view('user.transaction_pages.instapay');
         }
-        session()->forget("coupon");
     }
 
     public  function success_payment($payment_details)
@@ -54,7 +52,7 @@ class SubscriptionController extends Controller
             'transaction_id' => $payment_details['id']
         ]);
         (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
-        return  redirect()->route('home')->with('paymentSuccess', 'تم اشتراكك');
+        return  redirect()->route('home')->with('paymentSuccess', 'تم اشتراكك')->with('subscriptionId', $subscription->id);
     }
 
     public  function failed_payment()

@@ -7,106 +7,31 @@
     <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3></h3>
-
-                    <p>Subscriptions</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-regular fa-pills"></i>
-                </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h3></h3>
-
-                    <p>Trainers</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-duotone fa-capsules"></i>
-                </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3></h3>
-
-                    <p>Training Packages</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-regular fa-newspaper"></i>
-                </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3></h3>
-
-                    <p>Article Categories</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-duotone fa-layer-group"></i>
-                </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3></h3>
-
+                    <h3>{{ $adminsCount }}</h3>
                     <p>Admin</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-duotone fa-user-tie"></i>
                 </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('dashboard.admin.index') }}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div> <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3></h3>
+                    <h3>{{ $trainersCount }}</h3>
 
-                    <p>Users</p>
+                    <p>Trainers</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-solid fa-user"></i>
                 </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3></h3>
-
-                    <p>Side Effects</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-solid fa-braille"></i>
-                </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('dashboard.trainers.index') }}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -114,14 +39,29 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3></h3>
-
-                    <p>Contraindications</p>
+                    <h3>{{ $packagesCount }}</h3>
+                    <p>Packages</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-solid fa-exclamation"></i>
+                    <i class="fa fa-duotone fa-layer-group"></i>
                 </div>
-                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('dashboard.training-packages.index') }}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ $couponsCount }}</h3>
+                    <p>Copouns</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-solid fa-braille"></i>
+                </div>
+                <a href="{{ route('dashboard.coupon.index') }}" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -160,7 +100,7 @@
                         <!-- /.card -->
 
                         <!-- DONUT CHART -->
-                        <div class="card card-danger">
+                        <div class="card card-light">
                             <div class="card-header">
                                 <h3 class="card-title">Donut Chart</h3>
 
@@ -231,7 +171,7 @@
                         <!-- /.card -->
 
                         <!-- BAR CHART -->
-                        <div class="card card-success">
+                        <div class="card card-light">
                             <div class="card-header">
                                 <h3 class="card-title">Bar Chart</h3>
 

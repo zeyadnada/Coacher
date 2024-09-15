@@ -172,7 +172,4 @@
                 });
         });
     </script>
-
-
-
 @endsection

@@ -62,7 +62,7 @@
                             <div class="cd-single-item">
                                 <h4>{{ $package->price }}EGP</h4>
                             </div>
-                            @if (!session()->has("coupon"))
+                            @if (!session()->has('coupon'))
                                 <form action="{{ route('user.coupon.store', ['id' => $package->id]) }}" method="POST">
                                     @csrf
                                     <label for="coupon_code" style="color: white">هل يوجد اى كود خصم؟</label> <br>
@@ -135,20 +135,20 @@
                                 {{-- <li>
                                     <a href="#"> السعر <span>{{ $package->price }} رس</span></a>
                                 </li> --}}
-                                @if (session()->has("coupon"))
+                                @if (session()->has('coupon'))
                                     <li>
                                         <a href="#"> كود الخصم
-                                            <span>{{ session()->get("coupon")['code'] }}
+                                            <span>{{ session()->get('coupon')['code'] }}
                                             </span></a>
                                     </li>
                                     <li>
-                                        @if (session()->get("coupon")['type'] == 'percent')
+                                        @if (session()->get('coupon')['type'] == 'percent')
                                             <a href="#"> الخصم <span>
-                                                    {{ session()->get("coupon")['percent'] }} %
+                                                    {{ session()->get('coupon')['percent'] }} %
                                                     رس</span></a>
-                                        @elseif (session()->get("coupon")['type'] == 'fixed')
+                                        @elseif (session()->get('coupon')['type'] == 'fixed')
                                             <a href="#"> الخصم <span>-
-                                                    {{ session()->get("coupon")['value'] }}
+                                                    {{ session()->get('coupon')['value'] }}
                                                     رس</span></a>
                                         @endif
                                     </li>
@@ -158,7 +158,7 @@
                                     </li>
                                 @endif
                             </ul>
-                            @if (!session()->has("coupon"))
+                            @if (!session()->has('coupon'))
                                 <div class="leave-comment">
                                     <form action="{{ route('user.coupon.store', ['id' => $package->id]) }}" method="POST">
                                         @csrf
@@ -175,7 +175,7 @@
                                     </form>
                                 </div>
                             @endif
-                            @if (session()->has("coupon"))
+                            @if (session()->has('coupon'))
                                 <form action="{{ route('user.coupon.destroy', ['id' => $package->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')
@@ -297,8 +297,19 @@
                                         <input type="radio" id="instapay" name="payment_method" value="instapay"
                                             hidden>
                                         <label for="instapay" class="card-body text-center">
-                                            <img src="/user/img/instapay.png" alt="Instapay Logo" class="img-fluid mb-3">
-                                            {{-- <h5 class="card-title">Instapay</h5> --}}
+                                            <img src="/user/img/instapay.png" alt="Instapay Logo" class="img-fluid">
+                                            <h5 class="card-title">Instapay</h5>
+                                        </label>
+                                    </div>
+
+                                    <!-- Bank Installment -->
+                                    <div class="payment-card">
+                                        <input type="radio" id="paymob_bank_installement_payment" name="payment_method"
+                                            value="paymob_bank_installement_payment" hidden>
+                                        <label for="paymob_bank_installement_payment" class="card-body text-center">
+                                            <img src="/user/img/installment.png" alt="installment Logo"
+                                                class="img-fluid">
+                                            <h5 class="card-title">تقسيط بنكي</h5>
                                         </label>
                                     </div>
                                 </div>

@@ -54,8 +54,12 @@ use Illuminate\Support\Facades\Route;
 ///////////////////////////////////////////{*--User Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
+
 Route::as('user.')
     ->group(function () {
+        Route::get('/about', function () {
+            return view('user.about');
+        })->name('about');
         Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
         Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
         Route::post('/subscribe', [UserSubscriptionController::class, 'store'])->name('subscription.store');
@@ -86,12 +90,12 @@ Route::middleware(['admin'])
         // Route::get('showProfile', [AdminController::class, 'showProfile'])->name('showProfile');
         // Route::get('editProfile', [AdminController::class, 'editProfile'])->name('editProfile');
         // Route::put('UpdateAdminProfile', [AdminController::class, 'UpdateAdminProfile'])->name('UpdateAdminProfile');
-        Route::get('/coupon/index', [CouponsController::class, 'index'])->name("coupon.index");
-        Route::get('/coupon', [CouponsController::class, 'create'])->name("coupon.create");
-        Route::post('/coupon/save', [CouponsController::class, 'save'])->name("coupon.save");
-        Route::get('/coupon/edit/{id}', [CouponsController::class, 'edit'])->name("coupon.edit");
-        Route::put('/coupon/update/{id}', [CouponsController::class, 'update'])->name("coupon.update");
-        Route::delete('/coupon/delete/{id}', [CouponsController::class, 'delete'])->name("coupon.delete");
+        Route::get('/coupons', [CouponsController::class, 'index'])->name("coupon.index");
+        Route::get('/coupons/create', [CouponsController::class, 'create'])->name("coupon.create");
+        Route::post('/coupons/save', [CouponsController::class, 'save'])->name("coupon.save");
+        Route::get('/coupons/edit/{id}', [CouponsController::class, 'edit'])->name("coupon.edit");
+        Route::put('/coupons/update/{id}', [CouponsController::class, 'update'])->name("coupon.update");
+        Route::delete('/coupons/delete/{id}', [CouponsController::class, 'delete'])->name("coupon.delete");
 
         Route::resource('trainers', TrainerController::class);
         Route::resource('training-packages', TrainingPackageController::class);

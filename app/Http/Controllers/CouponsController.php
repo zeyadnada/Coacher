@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Coupon;
 use App\Models\Subscription;
 use App\Models\TrainingPackage;
+use App\Notifications\CouponNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class CouponsController extends Controller
 {
@@ -20,7 +23,6 @@ class CouponsController extends Controller
     }
     public function edit($id)
     {
-
         $coupon = Coupon::find($id);
         return view('dashboard.Coupon.edit', compact('coupon'));
     }
@@ -49,7 +51,7 @@ class CouponsController extends Controller
         $coupon->update($validatedData);
 
         // Redirect back with a success message
-        return back()->with('success_message', 'Coupon has been updated successfully!');
+        return redirect()->route('dashboard.coupon.index')->with('success', 'Coupon has been updated successfully!');
     }
 
     public function save(Request $request)
@@ -61,22 +63,16 @@ class CouponsController extends Controller
             'percentage' => 'nullable|numeric|min:0|max:100', // Ensures the percentage is required, a number between 0 and 100
             'type' => 'required|in:fixed,percent', // Ensures the type is either 'fixed' or 'percent'
         ]);
-
-        // If validation passes, proceed to store the coupon
-        $coupon = new Coupon();
-        $coupon->code = $request->code;
-        $coupon->value = $request->value;
-        $coupon->percent_off = $request->percentage;
-        $coupon->type = $request->type;
-        $coupon->save();
-
-        return back()->with('success_message', 'Coupon has been added successfully!');
+        $coupon = Coupon::create($request->all());
+        $admins = Admin::all();
+        Notification::send($admins, new CouponNotification($coupon));
+        return redirect()->route('dashboard.coupon.index')->with('success', 'Coupon has been added successfully!');
     }
     public function delete($id)
     {
         $coupon = Coupon::findOrFail($id);
         $coupon->delete();
-        return back()->with('success_message', 'Coupon Deleted Successfully.');
+        return back()->with('success', 'Coupon Deleted Successfully.');
     }
 
     /**

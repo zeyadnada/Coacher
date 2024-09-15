@@ -77,7 +77,7 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Paymob Gateway</h3>
@@ -113,6 +113,12 @@
                                 <label for="PAYMOB_MOBILE_WALLET_INTEGRATION_ID">Paymob Mobile Wallet Integration ID</label>
                                 <input type="text" name="PAYMOB_MOBILE_WALLET_INTEGRATION_ID" class="form-control"
                                     value="{{ env('PAYMOB_MOBILE_WALLET_INTEGRATION_ID') }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID">Paymob Bank Installment Integration ID</label>
+                                <input type="text" name="PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID" class="form-control"
+                                    value="{{ env('PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID') }}" readonly>
                             </div>
 
                             <div class="form-group">

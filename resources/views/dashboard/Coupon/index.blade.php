@@ -158,4 +158,13 @@
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
+    <script>
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var trainerId = button.data('id'); // Extract info from data-* attributes
+            var formAction = "{{ route('dashboard.trainers.destroy', '') }}/" + trainerId;
+            var modal = $(this);
+            modal.find('#deleteForm').attr('action', formAction);
+        });
+    </script>
 @endsection

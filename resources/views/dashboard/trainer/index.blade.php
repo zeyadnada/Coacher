@@ -39,7 +39,7 @@
                                 <td>{{ $trainer->email }}</td>
                                 <td>{{ $trainer->phone }}</td>
                                 <td>{{ $trainer->job_title }}</td>
-                                <td>{{ $trainer->subscriptions->count() }}</td>
+                                <td>{{ $trainer->subscriptions_count }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.trainers.show', $trainer->id) }}" class="btn btn-info"><i
                                             class="fas fa-eye"></i></a>
