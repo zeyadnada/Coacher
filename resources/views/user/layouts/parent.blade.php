@@ -51,7 +51,7 @@
                 </li>
                 <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
                     </a></li>
-                <li><a href="#transformations">انجازات المشتركين</a></li>
+                <li><a href="{{ route('home') }}#transformations">انجازات المشتركين</a></li>
                 <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
                 <li><a href="#footer"> اتصل بنا </a></li>
             </ul>
@@ -85,23 +85,25 @@
                             </li>
                             <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
                                 </a></li>
-                            <li><a href="#transformations">انجازات المشتركين</a></li>
+                            <li><a href="{{ route('home') }}#transformations">انجازات المشتركين</a></li>
                             <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
                             <li><a href="#footer"> اتصل بنا </a></li>
                         </ul>
                     </nav>
                 </div>
-                <div class="col-lg-3">
+                {{-- <div class="col-lg-3">
                     <div class="top-option">
-                        {{-- <div class="to-search search-switch">
-                            <i class="fa fa-search"></i>
-                        </div> --}}
                         <div class="to-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-youtube-play"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                         </div>
+                    </div>
+                </div> --}}
+                <div class="col-lg-3">
+                    <div class="text-left top-option">
+                        <a href="#packages" class="btn btn-outline-primary ml-2"> اشترك الان </a>
                     </div>
                 </div>
             </div>
@@ -140,7 +142,7 @@
     <section class="footer-section" id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="fs-about">
                         <div class="fa-logo">
                             <a href="#"><img src="/user/img/logo.png" alt="" /></a>
@@ -158,18 +160,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="fs-widget">
                         <h4>روابط سريعة</h4>
                         <ul>
-                            <li><a href="#"> حولنا </a></li>
+                            <li><a href="{{ route('user.about') }}">من نحن</a></li>
                             <li><a href="#"> المدونة </a></li>
                             <li><a href="#"> الصفوف </a></li>
                             <li><a href="#"> اتصل بنا </a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="fs-widget">
                         <h4>الدعم</h4>
                         <ul>
@@ -180,7 +182,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                {{-- <div class="col-lg-4 col-md-6">
                     <div class="fs-widget">
                         <h4>اخر المقالات</h4>
                         <div class="fw-recent">
@@ -204,7 +206,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">

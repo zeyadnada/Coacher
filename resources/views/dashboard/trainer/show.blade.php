@@ -90,7 +90,7 @@
                                     class="fas fa-map-marker-alt display-25 me-3 text-secondary mr-2"></i>{{ $trainer->location }}
                             </li>
                             <li><i
-                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{ $trainer->subscriptions->count() }}
+                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{ $trainer->subscriptions_count }}
                             </li>
                         </ul>
                     </div>

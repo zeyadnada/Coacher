@@ -60,7 +60,7 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">WhatsApp Config</h3>

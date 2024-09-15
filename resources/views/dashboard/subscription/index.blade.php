@@ -44,12 +44,16 @@
                                     @if ($subscription->trainer)
                                         {{ $subscription->trainer->name }}
                                     @else
-                                        <span class="text-danger fw-bold">No Trainer</span>
+                                        <span class="text-danger fw-bold"> <b>No Trainer</b></span>
                                     @endif
                                 </td>
 
                                 <td>{{ $subscription->starting_date }}</td>
-                                <td>{{ $subscription->payment_status }}</td>
+                                <td> <span
+                                        class="badge {{ $subscription->payment_status == 'Paid' ? 'badge-success' : ($subscription->payment_status == 'Pending' ? 'badge-warning' : 'badge-danger') }}">
+                                        {{ $subscription->payment_status }}
+                                    </span>
+                                </td>
                                 <td>{{ $subscription->transaction_id }}</td>
 
                                 <td>

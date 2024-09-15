@@ -17,7 +17,8 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        $trainers = Trainer::all();
+        // Fetch trainers along with the count of their subscriptions
+        $trainers = Trainer::select('id', 'name', 'email', 'phone', 'job_title')->withCount('subscriptions')->get();
         return view('dashboard.trainer.index', compact('trainers'));
     }
 
@@ -51,7 +52,7 @@ class TrainerController extends Controller
      */
     public function show(string $id)
     {
-        $trainer = Trainer::findOrFail($id);
+        $trainer = Trainer::withCount('subscriptions')->findOrFail($id);
         return view('dashboard.trainer.show', compact('trainer'));
     }
 

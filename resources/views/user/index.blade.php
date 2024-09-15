@@ -1,6 +1,5 @@
 @extends('user.layouts.parent')
 
-
 @section('title', 'Refit Academy')
 @section('home', 'active')
 @section('css')
@@ -26,6 +25,7 @@
                             </div>
                             <h2> {{ session('paymentSuccess') }}</h2>
                             <h4>تمت عملية الدفع بنجاح</h4>
+                            <p>رقم الاشتراك الخاص بك هو: {{ session('subscriptionId') }}</p>
                             <p>نشكركم على إتمام عملية الدفع. تم تأكيد الطلب الخاص بكم، وسنقوم بالاتصال بك قريبًا.</p>
                             <a href="javascript:void(0)" class="pt-4" id="close-section">
                                 <i class="fa fa-home"></i>
@@ -69,7 +69,7 @@
     <!-- promotion Section Begin -->
     <div class="offer-section">
         <p class="mb-0 text-center text-white">
-            الحق العروض, العروض متاحة لفترة محدودة
+            <strong> الحق العروض,</strong> العروض متاحة لفترة محدودة
         </p>
     </div>
     <!-- promotion Section End -->
@@ -82,8 +82,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="bs-text">
-                            <h2>مع بعض هنغير الواقع</h2>
-                            <div class="bt-tips">سجل الان لبداية رحلتك مع Refit</div>
+                            <h2>مع بعض <strong style="color: #f36100">هنغير </strong>الواقع</h2>
+                            <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
                             <a href="{{ route('user.training-packages.index') }}" class="primary-btn btn-normal"> اشترك الان
                             </a>
                         </div>
@@ -110,7 +110,7 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
-                        <span class="flaticon-034-stationary-bike"></span>
+                        <span class="flaticon-014-heart-beat"></span>
                         <h4>رعاية طبية</h4>
                         <p>استشاريين باطنة ، جراحة ، عظام ، مخ واعصاب ، علاج طبيعي ، تغذية علاجية عشان تضمن رعاية طبية على
                             اعلى مستوى</p>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
-                        <span class="flaticon-014-heart-beat"></span>
+                        <span class="flaticon-034-stationary-bike"></span>
                         <h4>متابعة يومية</h4>
                         <p>طوال ايام الاسبوع على مدار الساعة.</p>
                     </div>
@@ -143,7 +143,7 @@
     <!-- ChoseUs Section End -->
 
     <!-- Pricing Section Begin -->
-    <section class="pricing-section spad">
+    <section class="pricing-section spad" id="packages">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -196,38 +196,28 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>ماذا تنتظر?</span>
+                        <span>ماذا تنتظر ؟</span>
                         <h2>خطوات الاشتراك</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="cs-item">
-                        <span class="flaticon-034-stationary-bike"></span>
-                        <h4>معدات متقدمة</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                        <span style="font-size: 70px; font-weight: bold;">1</span>
+                        <h4>اختر الباقة المناسبة</h4>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="cs-item">
-                        <span class="flaticon-033-juice"></span>
-                        <h4>خطة تدريبية صحية</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                        <span style="font-size: 70px; font-weight: bold;">2</span>
+                        <h4>قم بالدفع عبر الطرق الدفع المتاحة</h4>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="cs-item">
-                        <span class="flaticon-002-dumbell"></span>
-                        <h4>تدريبات مخصصة</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="cs-item">
-                        <span class="flaticon-014-heart-beat"></span>
-                        <h4>تدريبات متنوعة</h4>
-                        <p>لوريم ايبسوم دولار سيت اميت, كونسيكتيتور اديبا اسينج ايليت.</p>
+                        <span style="font-size: 70px; font-weight: bold;">3</span>
+                        <h4>سيتصل بك فريقنا عبر WhatsApp للتحقق من اشتراكك وبدء عملية المتابعة</h4>
                     </div>
                 </div>
             </div>
@@ -272,13 +262,13 @@
     <!-- Transformation Section End -->
 
     <!-- Video Banner Section Begin -->
-    <section class="banner-section set-bg" data-setbg="/user/img/banner-bg.jpg">
+    <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="bs-text service-banner">
                         <h2>التمرن الى اقصى الحدود</h2>
-                        <div class="bt-tips">حيث الصحة والجمال واللياقة</div>
+                        <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
                         <a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="play-btn video-popup"><i
                                 class="fa fa-caret-right"></i></a>
                     </div>

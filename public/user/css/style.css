@@ -2888,7 +2888,7 @@ ol {
 .payment-card img {
   width: 90px;
   height: auto;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
 }
 
 .payment-card h5 {

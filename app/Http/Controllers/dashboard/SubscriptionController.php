@@ -7,7 +7,6 @@ use App\Http\Requests\SubscriptionRequet;
 use App\Models\Subscription;
 use App\Models\Trainer;
 use App\Models\TrainingPackage;
-use App\Models\User;
 
 class SubscriptionController extends Controller
 {
@@ -16,7 +15,7 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])
+        $subscriptions = Subscription::with(['package:id,title', 'trainer:id,name'])
             ->orderBy('created_at', 'desc')
             ->get();
         $title = 'All Subscriptions';
@@ -25,7 +24,7 @@ class SubscriptionController extends Controller
 
     public function paid()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])
+        $subscriptions = Subscription::with(['package:id,title', 'trainer:id,name'])
             ->where('payment_status', 'Paid')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -35,7 +34,7 @@ class SubscriptionController extends Controller
 
     public function pending()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])
+        $subscriptions = Subscription::with(['package:id,title', 'trainer:id,name'])
             ->where('payment_status', 'Pending')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -45,7 +44,7 @@ class SubscriptionController extends Controller
 
     public function canceled()
     {
-        $subscriptions = Subscription::with(['package', 'trainer'])
+        $subscriptions = Subscription::with(['package:id,title', 'trainer:id,name'])
             ->where('payment_status', 'Cancelled')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -59,8 +58,8 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $packages = TrainingPackage::all();
-        $trainers = Trainer::all();
+        $packages = TrainingPackage::select('id', 'title')->get();
+        $trainers = Trainer::select('id', 'name')->get();
         return view('dashboard.subscription.create', compact('packages', 'trainers'));
     }
 
@@ -69,16 +68,17 @@ class SubscriptionController extends Controller
      */
     public function store(SubscriptionRequet $request)
     {
-        Subscription::create($request->all());
-        return redirect()->route('dashboard.subscriptions.index')->with('success', 'Subscription Created Successfully');
+        $subscription = Subscription::create($request->all());
+        return redirect()->route('dashboard.subscriptions.show', $subscription->id)->with('success', 'Subscription Created Successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $subscription = Subscription::with(['package:id,title', 'trainer:id,name'])->findOrFail($id);
+        return view('dashboard.subscription.show', compact('subscription'));
     }
 
     /**
@@ -99,7 +99,7 @@ class SubscriptionController extends Controller
     {
         $subscription = Subscription::findOrFail($id);
         $subscription->update($request->all());
-        return redirect()->route('dashboard.subscriptions.index')->with('success', 'Subscription Updated Successfully');
+        return redirect()->route('dashboard.subscriptions.show', $subscription->id)->with('success', 'Subscription Updated Successfully');
     }
 
     /**
