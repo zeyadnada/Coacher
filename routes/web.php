@@ -87,6 +87,9 @@ Route::middleware(['admin'])
     ->group(function () {
         Route::get('/home', HomePage::class)->name('home');
         Route::resource('admin', AdminController::class);
+        Route::get('/admin/admin/{id}',[AdminController::class,'makeAdmin'])->name('admin.admin');
+    Route::get('/admin/super/{id}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
+
         // Route::get('showProfile', [AdminController::class, 'showProfile'])->name('showProfile');
         // Route::get('editProfile', [AdminController::class, 'editProfile'])->name('editProfile');
         // Route::put('UpdateAdminProfile', [AdminController::class, 'UpdateAdminProfile'])->name('UpdateAdminProfile');
