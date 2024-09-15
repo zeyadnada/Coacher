@@ -83,8 +83,8 @@ Route::middleware(['admin'])
     ->group(function () {
         Route::get('/home', HomePage::class)->name('home');
         Route::resource('admin', AdminController::class);
-        Route::get('/admin/admin/{id}',[AdminController::class,'makeAdmin'])->name('admin.admin');
-    Route::get('/admin/super/{id}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
+        Route::get('/admin/admin/{id}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
+        Route::get('/admin/super/{id}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
 
         // Route::get('showProfile', [AdminController::class, 'showProfile'])->name('showProfile');
         // Route::get('editProfile', [AdminController::class, 'editProfile'])->name('editProfile');
@@ -109,6 +109,12 @@ Route::middleware(['admin'])
         Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
         Route::resource('/transformation', TransformationController::class);
     });
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('password/reset', [App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('password/email', [App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('password/reset/{token}', [App\Http\Controllers\Admin\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('password/reset', [App\Http\Controllers\Admin\Auth\ResetPasswordController::class, 'reset'])->name('password.update');
+});
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
