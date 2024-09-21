@@ -89,12 +89,26 @@
                     </div>
                     <div class="form-row mb-3">
                         <div class="col-12">
-                            <label for="notes">Notes</label>
-                            <input type="text" name="notes" id="title"
-                                class="form-control @error('notes') is-invalid @enderror"
-                                placeholder="Enter package notes if exist" aria-describedby="helpId"
-                                value="{{ old('notes') }}">
-                            @error('notes')
+                            <label for="introduction">Introduction</label>
+                            <input type="text" name="introduction" id="introduction"
+                                class="form-control @error('introduction') is-invalid @enderror"
+                                placeholder="Enter package introduction if exist" aria-describedby="helpId"
+                                value="{{ old('introduction') }}">
+                            @error('introduction')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col-12">
+                            <label for="target_audience">Target Audience</label>
+                            <input type="text" name="target_audience" id="target_audience"
+                                class="form-control @error('target_audience') is-invalid @enderror"
+                                placeholder="Enter target audience if exist" aria-describedby="helpId"
+                                value="{{ old('target_audience') }}">
+                            @error('target_audience')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

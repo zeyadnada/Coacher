@@ -57,9 +57,9 @@
         }
 
         /*
-                        .my-1-6 {
-                        margin-bottom: 1.6rem;
-                    } */
+                                .my-1-6 {
+                                margin-bottom: 1.6rem;
+                            } */
     </style>
 @endsection
 
@@ -84,7 +84,8 @@
                             </li>
                             <li class="mb-3"><i class="fa fa-solid fa-money-bill-wave mr-3"></i>{{ $package->price }}$
                             </li>
-                            <li class="mb-3"><i class="fa fa-solid fa-money-check mr-3"></i>{{ $package->discount_price ?? $package->price }}$
+                            <li class="mb-3"><i
+                                    class="fa fa-solid fa-money-check mr-3"></i>{{ $package->discount_price ?? $package->price }}$
                             </li>
                         </ul>
                     </div>
@@ -94,16 +95,23 @@
                 <div class="ps-lg-1-6 ps-xl-5">
                     <div class="mb-5 wow fadeIn">
                         <div class="text-start mb-1-6 wow fadeIn">
-                            <h3 class="h1 mb-0 text-primary">Description</h3>
+                            <h3 class="h1 mb-0 text-primary">Introduction</h3>
                         </div>
-                        <p>{!! $package->description !!}</p>
+                        <p>{{ $package->introduction }}</p>
 
                     </div>
                     <div class="mb-5 wow fadeIn">
                         <div class="text-start mb-1-6 wow fadeIn">
-                            <h3 class="h1 mb-0 text-primary">Notes</h3>
+                            <h3 class="h1 mb-0 text-primary">Target Audience</h3>
                         </div>
-                        <p>{{ $package->notes }}</p>
+                        <p>{{ $package->target_audience }}</p>
+
+                    </div>
+                    <div class="mb-5 wow fadeIn">
+                        <div class="text-start mb-1-6 wow fadeIn">
+                            <h3 class="h1 mb-0 text-primary">Description</h3>
+                        </div>
+                        <p>{!! $package->description !!}</p>
 
                     </div>
                 </div>

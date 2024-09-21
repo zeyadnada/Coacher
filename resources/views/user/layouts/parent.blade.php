@@ -122,8 +122,8 @@
                     <div class="gt-text">
                         <i class="fa fa-mobile"></i>
                         <ul>
-                            <li>125-711-811</li>
-                            <li>125-668-886</li>
+                            <li>201551471731+</li>
+                            <li>201126518696+</li>
                         </ul>
                     </div>
                 </div>
@@ -165,9 +165,9 @@
                         <h4>روابط سريعة</h4>
                         <ul>
                             <li><a href="{{ route('user.about') }}">من نحن</a></li>
-                            <li><a href="#"> المدونة </a></li>
-                            <li><a href="#"> الصفوف </a></li>
-                            <li><a href="#"> اتصل بنا </a></li>
+                            <li><a href="{{ route('home') }}#packages"> باقاتنا </a></li>
+                            <li><a href="{{ route('user.trainer.index') }}"> فريقنا </a></li>
+                            <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
                         </ul>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                             <li><a href="/login.html"> تسجيل الدخول </a></li>
                             <li><a href="#"> حسابي </a></li>
                             <li><a href="#"> اشترك </a></li>
-                            <li><a href="#"> اتصل بنا </a></li>
+                            <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,15 +211,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="copyright-text">
-                        <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            حقوق النشر محفوظة &copy;
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
-                            صنع بكل
+                        <p> صنع بكل
                             <i class="fa fa-heart" aria-hidden="true"></i>
-                            <a href="https://colorlib.com" target="_blank"> </a>
+                            بواسطة
+                            <a class="pr-1" href="https://wa.me/201208776273" target="_blank">CodeCrafters</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
@@ -242,7 +237,7 @@
 
     <!--start WhatsApp Contact-->
     <div class="whatsapp-icon">
-        <a href="https://wa.me/201028829262" target="_blank">
+        <a href="https://wa.me/201551471731" target="_blank">
             <img src="/user/img/whatsapp.png" alt="whatsapp" />
         </a>
     </div>

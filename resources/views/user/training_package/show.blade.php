@@ -30,6 +30,11 @@
         .iti__selected-country {
             padding: 5px !important;
         }
+
+        .payment-card img {
+            max-height: 64px;
+            /* Control the image height for consistency */
+        }
     </style>
 @endsection
 @section('content')
@@ -72,18 +77,11 @@
                             @endif
                         </div> --}}
                         <div class="cd-single-item">
-                            <h2>باقة الجوكر</h2>
+                            <h2>{{ $package->title }}</h2>
                             <div class="mt-5">
-                                <h4 style="font-size: 19px; margin-bottom:12px">حابب تغير من شكل جسمك ؟
-                                    نفسك تكون فورمة ؟
-                                    تعبت من النهجان كل ما تطلع السلم ؟ وبعدين نهجان ايه وانت ف عز شبابك !!</h4>
-                                <h4 style="font-size: 17px;">الباقة دي هتكون الاختيار الامثل ليك لو مش بتشتكي من اي اصابات
-                                    او امراض مزمنة تستدعي
-                                    متابعة
-                                    طبية متخصصة</h4>
+                                <h4 style="font-size: 19px; margin-bottom:12px">{{ $package->introduction }}</h4>
+                                <h4 style="font-size: 17px;">{{ $package->target_audience }}</h4>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -133,7 +131,7 @@
                                     <a href="#"> المدة <span>{{ $package->duration }}</span></a>
                                 </li>
                                 {{-- <li>
-                                    <a href="#"> السعر <span>{{ $package->price }} رس</span></a>
+                                    <a href="#"> السعر <span>{{ $package->price }} جنيه</span></a>
                                 </li> --}}
                                 @if (session()->has('coupon'))
                                     <li>
@@ -145,16 +143,16 @@
                                         @if (session()->get('coupon')['type'] == 'percent')
                                             <a href="#"> الخصم <span>
                                                     {{ session()->get('coupon')['percent'] }} %
-                                                    رس</span></a>
+                                                    جنيه</span></a>
                                         @elseif (session()->get('coupon')['type'] == 'fixed')
                                             <a href="#"> الخصم <span>-
                                                     {{ session()->get('coupon')['value'] }}
-                                                    رس</span></a>
+                                                    جنيه</span></a>
                                         @endif
                                     </li>
                                     <li>
                                         <a href="#"> اجمالى السعر بعد الخصم
-                                            <span>{{ $package->final_price }} رس</span></a>
+                                            <span>{{ $package->final_price }} جنيه</span></a>
                                     </li>
                                 @endif
                             </ul>
@@ -264,53 +262,65 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-
                             </div>
+
+
                             <!-- Payment Method Cards -->
                             <div class="pb-3">
                                 <label for="payment_method" class="pb-2">اختر طريقة الدفع</label>
-                                <div class="payment-methods-container">
+                                <div class="payment-methods-container row">
                                     <!-- Credit Card -->
-                                    <div class="payment-card">
-                                        <input type="radio" id="paymob_card_payment" name="payment_method"
-                                            value="paymob_card_payment" hidden>
-                                        <label for="paymob_card_payment" class="card-body text-center">
-                                            <img src="/user/img/credit-card.svg" alt="Credit Card Logo"
-                                                class="img-fluid mb-3">
-                                            <h5 class="card-title">بطاقة ائتمان</h5>
-                                        </label>
+                                    <div class="col-6 col-lg-3 mb-3">
+                                        <div class="payment-card">
+                                            <input type="radio" id="paymob_card_payment" name="payment_method"
+                                                value="paymob_card_payment" hidden>
+                                            <label for="paymob_card_payment" class="card-body text-center border rounded">
+                                                <img src="/user/img/credit-card.svg" alt="Credit Card Logo"
+                                                    class="img-fluid mb-3">
+                                                <h5 class="card-title">بطاقة ائتمان</h5>
+                                            </label>
+                                        </div>
                                     </div>
 
                                     <!-- Wallet Payment -->
-                                    <div class="payment-card">
-                                        <input type="radio" id="paymob_wallet_payment" name="payment_method"
-                                            value="paymob_wallet_payment" hidden>
-                                        <label for="paymob_wallet_payment" class="card-body text-center">
-                                            <img src="/user/img/mobile-wallet.png" alt="Wallet Payment Logo"
-                                                class="img-fluid mb-3">
-                                            <h5 class="card-title">محفظة الكترونيه</h5>
-                                        </label>
+                                    <div class="col-6 col-lg-3 mb-3">
+                                        <div class="payment-card">
+                                            <input type="radio" id="paymob_wallet_payment" name="payment_method"
+                                                value="paymob_wallet_payment" hidden>
+                                            <label for="paymob_wallet_payment"
+                                                class="card-body text-center border rounded">
+                                                <img src="/user/img/mobile-wallet.png" alt="Wallet Payment Logo"
+                                                    class="img-fluid mb-3">
+                                                <h5 class="card-title">محفظة الكترونيه</h5>
+                                            </label>
+                                        </div>
                                     </div>
 
                                     <!-- Instapay Payment -->
-                                    <div class="payment-card">
-                                        <input type="radio" id="instapay" name="payment_method" value="instapay"
-                                            hidden>
-                                        <label for="instapay" class="card-body text-center">
-                                            <img src="/user/img/instapay.png" alt="Instapay Logo" class="img-fluid">
-                                            <h5 class="card-title">Instapay</h5>
-                                        </label>
+                                    <div class="col-6 col-lg-3 mb-3">
+                                        <div class="payment-card">
+                                            <input type="radio" id="instapay" name="payment_method" value="instapay"
+                                                hidden>
+                                            <label for="instapay" class="card-body text-center border rounded">
+                                                <img src="/user/img/instapay.png" alt="Instapay Logo"
+                                                    class="img-fluid mb-3">
+                                                <h5 class="card-title">Instapay</h5>
+                                            </label>
+                                        </div>
                                     </div>
 
                                     <!-- Bank Installment -->
-                                    <div class="payment-card">
-                                        <input type="radio" id="paymob_bank_installement_payment" name="payment_method"
-                                            value="paymob_bank_installement_payment" hidden>
-                                        <label for="paymob_bank_installement_payment" class="card-body text-center">
-                                            <img src="/user/img/installment.png" alt="installment Logo"
-                                                class="img-fluid">
-                                            <h5 class="card-title">تقسيط بنكي</h5>
-                                        </label>
+                                    <div class="col-6 col-lg-3 mb-3">
+                                        <div class="payment-card">
+                                            <input type="radio" id="paymob_bank_installement_payment"
+                                                name="payment_method" value="paymob_bank_installement_payment" hidden>
+                                            <label for="paymob_bank_installement_payment"
+                                                class="card-body text-center border rounded">
+                                                <img src="/user/img/installment.png" alt="Installment Logo"
+                                                    class="img-fluid mb-3">
+                                                <h5 class="card-title">تقسيط بنكي</h5>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 @error('payment_method')
@@ -319,7 +329,6 @@
                                     </span>
                                 @enderror
                             </div>
-
                             <br>
                             <button type="submit">تأكيد الاشتراك</button>
                         </form>

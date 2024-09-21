@@ -84,7 +84,7 @@
                         <div class="bs-text">
                             <h2>مع بعض <strong style="color: #f36100">هنغير </strong>الواقع</h2>
                             <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
-                            <a href="{{ route('user.training-packages.index') }}" class="primary-btn btn-normal"> اشترك الان
+                            <a href="#packages" class="primary-btn btn-normal"> اشترك الان
                             </a>
                         </div>
                     </div>
@@ -153,13 +153,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row">
                 @forelse ($packages as $package)
-                    <div class="col-lg-4 col-md-8">
+                    <div class="col-lg-3 col-md-8">
                         <div class="ps-item">
                             <h3>{{ $package->title }}</h3>
                             <div class="pi-price">
-                                {{-- <h2>6000 EGP</h2> --}}
                                 @if ($package->discount_price)
                                     <div>
                                         <h2 style="display: inline-block" class="pr-1">{{ $package->discount_price }}</h2>
@@ -172,7 +171,9 @@
                                         <h5 style="font-size: 18px">جنيه</h5>
                                     </div>
                                 @endif
-                                <span>{{ $package->duration }}</span>
+                                <p>{{ $package->introduction }}</p>
+                                <p>{{ $package->target_audience }}</p>
+
                             </div>
                             {{-- <div> --}}
                             {!! $package->description !!}
@@ -317,8 +318,9 @@
     </section>
     <!-- Team Section End -->
 
+
     <!-- FAQ Section Begin -->
-    <section class="accordion-section spad-2">
+    <section class="accordion-section spad-2" style="background-color:#0a0a0a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
@@ -332,18 +334,19 @@
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <div class="accordion" id="accordionExample">
+                    <div class="accordion" id="faqAccordion"> <!-- Changed ID -->
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
-                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        ما الذي يضمن جودة الخدمة والوصول للنتيجة المطلوبة؟ </a>
+                                        data-target="#faqCollapseOne" aria-expanded="true"
+                                        aria-controls="faqCollapseOne">
+                                        ما الذي يضمن جودة الخدمة والوصول للنتيجة المطلوبة؟
+                                    </a>
                                 </h2>
                             </div>
-
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
+                            <div id="faqCollapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#faqAccordion"> <!-- Updated parent -->
                                 <div class="card-body">
                                     احنا بنتبع المعايير الدولية في (السعودية ومصر والإمارات) ونحن ملتزمون بجودة تطبيق تلك
                                     المعايير،يمكنك الإطلاع على بعض نتائج وآراء العملاء السابقين
@@ -351,71 +354,77 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header" id="headingOne">
+                            <div class="card-header" id="headingTwo">
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
-                                        data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        data-target="#faqCollapseTwo" aria-expanded="true"
+                                        aria-controls="faqCollapseTwo">
                                         ايه مده الأشتراك المناسبة الي اقدر اوصل فيها لهدفي؟
                                     </a>
                                 </h2>
                             </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body">المده بتختلف من شخص لأخر علي حسب هدفك وحالتك الصحية ونقطة البداية
-                                    بتاعتك تقدر تتواصل معانا علي الواتساب وهنساعدك تحدد مده الأشتراك المناسبة ليك ان شاء
-                                    الله
+                            <div id="faqCollapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#faqAccordion"> <!-- Updated parent -->
+                                <div class="card-body">
+                                    المده بتختلف من شخص لأخر علي حسب هدفك وحالتك الصحية ونقطة البداية بتاعتك تقدر تتواصل
+                                    معانا
+                                    علي الواتساب وهنساعدك تحدد مده الأشتراك المناسبة ليك ان شاء الله
                                 </div>
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header" id="headingOne">
+                            <div class="card-header" id="headingThree">
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
-                                        data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                        data-target="#faqCollapseThree" aria-expanded="true"
+                                        aria-controls="faqCollapseThree">
                                         هل سأواجه صعوبة أثناء تنفيذ النظام الغذائي والتمارين الرياضية؟
                                     </a>
                                 </h2>
                             </div>
-
-                            <div id="collapseThree" class="collapse " aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body">لا، فكل شئ مصمم خصيصًا ليتوافق مع ظروفك اليومية ومع نظام المتابعة
-                                    يمكن تغيير البرنامج ليتناسب معك في حالة حدوث أي تغيير في يومك.
+                            <div id="faqCollapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#faqAccordion"> <!-- Updated parent -->
+                                <div class="card-body">
+                                    لا، فكل شئ مصمم خصيصًا ليتوافق مع ظروفك اليومية ومع نظام المتابعة يمكن تغيير البرنامج
+                                    ليتناسب معك في حالة حدوث أي تغيير في يومك.
                                 </div>
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header" id="headingOne">
+                            <div class="card-header" id="headingFour">
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
-                                        data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                        data-target="#faqCollapseFour" aria-expanded="true"
+                                        aria-controls="faqCollapseFour">
                                         هل يمكن الوصول لنتيجة في حالة عدم توفر وقت كافي؟
                                     </a>
                                 </h2>
                             </div>
-
-                            <div id="collapseFour" class="collapse " aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body">نعم لأن الوجبات يتم تقسيمها على مدار اليوم بالشكل المناسب ليك كما
-                                    إنه يمكنك أداء التمارين في المنزل مثل عدد كبير من عملائنا الذين حققوا نتائج ممتازة من
-                                    المنزل.
+                            <div id="faqCollapseFour" class="collapse" aria-labelledby="headingFour"
+                                data-parent="#faqAccordion"> <!-- Updated parent -->
+                                <div class="card-body">
+                                    نعم لأن الوجبات يتم تقسيمها على مدار اليوم بالشكل المناسب ليك كما إنه يمكنك أداء
+                                    التمارين في
+                                    المنزل مثل عدد كبير من عملائنا الذين حققوا نتائج ممتازة من المنزل.
                                 </div>
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header" id="headingOne">
+                            <div class="card-header" id="headingFive">
                                 <h2 class="mb-0">
                                     <a class="w-100 text-start" type="button" data-toggle="collapse"
-                                        data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                                        مرونة تغيير النظام الغذائي والتدريبي؟ </a>
+                                        data-target="#faqCollapseFive" aria-expanded="true"
+                                        aria-controls="faqCollapseFive">
+                                        مرونة تغيير النظام الغذائي والتدريبي؟
+                                    </a>
                                 </h2>
                             </div>
-
-                            <div id="collapseFive" class="collapse " aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body">نعم لأن الوجبات يتم تقسيمها على مدار اليوم بالشكل المناسب ليك كما
-                                    إنه يمكنك أداء التمارين في المنزل مثل عدد كبير من عملائنا الذين حققوا نتائج ممتازة من
-                                    المنزل.
+                            <div id="faqCollapseFive" class="collapse" aria-labelledby="headingFive"
+                                data-parent="#faqAccordion"> <!-- Updated parent -->
+                                <div class="card-body">
+                                    نعم لأن الوجبات يتم تقسيمها على مدار اليوم بالشكل المناسب ليك كما إنه يمكنك أداء
+                                    التمارين في
+                                    المنزل مثل عدد كبير من عملائنا الذين حققوا نتائج ممتازة من المنزل.
                                 </div>
                             </div>
                         </div>
@@ -425,6 +434,88 @@
         </div>
     </section>
     <!-- FAQ Section End -->
+
+
+    <!-- Terms and Conditions Section Begin -->
+    <section class="accordion-section spad-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="accordion-title text-right">
+                        <h2 class="mt-4 ">
+                            الشروط والاحكام
+                        </h2>
+                        <p class="fs-5">
+                            يتم تطبيق هذه الشروط و الاحكام
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="accordion" id="termsAccordion"> <!-- Changed ID -->
+                        <div class="card">
+                            <div class="card-header" id="termsHeadingOne">
+                                <h2 class="mb-0">
+                                    <a class="w-100 text-start" type="button" data-toggle="collapse"
+                                        data-target="#termsCollapseOne" aria-expanded="true"
+                                        aria-controls="termsCollapseOne">
+                                        إستخدام الهرمونات و المنشطات
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="termsCollapseOne" class="collapse show" aria-labelledby="termsHeadingOne"
+                                data-parent="#termsAccordion"> <!-- Updated parent -->
+                                <div class="card-body">
+                                    لا يتم إستخدام أي هرمونات أو منشطات أثناء النظام أو المتابعة
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="termsHeadingTwo">
+                                <h2 class="mb-0">
+                                    <a class="w-100 text-start" type="button" data-toggle="collapse"
+                                        data-target="#termsCollapseTwo" aria-expanded="true"
+                                        aria-controls="termsCollapseTwo">
+                                        التواصل وخصوصية العملاء
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="termsCollapseTwo" class="collapse" aria-labelledby="termsHeadingTwo"
+                                data-parent="#termsAccordion"> <!-- Updated parent -->
+                                <div class="card-body">
+                                    لن يتم نشر أي صور أو نتائج أو بيانات خاصة بيك إلا بموافقة منك حفاظا علي خصوصية العملاء
+                                    وإحتراما لرغبتهم. التواصل يكون بشكل فردي علي الواتساب الخاص بيك ويتم التواصل بكل مشترك
+                                    علي
+                                    حدا.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="termsHeadingThree">
+                                <h2 class="mb-0">
+                                    <a class="w-100 text-start" type="button" data-toggle="collapse"
+                                        data-target="#termsCollapseThree" aria-expanded="true"
+                                        aria-controls="termsCollapseThree">
+                                        الرغبة لتحقيق الهدف
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="termsCollapseThree" class="collapse" aria-labelledby="termsHeadingThree"
+                                data-parent="#termsAccordion"> <!-- Updated parent -->
+                                <div class="card-body">
+                                    وأخيرا الهدف الأول والأخير لينا هو الوصول بكل شخص لأقوي نتيجة ترضية وترضينا فتأكد إنك
+                                    عايز
+                                    تعمل حاجة فعلا وعندك الرغبة عشان نحقق هدفنا سوا وهساعدك زي ما ساعدنا آلاف الابطال مش بس
+                                    ف مصر
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Terms and Conditions Section End -->
+
 
 @endsection
 

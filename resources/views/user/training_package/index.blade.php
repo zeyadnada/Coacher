@@ -21,7 +21,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="class-item">
                             <div class="ci-pic">
-                                <img src="{{ '/storage/' . $package->image }}" alt="package" />
+                                <img src="{{ $package->image ? asset('storage/' . $package->image) : asset('/user/img/Refit.jpeg') }}" alt="package" />
                             </div>
                             <div class="ci-text">
                                 <div class="mb-3">

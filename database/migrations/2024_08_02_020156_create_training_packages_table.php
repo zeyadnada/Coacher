@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('training_packages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('introduction')->nullable();
+            $table->string('target_audience')->nullable();
             $table->string('image')->nullable();
             $table->text('description');
-            $table->string('notes')->nullable();
             $table->string('duration');
             $table->decimal('price', 8);
             $table->decimal('discount_price', 8)->nullable(); // Discounted price
