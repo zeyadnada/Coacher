@@ -230,8 +230,6 @@
 
 @section('js')
     {{-- <script src="{{ url('/dashboard/plugins/jquery/jquery.min.js') }}"></script> --}}
-    <!-- Bootstrap 4 -->
-    {{-- <script src="{{ url('/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
     <!-- ChartJS -->
     <script src="{{ url('/dashboard/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- AdminLTE App -->

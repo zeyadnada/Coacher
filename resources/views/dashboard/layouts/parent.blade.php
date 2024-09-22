@@ -138,22 +138,13 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ url('/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ChartJS -->
-    {{-- <script src="{{ url('/dashboard/plugins/chart.js')}}"></script> --}}
-    <!-- Sparkline -->
-    {{-- <script src="{{ url('/dashboard/plugins/sparklines/sparkline.js') }}"></script> --}}
-    <!-- Tempusdominus Bootstrap 4 -->
-    {{-- <script src="{{ url('/dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
-    <!-- Summernote -->
-    {{-- <script src="{{ url('/dashboard/plugins/summernote/summernote-bs4.min.js') }}"></script> --}}
-    <!-- overlayScrollbars -->
-    {{-- <script src="{{ url('/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script> --}}
+
+    
     <!-- AdminLTE App -->
     <script src="{{ url('/dashboard/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     {{-- <script src="{{ url('/dist/js/demo.js') }}"></script> --}}
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    {{-- <script src="{{ url('/dist/js/pages/dashboard.js') }}"></script> --}}
+   
     <!-- Bootstrap 4 rtl -->
     {{-- <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script> --}}
 
