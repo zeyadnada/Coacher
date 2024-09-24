@@ -10,7 +10,7 @@ use App\Http\Controllers\dashboard\TrainerController;
 use App\Http\Controllers\dashboard\TrainingPackageController;
 use App\Http\Controllers\dashboard\TransformationController;
 use App\Http\Controllers\dashboard\WhatsAppConfigontroller;
-use App\Http\Controllers\Payment\PaymobController;
+use App\Http\Controllers\payment\PaymobController;
 use App\Http\Controllers\user\HomePageController;
 use App\Http\Controllers\user\SubscriptionController as UserSubscriptionController;
 use App\Http\Controllers\user\TrainerController as UserTrainerController;

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminEditProfileRequest;
 use App\Models\Admin;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -25,7 +24,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('dashboard.Admin.create');
+        return view('dashboard.admin.create');
     }
 
     /**
@@ -48,7 +47,7 @@ class AdminController extends Controller
     public function show(string $id)
     {
         $admin = Admin::findOrFail($id);
-        return view('dashboard.Admin.profile', compact('admin'));
+        return view('dashboard.admin.profile', compact('admin'));
     }
 
     /**
@@ -57,7 +56,7 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         $admin = Admin::findOrFail($id);
-        return view('dashboard.Admin.edit', compact('admin'));
+        return view('dashboard.admin.edit', compact('admin'));
     }
 
     /**

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Payment;
 
-use App\Http\Controllers\appendages\WhatsAppController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\user\SubscriptionController;
-use App\Models\Subscription;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;

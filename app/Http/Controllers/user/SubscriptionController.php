@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\appendages\WhatsAppController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Payment\PaymobController;
+use App\Http\Controllers\payment\PaymobController;
 use App\Http\Requests\UserSubscriptionRequest;
 use App\Models\Subscription;
 

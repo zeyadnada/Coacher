@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\Subscription;
 use App\Models\TrainingPackage;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TrainingPackageController extends Controller
 {

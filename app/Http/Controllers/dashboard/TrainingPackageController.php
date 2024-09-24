@@ -7,7 +7,6 @@ use App\Http\Requests\TrainingPackageRequest;
 use App\Models\Admin;
 use App\Models\TrainingPackage;
 use App\Notifications\TrainingPackageCreatedNotification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
