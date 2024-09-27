@@ -86,9 +86,6 @@ Route::middleware(['admin'])
     ->as('dashboard.')
     ->group(function () {
         Route::get('/home', HomePage::class)->name('home');
-        Route::resource('admin', AdminController::class);
-        Route::get('/admin/admin/{id}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
-        Route::get('/admin/super/{id}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
 
         // Route::get('showProfile', [AdminController::class, 'showProfile'])->name('showProfile');
         // Route::get('editProfile', [AdminController::class, 'editProfile'])->name('editProfile');
@@ -107,11 +104,16 @@ Route::middleware(['admin'])
         Route::get('/subscriptions/pending', [SubscriptionController::class, 'pending'])->name('subscriptions.pending');
         Route::get('/subscriptions/canceled', [SubscriptionController::class, 'canceled'])->name('subscriptions.canceled');
         Route::resource('subscriptions', SubscriptionController::class);
-        Route::get('/payment-settings', [PaymentconfigController::class, 'index'])->name('setting.paymentConfig.index');
-        Route::post('/payment-settings/update', [PaymentconfigController::class, 'updatePaymentConfig'])->name('setting.paymentConfig.update');
-        Route::get('/whatsApp-settings', [WhatsAppConfigontroller::class, 'index'])->name('setting.whatsApp.index');
-        Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
-        Route::resource('/transformation', TransformationController::class);
+        Route::middleware(['super-admin-authorization'])->group(function () {
+            Route::resource('admin', AdminController::class);
+            Route::get('/admin/admin/{id}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
+            Route::get('/admin/super/{id}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
+            Route::get('/payment-settings', [PaymentconfigController::class, 'index'])->name('setting.paymentConfig.index');
+            Route::post('/payment-settings/update', [PaymentconfigController::class, 'updatePaymentConfig'])->name('setting.paymentConfig.update');
+            Route::get('/whatsApp-settings', [WhatsAppConfigontroller::class, 'index'])->name('setting.whatsApp.index');
+            Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
+            Route::resource('/transformation', TransformationController::class);
+        });
     });
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('password/reset', [App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');

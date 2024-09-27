@@ -47,7 +47,7 @@
                                             class="fas fa-eye"></i></a>
                                     <a href="{{ route('dashboard.admin.edit', $admin->id) }}" class="btn btn-warning"><i
                                             class="fas fa-solid fa-pen"></i></a>
-                                    @if (auth()->guard('admin')->user()->admin_type == 'super_admin')
+                                    @if ($admin->admin_type == 'super_admin')
                                         <a href="{{ route('dashboard.admin.admin',['id'=>$admin->id]) }}" class="btn btn-success">Make Admin</a>
                                     @else
                                         <a href="{{ route('dashboard.admin.super',['id'=>$admin->id]) }}" class="btn btn-success">Make Super Admin</a>

@@ -191,64 +191,63 @@
                 </li>
 
                 <!-- Admin Section -->
-                <li class="nav-item {{ $isActiveAdmin ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ $isActiveAdmin ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-pills"></i>
-                        <p>
-                            {{ __('Admins') }}
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.admin.index') }}"
-                                class="nav-link {{ request()->routeIs('dashboard.admin.index') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('All Admins') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.admin.create') }}"
-                                class="nav-link {{ request()->routeIs('dashboard.admin.create') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Add Admin') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Settings Section -->
-                <li class="nav-item {{ $isActiveSettings ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ $isActiveSettings ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-bars"></i>
-                        <p>
-                            {{ __('Settings') }}
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.transformation.index') }}"
-                                class="nav-link {{ request()->routeIs('dashboard.transformation.index') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Transformation') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.setting.whatsApp.index') }}"
-                                class="nav-link {{ request()->routeIs('dashboard.setting.whatsApp.index') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('WhatsApp-config') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.setting.paymentConfig.index') }}"
-                                class="nav-link {{ request()->routeIs('dashboard.setting.paymentConfig.index') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('Payment-config') }}</p>
-                            </a>
-                        </li>
-                        {{-- <li class="nav-item">
+                @if (auth()->guard('admin')->user()->admin_type == 'super_admin')
+                    <li class="nav-item {{ $isActiveAdmin ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ $isActiveAdmin ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-pills"></i>
+                            <p>
+                                {{ __('Admins') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.admin.index') }}"
+                                    class="nav-link {{ request()->routeIs('dashboard.admin.index') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('All Admins') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.admin.create') }}"
+                                    class="nav-link {{ request()->routeIs('dashboard.admin.create') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Add Admin') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item {{ $isActiveSettings ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ $isActiveSettings ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-bars"></i>
+                            <p>
+                                {{ __('Settings') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.transformation.index') }}"
+                                    class="nav-link {{ request()->routeIs('dashboard.transformation.index') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Transformation') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.setting.whatsApp.index') }}"
+                                    class="nav-link {{ request()->routeIs('dashboard.setting.whatsApp.index') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('WhatsApp-config') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.setting.paymentConfig.index') }}"
+                                    class="nav-link {{ request()->routeIs('dashboard.setting.paymentConfig.index') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Payment-config') }}</p>
+                                </a>
+                            </li>
+                            {{-- <li class="nav-item">
                         <a href="{{ route('dashboard.settings.contraindications') }}" class="nav-link {{ request()->routeIs('dashboard.settings.contraindications') ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{ __('Contraindications') }}</p>
@@ -260,8 +259,11 @@
                             <p>{{ __('Users') }}</p>
                         </a>
                     </li> --}}
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                @endif
+                <!-- Settings Section -->
+
 
                 <!-- Logout -->
                 <li class="nav-item">
