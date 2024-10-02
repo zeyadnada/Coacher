@@ -29,8 +29,6 @@ class UserSubscriptionRequest extends FormRequest
             'payment_method' => 'required',
             'package_id' => 'required|exists:training_packages,id',
             'trainer_id' => 'nullable|exists:trainers,id',
-
-
         ];
     }
 

@@ -54,28 +54,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="class-details-text">
-                        {{-- <div class="cd-pic">
-                            <img src="{{ '/storage/' . $package->image }}" alt="" />
-                        </div> --}}
-                        {{-- <div class="cd-text">
-                            <div class="cd-single-item">
-                                <h3>{{ $package->title }}</h3>
-                                <p>
-                                    {!! $package->description !!}
-                                </p>
-                            </div>
-                            <div class="cd-single-item">
-                                <h4>{{ $package->price }}EGP</h4>
-                            </div>
-                            @if (!session()->has('coupon'))
-                                <form action="{{ route('user.coupon.store', ['id' => $package->id]) }}" method="POST">
-                                    @csrf
-                                    <label for="coupon_code" style="color: white">هل يوجد اى كود خصم؟</label> <br>
-                                    <input type="text" name="coupon_code" id="coupon_code"><br>
-                                    <input type="submit" value="خصم">
-                                </form>
-                            @endif
-                        </div> --}}
+
                         <div class="cd-single-item">
                             <h2>{{ $package->title }}</h2>
                             <div class="mt-5">
@@ -92,47 +71,69 @@
                             <div class="class-details-text">
                                 <div class="cd-text">
                                     <div class="cd-single-item">
-                                        {{-- <h3>{{ $package->title }}</h3> --}}
-
                                         {!! $package->description !!}
-
                                     </div>
-                                    {{-- @if ($package->discount_price)
-                                        <h3 class="pl-1" style="display: inline-block">{{ $package->discount_price }}</h3>
-                                        <span
-                                            style="font-size: 17px;color:aliceblue"><del>{{ $package->price }}</del></span>
-                                    @else
-                                        <h3>{{ $package->price }}EGP</h3>
-                                    @endif --}}
 
-                                    @if ($package->discount_price)
-                                        <div>
-                                            <h3 style="display: inline-block; color:#f36100" class="pr-1">
-                                                {{ $package->discount_price }}
+                                    <!-- Display price based on selected duration -->
+                                    {{-- <div class="price-details mt-3">
+                                        <!-- Discount Price -->
+                                        @if ($selectedDuration && $selectedDuration->discount_price)
+                                            <h3 id="discount-price" style="display: inline-block; color:#f36100"
+                                                class="pr-1">
+                                                {{ $selectedDuration->discount_price }}
+
                                             </h3>
                                             <h5 style="font-size: 18px;display:inline-block;color:#f36100">جنيه</h5>
-                                            <span class="pr-1"
-                                                style="font-size: 17px; color:#b5bdc3"><del>{{ $package->price }}</del></span>
-                                        </div>
-                                    @else
-                                        <div>
-                                            <h2 style="display: inline-block" class="pr-1">{{ $package->price }}</h2>
-                                            <h5 style="font-size: 18px">جنيه</h5>
-                                        </div>
-                                    @endif
-                                    {{-- <div class="cd-single-item">
-                                        <h4>{{ $package->price }}EGP</h4>
+
+                                            <!-- Original Price (Strikethrough) -->
+                                            <span class="pr-1" style="font-size: 17px; color:#b5bdc3">
+                                                <del id="original-price">{{ $selectedDuration->price }}</del>
+                                            </span>
+                                        @elseif ($selectedDuration)
+                                            <!-- Regular Price -->
+                                            <div>
+                                                <h2 id="price" style="display: inline-block" class="pr-1">
+                                                    {{ $selectedDuration->price }}
+                                                </h2>
+                                                <h5 style="font-size: 18px">جنيه</h5>
+                                            </div>
+                                        @endif
                                     </div> --}}
+
+                                    <!-- Display price based on selected duration -->
+                                    <div class="price-details mt-3">
+                                        <!--final price -->
+                                        <h3 id="final-price" style="display: inline-block; color:#f36100" class="pr-1">
+                                            {{ $selectedDuration->discount_price ?? $selectedDuration->price }}
+                                        </h3>
+                                        <h5 style="font-size: 18px; display:inline-block; color:#f36100">جنيه</h5>
+
+                                        <!-- normal Price (price before discount if exist) -->
+                                        <span class="pr-1" style="font-size: 17px; color:#b5bdc3">
+                                            <del id="price"
+                                                style="display: inline-block;">{{ $selectedDuration->discount_price ? $selectedDuration->price : '' }}</del>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <label for="duration-select" class="mb-2 text-white">اختر المدة:</label>
+                                        <div class="leave-comment">
+                                            <select id="duration-select">
+                                                @foreach ($package->durations as $duration)
+                                                    <option value="{{ $duration->id }}" data-price="{{ $duration->price }}"
+                                                        data-discount-price="{{ $duration->discount_price }}"
+                                                        data-coupon-price="{{ $duration->final_price }}"
+                                                        {{ isset($selectedDuration) && $selectedDuration->id == $duration->id ? 'selected' : '' }}>
+                                                        {{ $duration->duration }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
-
                             <ul>
-                                <li>
-                                    <a href="#"> المدة <span>{{ $package->duration }}</span></a>
-                                </li>
-                                {{-- <li>
-                                    <a href="#"> السعر <span>{{ $package->price }} جنيه</span></a>
-                                </li> --}}
                                 @if (session()->has('coupon'))
                                     <li>
                                         <a href="#"> كود الخصم
@@ -152,7 +153,8 @@
                                     </li>
                                     <li>
                                         <a href="#"> اجمالى السعر بعد الخصم
-                                            <span>{{ $package->final_price }} جنيه</span></a>
+                                            <span id="coupon-price">{{ $selectedDuration->final_price }} جنيه</span>
+                                        </a>
                                     </li>
                                 @endif
                             </ul>
@@ -160,7 +162,7 @@
                                 <div class="leave-comment">
                                     <form action="{{ route('user.coupon.store', ['id' => $package->id]) }}" method="POST">
                                         @csrf
-                                        <label class="mb-2" for="coupon_code" style="color: white">هل يوجد اى كود
+                                        <label class="mb-2 text-white" for="coupon_code">هل يوجد اى كود
                                             خصم؟</label>
                                         <div class="row">
                                             <div class="col-9">
@@ -208,6 +210,8 @@
                             <!-- Package Id -->
                             <div>
                                 <input type="text" name="package_id" value="{{ $package->id }}" hidden>
+                                <input type="hidden" id="selected-duration-id" name="duration_id"
+                                    value="{{ $selectedDuration->id ?? '' }}">
                             </div>
 
                             <!-- Name -->
@@ -270,55 +274,55 @@
                                 <label for="payment_method" class="pb-2">اختر طريقة الدفع</label>
                                 <div class="payment-methods-container row">
                                     <!-- Credit Card -->
-                                    <div class="col-6 col-lg-3 mb-3">
-                                        <div class="payment-card">
+                                    <div class="col-6 col-md-3 mb-3 d-flex">
+                                        <div class="payment-card flex-fill">
                                             <input type="radio" id="paymob_card_payment" name="payment_method"
                                                 value="paymob_card_payment" hidden>
                                             <label for="paymob_card_payment" class="card-body text-center border rounded">
                                                 <img src="/user/img/credit-card.svg" alt="Credit Card Logo"
                                                     class="img-fluid mb-3">
-                                                <h5 class="card-title">بطاقة ائتمان</h5>
+                                                <h5 class="card-title mb-0">بطاقة ائتمان</h5>
                                             </label>
                                         </div>
                                     </div>
 
                                     <!-- Wallet Payment -->
-                                    <div class="col-6 col-lg-3 mb-3">
-                                        <div class="payment-card">
+                                    <div class="col-6 col-md-3 mb-3 d-flex">
+                                        <div class="payment-card flex-fill">
                                             <input type="radio" id="paymob_wallet_payment" name="payment_method"
                                                 value="paymob_wallet_payment" hidden>
                                             <label for="paymob_wallet_payment"
                                                 class="card-body text-center border rounded">
                                                 <img src="/user/img/mobile-wallet.png" alt="Wallet Payment Logo"
                                                     class="img-fluid mb-3">
-                                                <h5 class="card-title">محفظة الكترونيه</h5>
+                                                <h5 class="card-title mb-0">محفظة الكترونيه</h5>
                                             </label>
                                         </div>
                                     </div>
 
                                     <!-- Instapay Payment -->
-                                    <div class="col-6 col-lg-3 mb-3">
-                                        <div class="payment-card">
+                                    <div class="col-6 col-md-3 mb-3 d-flex">
+                                        <div class="payment-card flex-fill">
                                             <input type="radio" id="instapay" name="payment_method" value="instapay"
                                                 hidden>
                                             <label for="instapay" class="card-body text-center border rounded">
                                                 <img src="/user/img/instapay.png" alt="Instapay Logo"
                                                     class="img-fluid mb-3">
-                                                <h5 class="card-title">Instapay</h5>
+                                                <h5 class="card-title mb-0">Instapay</h5>
                                             </label>
                                         </div>
                                     </div>
 
                                     <!-- Bank Installment -->
-                                    <div class="col-6 col-lg-3 mb-3">
-                                        <div class="payment-card">
+                                    <div class="col-6 col-md-3 mb-3 d-flex">
+                                        <div class="payment-card flex-fill">
                                             <input type="radio" id="paymob_bank_installement_payment"
                                                 name="payment_method" value="paymob_bank_installement_payment" hidden>
                                             <label for="paymob_bank_installement_payment"
                                                 class="card-body text-center border rounded">
                                                 <img src="/user/img/installment.png" alt="Installment Logo"
                                                     class="img-fluid mb-3">
-                                                <h5 class="card-title">تقسيط بنكي</h5>
+                                                <h5 class="card-title mb-0">تقسيط بنكي</h5>
                                             </label>
                                         </div>
                                     </div>
@@ -342,7 +346,9 @@
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.4.0/build/js/intlTelInput.min.js"></script>
+
     <script>
+        //this is script for (intl-tel-input) phone numbers package 
         // Initialize intlTelInput
         const input = document.querySelector("#whatsapp_phone");
         const form = document.querySelector("#form");
@@ -379,4 +385,36 @@
         }
     </script>
 
+    <script>
+        // this script for change price automatically according to change package durations
+        $(document).ready(function() {
+            $('#duration-select').on('change', function() {
+                const selectedOption = $(this).find('option:selected');
+                const price = selectedOption.data('price');
+                const discountPrice = selectedOption.data('discount-price');
+                const couponPrice = selectedOption.data('coupon-price');
+
+
+                // Update hidden input for selected duration ID
+                $('#selected-duration-id').val($(this).val());
+
+                // Update price and discount price dynamically
+                // Show discount price if available
+                if (discountPrice) {
+                    $('#final-price').text(discountPrice).show();
+                    $('#price').text(price).show();
+                } else if (!discountPrice) {
+                    $('#final-price').text(price).show();
+                    $('#price').hide();
+                }
+                // Update coupon price (if exist)
+                $('#coupon-price').text(couponPrice + ' جنيه');
+
+                // Update the URL with the new duration_id
+                var currentUrl = new URL(window.location.href);
+                currentUrl.searchParams.set('duration_id', $(this).val());
+                window.history.pushState({}, '', currentUrl);
+            });
+        });
+    </script>
 @endsection

@@ -51,43 +51,6 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-4">
-                            <label for="duration">Duration</label>
-                            <input dir="rtl" type="text" name="duration" id="duration"
-                                class="form-control @error('duration') is-invalid @enderror"
-                                placeholder="Enter Package month duration" aria-describedby="helpId"
-                                value="{{ old('duration') }}">
-                            @error('duration')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="col-4">
-                            <label for="price">Package Price</label>
-                            <input id="price" type="number" name="price" value="{{ old('price') }}"
-                                placeholder="Enter Pachage Price" class="form-control @error('price') is-invalid @enderror">
-                            @error('price')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                        <div class="col-4">
-                            <label for="discount_price">Discount Price</label>
-                            <input id="price" type="number" name="discount_price" value="{{ old('discount_price') }}"
-                                placeholder="Enter Final Price"
-                                class="form-control @error('discount_price') is-invalid @enderror">
-                            @error('discount_price')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="form-row mb-3">
                         <div class="col-12">
                             <label for="introduction">Introduction</label>
                             <input type="text" name="introduction" id="introduction"
@@ -128,6 +91,67 @@
                         </div>
                     </div>
 
+                    <!-- Table for Durations and Prices -->
+                    <div class="form-row mb-3">
+                        <div class="col-12">
+                            @if ($errors->has('durations'))
+                                <div class="alert alert-danger">
+                                    <strong>{{ $errors->first('durations') }}</strong>
+                                </div>
+                            @endif
+                            <table class="table" id="duration_table">
+                                <thead>
+                                    <tr>
+                                        <th>Duration</th>
+                                        <th>Price</th>
+                                        <th>Discount Price</th>
+                                        <th> <button type="button" class="btn btn-success" id="add_row">+</button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="durations[0][duration]"
+                                                class="form-control @error('durations.0.duration') is-invalid @enderror"
+                                                placeholder="duration" required value="{{ old('durations.0.duration') }}">
+                                            @error('durations.0.duration')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </td>
+                                        <td>
+                                            <input type="number" name="durations[0][price]"
+                                                class="form-control @error('durations.0.price') is-invalid @enderror"
+                                                placeholder="price" min="0" required
+                                                value="{{ old('durations.0.price') }}">
+                                            @error('durations.0.price')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </td>
+                                        <td>
+                                            <input type="number" name="durations[0][discount_price]"
+                                                class="form-control @error('durations.0.discount_price') is-invalid @enderror"
+                                                placeholder="discount price" min="0"
+                                                value="{{ old('durations.0.discount_price') }}">
+                                            @error('durations.0.discount_price')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger remove_row">-</button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="form-row my-4">
                         <div class="col-2">
                             <input type="submit" class="btn btn-primary" value="Add Package">
@@ -148,7 +172,7 @@
     {{-- <script src="/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
     <!-- Select2 -->
     <script src="/dashboard/plugins/select2/js/select2.full.min.js"></script>
-    
+
     <!-- Bootstrap4 Duallistbox -->
     {{-- <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 
@@ -173,6 +197,52 @@
                 .catch(error => {
                     console.error(error);
                 });
+        });
+    </script>
+
+
+    <script>
+        let rowCount = 1;
+        // Add new row when clicking the "Add" button
+        $('#add_row').on('click', function() {
+            const newRow = `
+            <tr>
+                <td>
+                    <input type="text" name="durations[${rowCount}][duration]" class="form-control @error('durations.${rowCount}.duration') is-invalid @enderror" placeholder="duration" required>
+                    @error('durations.${rowCount}.duration')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </td>
+                <td>
+                    <input type="number" name="durations[${rowCount}][price]" class="form-control @error('durations.${rowCount}.price') is-invalid @enderror" placeholder="price" min="0" required>
+                    @error('durations.${rowCount}.price')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </td>
+                <td>
+                    <input type="number" name="durations[${rowCount}][discount_price]" class="form-control @error('durations.${rowCount}.discount_price') is-invalid @enderror" placeholder="discount price" min="0">
+                    @error('durations.${rowCount}.discount_price')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger remove_row">-</button>
+                </td>
+            </tr>
+        `;
+            $('#duration_table tbody').append(newRow);
+            rowCount++;
+        });
+
+        // Remove row
+        $(document).on('click', '.remove_row', function() {
+            $(this).closest('tr').remove();
         });
     </script>
 @endsection

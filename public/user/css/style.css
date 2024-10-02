@@ -153,6 +153,10 @@ ol {
   border-color: #f36100 !important;
 }
 
+.pl-4rem {
+  padding-left: 4rem;
+}
+
 /*---------------------
   Helper CSS
 -----------------------*/
@@ -385,6 +389,7 @@ ol {
   /* top: 50px; */
   width: 100%;
   padding: 15px;
+  padding-right: 0px;
   /* padding-top: 10px; */
   z-index: 99;
 }
@@ -400,7 +405,7 @@ ol {
 }
 
 .logo a img {
-  height: 40px;
+  height: 34px;
 }
 
 .nav-menu {
@@ -2611,6 +2616,18 @@ ol {
   /* margin-bottom: 20px; */
 }
 
+.leave-comment select {
+  font-size: 18px;
+  color: #c4c4c4;
+  width: 100%;
+  height: 46px;
+  border: 3px solid #363636;
+  padding-left: 20px;
+  padding-right: 5px;
+  background: transparent;
+  /* margin-bottom: 20px; */
+}
+
 .leave-comment form input::-webkit-input-placeholder {
   color: #c4c4c4;
 }
@@ -2630,6 +2647,28 @@ ol {
 .leave-comment form input::placeholder {
   color: #c4c4c4;
 }
+
+
+.leave-comment select::-webkit-input-placeholder {
+  color: #c4c4c4;
+}
+
+.leave-comment select::-moz-placeholder {
+  color: #c4c4c4;
+}
+
+.leave-comment select:-ms-input-placeholder {
+  color: #c4c4c4;
+}
+
+.leave-comment select::-ms-input-placeholder {
+  color: #c4c4c4;
+}
+
+.leave-comment select::placeholder {
+  color: #c4c4c4;
+}
+
 
 .leave-comment form textarea {
   font-size: 13px;
@@ -2863,7 +2902,6 @@ ol {
 
 .payment-methods-container {
   display: flex;
-  gap: 15px;
 }
 
 .payment-card {
@@ -2872,8 +2910,8 @@ ol {
   border-radius: 8px;
   padding: 0.2rem;
   text-align: center;
-  width: 130px;
-  height: 130px;
+  /* width: 130px;
+  height: 130px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2935,9 +2973,7 @@ ol {
 }
 
 .accordion-title {
-  padding-top: 60px;
   color: #ffffff;
-
 }
 
 .accordion-title h2 {

@@ -15,6 +15,11 @@ class Subscription extends Model
     {
         return $this->belongsTo(TrainingPackage::class);
     }
+    
+    public function duration()
+    {
+        return $this->belongsTo(TrainingPackageDuration::class);
+    }
 
     public function trainer()
     {

@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.parent')
 
-@section('title', 'Edit Trainer')
+@section('title', 'Edit Subscription')
 
 @section('css')
     <!-- iCheck for checkboxes and radio inputs -->
@@ -79,16 +79,15 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-4">
                             <label for="package_id">Package</label>
                             <select class="select2 form-control @error('package_id') is-invalid @enderror" name="package_id"
                                 id="package_id" style="width: 100%;">
                                 <option value="" disabled>Select a Package</option>
                                 @foreach ($packages as $package)
                                     <option value="{{ $package->id }}"
-                                        {{ old('package_id', $subscription->package_id) == $package->id ? 'selected' : '' }}>
+                                        {{ $package->id == old('package_id', $subscription->package_id) ? 'selected' : '' }}>
                                         {{ $package->title }}
                                     </option>
                                 @endforeach
@@ -100,17 +99,29 @@
                             @enderror
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-4">
+                            <label for="duration_id">Duration</label>
+                            <select dir="rtl" class="select2 form-control @error('duration_id') is-invalid @enderror"
+                                name="duration_id" id="duration_id" style="width: 100%;">
+                                <option value="" disabled>Select a Duration</option>
+                            </select>
+                            @error('duration_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-4">
                             <label for="trainer_id">Trainer</label>
                             <select class="select2 form-control @error('trainer_id') is-invalid @enderror" name="trainer_id"
                                 id="trainer_id" style="width: 100%;">
-                                <option value="" disabled>Select a Trainer</option>
                                 <option value=""
-                                    {{ old('trainer_id', $subscription->trainer_id) == '' ? 'selected' : '' }}>No Trainer
-                                </option>
+                                    {{ old('trainer_id', $subscription->trainer_id) === null ? 'selected' : '' }}>No
+                                    Trainer</option>
                                 @foreach ($trainers as $trainer)
                                     <option value="{{ $trainer->id }}"
-                                        {{ old('trainer_id', $subscription->trainer_id) == $trainer->id ? 'selected' : '' }}>
+                                        {{ $trainer->id == old('trainer_id', $subscription->trainer_id) ? 'selected' : '' }}>
                                         {{ $trainer->name }}
                                     </option>
                                 @endforeach
@@ -164,7 +175,6 @@
                                 </span>
                             @enderror
                         </div>
-
                         <div class="col-4">
                             <label for="transaction_id">Transaction ID</label>
                             <input type="text" class="form-control @error('transaction_id') is-invalid @enderror"
@@ -184,9 +194,6 @@
                         </div>
                     </div>
                 </form>
-
-
-
             </div>
         </div>
     </div>
@@ -223,7 +230,6 @@
     <script src="../../dist/js/demo.js"></script> --}}
     <!-- Page specific script -->
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script>
         // Select all textareas with class 'editor'
         document.querySelectorAll('.editor').forEach((textarea) => {
@@ -238,7 +244,44 @@
                 });
         });
     </script>
+    <script>
+        //script to get durations related to specific package
+        $(document).ready(function() {
+            // Load durations based on selected package for edit form
+            var packageId = $('#package_id').val();
+            if (packageId) {
+                loadDurations(packageId, {{ old('duration_id', $subscription->duration_id) }});
+            }
 
+            $('#package_id').change(function() {
+                packageId = $(this).val();
+                loadDurations(packageId, null);
+            });
 
+            function loadDurations(packageId, selectedDurationId) {
+                if (packageId) {
+                    $.ajax({
+                        url: '/packages/' + packageId + '/durations',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#duration_id').empty(); // Clear previous options
+                            $('#duration_id').append(
+                                '<option value="" disabled selected>Select a Duration</option>');
 
+                            $.each(data, function(key, duration) {
+                                $('#duration_id').append('<option value="' + duration.id + '"' +
+                                    (duration.id == selectedDurationId ? ' selected' : '') +
+                                    '>' + duration.duration + ' - ' + duration.price +
+                                    '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#duration_id').empty();
+                    $('#duration_id').append('<option value="" disabled selected>Select a Duration</option>');
+                }
+            }
+        });
+    </script>
 @endsection

@@ -101,14 +101,14 @@
                 <div class="col-lg-12">
                     <div class="section-title">
                         <span>ليه refit academy الاختيار الامثل ؟</span>
-                        <h2>لاننا قدارين نوصلك لاحسن نسخة من نفسك في اسرع وقت وباقل الامكانيات زي الآلاف اللي ساعدناهم في
+                        <h2>لاننا قادرين نوصلك لاحسن نسخة من نفسك في اسرع وقت وباقل الامكانيات زي الآلاف اللي ساعدناهم في
                             الخمس سنين اللي فاتوا وده لأن معانا
                         </h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-6">
                     <div class="cs-item">
                         <span class="flaticon-014-heart-beat"></span>
                         <h4>رعاية طبية</h4>
@@ -116,21 +116,21 @@
                             اعلى مستوى</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-6">
                     <div class="cs-item">
                         <span class="flaticon-033-juice"></span>
                         <h4>اخصائيين تغذية</h4>
                         <p>مسئولين عن توفير الدايت بلان المخصصة ليك حسب امكانياتك وتفضيلاتك.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-6">
                     <div class="cs-item">
                         <span class="flaticon-002-dumbell"></span>
                         <h4>مدربين معتمدين</h4>
                         <p>علي اعلي مستوي معاك طوال الوقت</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-6">
                     <div class="cs-item">
                         <span class="flaticon-034-stationary-bike"></span>
                         <h4>متابعة يومية</h4>
@@ -155,37 +155,43 @@
             </div>
             <div class="row">
                 @forelse ($packages as $package)
-                    <div class="col-lg-3 col-md-8">
+                    <div class="col-lg-4 col-md-6">
                         <div class="ps-item">
                             <h3>{{ $package->title }}</h3>
                             <div class="pi-price">
-                                @if ($package->discount_price)
-                                    <div>
-                                        <h2 style="display: inline-block" class="pr-1">{{ $package->discount_price }}</h2>
-                                        <h5 style="font-size: 18px">جنيه</h5>
-                                        <span class="pr-1" style="font-size: 17px"><del>{{ $package->price }}</del></span>
-                                    </div>
-                                @else
-                                    <div>
-                                        <h2 style="display: inline-block" class="pr-1">{{ $package->price }}</h2>
-                                        <h5 style="font-size: 18px">جنيه</h5>
-                                    </div>
-                                @endif
-                                <p>{{ $package->introduction }}</p>
-                                <p>{{ $package->target_audience }}</p>
+                                <div>
+                                    <h2 id="price-{{ $package->id }}" style="display: inline-block" class="pr-1"></h2>
+                                    <h5 style="font-size: 18px">جنيه</h5>
+                                    <span id="discount-price-{{ $package->id }}" style="display: none;">
+                                        <del id="original-price-{{ $package->id }}" style="font-size: 17px"></del>
+                                    </span>
+                                </div>
+
+                                <div class="leave-comment">
+                                    <select name="duration" id="duration-{{ $package->id }}" class="duration-select">
+                                        @foreach ($package->durations as $key => $duration)
+                                            <option value="{{ json_encode($duration) }}" {{ $key === 0 ? 'selected' : '' }}>
+                                                {{ $duration->duration }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mt-4">
+                                    <p>{{ $package->introduction }}</p>
+                                    <p>{{ $package->target_audience }}</p>
+                                </div>
 
                             </div>
-                            {{-- <div> --}}
+
                             {!! $package->description !!}
-                            {{-- </div> --}}
+
                             <a href="{{ route('user.training-packages.show', $package->id) }}"
-                                class="primary-btn pricing-btn"> اشترك الان </a>
-                            {{-- <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a> --}}
+                                id="subscribe-link-{{ $package->id }}" class="primary-btn pricing-btn">اشترك الان</a>
                         </div>
                     </div>
                 @empty
                 @endforelse
-
             </div>
         </div>
     </section>
@@ -203,13 +209,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-6">
                     <div class="cs-item">
                         <span style="font-size: 70px; font-weight: bold;">1</span>
                         <h4>اختر الباقة المناسبة</h4>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-6">
                     <div class="cs-item">
                         <span style="font-size: 70px; font-weight: bold;">2</span>
                         <h4>قم بالدفع عبر الطرق الدفع المتاحة</h4>
@@ -318,13 +324,12 @@
     </section>
     <!-- Team Section End -->
 
-
     <!-- FAQ Section Begin -->
     <section class="accordion-section spad-2" style="background-color:#0a0a0a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
-                    <div class="accordion-title text-right">
+                    <div class="accordion-title pt-0 pt-lg-5 text-right">
                         <h2 class="mt-4 ">
                             الاسئلة الشائعة
                         </h2>
@@ -435,13 +440,12 @@
     </section>
     <!-- FAQ Section End -->
 
-
     <!-- Terms and Conditions Section Begin -->
     <section class="accordion-section spad-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
-                    <div class="accordion-title text-right">
+                    <div class="accordion-title pt-0 pt-lg-5 text-right">
                         <h2 class="mt-4 ">
                             الشروط والاحكام
                         </h2>
@@ -515,8 +519,6 @@
         </div>
     </section>
     <!-- Terms and Conditions Section End -->
-
-
 @endsection
 
 @section('js')
@@ -524,6 +526,58 @@
         // this script belong to success payment alert
         document.getElementById('close-section').addEventListener('click', function() {
             document.getElementById('paymeny-status').style.display = 'none';
+        });
+    </script>
+
+    <script>
+        // this script for change price automatically according to change package durations
+        $(document).ready(function() {
+
+            // Function to update price, discount price, and subscription link
+            function updatePriceAndLink(selectElement) {
+                const durationData = JSON.parse(selectElement.find('option:selected').val());
+                const packageId = selectElement.attr('id').split('-')[1];
+                const subscribeLink = $('#subscribe-link-' + packageId);
+
+                if (durationData) {
+                    // Update the displayed price and discount price
+                    if (durationData.discount_price) {
+                        $('#discount-price-' + packageId).show();
+                        $('#price-' + packageId).text(durationData.discount_price);
+                        $('#original-price-' + packageId).text(durationData.price);
+                        // $('#discount-price-' + packageId).text(durationData.discount_price);
+                    } else {
+                        $('#price-' + packageId).text(durationData.price);
+                        $('#discount-price-' + packageId).hide();
+                    }
+
+                    // Set or update the subscription link with the duration_id
+                    let currentHref = subscribeLink.attr('href');
+                    if (currentHref.includes('duration_id=')) {
+                        // Replace the existing duration_id with the new one
+                        subscribeLink.attr('href', currentHref.replace(/duration_id=\d+/, 'duration_id=' +
+                            durationData.id));
+                    } else {
+                        // Add the duration_id if it's not present
+                        subscribeLink.attr('href', currentHref + '?duration_id=' + durationData.id);
+                    }
+                } else {
+                    // Reset the displayed prices and subscription link
+                    $('#price-' + packageId).text('');
+                    $('#discount-price-' + packageId).hide();
+                    subscribeLink.attr('href', subscribeLink.attr('href').split('?')[0]);
+                }
+            }
+
+            // Iterate over each select box on page load to set the default selected option's price
+            $('.duration-select').each(function() {
+                updatePriceAndLink($(this));
+            });
+
+            // Handle change event when user selects a different duration
+            $('.duration-select').on('change', function() {
+                updatePriceAndLink($(this));
+            });
         });
     </script>
 @endsection

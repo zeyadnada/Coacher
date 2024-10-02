@@ -49,7 +49,7 @@
                 <li class="@yield('home')">
                     <a href="{{ route('home') }}"> الصفحة الرئيسية </a>
                 </li>
-                <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
+                <li class="@yield('package')"><a href="{{ route('home') }}#packages">الباقات
                     </a></li>
                 <li><a href="{{ route('home') }}#transformations">انجازات المشتركين</a></li>
                 <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
@@ -70,11 +70,14 @@
     <header class="header-section">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="logo">
+                <div class="col-lg-3 d-flex">
+                    <div class="logo d-inline-block">
                         <a href="{{ route('home') }}">
                             <img src="/user/img/logo.png" alt="Logo" />
                         </a>
+                    </div>
+                    <div class="text-center d-lg-none d-inline-block flex-fill pl-4rem">
+                        <a href="{{ route('home') }}#packages" class="btn btn-outline-primary"> اشترك الان </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -83,7 +86,7 @@
                             <li class="@yield('home')">
                                 <a href="{{ route('home') }}"> الصفحة الرئيسية </a>
                             </li>
-                            <li class="@yield('package')"><a href="{{ route('user.training-packages.index') }}">الباقات
+                            <li class="@yield('package')"><a href="{{ route('home') }}#packages">الباقات
                                 </a></li>
                             <li><a href="{{ route('home') }}#transformations">انجازات المشتركين</a></li>
                             <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
@@ -103,7 +106,7 @@
                 </div> --}}
                 <div class="col-lg-3">
                     <div class="text-left top-option">
-                        <a href="#packages" class="btn btn-outline-primary ml-2"> اشترك الان </a>
+                        <a href="{{ route('home') }}#packages" class="btn btn-outline-primary ml-2"> اشترك الان </a>
                     </div>
                 </div>
             </div>
@@ -114,8 +117,9 @@
     </header>
     <!-- Header End -->
     @yield('content')
+
     <!-- Get In Touch Section Begin -->
-    <div class="gettouch-section">
+    {{-- <div class="gettouch-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -135,7 +139,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Get In Touch Section End -->
 
     <!-- Footer Section Begin -->
@@ -167,46 +171,21 @@
                             <li><a href="{{ route('user.about') }}">من نحن</a></li>
                             <li><a href="{{ route('home') }}#packages"> باقاتنا </a></li>
                             <li><a href="{{ route('user.trainer.index') }}"> فريقنا </a></li>
-                            <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
+                            <li><a href="{{ route('home') }}#packages"> اشترك </a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="fs-widget">
-                        <h4>الدعم</h4>
+                        <h4>تواصل معنا</h4>
                         <ul>
-                            <li><a href="/login.html"> تسجيل الدخول </a></li>
-                            <li><a href="#"> حسابي </a></li>
-                            <li><a href="#"> اشترك </a></li>
+                            <li><a href="mailto:info@gmail.com">info@gmail.com</a></li>
+                            <li><a href="#">1126518696 (20+)</a></li>
                             <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
                         </ul>
                     </div>
                 </div>
-                {{-- <div class="col-lg-4 col-md-6">
-                    <div class="fs-widget">
-                        <h4>اخر المقالات</h4>
-                        <div class="fw-recent">
-                            <h6>
-                                <a href="#">
-                                    اللياقة البدني قد تساعد في منع الاكتئاب والقلق
-                                </a>
-                            </h6>
-                            <ul>
-                                <li>3 دقائق</li>
-                                <li>20 تعليق</li>
-                            </ul>
-                        </div>
-                        <div class="fw-recent">
-                            <h6>
-                                <a href="#"> اللياقة: افضل تمرين لخسارة دهون البطن</a>
-                            </h6>
-                            <ul>
-                                <li>3 دقائق</li>
-                                <li>20 تعليق</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> --}}
+
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">

@@ -15,7 +15,7 @@ class HomePageController extends Controller
      */
     public function index(Request $request)
     {
-        $packages = TrainingPackage::all();
+        $packages = TrainingPackage::with('durations')->get();
         $transformations = Transformation::all();
         $trainers = Trainer::select('id', 'name', 'job_title', 'image')->get();
         return view('user.index', compact('packages', 'transformations', 'trainers'));

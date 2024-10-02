@@ -7,23 +7,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\payment\PaymobController;
 use App\Http\Requests\UserSubscriptionRequest;
 use App\Models\Subscription;
+use App\Models\TrainingPackageDuration;
 
 class SubscriptionController extends Controller
 {
     public function store(UserSubscriptionRequest $request)
     {
-        // dd($request->all());
-        // $subscription = Subscription::create($request->all());
         $subscription = Subscription::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'whatsapp_phone' => $request->input('full_phone'),
             'starting_date' => $request->input('starting_date'),
             'package_id' => $request->input('package_id'),
+            'duration_id'=>$request->input('duration_id'),
         ]);
         $order = $subscription->toArray();
         $order['payment_method'] = $request->payment_method;
-        $order['amount_paid'] = $subscription->package->final_price;
+        $duration = TrainingPackageDuration::findOrFail($request->input('duration_id'));
+        $order['amount_paid'] = $duration->final_price;
         session()->forget("coupon");
         // dd($order);
         // add amount paid at the following line

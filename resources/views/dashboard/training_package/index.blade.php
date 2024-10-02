@@ -24,20 +24,31 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Duration</th>
-                            <th>Price</th>
-                            <th>Discount Price</th>
+                            <th>Durations</th>
+                            <th>Prices</th>
+                            <th>Discount Prices</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($packages as $package)
+                        {{-- @forelse ($packages as $package)
                             <tr>
-                                <td>{{ @$loop->iteration }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $package->title }}</td>
-                                <td>{{ $package->duration }}</td>
-                                <td>{{ $package->price }}</td>
-                                <td>{{ $package->discount_price ?? $package->price }}</td>
+                                <td colspan="3">
+                                    @if ($package->durations->isNotEmpty())
+                                        @foreach ($package->durations as $duration)
+                                            <div>
+                                                <strong>Duration:</strong> {{ $duration->duration }} |
+                                                <strong>Price:</strong> {{ $duration->price }} |
+                                                <strong>Discount Price:</strong>
+                                                {{ $duration->discount_price ?? $duration->price }}
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div>No durations available</div>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('dashboard.training-packages.show', $package->id) }}"
                                         class="btn btn-info"><i class="fas fa-eye"></i></a>
@@ -49,7 +60,40 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">Nothing to Show...</td>
+                                <td colspan="6">Nothing to Show...</td>
+                            </tr>
+                        @endforelse --}}
+                        @forelse ($packages as $package)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $package->title }}</td>
+                                <td>
+                                    @foreach ($package->durations as $duration)
+                                        <div>{{ $duration->duration }}</div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($package->durations as $duration)
+                                        <div>{{ $duration->price }}</div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($package->durations as $duration)
+                                        <div>{{ $duration->discount_price ?? $duration->price }}</div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="{{ route('dashboard.training-packages.show', $package->id) }}"
+                                        class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('dashboard.training-packages.edit', $package->id) }}"
+                                        class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                        data-id="{{ $package->id }}"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6">Nothing to Show...</td>
                             </tr>
                         @endforelse
 
@@ -58,9 +102,9 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Duration</th>
-                            <th>Price</th>
-                            <th>Discount Price</th>
+                            <th>Durations</th>
+                            <th>Prices</th>
+                            <th>Discount Prices</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>

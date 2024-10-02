@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('payment_status', ['Pending', 'Paid', 'Cancelled'])->default('Pending');
             $table->string('transaction_id')->nullable();
             $table->foreignId('package_id')->constrained('training_packages')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('duration_id')->constrained('training_package_durations')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('trainer_id')->nullable()->constrained('trainers')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });

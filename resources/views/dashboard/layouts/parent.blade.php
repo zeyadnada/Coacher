@@ -21,7 +21,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ url('/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- summernote -->
-    <link rel="stylesheet" href="{{ url('/dashboard/plugins/summernote/summernote-bs4.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ url('/dashboard/plugins/summernote/summernote-bs4.min.css') }}"> --}}
     <!-- Bootstrap 4 RTL -->
     {{-- <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"> --}}
     <!-- Custom style for RTL -->
@@ -139,7 +139,8 @@
     <!-- Bootstrap 4 -->
     <script src="{{ url('/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    
+    <script src="/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
     <!-- AdminLTE App -->
     <script src="{{ url('/dashboard/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->

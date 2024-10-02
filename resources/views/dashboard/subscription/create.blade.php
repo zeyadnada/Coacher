@@ -69,7 +69,8 @@
 
                         <div class="col-6">
                             <label for="starting_date">Starting Date</label>
-                            <input id="starting_date" type="date" name="starting_date" value="{{ old('starting_date') }}"
+                            <input id="starting_date" type="date" name="starting_date"
+                                value="{{ old('starting_date', \Carbon\Carbon::now()->format('Y-m-d')) }}"
                                 class="form-control @error('starting_date') is-invalid @enderror">
                             @error('starting_date')
                                 <span class="invalid-feedback" role="alert">
@@ -80,7 +81,7 @@
                     </div>
 
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-4">
                             <label for="package_id">Package</label>
                             <select class="select2 form-control @error('package_id') is-invalid @enderror" name="package_id"
                                 id="package_id" style="width: 100%;">
@@ -96,14 +97,30 @@
                             @enderror
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-4">
+                            <label for="duration_id">Duration</label>
+                            <select dir="rtl" class="select2 form-control @error('duration_id') is-invalid @enderror"
+                                name="duration_id" id="duration_id" style="width: 100%;">
+                                <option value="" disabled selected>Select a Duration</option>
+                            </select>
+                            @error('duration_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+
+                        <div class="col-4">
                             <label for="trainer_id">Trainer</label>
                             <select class="select2 form-control @error('trainer_id') is-invalid @enderror" name="trainer_id"
                                 id="trainer_id" style="width: 100%;">
-                                <option value="" disabled selected>Select a Trainer</option>
-                                <option value="">No Trainer</option>
+                                <option value="" {{ old('trainer_id') === '' ? 'selected' : '' }}>No Trainer</option>
                                 @foreach ($trainers as $trainer)
-                                    <option value="{{ $trainer->id }}">{{ $trainer->name }}</option>
+                                    <option value="{{ $trainer->id }}"
+                                        {{ old('trainer_id') == $trainer->id ? 'selected' : '' }}>
+                                        {{ $trainer->name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('trainer_id')
@@ -128,34 +145,38 @@
 
                         </div>
                         <div class="col-4">
-                            <label for="status">Payment Status</label>
-                            <select class="select2 form-control @error('status') is-invalid @enderror" name="status"
-                                id="status" style="width: 100%;">
-                                <option value="" disabled {{ old('status') == '' ? 'selected' : '' }}>Select a
-                                    Status</option>
-                                <option value="Pending" {{ old('status') == 'Pending' ? 'selected' : '' }}>Pending
+                            <label for="payment_status">Payment Status</label>
+                            <select class="select2 form-control @error('payment_status') is-invalid @enderror"
+                                name="payment_status" id="payment_status" style="width: 100%;">
+                                <option value="" disabled {{ old('payment_status') == '' ? 'selected' : '' }}>Select
+                                    a Status</option>
+                                <option value="Pending" {{ old('payment_status') == 'Pending' ? 'selected' : '' }}>Pending
                                 </option>
-                                <option value="Paid" {{ old('status') == 'Paid' ? 'selected' : '' }}>Paid</option>
-                                <option value="Cancelled" {{ old('status') == 'Canceled' ? 'selected' : '' }}>Cancelled
+                                <option value="Paid" {{ old('payment_status') == 'Paid' ? 'selected' : '' }}>Paid
+                                </option>
+                                <option value="Cancelled" {{ old('payment_status') == 'Canceled' ? 'selected' : '' }}>
+                                    Cancelled
                                 </option>
                             </select>
-                            @error('status')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            @error('payment_status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
 
                         <div class="col-4">
-                            <label for="transaction_id">Tranaction ID</label>
+                            <label for="transaction_id">Transaction ID</label>
                             <input type="text" class="form-control @error('transaction_id') is-invalid @enderror"
                                 name="transaction_id" placeholder="Pay First to Get This ID" id="transaction_id"
-                                class="form-control" style="width: 100%;">
-                            </input>
+                                value="{{ old('transaction_id') }}" style="width: 100%;">
                             @error('transaction_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
+
                     </div>
 
                     <div class="form-row my-4">
@@ -217,23 +238,36 @@
         $("input").tagsinput('items')
     </script>
 
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script>
-        // Select all textareas with class 'editor'
-        document.querySelectorAll('.editor').forEach((textarea) => {
-            // Initialize CKEditor 5 for each textarea
-            ClassicEditor
-                .create(textarea)
-                .then(editor => {
-                    console.log(editor);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+        //script to get durations related to specific package
+        $(document).ready(function() {
+            $('#package_id').change(function() {
+                var packageId = $(this).val();
+
+                if (packageId) {
+                    $.ajax({
+                        url: '/packages/' + packageId + '/durations',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#duration_id').empty(); // Clear previous options
+                            $('#duration_id').append(
+                                '<option value="" disabled selected>Select a Duration</option>'
+                            );
+
+                            $.each(data, function(key, duration) {
+                                $('#duration_id').append('<option value="' + duration
+                                    .id + '">' + duration.duration + ' - ' +
+                                    duration.price + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#duration_id').empty();
+                    $('#duration_id').append(
+                        '<option value="" disabled selected>Select a Duration</option>');
+                }
+            });
         });
     </script>
-
-
-
 @endsection

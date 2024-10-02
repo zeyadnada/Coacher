@@ -7,9 +7,11 @@
   0% {
     border-right-color: transparent;
   }
+
   50% {
     border-right-color: transparent;
   }
+
   100% {
     border-right-color: transparent;
   }
@@ -185,6 +187,7 @@
   left: -18px;
   right: auto;
 }
+
 .gt-text ul li:last-child {
   margin-left: 0;
 }
@@ -240,6 +243,7 @@
 .about-text .about-bar .ab-item .barfiller .tip {
   float: left;
 }
+
 /*---------------------
   Testimonial Section
 -----------------------*/
@@ -284,6 +288,7 @@
   margin-left: 35px;
   margin-right: 0;
 }
+
 .table-controls ul li:after {
   left: -22px;
   right: auto;
@@ -612,6 +617,7 @@
     margin-left: 5px;
     margin-right: 0;
   }
+
   .ps-item .thumb-icon {
     right: 15px;
     left: auto;
@@ -630,18 +636,22 @@
   .table-controls {
     text-align: right;
   }
+
   .ts_slider.owl-carousel .owl-nav button {
     right: 0;
     left: auto;
   }
+
   .ts_slider.owl-carousel .owl-nav button.owl-next {
     left: 0;
     right: auto;
   }
+
   .hs-slider.owl-carousel .owl-nav button {
     right: 0;
     left: auto;
   }
+
   .hs-slider.owl-carousel .owl-nav button.owl-next {
     left: 0;
     right: auto;
@@ -656,10 +666,12 @@
     left: 40px;
     right: auto;
   }
+
   .offcanvas-menu-wrapper {
     right: -300px;
     left: auto;
   }
+
   .offcanvas-menu-wrapper.show-offcanvas-menu-wrapper {
     left: auto;
     right: 0;
@@ -669,6 +681,7 @@
     left: 20px;
     right: auto;
   }
+
   .offcanvas-menu-wrapper .canvas-social a {
     margin-left: 6px;
     margin-right: 0;
@@ -686,17 +699,20 @@
   }
 
   .canvas-open {
-    left: 40px;
+    left: 18px;
     right: auto;
   }
+
   .offcanvas-menu-wrapper {
     right: -300px;
     left: auto;
   }
+
   .offcanvas-menu-wrapper.show-offcanvas-menu-wrapper {
     left: auto;
     right: 0;
   }
+
   .offcanvas-menu-wrapper .canvas-close {
     left: 20px;
     right: auto;
@@ -706,9 +722,11 @@
     margin-left: 6px;
     margin-right: 0;
   }
+
   .offcanvas-menu-wrapper .canvas-social a:last-child {
     margin-left: 0;
   }
+
   .blog-section .sidebar-option {
     padding-right: 0;
   }
@@ -716,6 +734,7 @@
   .sidebar-option {
     padding-right: 0;
   }
+
   .table-controls {
     text-align: right;
   }
@@ -724,14 +743,17 @@
     right: 0;
     left: auto;
   }
+
   .ts_slider.owl-carousel .owl-nav button.owl-next {
     left: 0;
     right: auto;
   }
+
   .hs-slider.owl-carousel .owl-nav button {
     right: 0;
     left: auto;
   }
+
   .hs-slider.owl-carousel .owl-nav button.owl-next {
     left: 0;
     right: auto;
