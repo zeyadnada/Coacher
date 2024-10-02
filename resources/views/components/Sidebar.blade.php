@@ -247,18 +247,6 @@
                                     <p>{{ __('Payment-config') }}</p>
                                 </a>
                             </li>
-                            {{-- <li class="nav-item">
-                        <a href="{{ route('dashboard.settings.contraindications') }}" class="nav-link {{ request()->routeIs('dashboard.settings.contraindications') ? 'active' : '' }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Contraindications') }}</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard.settings.users') }}" class="nav-link {{ request()->routeIs('dashboard.settings.users') ? 'active' : '' }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Users') }}</p>
-                        </a>
-                    </li> --}}
                         </ul>
                     </li>
                 @endif

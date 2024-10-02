@@ -27,10 +27,11 @@ class SubscriptionRequet extends FormRequest
             'whatsapp_phone' => 'required|string|max:15',
             'starting_date' => 'nullable|date',
             'package_id' => 'required|exists:training_packages,id',
+            'duration_id' => 'required|exists:training_package_durations,id',
             'trainer_id' => 'nullable|exists:trainers,id',
             'payment_status' => 'required|in:Pending,Paid,Cancelled',
             'transaction_id' => 'sometimes|string|max:255',
-            'amount_paid' => 'required|numeric|min:0|max:9999999999.99',
+            'amount_paid' => 'required|numeric|min:0|max:999999.99',
         ];
     }
 
@@ -40,6 +41,7 @@ class SubscriptionRequet extends FormRequest
             'name' => 'Name',
             'email' => 'Email',
             'package_id' => 'Package',
+            'duration_id' => 'Package Duration',
             'trainer_id' => 'Trainer',
             'whatsapp_phone' => 'WhatsApp Phone',
             'starting_date' => 'Starting Date',
@@ -71,6 +73,9 @@ class SubscriptionRequet extends FormRequest
             'package_id.required' => 'حقل الباقة مطلوب.',
             'package_id.exists' => 'الباقة المحددة غير موجودة.',
 
+            'duration_id.required' => 'حقل مدة الباقة مطلوب.',
+            'duration_id.exists' => 'المدة المحددة غير موجودة.',
+
             'trainer_id.exists' => 'المدرب المحدد غير موجود.',
 
             'starting_date.date' => 'تاريخ البدء يجب أن يكون تاريخًا صالحًا.',
@@ -85,7 +90,7 @@ class SubscriptionRequet extends FormRequest
             'amount_paid.required' => 'حقل المبلغ المدفوع مطلوب.',
             'amount_paid.numeric' => 'المبلغ المدفوع يجب أن يكون رقمًا.',
             'amount_paid.min' => 'المبلغ المدفوع يجب أن يكون على الأقل 0.',
-            'amount_paid.max' => 'المبلغ المدفوع لا يمكن أن يتجاوز 9999999999.99.',
+            'amount_paid.max' => 'المبلغ المدفوع لا يمكن أن يتجاوز 999999.99.',
         ];
     }
 }

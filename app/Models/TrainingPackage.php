@@ -37,41 +37,45 @@ class TrainingPackage extends Model
     //     // If no coupon is applied, return the base price
     //     return $basePrice;
     // }
-    
-    public function getFinalPriceAttribute()
-    {
-        // Check if there is a coupon applied in the session
-        $coupon = session()->get('coupon');
 
-        // Ensure a coupon exists before proceeding
-        if ($coupon) {
-            $couponType = $coupon['type'];
-            $couponValue = ($couponType === 'percent') ? $coupon['percent'] : $coupon['value'];
+    // public function getFinalPriceAttribute()
+    // {
+    //     // Check if there is a coupon applied in the session
+    //     $coupon = session()->get('coupon');
 
-            // Calculate the base discounted price (if discount_price exists)
-            $basePrice = $this->discount_price ?? $this->price;
+    //     // Ensure a coupon exists before proceeding
+    //     if ($coupon) {
+    //         $couponType = $coupon['type'];
+    //         $couponValue = ($couponType === 'percent') ? $coupon['percent'] : $coupon['value'];
 
-            // Apply the coupon discount based on the type
-            if ($couponType === 'percent') {
-                // Calculate percentage discount
-                $discount = ($basePrice * $couponValue) / 100;
-                $finalPrice = $basePrice - $discount;
-            } elseif ($couponType === 'fixed') {
-                // Apply fixed discount
-                $finalPrice = $basePrice - $couponValue;
-            }
+    //         // Calculate the base discounted price (if discount_price exists)
+    //         $basePrice = $this->discount_price ?? $this->price;
 
-            // Ensure the final price is not negative
-            return max($finalPrice, 0);
-        }
+    //         // Apply the coupon discount based on the type
+    //         if ($couponType === 'percent') {
+    //             // Calculate percentage discount
+    //             $discount = ($basePrice * $couponValue) / 100;
+    //             $finalPrice = $basePrice - $discount;
+    //         } elseif ($couponType === 'fixed') {
+    //             // Apply fixed discount
+    //             $finalPrice = $basePrice - $couponValue;
+    //         }
 
-        // If no coupon is applied, return the base price
-        return $this->discount_price ?? $this->price;
-    }
+    //         // Ensure the final price is not negative
+    //         return max($finalPrice, 0);
+    //     }
+
+    //     // If no coupon is applied, return the base price
+    //     return $this->discount_price ?? $this->price;
+    // }
 
 
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
+    }
+    public function durations()
+    {
+        return $this->hasMany(TrainingPackageDuration::class, 'package_id');
     }
 }

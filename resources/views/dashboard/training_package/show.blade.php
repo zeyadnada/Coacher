@@ -57,9 +57,9 @@
         }
 
         /*
-                                .my-1-6 {
-                                margin-bottom: 1.6rem;
-                            } */
+                                                                    .my-1-6 {
+                                                                    margin-bottom: 1.6rem;
+                                                                } */
     </style>
 @endsection
 
@@ -73,21 +73,32 @@
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
                 <div class="card border-0 shadow">
-                    <img src="{{ $package->image ? asset('storage/' . $package->image) : '' }}" alt="package image"
-                        class="img-full">
+                    <img src="{{ $package->image ? asset('storage/' . $package->image) : asset('/user/img/Refit.jpeg') }}"
+                        alt="package image" class="img-full">
                     <div class="card-body">
                         <div class="mb-4">
                             <h3 class="h4 mb-0">{{ $package->title }}</h3>
                         </div>
-                        <ul class="list-unstyled mb-4">
-                            <li class="mb-3"><i class="fa fa-solid fa-clock mr-3"></i>{{ $package->duration }}
-                            </li>
-                            <li class="mb-3"><i class="fa fa-solid fa-money-bill-wave mr-3"></i>{{ $package->price }}$
-                            </li>
-                            <li class="mb-3"><i
-                                    class="fa fa-solid fa-money-check mr-3"></i>{{ $package->discount_price ?? $package->price }}$
-                            </li>
-                        </ul>
+                        @foreach ($package->durations as $duration)
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa fa-solid fa-clock mr-2"></i> {{ $duration->duration }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa fa-solid fa-money-bill-wave mr-2"></i> {{ $duration->price }}$
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa fa-solid fa-money-check mr-2"></i>
+                                        {{ $duration->discount_price ?? $duration->price }}$
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -26,6 +26,7 @@
                             <th>Name</th>
                             <th>phone</th>
                             <th>Package</th>
+                            <th>duration</th>
                             <th>Trainer</th>
                             <th>Starting Date</th>
                             <th>Payment Status</th>
@@ -40,6 +41,7 @@
                                 <td>{{ $subscription->name }}</td>
                                 <td>{{ $subscription->whatsapp_phone }}</td>
                                 <td>{{ $subscription->package->title }}</td>
+                                <td>{{ $subscription->duration->duration }}</td>
                                 <td>
                                     @if ($subscription->trainer)
                                         {{ $subscription->trainer->name }}
@@ -78,6 +80,7 @@
                             <th>Subscriber</th>
                             <th>phone</th>
                             <th>Package</th>
+                            <th>Duration</th>
                             <th>Trainer</th>
                             <th>Starting Date</th>
                             <th>Payment Status</th>
@@ -173,6 +176,16 @@
                     'colvis' // Column visibility button
                 ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+    <script>
+        //delete modal 
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var subscriptionId = button.data('id'); // Extract info from data-* attributes
+            var formAction = "{{ route('dashboard.subscriptions.destroy', '') }}/" + subscriptionId;
+            var modal = $(this);
+            modal.find('#deleteForm').attr('action', formAction);
         });
     </script>
 

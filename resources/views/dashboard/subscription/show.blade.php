@@ -66,6 +66,8 @@
                             <div class="col-sm-4 mb-5">
                                 <h5 class="mb-3"><b>Subscription Info</b></h5>
                                 <p class="mb-2"><b>Package Name:</b> {{ $subscription->package->title }}</p>
+                                <p class="mb-2"><b>Package Duration:</b> {{ $subscription->duration->duration}}</p>
+
                                 <p class="mb-2"><b>Starting Date:</b> {{ $subscription->starting_date }}</p>
                                 <p class="mb-2">
                                     <b>Trainer:</b>

@@ -124,6 +124,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+////////////////////////////////////////////{*-- Ajax routes--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Route::get('/packages/{package}/durations', [SubscriptionController::class, 'getDurations']);
+
 /////////////////////////////////////////////{*-- Notifications Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 Route::get('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');

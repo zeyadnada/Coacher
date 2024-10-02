@@ -18,9 +18,6 @@ return new class extends Migration
             $table->string('target_audience')->nullable();
             $table->string('image')->nullable();
             $table->text('description');
-            $table->string('duration');
-            $table->decimal('price', 8);
-            $table->decimal('discount_price', 8)->nullable(); // Discounted price
             $table->timestamps();
         });
     }

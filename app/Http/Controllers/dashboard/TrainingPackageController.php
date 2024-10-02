@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TrainingPackageRequest;
 use App\Models\Admin;
 use App\Models\TrainingPackage;
+use App\Models\TrainingPackageDuration;
 use App\Notifications\TrainingPackageCreatedNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +18,7 @@ class TrainingPackageController extends Controller
      */
     public function index()
     {
-        $packages = TrainingPackage::select('id','title','duration','price','discount_price')->get();
+        $packages = TrainingPackage::select('id', 'title')->with('durations')->get();
         return view('dashboard.training_package.index', compact('packages'));
     }
 
@@ -34,12 +35,26 @@ class TrainingPackageController extends Controller
      */
     public function store(TrainingPackageRequest $request)
     {
-        $data = $request->except('image');
+        $data = $request->except('image', 'durations');
         if ($request->hasFile('image')) {
             $imagePath = Storage::disk('public')->put('package',  $request->image);
             $data['image'] = $imagePath;
         }
         $package = TrainingPackage::create($data);
+
+        $durationsData = [];
+        foreach ($request->durations as $duration) {
+            $durationsData[] = [
+                'duration' => $duration['duration'],
+                'price' => $duration['price'],
+                'discount_price' => $duration['discount_price'] ?? null,
+                'package_id' => $package->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+        TrainingPackageDuration::insert($durationsData);
+
         //notification event
         $admins = Admin::all();
         Notification::send($admins, new TrainingPackageCreatedNotification($package));
@@ -51,7 +66,7 @@ class TrainingPackageController extends Controller
      */
     public function show($id)
     {
-        $package = TrainingPackage::findOrFail($id);
+        $package = TrainingPackage::with('durations')->findOrFail($id);
         return view('dashboard.training_package.show', compact('package'));
     }
 
@@ -60,7 +75,7 @@ class TrainingPackageController extends Controller
      */
     public function edit($id)
     {
-        $package = TrainingPackage::findOrFail($id);
+        $package = TrainingPackage::with('durations')->findOrFail($id);
         return view('dashboard.training_package.edit', compact('package'));
     }
 
@@ -69,8 +84,10 @@ class TrainingPackageController extends Controller
      */
     public function update(TrainingPackageRequest $request, $id)
     {
-        $package = TrainingPackage::findOrFail($id);
-        $data = $request->except('image');
+        $package = TrainingPackage::with('durations')->findOrFail($id);
+        $data = $request->except('image', 'durations');
+
+        // Handle image upload
         if ($request->hasFile('image')) {
             if ($package->image && Storage::disk('public')->exists($package->image)) {
                 Storage::disk('public')->delete($package->image);
@@ -78,9 +95,57 @@ class TrainingPackageController extends Controller
             $imagePath = Storage::disk('public')->put('package', $request->image);
             $data['image'] = $imagePath;
         }
+
+        // Update the training package
         $package->update($data);
+
+        // Get existing durations from the database
+        $existingDurations = $package->durations->pluck('id')->toArray();
+
+        // Get duration IDs from the submitted request
+        $submittedDurations = collect($request->input('durations'))->filter(function ($duration) {
+            return isset($duration['id']); // Only consider existing rows (those with an ID)
+        })->pluck('id')->toArray();
+
+        // Determine the durations to delete
+        $durationsToDelete = array_diff($existingDurations, $submittedDurations);
+
+        // Delete durations that were removed from the form in single query
+        if (!empty($durationsToDelete)) {
+            TrainingPackageDuration::whereIn('id', $durationsToDelete)->delete();
+        }
+
+        // Prepare the durations data for update or creation
+        $durationsData = [];
+        foreach ($request->durations as $duration) {
+            if (isset($duration['id'])) {
+                // Update existing duration
+                $package->durations()->where('id', $duration['id'])->update([
+                    'duration' => $duration['duration'],
+                    'price' => $duration['price'],
+                    'discount_price' => $duration['discount_price'] ?? null,
+                ]);
+            } else {
+                // Prepare new duration for insertion
+                $durationsData[] = [
+                    'duration' => $duration['duration'],
+                    'price' => $duration['price'],
+                    'discount_price' => $duration['discount_price'] ?? null,
+                    'package_id' => $package->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+        }
+
+        // Insert new durations data if any
+        if (!empty($durationsData)) {
+            TrainingPackageDuration::insert($durationsData);
+        }
+
         return redirect()->route('dashboard.training-packages.show', $package->id)->with('success', 'Trainer Package Updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -91,6 +156,7 @@ class TrainingPackageController extends Controller
         if ($package->image && Storage::disk('public')->exists($package->image)) {
             Storage::disk('public')->delete($package->image);
         }
+        // Delete package (durations will be automatically deleted because onDelete('cascade') is set)
         $package->delete();
         return back()->with('success', 'Training Package Deleted Successfully.');
     }
