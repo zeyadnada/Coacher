@@ -152,11 +152,15 @@
                             الخمس سنين اللي فاتوا
                         </p>
                         <div class="fa-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/people/Refit-Academy/61564070225405/?mibextid=ZbWKwL"><i
+                                    class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="http://www.youtube.com/@RefitAcademy-t4x"><i class="fa fa-youtube-play"></i></a>
+                            <a href="https://www.instagram.com/refitacademy?igsh=MTlnOXV3eWw1bTRsOQ%3D%3D"><i
+                                    class="fa fa-instagram"></i></a>
                             <a href="#"><i class="fa fa-envelope-o"></i></a>
+                            {{-- <i class="fab fa-tiktok"></i> --}}
+
                         </div>
                     </div>
                 </div>
@@ -175,9 +179,9 @@
                     <div class="fs-widget">
                         <h4>الدعم</h4>
                         <ul>
-                            <li><a href="/login.html"> تسجيل الدخول </a></li>
-                            <li><a href="#"> حسابي </a></li>
-                            <li><a href="#"> اشترك </a></li>
+                            {{-- <li><a href="/login.html"> تسجيل الدخول </a></li> --}}
+                            {{-- <li><a href="#"> حسابي </a></li> --}}
+                            <li><a href="{{ route('home') }}#packages"> اشترك </a></li>
                             <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
                         </ul>
                     </div>
