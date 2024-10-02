@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Password;
 class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
+    // go to notification 
     //do not forget to cahnge the route in ResetPassword.php to admin.......
 
     protected function broker()
