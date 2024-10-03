@@ -30,6 +30,14 @@
     {{-- <script src="{{ asset('/js/app.js') }}" defer></script>
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png"> --}}
     <!-- Place favicon.ico in the root directory -->
+    
+    <!-- Refit Icons  -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     @yield('css')
 </head>
 
@@ -145,7 +153,7 @@
     <script src="{{ url('/dashboard/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     {{-- <script src="{{ url('/dist/js/demo.js') }}"></script> --}}
-   
+
     <!-- Bootstrap 4 rtl -->
     {{-- <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script> --}}
 

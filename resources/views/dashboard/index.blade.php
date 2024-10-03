@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.parent')
 
-@section('title', 'Dashboard')
+@section('title', 'Refit | Dashboard')
 
 @section('content')
 

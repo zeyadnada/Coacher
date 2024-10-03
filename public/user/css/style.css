@@ -1276,10 +1276,14 @@ ol {
 
 .fs-widget ul li {
   list-style: none;
+  font-size: 16px;
+  color: #c4c4c4;
+  line-height: 30px;
+
 }
 
 .fs-widget ul li a {
-  font-size: 14px;
+  font-size: 16px;
   color: #c4c4c4;
   line-height: 30px;
 }
@@ -2879,11 +2883,21 @@ ol {
 
 }
 
-.whatsapp-icon {
+.contact-us {
   position: fixed;
   left: 20px;
   bottom: 20px;
   z-index: 999;
+}
+
+.contact-text {
+  letter-spacing: 1px !important;
+  color: #c4c4c4;
+  padding-left: 2px;
+
+}
+
+.contact-us .whatsapp-icon {
   background: #25d366;
   color: #fff;
   width: 50px;
@@ -2894,7 +2908,6 @@ ol {
   font-size: 25px;
   cursor: pointer;
 }
-
 
 /*---------------------------
   Payment Methods card Style

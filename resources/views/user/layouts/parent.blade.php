@@ -28,6 +28,14 @@
     <link rel="stylesheet" href="/user/css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="/user/css/style.css" type="text/css" />
     <link rel="stylesheet" href="/user/css/styleRTL.css" type="text/css" />
+
+    <!-- Refit Icons  -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     @yield('css')
 </head>
 
@@ -58,10 +66,12 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.facebook.com/people/Refit-Academy/61564070225405/?mibextid=ZbWKwL"><i
+                    class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="http://www.youtube.com/@RefitAcademy-t4x"><i class="fa fa-youtube-play"></i></a>
+            <a href="https://www.instagram.com/refitacademy?igsh=MTlnOXV3eWw1bTRsOQ%3D%3D"><i
+                    class="fa fa-instagram"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -183,11 +193,8 @@
                     <div class="fs-widget">
                         <h4>تواصل معنا</h4>
                         <ul>
-                            {{-- <li><a href="/login.html"> تسجيل الدخول </a></li> --}}
-                            {{-- <li><a href="#"> حسابي </a></li> --}}
-                            <li><a href="{{ route('home') }}#packages"> اشترك </a></li>
                             <li><a href="mailto:info@gmail.com">info@gmail.com</a></li>
-                            <li><a href="#">1126518696 (20+)</a></li>
+                            <li>1126518696 (20+)</li>
                             <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
                         </ul>
                     </div>
@@ -221,13 +228,16 @@
     </div>
     <!-- Search model end -->
 
-    <!--start WhatsApp Contact-->
-    <div class="whatsapp-icon">
-        <a href="https://wa.me/201551471731" target="_blank">
-            <img src="/user/img/whatsapp.png" alt="whatsapp" />
-        </a>
+    <!--start WhatsApp Contact icon-->
+    <div class="contact-us">
+        <span class="contact-text">اضغط للتواصل عبر واتساب</span>
+        <div class="whatsapp-icon d-inline-block">
+            <a href="https://wa.me/201028829262" target="_blank">
+                <img src="/user/img/whatsapp.png" alt="whatsapp" />
+            </a>
+        </div>
     </div>
-    <!--end WhatsApp Contact-->
+    <!--end WhatsApp Contact icon-->
 
 
     <!-- Js Plugins -->
