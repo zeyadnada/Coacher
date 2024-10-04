@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('dashboard.admin.update', $admin->id) }}" method="post"
+                <form action="{{ route('dashboard.adminprofile.update', $admin->id) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

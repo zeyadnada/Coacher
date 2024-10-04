@@ -3,6 +3,7 @@
 use App\Http\Controllers\appendages\NotificationController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\dashboard\AdminController;
+use App\Http\Controllers\dashboard\AdminProfileController;
 use App\Http\Controllers\dashboard\HomePage;
 use App\Http\Controllers\dashboard\PaymentconfigController;
 use App\Http\Controllers\dashboard\SubscriptionController;
@@ -104,6 +105,10 @@ Route::middleware(['admin'])
         Route::get('/subscriptions/pending', [SubscriptionController::class, 'pending'])->name('subscriptions.pending');
         Route::get('/subscriptions/canceled', [SubscriptionController::class, 'canceled'])->name('subscriptions.canceled');
         Route::resource('subscriptions', SubscriptionController::class);
+        Route::get('/adminprofile/{admin}', [AdminProfileController::class, 'show'])->name('adminprofile.show');
+        Route::get('/adminprofile/edit/{admin}', [AdminProfileController::class, 'edit'])->name('adminprofile.edit');
+        Route::put('/adminprofile/update/{admin}', [AdminProfileController::class, 'update'])->name('adminprofile.update');
+
         Route::middleware(['super-admin-authorization'])->group(function () {
             Route::resource('admin', AdminController::class);
             Route::get('/admin/admin/{id}', [AdminController::class, 'makeAdmin'])->name('admin.admin');

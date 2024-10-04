@@ -91,7 +91,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="{{ route('dashboard.admin.edit', $admin->id) }}" class="btn btn-warning">Edit My Profile</a>
+                    <a href="{{ route('dashboard.adminprofile.edit', $admin->id) }}" class="btn btn-warning">Edit My Profile</a>
                 </div>
             </div>
             {{-- <div class="col-lg-8">

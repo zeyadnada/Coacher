@@ -11,10 +11,16 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
+                @if (auth()->guard('admin')->user()->image )
+                <img src="{{  asset('storage/' . auth()->guard('admin')->user()->image) }}" class="img-circle elevation-2" alt="User Image">
+
+                @else
+
                 <img src="/dashboard/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                @endif
             </div>
             <div class="info">
-                <a href="{{ route('dashboard.admin.show', ['admin' => auth()->guard('admin')->user()->id]) }}"
+                <a href="{{ route('dashboard.adminprofile.show', ['admin' => auth()->guard('admin')->user()->id]) }}"
                     class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
             </div>
         </div>
