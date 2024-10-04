@@ -5,7 +5,6 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminEditProfileRequest;
 use App\Models\Admin;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -64,53 +63,23 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminEditProfileRequest $request, $id)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            // 'job_title' => ['required', 'string', 'max:255'],
-            // 'birth_date' => ['required', 'date'],
-            'admin_type' => ['required', 'in:super_admin,admin'],
-            // 'password' => ['required', 'min:8', 'confirmed'],
-            'gender' => ['required', 'in:male,female'],
-            'location' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:15'],
-            'email' => ['required', 'email'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
-            // 'experiences' => ['nullable', 'string'],
-            // 'certificates' => ['nullable', 'string'],
-            // 'password' => ['sometimes']
-        ]);
-        $admin = Admin::findOrFail($id);  // Find the admin or throw a 404 error
-
+        // Find the admin or throw a 404 error
+        $admin = Admin::findOrFail($id);
         // Gather all input data except the image
-        $data = $request->except('image', 'email', 'phone');
+        $data = $request->except('image');
         // Handle image upload and deletion of the old image
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
             if ($admin->image && Storage::disk('public')->exists($admin->image)) {
                 Storage::disk('public')->delete($admin->image);
             }
-
             // Store the new image
             $imagePath = Storage::disk('public')->put('admin', $request->file('image'));
             $data['image'] = $imagePath;
         }
-
-        // Handle phone update: Only update if the phone is different from the existing one
-        if ($request->phone !== $admin->phone) {
-            $data['phone'] = $request->phone;
-        }
-
-        // Handle email update: Only update if the email is different from the existing one
-        if ($request->email !== $admin->email) {
-            $data['email'] = $request->email;
-        }
-
-        // Update admin record with the modified data
         $admin->update($data);
-
-        // Redirect to the admin profile view with success message
         return redirect()->route('dashboard.admin.show', $admin->id)->with('success', 'Admin updated successfully');
     }
 

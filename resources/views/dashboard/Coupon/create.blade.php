@@ -28,7 +28,7 @@
                 <form action="{{ route('dashboard.coupon.save') }}" method="post">
                     @csrf
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="code">Code name</label>
                             <input type="text" name="code" id="code"
                                 class="form-control @error('code') is-invalid @enderror" placeholder="Enter Code"
@@ -39,7 +39,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="value">Value</label>
                             <input type="number" name="value" id="value"
                                 class="form-control @error('value') is-invalid @enderror" placeholder="Enter Value"
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="percent_off">percentage</label>
                             <input type="number" name="percent_off" id="percent_off"
                                 class="form-control @error('percent_off') is-invalid @enderror"
@@ -64,7 +64,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label>Type</label>
                             <select class="form-control @error('type') is-invalid @enderror" name="type"
                                 data-placeholder="Select type" style="width: 100%;">
@@ -81,7 +81,7 @@
 
 
                     <div class="form-row my-4">
-                        <div class="col-2">
+                        <div class="col-3">
                             <input type="submit" class="btn btn-primary" value="Add Coupon">
                         </div>
 

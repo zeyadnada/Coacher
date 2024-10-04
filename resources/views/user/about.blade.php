@@ -28,10 +28,10 @@
                     <div class="about-text pt-3">
                         <div class="section-title">
                             <span> من نحن </span>
-                            <h2 style="font-size: 20px">احنا <strong>Refit Academy</strong> قدارين نوصلك لاحسن نسخة من نفسك
+                            <h1 style="font-size: 20px">احنا <strong>Refit Academy</strong> قدارين نوصلك لاحسن نسخة من نفسك
                                 في اسرع وقت وباقل
                                 الامكانيات زي الآلاف
-                                اللي ساعدناهم في الخمس سنين اللي فاتوا وده لأن معانا </h2>
+                                اللي ساعدناهم في الخمس سنين اللي فاتوا وده لأن معانا </h1>
                         </div>
 
                         <div style="color:#c4c4c4; padding-right:20px ">

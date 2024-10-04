@@ -36,7 +36,7 @@
                     @csrf
                     @method('put')
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="title">Code name</label>
                             <input type="text" name="code" id="code"
                                 class="form-control @error('code') is-invalid @enderror" placeholder="Enter Code"
@@ -47,7 +47,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="title">Value</label>
                             <input type="number" name="value" id="value"
                                 class="form-control @error('value') is-invalid @enderror" placeholder="Enter Value"
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="title">percentage</label>
                             <input type="number" name="percent_off" id="percentage"
                                 class="form-control @error('percentage') is-invalid @enderror"
@@ -72,7 +72,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label>Type</label>
                             <select class="form-control @error('type') is-invalid @enderror" name="type"
                                 data-placeholder="Select type" style="width: 100%;">
@@ -87,13 +87,10 @@
                             @enderror
                         </div>
                     </div>
-
-
                     <div class="form-row my-4">
-                        <div class="col-2">
-                            <input type="submit" class="btn btn-primary" value="Update Coupon">
+                        <div class="col-3">
+                            <input type="submit" class="btn btn-warning" value="Update Coupon">
                         </div>
-
                     </div>
                 </form>
             </div>

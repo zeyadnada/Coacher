@@ -28,7 +28,7 @@
                 <form action="{{ route('dashboard.trainers.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="title">Name</label>
                             <input type="text" name="name" id="name"
                                 class="form-control @error('name') is-invalid @enderror" placeholder="Enter Trainer Name"
@@ -39,7 +39,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="title">Job title</label>
                             <input type="text" name="job_title" id="job_title"
                                 class="form-control @error('job_title') is-invalid @enderror" placeholder="Enter Job Title"
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-7">
+                        <div class="col-md-7">
                             <label for="name">Location</label>
                             <input type="text" name="location" id="location"
                                 class="form-control @error('location') is-invalid @enderror"
@@ -64,7 +64,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-3">
+                        <div class="col-md-3">
                             <label for="birth_date">Birth Date</label>
                             <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}"
                                 class="form-control @error('birth_date') is-invalid @enderror">
@@ -75,7 +75,7 @@
                             @enderror
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-md-2">
                             <label>Gender</label>
                             <select class="form-control @error('gender') is-invalid @enderror" name="gender"
                                 data-placeholder="Select Gender" style="width: 100%;">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="phone">Phone</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
                                 value="{{ old('phone') }}" id="phone" placeholder="Phone Number">
@@ -101,7 +101,7 @@
                             @enderror
 
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="email">Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" id="email" placeholder="name@example.com">
@@ -111,7 +111,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="image">Trainer Image</label>
                             <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
                                 id="image">
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-4">
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="experiences">Experiences</label>
                             <textarea class="editor form-control form-control custom-file @error('experiences') is-invalid @enderror"
                                 id="experiences" name="experiences" placeholder="Enter Trainer Experiences" rows="6">{{ old('experiences') }}</textarea>
@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="form-row mb-4">
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="certificates">Certificates</label>
                             <textarea class="editor form-control form-control custom-file @error('certificates') is-invalid @enderror"
                                 id="certificates" name="certificates" placeholder="Enter Trainer Certificates" rows="6">{{ old('certificates') }}</textarea>
@@ -150,7 +150,7 @@
 
 
                     <div class="form-row my-4">
-                        <div class="col-2">
+                        <div class="col-3">
                             <input type="submit" class="btn btn-primary" value="Add Trainer">
                         </div>
 
@@ -207,7 +207,4 @@
                 });
         });
     </script>
-
-
-
 @endsection

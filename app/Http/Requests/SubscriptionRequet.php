@@ -30,7 +30,7 @@ class SubscriptionRequet extends FormRequest
             'duration_id' => 'required|exists:training_package_durations,id',
             'trainer_id' => 'nullable|exists:trainers,id',
             'payment_status' => 'required|in:Pending,Paid,Cancelled',
-            'transaction_id' => 'sometimes|string|max:255',
+            'transaction_id' => 'sometimes|required|string|max:255',
             'amount_paid' => 'required|numeric|min:0|max:999999.99',
         ];
     }

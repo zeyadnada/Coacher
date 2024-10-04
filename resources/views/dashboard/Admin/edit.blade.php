@@ -25,11 +25,12 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('dashboard.admin.update', $admin->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('dashboard.admin.update', $admin->id) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="title">Name</label>
                             <input type="text" name="name" id="name"
                                 class="form-control @error('name') is-invalid @enderror" placeholder="Enter Admin Name"
@@ -40,7 +41,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="title">phone</label>
                             <input type="text" name="phone" id="phone"
                                 class="form-control @error('phone') is-invalid @enderror" placeholder="Enter Phone"
@@ -53,7 +54,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="name">Location</label>
                             <input type="text" name="location" id="location"
                                 class="form-control @error('location') is-invalid @enderror"
@@ -65,18 +66,7 @@
                                 </span>
                             @enderror
                         </div>
-                        {{-- <div class="col-2">
-                            <label for="birth_date">Birth Date</label>
-                            <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}"
-                                class="form-control @error('birth_date') is-invalid @enderror">
-                            @error('birth_date')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div> --}}
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label>Gender</label>
                             <select class="form-control @error('gender') is-invalid @enderror" name="gender"
                                 data-placeholder="Select Gender" style="width: 100%;">
@@ -89,7 +79,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label>Admin Type</label>
                             <select class="form-control @error('admin_type') is-invalid @enderror" name="admin_type"
                                 data-placeholder="Select admin_type" style="width: 100%;">
@@ -106,18 +96,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        {{-- <div class="col-4">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                value="{{ old('phone') }}" id="phone" placeholder="Phone Number">
-                            @error('phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div> --}}
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="email">Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ $admin->email }}" id="email" placeholder="name@example.com">
@@ -127,8 +106,8 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
-                            <label for="image">Trainer Image</label>
+                        <div class="col-md-6">
+                            <label for="image">Admin Image</label>
                             <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
                                 id="image">
                             @error('image')
@@ -138,33 +117,6 @@
                             @enderror
                         </div>
                     </div>
-                    {{-- <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="experiences">Experiences</label>
-                            <textarea class="editor form-control form-control custom-file @error('experiences') is-invalid @enderror"
-                                id="experiences" name="experiences" placeholder="Enter Trainer Experiences" rows="6">{{ old('experiences') }}</textarea>
-                            @error('experiences')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-row mb-4">
-                        <div class="col-12">
-                            <label for="certificates">Certificates</label>
-                            <textarea class="editor form-control form-control custom-file @error('certificates') is-invalid @enderror"
-                                id="certificates" name="certificates" placeholder="Enter Trainer Certificates" rows="6">{{ old('certificates') }}</textarea>
-                            @error('certificates')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div> --}}
-
-
                     <div class="form-row my-4">
                         <div class="col-2">
                             <input type="submit" class="btn btn-warning" value="Update Admin">

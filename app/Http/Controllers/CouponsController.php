@@ -92,7 +92,7 @@ class CouponsController extends Controller
         $coupon = Coupon::where('code', $request->coupon_code)->first();
 
         if (!$coupon) {
-            return back()->withErrors('هذا الكوبون غير موجود');
+            return back()->with('error', 'هذا الكوبون غير صالح');
         }
 
         // Store coupon details in session

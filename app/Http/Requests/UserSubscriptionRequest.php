@@ -28,6 +28,7 @@ class UserSubscriptionRequest extends FormRequest
             'starting_date' => 'required|date',
             'payment_method' => 'required',
             'package_id' => 'required|exists:training_packages,id',
+            'duration_id' => 'required|exists:training_package_durations,id',
             'trainer_id' => 'nullable|exists:trainers,id',
         ];
     }
@@ -41,8 +42,8 @@ class UserSubscriptionRequest extends FormRequest
             'starting_date' => 'Starting Date',
             'payment_method' => 'Payment Method',
             'package_id' => 'Package',
+            'duration_id' => 'Package Duration',
             'trainer_id' => 'Trainer',
-
         ];
     }
 
@@ -66,6 +67,8 @@ class UserSubscriptionRequest extends FormRequest
             'payment_method.required' => 'حقل وسيلة الدفع مطلوب.',
             'package_id.required' => 'حقل الباقة مطلوب.',
             'package_id.exists' => 'الباقة المحددة غير موجودة.',
+            'duration_id.required' => 'حقل مدة الباقة مطلوب.',
+            'duration_id.exists' => 'المدة المحددة غير موجودة.',
             'trainer_id.exists' => 'المدرب المحدد غير موجود.',
         ];
     }

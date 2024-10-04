@@ -29,7 +29,7 @@
                 <form action="{{ route('dashboard.subscriptions.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="name">Subscriber Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                                 value="{{ old('name') }}" placeholder="Enter Subscriber Name" id="name"
@@ -41,7 +41,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="email">Subscriber Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" placeholder="Enter Subscriber Email" id="email"
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="form-row mb-3">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="whatsapp_phone">Whatsapp Phone</label>
                             <input type="text" class="form-control @error('whatsapp_phone') is-invalid @enderror"
                                 name="whatsapp_phone" value="{{ old('whatsapp_phone') }}" id="whatsapp_phone"
@@ -67,7 +67,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <label for="starting_date">Starting Date</label>
                             <input id="starting_date" type="date" name="starting_date"
                                 value="{{ old('starting_date', \Carbon\Carbon::now()->format('Y-m-d')) }}"
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="form-row mb-3">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="package_id">Package</label>
                             <select class="select2 form-control @error('package_id') is-invalid @enderror" name="package_id"
                                 id="package_id" style="width: 100%;">
@@ -97,7 +97,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="duration_id">Duration</label>
                             <select dir="rtl" class="select2 form-control @error('duration_id') is-invalid @enderror"
                                 name="duration_id" id="duration_id" style="width: 100%;">
@@ -110,8 +110,7 @@
                             @enderror
                         </div>
 
-
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="trainer_id">Trainer</label>
                             <select class="select2 form-control @error('trainer_id') is-invalid @enderror" name="trainer_id"
                                 id="trainer_id" style="width: 100%;">
@@ -132,7 +131,7 @@
                     </div>
 
                     <div class="form-row mb-3">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="amount_paid">Amount Paid</label>
                             <input id="amount_paid" type="number" name="amount_paid" value="{{ old('amount_paid') }}"
                                 placeholder="Enter Amount Paid "
@@ -142,9 +141,8 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="payment_status">Payment Status</label>
                             <select class="select2 form-control @error('payment_status') is-invalid @enderror"
                                 name="payment_status" id="payment_status" style="width: 100%;">
@@ -165,7 +163,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="transaction_id">Transaction ID</label>
                             <input type="text" class="form-control @error('transaction_id') is-invalid @enderror"
                                 name="transaction_id" placeholder="Pay First to Get This ID" id="transaction_id"
@@ -176,11 +174,10 @@
                                 </span>
                             @enderror
                         </div>
-
                     </div>
 
                     <div class="form-row my-4">
-                        <div class="col-2">
+                        <div class="col-3">
                             <input type="submit" value="Add Subscription" class="btn btn-primary">
                         </div>
                     </div>

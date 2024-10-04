@@ -117,11 +117,6 @@
                 <!-- end Delete Confirmation Modal -->
             </div>
         </div>
-        {{-- <div class="row">
-            <div class="col-12">
-                {{ $subscriptions->withQueryString()->links() }}
-            </div>
-        </div> --}}
     </div>
 @endsection
 
@@ -188,5 +183,4 @@
             modal.find('#deleteForm').attr('action', formAction);
         });
     </script>
-
 @endsection

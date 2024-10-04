@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminEditProfileRequest extends FormRequest
 {
@@ -21,20 +22,16 @@ class AdminEditProfileRequest extends FormRequest
      */
     public function rules(): array
     {
+        $adminId  = $this->route('admin'); //  Get the admin ID from the route (Will be null when creating a new admin)
         return [
             'name' => ['required', 'string', 'max:255'],
-            // 'job_title' => ['required', 'string', 'max:255'],
-            // 'birth_date' => ['required', 'date'],
             'admin_type' => ['required', 'in:super_admin,admin'],
-            'password' => ['required', 'min:8', 'confirmed'],
+            'password' => ['sometimes', 'required', 'string', 'min:8', 'confirmed'],
             'gender' => ['required', 'in:male,female'],
             'location' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:15', 'unique:admins,phone'],
-            'email' => ['required', 'email', 'unique:admins,email'],
+            'phone' => ['required', 'string', 'max:15', Rule::unique('admins', 'phone')->ignore($adminId)],
+            'email' => ['required', 'email', Rule::unique('admins', 'email')->ignore($adminId)],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
-            // 'experiences' => ['nullable', 'string'],
-            // 'certificates' => ['nullable', 'string'],
-            'password' => ['sometimes']
         ];
     }
 }

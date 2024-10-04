@@ -48,42 +48,16 @@
                                     <a href="{{ route('dashboard.admin.edit', $admin->id) }}" class="btn btn-warning"><i
                                             class="fas fa-solid fa-pen"></i></a>
                                     @if ($admin->admin_type == 'super_admin')
-                                        <a href="{{ route('dashboard.admin.admin',['id'=>$admin->id]) }}" class="btn btn-success">Make Admin</a>
+                                        <a href="{{ route('dashboard.admin.admin', ['id' => $admin->id]) }}"
+                                            class="btn btn-success">Make Admin</a>
                                     @else
-                                        <a href="{{ route('dashboard.admin.super',['id'=>$admin->id]) }}" class="btn btn-success">Make Super Admin</a>
+                                        <a href="{{ route('dashboard.admin.super', ['id' => $admin->id]) }}"
+                                            class="btn btn-success">Make Super Admin</a>
                                     @endif
-                                    {{-- <a href="" class="btn btn-success">Make Super Admin</a> --}}
-                                    <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal{{ $admin->id }}"><i class="fas fa-trash"></i></button>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                        data-id="{{ $admin->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
-                            <!-- Delete Confirmation Modal -->
-                            <div class="modal fade" id="deleteModal{{ $admin->id }}" tabindex="-1" role="dialog"
-                                aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete {{ '  ' . $admin->name }}?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
-                                            <form action="{{ route('dashboard.admin.destroy', $admin->id) }}"
-                                                method="post">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         @empty
                             <tr>
                                 <td colspan="8">Nothing to Show...</td>
@@ -105,13 +79,35 @@
                     </tfoot>
                 </table>
 
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form id="deleteForm" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Delete Confirmation Modal -->
+
             </div>
         </div>
-        {{-- <div class="row">
-            <div class="col-12">
-                {{ $trainers->withQueryString()->links() }}
-            </div>
-        </div> --}}
     </div>
 @endsection
 
@@ -165,6 +161,16 @@
                     'colvis' // Column visibility button
                 ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+    <script>
+        //delete modal 
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var adminId = button.data('id'); // Extract info from data-* attributes
+            var formAction = "{{ route('dashboard.admin.destroy', '') }}/" + adminId;
+            var modal = $(this);
+            modal.find('#deleteForm').attr('action', formAction);
         });
     </script>
 @endsection
