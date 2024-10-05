@@ -45,7 +45,6 @@ class AdminProfileController extends Controller
             $data['image'] = $imagePath;
         }
         $admin->update($data);
-        return redirect()->route('dashboard.adminprofile.show', $admin->id)->with('success', 'Admin updated successfully');
+        return redirect()->route('dashboard.adminprofile.show', $admin->id)->with('success', 'Your profile updated successfully');
     }
-
 }

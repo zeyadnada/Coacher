@@ -111,8 +111,8 @@ Route::middleware(['admin'])
 
         Route::middleware(['super-admin-authorization'])->group(function () {
             Route::resource('admin', AdminController::class);
-            Route::get('/admin/admin/{id}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
-            Route::get('/admin/super/{id}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
+            Route::get('/admin/admin/{admin}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
+            Route::get('/admin/super/{admin}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
             Route::get('/payment-settings', [PaymentconfigController::class, 'index'])->name('setting.paymentConfig.index');
             Route::post('/payment-settings/update', [PaymentconfigController::class, 'updatePaymentConfig'])->name('setting.paymentConfig.update');
             Route::get('/whatsApp-settings', [WhatsAppConfigontroller::class, 'index'])->name('setting.whatsApp.index');

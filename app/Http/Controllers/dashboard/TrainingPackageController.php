@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exceptions\CannotDeleteRecordException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TrainingPackageRequest;
 use App\Models\Admin;
 use App\Models\TrainingPackage;
 use App\Models\TrainingPackageDuration;
 use App\Notifications\TrainingPackageCreatedNotification;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
@@ -110,9 +112,19 @@ class TrainingPackageController extends Controller
         // Determine the durations to delete
         $durationsToDelete = array_diff($existingDurations, $submittedDurations);
 
-        // Delete durations that were removed from the form in single query
+        // Delete durations that were removed from the form in a single query
         if (!empty($durationsToDelete)) {
-            TrainingPackageDuration::whereIn('id', $durationsToDelete)->delete();
+            try {
+                TrainingPackageDuration::whereIn('id', $durationsToDelete)->delete();
+            } catch (QueryException $e) {
+                // Check for SQL error code 23000 (foreign key constraint violation)
+                if ($e->getCode() == "23000") {
+                    throw new CannotDeleteRecordException('Cannot delete this duration because it is associated with one or more active subscriptions.');
+                } else {
+                    // Re-throw the exception if it's another type of database error
+                    throw $e;
+                }
+            }
         }
 
         // Prepare the durations data for update or creation
@@ -150,14 +162,23 @@ class TrainingPackageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy($id)
     {
         $package = TrainingPackage::findOrFail($id);
-        if ($package->image && Storage::disk('public')->exists($package->image)) {
-            Storage::disk('public')->delete($package->image);
+
+        try {
+            if ($package->image && Storage::disk('public')->exists($package->image)) {
+                Storage::disk('public')->delete($package->image);
+            }
+            $package->delete();
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") {
+                throw new CannotDeleteRecordException('Cannot delete this package because it has associated subscriptions.');
+            }
+            throw $e; // Re-throw for other database errors
+
         }
-        // Delete package (durations will be automatically deleted because onDelete('cascade') is set)
-        $package->delete();
         return back()->with('success', 'Training Package Deleted Successfully.');
     }
 }
