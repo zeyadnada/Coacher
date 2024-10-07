@@ -11,12 +11,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                @if (auth()->guard('admin')->user()->image )
-                <img src="{{  asset('storage/' . auth()->guard('admin')->user()->image) }}" class="img-circle elevation-2" alt="User Image">
-
+                @if (auth()->guard('admin')->user()->image)
+                    <img src="{{ asset('storage/' . auth()->guard('admin')->user()->image) }}"
+                        class="img-circle elevation-2" alt="User Image">
                 @else
-
-                <img src="/dashboard/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="/dashboard/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 @endif
             </div>
             <div class="info">
@@ -57,7 +56,11 @@
             $isActiveSettings =
                 request()->routeIs('dashboard.transformation.index') ||
                 request()->routeIs('dashboard.setting.paymentConfig.index') ||
-                request()->routeIs('dashboard.setting.whatsApp.index');
+                request()->routeIs('dashboard.setting.whatsApp.index')||
+            request()->routeIs('dashboard.setting.index')||
+            request()->routeIs('dashboard.setting.create');
+            // request()->routeIs('dashboard.setting.edit');
+
         @endphp
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -253,6 +256,22 @@
                                     <p>{{ __('Payment-config') }}</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.setting.index') }}"
+                                    class="nav-link {{ request()->routeIs('dashboard.setting.index') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Content Management') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.setting.create') }}"
+                                    class="nav-link {{ request()->routeIs('dashboard.setting.create') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Create Content') }}</p>
+                                </a>
+                            </li>
+                            
                         </ul>
                     </li>
                 @endif

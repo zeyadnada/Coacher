@@ -48,10 +48,10 @@
                                     <a href="{{ route('dashboard.admin.edit', $admin->id) }}" class="btn btn-warning"><i
                                             class="fas fa-solid fa-pen"></i></a>
                                     @if ($admin->admin_type == 'super_admin')
-                                        <a href="{{ route('dashboard.admin.admin', ['id' => $admin->id]) }}"
+                                        <a href="{{ route('dashboard.admin.admin', ['admin' => $admin->id]) }}"
                                             class="btn btn-success">Make Admin</a>
                                     @else
-                                        <a href="{{ route('dashboard.admin.super', ['id' => $admin->id]) }}"
+                                        <a href="{{ route('dashboard.admin.super', ['admin' => $admin->id]) }}"
                                             class="btn btn-success">Make Super Admin</a>
                                     @endif
                                     <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"

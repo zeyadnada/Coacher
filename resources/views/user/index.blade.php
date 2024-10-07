@@ -67,9 +67,10 @@
 
 
     <!-- promotion Section Begin -->
-    <div class="offer-section">
+    <div class="offer-section" style="display: {{ \App\Models\Setting::where('key', 'offers')->first()->is_visible }}">
         <p class="mb-0 text-center text-white">
-            <strong> الحق العروض,</strong> العروض متاحة لفترة محدودة
+            <Strong>{{ \App\Models\Setting::where('key', 'offers')->first()->value }}</Strong>
+            {{-- <strong> الحق العروض,</strong> العروض متاحة لفترة محدودة --}}
         </p>
     </div>
     <!-- promotion Section End -->
@@ -82,7 +83,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="bs-text">
-                            <h2>مع بعض <strong style="color: #f36100">هنغير </strong>الواقع</h2>
+                            <h2 style="display: {{ \App\Models\Setting::where('key', 'title')->first()->is_visible }} ">
+                                <strong>{{ \App\Models\Setting::where('key', 'title')->first()->value }}</strong></h2>
                             <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
                             <a href="#packages" class="primary-btn btn-normal"> اشترك الان
                             </a>
@@ -170,7 +172,8 @@
                                 <div class="leave-comment">
                                     <select name="duration" id="duration-{{ $package->id }}" class="duration-select">
                                         @foreach ($package->durations as $key => $duration)
-                                            <option value="{{ json_encode($duration) }}" {{ $key === 0 ? 'selected' : '' }}>
+                                            <option value="{{ json_encode($duration) }}"
+                                                {{ $key === 0 ? 'selected' : '' }}>
                                                 {{ $duration->duration }}
                                             </option>
                                         @endforeach

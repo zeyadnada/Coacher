@@ -6,6 +6,7 @@ use App\Http\Controllers\dashboard\AdminController;
 use App\Http\Controllers\dashboard\AdminProfileController;
 use App\Http\Controllers\dashboard\HomePage;
 use App\Http\Controllers\dashboard\PaymentconfigController;
+use App\Http\Controllers\dashboard\SettingController;
 use App\Http\Controllers\dashboard\SubscriptionController;
 use App\Http\Controllers\dashboard\TrainerController;
 use App\Http\Controllers\dashboard\TrainingPackageController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\user\HomePageController;
 use App\Http\Controllers\user\SubscriptionController as UserSubscriptionController;
 use App\Http\Controllers\user\TrainerController as UserTrainerController;
 use App\Http\Controllers\user\TrainingPackageController as UserTrainingPackageController;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -118,6 +120,7 @@ Route::middleware(['admin'])
             Route::get('/whatsApp-settings', [WhatsAppConfigontroller::class, 'index'])->name('setting.whatsApp.index');
             Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
             Route::resource('/transformation', TransformationController::class);
+            Route::resource('/setting', SettingController::class);
         });
     });
 Route::prefix('admin')->name('admin.')->group(function () {
