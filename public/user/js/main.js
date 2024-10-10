@@ -192,3 +192,35 @@ document.addEventListener('scroll', function() {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
+
+  // dynamic activate navbar links on scroll
+  document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".section");
+    const currentPage = window.location.pathname.split("/").pop();
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach((entry) => {
+          const sectionId = entry.target.id;
+          const navLink = document.querySelector(`nav ul li a[href="/#${sectionId}"]`);
+  
+          // Check if the navLink exists before proceeding
+          if (navLink) {
+            const navItem = navLink.parentElement;
+  
+            if (entry.isIntersecting) {
+              navItem.classList.add("active");
+            } else {
+              navItem.classList.remove("active");
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+  
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  });

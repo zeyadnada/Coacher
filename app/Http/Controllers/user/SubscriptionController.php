@@ -40,6 +40,9 @@ class SubscriptionController extends Controller
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID'));
         } elseif ($request->payment_method === "instapay") {
+            $subscription->update([
+                'transaction_id' =>'Instapay'
+            ]);
             return view('user.transaction_pages.instapay');
         }
     }

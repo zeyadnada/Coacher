@@ -29,17 +29,14 @@
                                         {{ $package->title }}</h4>
                                     <!-- data-bs-placement for the placement of the tooltip && data-bs-title should be the same conent of the h4 like shown -->
                                     <!-- <a href="#"><i class="fa fa-angle-left"></i></a> -->
-                                    <span class="ml-5">{{ $package->duration }}</span>
+                                    {{-- <span class="ml-5">{{ $package->duration }}</span>
                                     @if ($package->discount_price)
                                         <span style="font-size: 17px"><del>{{ $package->price }}</del></span>
                                         <span class="pr-1">{{ $package->discount_price }}</span>
                                         <span style="font-size: 15px">جنيه</span>
                                     @else
                                         <span>{{ $package->price }}EGP</span>
-                                    @endif
-
-
-
+                                    @endif --}}
                                 </div>
                                 <div class="text-left">
                                     <a href="{{ route('user.training-packages.show', $package->id) }}" role="button"

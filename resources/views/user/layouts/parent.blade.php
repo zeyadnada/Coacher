@@ -82,25 +82,25 @@
             <div class="row">
                 <div class="col-lg-3 d-flex">
                     <div class="logo d-inline-block">
-                        <a href="{{ route('home') }}">
+                        <a href="/">
                             <img src="/user/img/logo.png" alt="Logo" />
                         </a>
                     </div>
                     <div class="text-center d-lg-none d-inline-block flex-fill pl-4rem">
-                        <a href="{{ route('home') }}#packages" class="btn btn-outline-primary"> اشترك الان </a>
+                        <a href="/#packages" class="btn btn-outline-primary"> اشترك الان </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="nav-menu">
                         <ul>
-                            <li class="@yield('home')">
-                                <a href="{{ route('home') }}"> الصفحة الرئيسية </a>
+                            <li>
+                                <a href="/#main"> الصفحة الرئيسية </a>
                             </li>
-                            <li class="@yield('package')"><a href="{{ route('home') }}#packages">الباقات
+                            <li><a href="/#packages">الباقات
                                 </a></li>
-                            <li><a href="{{ route('home') }}#transformations">انجازات المشتركين</a></li>
+                            <li><a href="/#transformations">انجازات المشتركين</a></li>
                             <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
-                            <li><a href="#footer"> اتصل بنا </a></li>
+                            <li><a href="/#footer"> اتصل بنا </a></li>
                         </ul>
                     </nav>
                 </div>
@@ -116,7 +116,7 @@
                 </div> --}}
                 <div class="col-lg-3">
                     <div class="text-left top-option">
-                        <a href="{{ route('home') }}#packages" class="btn btn-outline-primary ml-2"> اشترك الان </a>
+                        <a href="/#packages" class="btn btn-outline-primary ml-2"> اشترك الان </a>
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
     <!-- Get In Touch Section End -->
 
     <!-- Footer Section Begin -->
-    <section class="footer-section" id="footer">
+    <section class="footer-section section" id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">

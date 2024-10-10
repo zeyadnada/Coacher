@@ -16,43 +16,66 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration', 'trainer:id,name'])
+        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration,months', 'trainer:id,name'])
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->get()
+            ->map(function ($subscription) {
+                $subscription->ending_date = \Carbon\Carbon::parse($subscription->starting_date)
+                    ->addMonths($subscription->duration->months)->format('Y-m-d');
+                return $subscription;
+            });
+
         $title = 'All Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function paid()
     {
-        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration', 'trainer:id,name'])
+        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration,months', 'trainer:id,name'])
             ->where('payment_status', 'Paid')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->get()
+            ->map(function ($subscription) {
+                $subscription->ending_date = \Carbon\Carbon::parse($subscription->starting_date)
+                    ->addMonths($subscription->duration->months)->format('Y-m-d');
+                return $subscription;
+            });
+
         $title = 'All Paid Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function pending()
     {
-        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration', 'trainer:id,name'])
+        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration,months', 'trainer:id,name'])
             ->where('payment_status', 'Pending')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->get()
+            ->map(function ($subscription) {
+                $subscription->ending_date = \Carbon\Carbon::parse($subscription->starting_date)
+                    ->addMonths($subscription->duration->months)->format('Y-m-d');
+                return $subscription;
+            });
+
         $title = 'All Pending Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
 
     public function canceled()
     {
-        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration', 'trainer:id,name'])
+        $subscriptions = Subscription::with(['package:id,title', 'duration:id,duration,months', 'trainer:id,name'])
             ->where('payment_status', 'Cancelled')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->get()
+            ->map(function ($subscription) {
+                $subscription->ending_date = \Carbon\Carbon::parse($subscription->starting_date)
+                    ->addMonths($subscription->duration->months)->format('Y-m-d');
+                return $subscription;
+            });
+
         $title = 'All Canceled Subscriptions';
         return view('dashboard.subscription.index', compact('subscriptions', 'title'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -87,7 +110,9 @@ class SubscriptionController extends Controller
      */
     public function show($id)
     {
-        $subscription = Subscription::with(['package:id,title', 'duration:id,duration', 'trainer:id,name'])->findOrFail($id);
+        $subscription = Subscription::with(['package:id,title', 'duration:id,duration,months', 'trainer:id,name'])->findOrFail($id);
+        $subscription->ending_date = \Carbon\Carbon::parse($subscription->starting_date)
+            ->addMonths($subscription->duration->months)->format('Y-m-d');
         return view('dashboard.subscription.show', compact('subscription'));
     }
 

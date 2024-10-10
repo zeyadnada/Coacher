@@ -1,8 +1,7 @@
 @extends('user.layouts.parent')
-@section('title',"ReFit Academy | $trainer->name")
-
+@section('title', "ReFit Academy | $trainer->name")
+@section('trainer', 'active')
 @section('content')
-
     <!-- Breadcrumb Section Begin -->
     {{-- <section class="breadcrumb-section set-bg" data-setbg="/user/img/breadcrumb-bg.jpg">
         <div class="container">
@@ -35,7 +34,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="cd-trainer-pic">
-                                        <img src="{{ '/storage/' . $trainer->image }}" alt="" />
+                                        <img src="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}"
+                                            alt="trainer" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">

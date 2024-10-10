@@ -48,6 +48,7 @@ class TrainingPackageController extends Controller
         foreach ($request->durations as $duration) {
             $durationsData[] = [
                 'duration' => $duration['duration'],
+                'months' => $duration['months'],
                 'price' => $duration['price'],
                 'discount_price' => $duration['discount_price'] ?? null,
                 'package_id' => $package->id,
@@ -134,6 +135,7 @@ class TrainingPackageController extends Controller
                 // Update existing duration
                 $package->durations()->where('id', $duration['id'])->update([
                     'duration' => $duration['duration'],
+                    'months' => $duration['months'],
                     'price' => $duration['price'],
                     'discount_price' => $duration['discount_price'] ?? null,
                 ]);
@@ -141,6 +143,7 @@ class TrainingPackageController extends Controller
                 // Prepare new duration for insertion
                 $durationsData[] = [
                     'duration' => $duration['duration'],
+                    'months' => $duration['months'],
                     'price' => $duration['price'],
                     'discount_price' => $duration['discount_price'] ?? null,
                     'package_id' => $package->id,

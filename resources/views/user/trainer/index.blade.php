@@ -13,8 +13,7 @@
                             <span> فريقنا </span>
                             <h2>تدرب مع الخبراء</h2>
                         </div>
-                        <a href="{{ route('user.training-packages.index') }}"
-                            class="primary-btn btn-normal appoinment-btn">اشترك الان</a>
+                        <a href="/#packages" class="primary-btn btn-normal appoinment-btn">اشترك الان</a>
                     </div>
                 </div>
             </div>
@@ -23,7 +22,8 @@
                     <div class="col-lg-4 col-sm-6">
                         <a href="{{ route('user.trainer.show', $trainer->id) }}">
 
-                            <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $trainer->image }}">
+                            <div class="ts-item set-bg"
+                                data-setbg="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}">
                                 <div class="ts_text">
                                     <h4>{{ $trainer->name }}</h4>
                                     <span>{{ $trainer->job_title }}</span>

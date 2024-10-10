@@ -55,11 +55,6 @@
         p {
             margin: 0 0 20px;
         }
-
-        /*
-                                                                    .my-1-6 {
-                                                                    margin-bottom: 1.6rem;
-                                                                } */
     </style>
 @endsection
 
@@ -83,7 +78,11 @@
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="d-flex align-items-center">
-                                        <i class="fa fa-solid fa-clock mr-2"></i> {{ $duration->duration }}
+                                        <i class="fa fa-solid fa-clock mr-2"></i>
+                                        <p dir="rtl" class="mb-0">
+                                            ({{ $duration->months }})
+                                            {{ $duration->duration }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col">

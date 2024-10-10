@@ -25,7 +25,7 @@ class SubscriptionRequet extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'whatsapp_phone' => 'required|string|max:15',
-            'starting_date' => 'nullable|date',
+            'starting_date' => 'required|date',
             'package_id' => 'required|exists:training_packages,id',
             'duration_id' => 'required|exists:training_package_durations,id',
             'trainer_id' => 'nullable|exists:trainers,id',
@@ -78,6 +78,7 @@ class SubscriptionRequet extends FormRequest
 
             'trainer_id.exists' => 'المدرب المحدد غير موجود.',
 
+            'starting_date.required' => 'حقل تاريخ البدء مطلوب',
             'starting_date.date' => 'تاريخ البدء يجب أن يكون تاريخًا صالحًا.',
 
             'payment_status.required' => 'حقل حالة الدفع مطلوب.',

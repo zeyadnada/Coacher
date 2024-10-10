@@ -11,7 +11,7 @@ class TrainingPackageController extends Controller
 {
     public function index()
     {
-        $packages = TrainingPackage::select('id', 'title', 'image', 'duration', 'price', 'discount_price')->get();
+        $packages = TrainingPackage::select('id', 'title', 'image')->get();
         return view('user.training_package.index', compact('packages'));
     }
 

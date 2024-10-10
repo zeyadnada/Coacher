@@ -54,6 +54,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
 // Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::class, 'resend'])->name('verification.resend');
 
+
 ///////////////////////////////////////////{*--User Routing--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
@@ -63,7 +64,7 @@ Route::as('user.')
         Route::get('/about', function () {
             return view('user.about');
         })->name('about');
-        Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
+        // Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
         Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
         Route::post('/subscribe', [UserSubscriptionController::class, 'store'])->name('subscription.store');
         Route::put('/subscribe/{id}', [UserSubscriptionController::class, 'update'])->name('subscription.update');
@@ -115,12 +116,15 @@ Route::middleware(['admin'])
             Route::resource('admin', AdminController::class);
             Route::get('/admin/admin/{admin}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
             Route::get('/admin/super/{admin}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
+            
+            ////////////////////////////////////////////{*-- Settings routes--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
             Route::get('/payment-settings', [PaymentconfigController::class, 'index'])->name('setting.paymentConfig.index');
             Route::post('/payment-settings/update', [PaymentconfigController::class, 'updatePaymentConfig'])->name('setting.paymentConfig.update');
             Route::get('/whatsApp-settings', [WhatsAppConfigontroller::class, 'index'])->name('setting.whatsApp.index');
             Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
             Route::resource('/transformation', TransformationController::class);
             Route::resource('/setting', SettingController::class);
+            
         });
     });
 Route::prefix('admin')->name('admin.')->group(function () {

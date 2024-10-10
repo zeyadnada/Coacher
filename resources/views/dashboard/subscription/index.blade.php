@@ -29,6 +29,7 @@
                             <th>duration</th>
                             <th>Trainer</th>
                             <th>Starting Date</th>
+                            <th>Ending Date</th>
                             <th>Payment Status</th>
                             <th>Transaction ID</th>
                             <th>Actions</th>
@@ -51,6 +52,7 @@
                                 </td>
 
                                 <td>{{ $subscription->starting_date }}</td>
+                                <td>{{ $subscription->ending_date }}</td>
                                 <td> <span
                                         class="badge {{ $subscription->payment_status == 'Paid' ? 'badge-success' : ($subscription->payment_status == 'Pending' ? 'badge-warning' : 'badge-danger') }}">
                                         {{ $subscription->payment_status }}
@@ -83,6 +85,7 @@
                             <th>Duration</th>
                             <th>Trainer</th>
                             <th>Starting Date</th>
+                            <th>Ending Date</th>
                             <th>Payment Status</th>
                             <th>Transaction ID</th>
                             <th>Actions</th>

@@ -29,6 +29,7 @@ class TrainingPackageRequest extends FormRequest
             // Durations and Prices validation
             'durations' => ['required', 'array', 'min:1'], // At least one duration is required
             'durations.*.duration' => ['required'], // Validate each duration as a required string
+            'durations.*.months' => ['required', 'numeric', 'min:0'], // Validate each months as a required number with a minimum of 0
             'durations.*.price' => ['required', 'numeric', 'min:0'], // Validate each price as a required number with a minimum of 0
             'durations.*.discount_price' => ['nullable', 'numeric', 'min:0'], // Validate discount price as a numeric value, but it's optional
         ];

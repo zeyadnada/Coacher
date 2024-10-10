@@ -103,6 +103,7 @@
                                 <thead>
                                     <tr>
                                         <th>Duration</th>
+                                        <th>Months</th>
                                         <th>Price</th>
                                         <th>Discount Price</th>
                                         <th> <button type="button" class="btn btn-success" id="add_row">+</button></th>
@@ -115,6 +116,17 @@
                                                 class="form-control @error('durations.0.duration') is-invalid @enderror"
                                                 placeholder="duration" required value="{{ old('durations.0.duration') }}">
                                             @error('durations.0.duration')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </td>
+                                        <td>
+                                            <input type="number" name="durations[0][months]"
+                                                class="form-control @error('durations.0.months') is-invalid @enderror"
+                                                placeholder="Number of Months" min="0" required
+                                                value="{{ old('durations.0.months') }}">
+                                            @error('durations.0.months')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -210,6 +222,14 @@
                 <td>
                     <input type="text" name="durations[${rowCount}][duration]" class="form-control @error('durations.${rowCount}.duration') is-invalid @enderror" placeholder="duration" required>
                     @error('durations.${rowCount}.duration')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </td>
+                <td>
+                    <input type="number" name="durations[${rowCount}][months]" class="form-control @error('durations.${rowCount}.months') is-invalid @enderror" placeholder="Number of Months" min="0" required>
+                    @error('durations.${rowCount}.months')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

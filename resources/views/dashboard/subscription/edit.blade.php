@@ -272,7 +272,9 @@
                             $.each(data, function(key, duration) {
                                 $('#duration_id').append('<option value="' + duration.id + '"' +
                                     (duration.id == selectedDurationId ? ' selected' : '') +
-                                    '>' + duration.duration + ' - ' + duration.price +
+                                    '>' + duration.duration + ' - ' + (duration
+                                        .discount_price ? duration.discount_price : duration
+                                        .price) +
                                     '</option>');
                             });
                         }

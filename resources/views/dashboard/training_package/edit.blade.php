@@ -116,6 +116,7 @@
                                 <thead>
                                     <tr>
                                         <th>Duration</th>
+                                        <th>Months</th>
                                         <th>Price</th>
                                         <th>Discount Price</th>
                                         <th> <button type="button" class="btn btn-success" id="add_row">+</button></th>
@@ -130,6 +131,17 @@
                                                     placeholder="duration"
                                                     value="{{ old('durations.' . $key . '.duration', $duration->duration) }}">
                                                 @error('durations.' . $key . '.duration')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </td>
+                                            <td>
+                                                <input type="number" name="durations[{{ $key }}][months]"
+                                                    class="form-control @error('durations.' . $key . '.months') is-invalid @enderror"
+                                                    placeholder="Number of Months"
+                                                    value="{{ old('durations.' . $key . '.months', $duration->months) }}">
+                                                @error('durations.' . $key . '.months')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -243,6 +255,9 @@
                 <tr>
                     <td>
                         <input type="text" name="durations[${rowIndex}][duration]" class="form-control" placeholder="duration" required>
+                    </td>
+                     <td>
+                        <input type="number" name="durations[${rowIndex}][months]" class="form-control" placeholder="Number of Months" min="0" required>
                     </td>
                     <td>
                         <input type="number" name="durations[${rowIndex}][price]" class="form-control" placeholder="price" min="0" required>

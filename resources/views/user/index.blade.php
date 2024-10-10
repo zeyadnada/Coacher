@@ -1,7 +1,6 @@
 @extends('user.layouts.parent')
 
 @section('title', 'Refit Academy')
-@section('home', 'active')
 @section('css')
     <style>
         .header-section {
@@ -67,24 +66,45 @@
 
 
     <!-- promotion Section Begin -->
-    <div class="offer-section" style="display: {{ \App\Models\Setting::where('key', 'offers')->first()->is_visible }}">
+    {{-- <div class="offer-section" style="display: {{ \App\Models\Setting::where('key', 'offers')->first()->is_visible }}">
         <p class="mb-0 text-center text-white">
             <Strong>{{ \App\Models\Setting::where('key', 'offers')->first()->value }}</Strong>
-            {{-- <strong> الحق العروض,</strong> العروض متاحة لفترة محدودة --}}
+        </p>
+    </div> --}}
+    <div class="offer-section">
+        <p class="mb-0 text-center text-white">
+            <strong> الحق العروض,</strong> العروض متاحة لفترة محدودة
         </p>
     </div>
     <!-- promotion Section End -->
 
 
-    <!-- Header Section Begin -->
+    <!-- Header Hero Section Begin -->
+    {{-- <section class="hero-section section" id="main">
+        <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="bs-text">
+                            <h2 style="display:">
+                                <strong></strong>
+                            </h2>
+                            <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
+                            <a href="#packages" class="primary-btn btn-normal"> اشترك الان
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section> --}}
     <section class="hero-section">
         <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="bs-text">
-                            <h2 style="display: {{ \App\Models\Setting::where('key', 'title')->first()->is_visible }} ">
-                                <strong>{{ \App\Models\Setting::where('key', 'title')->first()->value }}</strong></h2>
+                            <h2>مع بعض <strong style="color: #f36100">هنغير </strong>الواقع</h2>
                             <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
                             <a href="#packages" class="primary-btn btn-normal"> اشترك الان
                             </a>
@@ -94,10 +114,10 @@
             </div>
         </section>
     </section>
-    <!-- Header Section End -->
+    <!-- Header Hero Section End -->
 
     <!-- ChoseUs Section Begin -->
-    <section class="choseus-section spad">
+    <section class="choseus-section section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -145,7 +165,7 @@
     <!-- ChoseUs Section End -->
 
     <!-- Pricing Section Begin -->
-    <section class="pricing-section spad" id="packages">
+    <section class="pricing-section spad section" id="packages">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -172,8 +192,7 @@
                                 <div class="leave-comment">
                                     <select name="duration" id="duration-{{ $package->id }}" class="duration-select">
                                         @foreach ($package->durations as $key => $duration)
-                                            <option value="{{ json_encode($duration) }}"
-                                                {{ $key === 0 ? 'selected' : '' }}>
+                                            <option value="{{ json_encode($duration) }}" {{ $key === 0 ? 'selected' : '' }}>
                                                 {{ $duration->duration }}
                                             </option>
                                         @endforeach
@@ -201,7 +220,7 @@
     <!-- Pricing Section End -->
 
     <!-- Subscriptions Steps Section Begin -->
-    <section class="choseus-section spad">
+    <section class="choseus-section section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -236,7 +255,7 @@
     <!-- Subscriptions Steps Section Begin -->
 
     <!-- Transformation Section Begin -->
-    <section class="team-section transformation spad" id="transformations">
+    <section class="team-section transformation section spad" id="transformations">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -245,8 +264,7 @@
                             <span> قصص نجاح أبطالنا </span>
                             <h2>إنجازات المشتركين</h2>
                         </div>
-                        <a href="{{ route('user.training-packages.index') }}"
-                            class="primary-btn btn-normal appoinment-btn">اشترك الان</a>
+                        <a href="/#packages" class="primary-btn btn-normal appoinment-btn">اشترك الان</a>
                     </div>
                 </div>
             </div>
@@ -272,7 +290,7 @@
     <!-- Transformation Section End -->
 
     <!-- Video Banner Section Begin -->
-    <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-2.jpg">
+    <section class="banner-section set-bg section" data-setbg="/user/img/hero/hero-2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -289,7 +307,7 @@
     <!--Video Banner Section End -->
 
     <!-- Team Section Begin -->
-    <section class="team-section spad">
+    <section class="team-section section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -298,8 +316,7 @@
                             <span> فريقنا </span>
                             <h2>تدرب مع <strong>فريقنا</strong> المحترف</h2>
                         </div>
-                        <a href="{{ route('user.training-packages.index') }}"
-                            class="primary-btn btn-normal appoinment-btn">
+                        <a href="/#packages" class="primary-btn btn-normal appoinment-btn">
                             احجز الان
                         </a>
                     </div>
@@ -310,7 +327,8 @@
                     @forelse ($trainers as $trainer)
                         <div class="col-lg-4">
                             <a href="{{ route('user.trainer.show', $trainer->id) }}">
-                                <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $trainer->image }}">
+                                <div class="ts-item set-bg"
+                                    data-setbg="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}">
                                     <div class="ts_text">
                                         <h4>{{ $trainer->name }}</h4>
                                         <span>{{ $trainer->job_title }}</span>
@@ -328,7 +346,7 @@
     <!-- Team Section End -->
 
     <!-- FAQ Section Begin -->
-    <section class="accordion-section spad-2" style="background-color:#0a0a0a">
+    <section class="accordion-section spad-2 section" style="background-color:#0a0a0a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
@@ -444,7 +462,7 @@
     <!-- FAQ Section End -->
 
     <!-- Terms and Conditions Section Begin -->
-    <section class="accordion-section spad-2">
+    <section class="accordion-section section spad-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">

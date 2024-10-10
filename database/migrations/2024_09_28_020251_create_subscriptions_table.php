@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('whatsapp_phone', 16);
             $table->date('starting_date')->nullable();
             $table->decimal('amount_paid', 8)->default(0);
-            $table->enum('payment_status', ['Pending', 'Paid', 'Cancelled'])->default('Pending');
+            $table->enum('payment_status', ['Pending', 'Paid', 'Cancelled', 'Failed'])->default('Pending');
             $table->string('transaction_id')->nullable();
             $table->foreignId('package_id')->constrained('training_packages')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('duration_id')->constrained('training_package_durations')->onDelete('restrict')->onUpdate('cascade');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
         });
         // Set the auto-increment starting value to 1001
-        DB::statement('ALTER TABLE subscriptions AUTO_INCREMENT = 200;');
+        DB::statement('ALTER TABLE subscriptions AUTO_INCREMENT = 1217;');
     }
 
     /**

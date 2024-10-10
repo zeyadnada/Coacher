@@ -69,8 +69,7 @@
 
                         <div class="col-md-6">
                             <label for="starting_date">Starting Date</label>
-                            <input id="starting_date" type="date" name="starting_date"
-                                value="{{ old('starting_date', \Carbon\Carbon::now()->format('Y-m-d')) }}"
+                            <input id="starting_date" type="date" name="starting_date" value="{{ old('starting_date') }}"
                                 class="form-control @error('starting_date') is-invalid @enderror">
                             @error('starting_date')
                                 <span class="invalid-feedback" role="alert">
@@ -255,7 +254,9 @@
                             $.each(data, function(key, duration) {
                                 $('#duration_id').append('<option value="' + duration
                                     .id + '">' + duration.duration + ' - ' +
-                                    duration.price + '</option>');
+                                    (duration.discount_price ? duration
+                                        .discount_price : duration.price) +
+                                    '</option>');
                             });
                         }
                     });

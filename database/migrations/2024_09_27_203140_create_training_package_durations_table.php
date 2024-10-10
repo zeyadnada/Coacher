@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('training_package_durations', function (Blueprint $table) {
             $table->id();
             $table->string('duration');
+            $table->integer('months');
             $table->decimal('price', 8);
             $table->decimal('discount_price', 8)->nullable(); // Discounted price
             $table->foreignId('package_id')->constrained('training_packages')->onDelete('cascade')->onUpdate('cascade');

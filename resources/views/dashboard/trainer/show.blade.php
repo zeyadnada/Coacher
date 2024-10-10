@@ -68,7 +68,7 @@
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
                 <div class="card border-0 shadow">
-                    <img src="{{ $trainer->image ? asset('storage/' . $trainer->image) : '' }}" alt="trainer image"
+                    <img src="{{$trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg')}}" alt="trainer image"
                         class="img-full">
                     <div class="card-body">
                         <div class="mb-4">
