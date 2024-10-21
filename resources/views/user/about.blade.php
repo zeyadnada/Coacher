@@ -1,40 +1,27 @@
 @extends('user.layouts.parent')
-
-
 @section('title', 'Refit Academy')
-@section('home', 'active')
 @section('content')
-    <!-- Breadcrumb Section Begin -->
-    <section class="pt-120 bg-black" style="padding-top:70px; background-color: black;">
-        <div class="container">
-            <div class="text-center">
-                <div class="breadcrumb-text">
-                    <h2 class="mb-0" style="color: #f36100">من نحن؟</h2>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
     <!-- About US Section Begin -->
-    <section class="aboutus-section spad" style="background-color: #000;">
+    <section class="aboutus-section spad" style="background-color: #151515;">
         <div class="container-fluid">
+            <div class="section-title mt-2">
+                <h1 style="font-size: 40px; color: #f36100;">من نحن؟</h1>
+            </div>
             <div class="row">
                 <div class="col-lg-6 p-0">
                     <div class="about-video set-bg " data-setbg="/user/img/Refit.jpeg">
                     </div>
                 </div>
                 <div class="col-lg-6 p-0">
-                    <div class="about-text pt-3">
+                    <div class="about-text pt-3" style="background-color: #151515">
                         <div class="section-title">
-                            <span> من نحن </span>
-                            <h1 style="font-size: 20px">احنا <strong>Refit Academy</strong> قدارين نوصلك لاحسن نسخة من نفسك
+                            <h1 style="font-size: 25px">احنا <strong>Refit Academy</strong> قدارين نوصلك لاحسن نسخة من نفسك
                                 في اسرع وقت وباقل
                                 الامكانيات زي الآلاف
                                 اللي ساعدناهم في الخمس سنين اللي فاتوا وده لأن معانا </h1>
                         </div>
 
-                        <div style="color:#c4c4c4; padding-right:20px ">
+                        <div style="color:#c4c4c4; padding-right:24px ">
                             <ul>
                                 <li>
                                     استشاريين باطنة ، جراحة ، عظام ، مخ واعصاب ، علاج طبيعي ، تغذية علاجية عشان تضمن

@@ -185,8 +185,8 @@
                         <h4>روابط سريعة</h4>
                         <ul>
                             <li><a href="{{ route('user.about') }}">من نحن</a></li>
-                            <li><a href="{{ route('home') }}#packages"> باقاتنا </a></li>
-                            <li><a href="{{ route('user.trainer.index') }}"> فريقنا </a></li>
+                            <li><a href="{{ route('user.privacyPolicy') }}"> سياسة الخصوصية </a></li>
+                            <li><a href="{{ route('user.refundPolicy') }}"> سياسة الاسترداد </a></li>
                             <li><a href="{{ route('home') }}#packages"> اشترك </a></li>
                         </ul>
                     </div>

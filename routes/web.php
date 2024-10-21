@@ -64,6 +64,12 @@ Route::as('user.')
         Route::get('/about', function () {
             return view('user.about');
         })->name('about');
+        Route::get('/privacy-policy', function () {
+            return view('user.privacy_policy');
+        })->name('privacyPolicy');
+        Route::get('/refund-policy', function () {
+            return view('user.refund_policy');
+        })->name('refundPolicy');
         // Route::get('/training-packages', [UserTrainingPackageController::class, 'index'])->name('training-packages.index');
         Route::get('/training-packages/{id}', [UserTrainingPackageController::class, 'show'])->name('training-packages.show');
         Route::post('/subscribe', [UserSubscriptionController::class, 'store'])->name('subscription.store');
@@ -116,7 +122,7 @@ Route::middleware(['admin'])
             Route::resource('admin', AdminController::class);
             Route::get('/admin/admin/{admin}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
             Route::get('/admin/super/{admin}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
-            
+
             ////////////////////////////////////////////{*-- Settings routes--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
             Route::get('/payment-settings', [PaymentconfigController::class, 'index'])->name('setting.paymentConfig.index');
             Route::post('/payment-settings/update', [PaymentconfigController::class, 'updatePaymentConfig'])->name('setting.paymentConfig.update');
@@ -124,7 +130,6 @@ Route::middleware(['admin'])
             Route::post('/whatsApp-settings/update', [WhatsAppConfigontroller::class, 'updateWhatsAppConfig'])->name('setting.whatsApp.update');
             Route::resource('/transformation', TransformationController::class);
             Route::resource('/setting', SettingController::class);
-            
         });
     });
 Route::prefix('admin')->name('admin.')->group(function () {
