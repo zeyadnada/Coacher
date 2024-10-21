@@ -15,7 +15,7 @@
     {{-- <link rel="stylesheet"
         href="{{ url('/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> --}}
     <!-- JQVMap -->
-    <link rel="stylesheet" href="{{ url('/dashboard/plugins/jqvmap/jqvmap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ url('/dashboard/plugins/jqvmap/jqvmap.min.css') }}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('/dashboard/dist/css/adminlte.min.css') }}">
     <!-- overlayScrollbars -->
@@ -30,7 +30,7 @@
     {{-- <script src="{{ asset('/js/app.js') }}" defer></script>
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png"> --}}
     <!-- Place favicon.ico in the root directory -->
-    
+
     <!-- Refit Icons  -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
@@ -147,6 +147,7 @@
     <!-- Bootstrap 4 -->
     <script src="{{ url('/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+    <!-- overlayScrollbars -->
     <script src="/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
     <!-- AdminLTE App -->

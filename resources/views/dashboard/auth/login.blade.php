@@ -38,8 +38,8 @@
         @endif
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+            <div class="card-header text-center h1">
+                <b>Refit</b>-Admin
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
@@ -70,6 +70,9 @@
                 </form>
                 <a class="btn btn-link" href="{{ route('admin.password.request') }}">
                     {{ __('Forgot Your Password?') }}
+                </a>
+                <a class="btn btn-link" href="/">
+                    {{ __('Back to Refit Academy') }}
                 </a>
 
 

@@ -241,15 +241,18 @@
 
                             <!-- WhatsApp Phone -->
                             <div class="pb-3">
-                                <label for="whatsapp_phone">رقم الهاتف</label>
+                                <label for="whatsapp_phone">رقم واتساب للمتابعة</label>
                                 <input type="text" class="@error('whatsapp_phone') is-invalid @enderror"
                                     name="whatsapp_phone" value="{{ old('whatsapp_phone') }}" id="whatsapp_phone"
-                                    placeholder="رقم واتساب للمتابعة">
+                                    placeholder="تاكد من صحة الرقم">
                                 @error('whatsapp_phone')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <span class="invalid-feedback d-block" role="alert">
+                                    <strong id="message"></strong>
+                                </span>
                                 <input type="text" hidden name="full_phone" />
                                 <input type="text" hidden name="country_code" />
 
@@ -362,7 +365,7 @@
 
         form.onsubmit = () => {
             if (!iti.isValidNumber()) {
-                message.innerHTML = "Invalid number. Please try again.";
+                message.innerHTML = "رقم غير صالح (تاكد من الرقم)";
                 return false;
             }
 

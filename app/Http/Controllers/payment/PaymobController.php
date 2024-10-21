@@ -105,10 +105,14 @@ class PaymobController extends Controller
                 $payment_details = ($request->all());
                 return (new SubscriptionController())->success_payment($payment_details);
             } else {
-                return (new SubscriptionController())->failed_payment();
+                $payment_details = ($request->all());
+                return (new SubscriptionController())->failed_payment($payment_details);
+                // return (new SubscriptionController())->failed_payment();
             }
         } else {
-            return (new SubscriptionController())->failed_payment();
+            $payment_details = ($request->all());
+            return (new SubscriptionController())->failed_payment($payment_details);
+            // return (new SubscriptionController())->failed_payment();
         }
     }
     // public function refund($transaction_id, $amount): array

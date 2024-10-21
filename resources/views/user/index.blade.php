@@ -22,10 +22,11 @@
                             <div class="status-icon">
                                 <img src="/user/img/confirm-icon.svg" alt="Success" />
                             </div>
-                            <h2> {{ session('paymentSuccess') }}</h2>
+                            <h2>تم اشتراكك</h2>
                             <h4>تمت عملية الدفع بنجاح</h4>
-                            <p>رقم الاشتراك الخاص بك هو: {{ session('subscriptionId') }}</p>
-                            <p>نشكركم على إتمام عملية الدفع. تم تأكيد الطلب الخاص بكم، وسنقوم بالاتصال بك قريبًا.</p>
+                            <h6>رقم الاشتراك الخاص بك هو: <strong
+                                    style="color: #f36100">{{ session('subscriptionId') }}</strong></h6>
+                            <p>{{ session('paymentSuccess') }}</p>
                             <a href="javascript:void(0)" class="pt-4" id="close-section">
                                 <i class="fa fa-home"></i>
                                 العودة للصفحة الرئيسية
@@ -78,7 +79,6 @@
     </div>
     <!-- promotion Section End -->
 
-
     <!-- Header Hero Section Begin -->
     {{-- <section class="hero-section section" id="main">
         <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
@@ -98,6 +98,7 @@
             </div>
         </section>
     </section> --}}
+
     <section class="hero-section">
         <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
             <div class="container">
@@ -117,7 +118,7 @@
     <!-- Header Hero Section End -->
 
     <!-- ChoseUs Section Begin -->
-    <section class="choseus-section section spad">
+    <section class="choseus-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -165,7 +166,7 @@
     <!-- ChoseUs Section End -->
 
     <!-- Pricing Section Begin -->
-    <section class="pricing-section spad section" id="packages">
+    <section class="pricing-section spad" id="packages">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -220,7 +221,7 @@
     <!-- Pricing Section End -->
 
     <!-- Subscriptions Steps Section Begin -->
-    <section class="choseus-section section spad">
+    <section class="choseus-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -255,7 +256,7 @@
     <!-- Subscriptions Steps Section Begin -->
 
     <!-- Transformation Section Begin -->
-    <section class="team-section transformation section spad" id="transformations">
+    <section class="team-section transformation spad" id="transformations">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -290,7 +291,7 @@
     <!-- Transformation Section End -->
 
     <!-- Video Banner Section Begin -->
-    <section class="banner-section set-bg section" data-setbg="/user/img/hero/hero-2.jpg">
+    <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -307,7 +308,7 @@
     <!--Video Banner Section End -->
 
     <!-- Team Section Begin -->
-    <section class="team-section section spad">
+    <section class="team-section spad" id="teams">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -346,7 +347,7 @@
     <!-- Team Section End -->
 
     <!-- FAQ Section Begin -->
-    <section class="accordion-section spad-2 section" style="background-color:#0a0a0a">
+    <section class="accordion-section spad-2" style="background-color:#0a0a0a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
@@ -462,7 +463,7 @@
     <!-- FAQ Section End -->
 
     <!-- Terms and Conditions Section Begin -->
-    <section class="accordion-section section spad-2">
+    <section class="accordion-section spad-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">

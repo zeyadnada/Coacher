@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
             'whatsapp_phone' => $request->input('full_phone'),
             'starting_date' => $request->input('starting_date'),
             'package_id' => $request->input('package_id'),
-            'duration_id'=>$request->input('duration_id'),
+            'duration_id' => $request->input('duration_id'),
         ]);
         $order = $subscription->toArray();
         $order['payment_method'] = $request->payment_method;
@@ -41,11 +41,14 @@ class SubscriptionController extends Controller
             return (new PaymobController())->checkingOut($order, env('PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID'));
         } elseif ($request->payment_method === "instapay") {
             $subscription->update([
-                'transaction_id' =>'Instapay'
+                'transaction_id' => 'Instapay'
             ]);
             return view('user.transaction_pages.instapay');
         }
     }
+
+
+
 
     public  function success_payment($payment_details)
     {
@@ -56,11 +59,22 @@ class SubscriptionController extends Controller
             'transaction_id' => $payment_details['id']
         ]);
         (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
-        return  redirect()->route('home')->with('paymentSuccess', 'تم اشتراكك')->with('subscriptionId', $subscription->id);
+        // return  redirect()->route('home')->session('paymentSuccess', 'تم اشتراكك')->with('subscriptionId', $subscription->id);
+        session([
+            'paymentSuccess' => "شكراً $subscription->name ،تم اشتراكك برقم $subscription->whatsapp_phone. رقم الطلب هو $subscription->id ،وسيتم التواصل معك خلال 24 ساعة.",
+            'subscriptionId' => $subscription->id
+        ]);
+        return redirect()->route('home');
     }
 
-    public  function failed_payment()
+
+
+    public  function failed_payment($payment_details)
     {
+        $subscription = Subscription::findOrFail($payment_details['merchant_order_id']);
+        $subscription->update([
+            'payment_status' => 'Failed',
+        ]);
         return  redirect()->route('home')->with('paymentFailed', 'فشل الاشتراك');
     }
 

@@ -29,7 +29,7 @@ class SubscriptionRequet extends FormRequest
             'package_id' => 'required|exists:training_packages,id',
             'duration_id' => 'required|exists:training_package_durations,id',
             'trainer_id' => 'nullable|exists:trainers,id',
-            'payment_status' => 'required|in:Pending,Paid,Cancelled',
+            'payment_status' => 'required|in:Pending,Paid,Cancelled,Failed',
             'transaction_id' => 'sometimes|required|string|max:255',
             'amount_paid' => 'required|numeric|min:0|max:999999.99',
         ];
@@ -82,7 +82,7 @@ class SubscriptionRequet extends FormRequest
             'starting_date.date' => 'تاريخ البدء يجب أن يكون تاريخًا صالحًا.',
 
             'payment_status.required' => 'حقل حالة الدفع مطلوب.',
-            'payment_status.in' => 'حالة الدفع يجب أن تكون واحدة من: Pending، Paid، Cancelled.',
+            'payment_status.in' => 'حالة الدفع يجب أن تكون واحدة من: Pending، Paid، Cancelled. Failed',
 
             'transaction_id.required' => 'حقل معرف المعاملة مطلوب.',
             'transaction_id.string' => 'معرف المعاملة يجب أن يكون نصًا.',

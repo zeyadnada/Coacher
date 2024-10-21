@@ -58,8 +58,8 @@
     });
 
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
@@ -70,7 +70,7 @@
     --------------------*/
     var hero_s = $(".hs-slider");
     hero_s.owlCarousel({
-        rtl:true,
+        rtl: true,
         loop: true,
         margin: 0,
         nav: true,
@@ -88,7 +88,7 @@
         Team Slider
     --------------------*/
     $(".ts-slider").owlCarousel({
-        rtl:true,
+        rtl: true,
         loop: true,
         margin: 0,
         items: 3,
@@ -114,7 +114,7 @@
         Testimonial Slider
     --------------------*/
     $(".ts_slider").owlCarousel({
-        rtl:true,
+        rtl: true,
         loop: true,
         margin: 0,
         items: 1,
@@ -177,7 +177,7 @@
 
 })(jQuery);
 
-document.addEventListener('scroll', function() {
+document.addEventListener('scroll', function () {
     const navbar = document.getElementsByClassName('header-section')[0];
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -191,36 +191,40 @@ document.addEventListener('scroll', function() {
 // const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+})
 
-  // dynamic activate navbar links on scroll
-  document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".section");
-    const currentPage = window.location.pathname.split("/").pop();
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach((entry) => {
-          const sectionId = entry.target.id;
-          const navLink = document.querySelector(`nav ul li a[href="/#${sectionId}"]`);
-  
-          // Check if the navLink exists before proceeding
-          if (navLink) {
-            const navItem = navLink.parentElement;
-  
-            if (entry.isIntersecting) {
-              navItem.classList.add("active");
-            } else {
-              navItem.classList.remove("active");
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-      }
-    );
-  
+// dynamic activate navbar links on scroll
+function setActiveNavLink() {
+    const sections = document.querySelectorAll("section[id]");
+    const navItems = document.querySelectorAll(".nav-item"); // Assuming your nav links have the class 'nav-item'
+    let foundActiveSection = false;
+
+    // Clear active class from all nav links
+    navItems.forEach((link) => link.classList.remove("active"));
+
+    // Check if any section is in the viewport
     sections.forEach((section) => {
-      observer.observe(section);
+        const rect = section.getBoundingClientRect();
+        if (
+            rect.top <= window.innerHeight / 2 &&
+            rect.bottom >= window.innerHeight / 2
+        ) {
+            const activeLink = document.querySelector(
+                `.nav-link[href="/#${section.id}"]`
+            );
+            if (activeLink) {
+                activeLink.parentElement.classList.add("active");
+            }
+            foundActiveSection = true;
+        }
     });
-  });
+
+    // If no section is in the viewport, set the first nav link as active
+    if (!foundActiveSection && navItems.length > 0) {
+        navItems[0].classList.add("active");
+    }
+}
+
+// Add event listener for scroll and DOM content load
+window.addEventListener("scroll", setActiveNavLink);
+document.addEventListener("DOMContentLoaded", setActiveNavLink);

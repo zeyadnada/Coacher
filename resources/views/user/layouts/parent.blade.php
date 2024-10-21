@@ -93,14 +93,16 @@
                 <div class="col-lg-6">
                     <nav class="nav-menu">
                         <ul>
-                            <li>
-                                <a href="/#main"> الصفحة الرئيسية </a>
+                            <li class="nav-item">
+                                <a href="/#main" class="nav-link"> الصفحة الرئيسية </a>
                             </li>
-                            <li><a href="/#packages">الباقات
+                            <li class="nav-item"><a href="/#packages" class="nav-link">الباقات
                                 </a></li>
-                            <li><a href="/#transformations">انجازات المشتركين</a></li>
-                            <li class="@yield('trainer')"><a href="{{ route('user.trainer.index') }}">فريقنا</a></li>
-                            <li><a href="/#footer"> اتصل بنا </a></li>
+                            <li class="nav-item"><a href="/#transformations" class="nav-link">انجازات المشتركين</a>
+                            </li>
+                            <li class="@yield('trainer') nav-item"><a href="{{ route('user.trainer.index') }}"
+                                    class="nav-link">فريقنا</a></li>
+                            <li class="nav-item"><a href="/#footer" class="nav-link"> اتصل بنا </a></li>
                         </ul>
                     </nav>
                 </div>
