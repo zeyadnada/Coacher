@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('months');
             $table->decimal('price', 8);
             $table->decimal('discount_price', 8)->nullable(); // Discounted price
+            $table->integer('order')->default(0);
             $table->foreignId('package_id')->constrained('training_packages')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

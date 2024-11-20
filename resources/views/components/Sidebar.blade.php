@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard.home') }}" class="brand-link">
-        <img src="/user/img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">ReFit Admin</span>
+        <img src="/assets/img/android-chrome-512x512.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-2" style="opacity: .9">
+        <span class="brand-text font-weight-light">Refit Dashboard</span>
     </a>
 
     <!-- Sidebar -->
@@ -56,11 +56,10 @@
             $isActiveSettings =
                 request()->routeIs('dashboard.transformation.index') ||
                 request()->routeIs('dashboard.setting.paymentConfig.index') ||
-                request()->routeIs('dashboard.setting.whatsApp.index')||
-            request()->routeIs('dashboard.setting.index')||
-            request()->routeIs('dashboard.setting.create');
+                request()->routeIs('dashboard.setting.whatsApp.index') ||
+                request()->routeIs('dashboard.setting.index') ||
+                request()->routeIs('dashboard.setting.create');
             // request()->routeIs('dashboard.setting.edit');
-
         @endphp
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -246,18 +245,18 @@
                                 <a href="{{ route('dashboard.setting.whatsApp.index') }}"
                                     class="nav-link {{ request()->routeIs('dashboard.setting.whatsApp.index') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>{{ __('WhatsApp-config') }}</p>
+                                    <p>{{ __('WhatsApp') }}</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('dashboard.setting.paymentConfig.index') }}"
                                     class="nav-link {{ request()->routeIs('dashboard.setting.paymentConfig.index') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>{{ __('Payment-config') }}</p>
+                                    <p>{{ __('Payment') }}</p>
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('dashboard.setting.index') }}"
                                     class="nav-link {{ request()->routeIs('dashboard.setting.index') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
@@ -270,8 +269,8 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Create Content') }}</p>
                                 </a>
-                            </li>
-                            
+                            </li> --}}
+
                         </ul>
                     </li>
                 @endif

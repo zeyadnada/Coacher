@@ -76,6 +76,6 @@ class TrainingPackage extends Model
     }
     public function durations()
     {
-        return $this->hasMany(TrainingPackageDuration::class, 'package_id');
+        return $this->hasMany(TrainingPackageDuration::class, 'package_id')->orderBy('order', 'asc');
     }
 }

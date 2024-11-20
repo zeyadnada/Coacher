@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Gym Template" />
-    <meta name="keywords" content="Gym, unica, creative, html" />
+    <meta name="description" content="Refit Academy" />
+    <meta name="keywords" content="Refit, Refit Academy, Coaching, online Coaching, Academy, Gym, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>@yield('title')</title>
@@ -234,7 +234,7 @@
     <div class="contact-us">
         <span class="contact-text">اضغط للتواصل عبر واتساب</span>
         <div class="whatsapp-icon d-inline-block">
-            <a href="https://wa.me/201028829262" target="_blank">
+            <a href="https://wa.me/201508927684" target="_blank">
                 <img src="/user/img/whatsapp.png" alt="whatsapp" />
             </a>
         </div>

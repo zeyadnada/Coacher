@@ -68,8 +68,8 @@
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
                 <div class="card border-0 shadow">
-                    <img src="{{$trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg')}}" alt="trainer image"
-                        class="img-full">
+                    <img src="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}"
+                        alt="trainer image" class="img-full">
                     <div class="card-body">
                         <div class="mb-4">
                             <h3 class="h4 mb-0">{{ $trainer->name }}</h3>
@@ -77,7 +77,7 @@
                             <span class="text-primary">{{ $trainer->job_title }}</span>
                         </div>
                         <ul class="list-unstyled mb-4">
-                            <li class="mb-3"><i class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>
+                            <li class="mb-3"><i class="fas fa-birthday-cake display-25 me-3 text-secondary mr-2"></i>
                                 {{ \Carbon\Carbon::parse($trainer->birth_date)->age }}
                             </li>
                             <li class="mb-3"><i
@@ -85,12 +85,12 @@
                             </li>
                             <li class="mb-3"><i class="fas fa-mobile-alt display-25 me-3 text-secondary mr-2"></i>
                                 {{ $trainer->phone }}</li>
-                            </li>
-                            <li><i
+                            <li class="mb-3"><i
                                     class="fas fa-map-marker-alt display-25 me-3 text-secondary mr-2"></i>{{ $trainer->location }}
                             </li>
-                            <li><i
-                                    class="far fa-envelope display-25 me-3 text-secondary mr-2"></i>{{ $trainer->subscriptions_count }}
+                            <li>
+                                <i class="fas fa-users display-25 me-3 text-secondary mr-2"></i>
+                                {{ $trainer->subscriptions_count }}
                             </li>
                         </ul>
                     </div>

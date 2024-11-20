@@ -26,10 +26,7 @@ class SubscriptionController extends Controller
         $duration = TrainingPackageDuration::findOrFail($request->input('duration_id'));
         $order['amount_paid'] = $duration->final_price;
         session()->forget("coupon");
-        // dd($order);
-        // add amount paid at the following line
-        // $order['amount_paid'] = session()->get("coupon_$id")["discount"];
-        // dd($order);
+       
 
         if ($request->payment_method === "paymob_card_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
@@ -46,8 +43,6 @@ class SubscriptionController extends Controller
             return view('user.transaction_pages.instapay');
         }
     }
-
-
 
 
     public  function success_payment($payment_details)
@@ -69,9 +64,9 @@ class SubscriptionController extends Controller
 
 
 
-    public  function failed_payment($payment_details)
+    public  function failed_payment($order_id)
     {
-        $subscription = Subscription::findOrFail($payment_details['merchant_order_id']);
+        $subscription = Subscription::findOrFail($order_id);
         $subscription->update([
             'payment_status' => 'Failed',
         ]);

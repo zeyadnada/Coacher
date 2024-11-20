@@ -82,7 +82,8 @@
                             <li class="mb-3"><i class="fas fa-mobile-alt display-25 me-3 text-secondary mr-2"></i>
                                 {{ $admin->phone }}</li>
                             </li>
-                            <li class="mb-3"><i class="fas fa-mobile-alt display-25 me-3 text-secondary mr-2"></i>
+                            <li class="mb-3"><i class="fas fa-transgender display-25 me-3 text-secondary mr-2"></i>
+
                                 {{ $admin->gender }}</li>
                             </li>
 
@@ -91,7 +92,8 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="{{ route('dashboard.adminprofile.edit', $admin->id) }}" class="btn btn-warning">Edit My Profile</a>
+                    <a href="{{ route('dashboard.adminprofile.edit', $admin->id) }}" class="btn btn-warning">Edit
+                        Profile</a>
                 </div>
             </div>
             {{-- <div class="col-lg-8">

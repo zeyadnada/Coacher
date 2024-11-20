@@ -242,9 +242,8 @@
                             <!-- WhatsApp Phone -->
                             <div class="pb-3">
                                 <label for="whatsapp_phone">رقم واتساب للمتابعة</label>
-                                <input type="text" class="@error('whatsapp_phone') is-invalid @enderror"
-                                    name="whatsapp_phone" value="{{ old('whatsapp_phone') }}" id="whatsapp_phone"
-                                    placeholder="تاكد من صحة الرقم">
+                                <input type="tel" class="@error('whatsapp_phone') is-invalid @enderror"
+                                    name="whatsapp_phone" value="{{ old('whatsapp_phone') }}" id="whatsapp_phone">
                                 @error('whatsapp_phone')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -359,7 +358,7 @@
 
         const iti = window.intlTelInput(input, {
             initialCountry: "eg",
-            separateDialCode: true,
+            separateDialCode: false,
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.4.0/build/js/utils.js" // For formatting and placeholders
         });
 

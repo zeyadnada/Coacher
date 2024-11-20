@@ -138,6 +138,8 @@ class TrainingPackageController extends Controller
                     'months' => $duration['months'],
                     'price' => $duration['price'],
                     'discount_price' => $duration['discount_price'] ?? null,
+                    'order' => $duration['order'] ?? null, // Save the order
+
                 ]);
             } else {
                 // Prepare new duration for insertion
@@ -146,6 +148,7 @@ class TrainingPackageController extends Controller
                     'months' => $duration['months'],
                     'price' => $duration['price'],
                     'discount_price' => $duration['discount_price'] ?? null,
+                    'order' => $duration['order'] ?? null, // Save the order
                     'package_id' => $package->id,
                     'created_at' => now(),
                     'updated_at' => now(),

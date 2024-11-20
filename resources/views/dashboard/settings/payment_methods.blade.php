@@ -98,6 +98,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="PAYMOB_SECRET_KEY">Paymob Secret Key</label>
+                                <textarea name="PAYMOB_SECRET_KEY" class="form-control" rows="3" readonly>{{ env('PAYMOB_SECRET_KEY') }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PAYMOB_PUBLIC_KEY">Paymob Public Key</label>
+                                <textarea name="PAYMOB_PUBLIC_KEY" class="form-control" rows="3" readonly>{{ env('PAYMOB_PUBLIC_KEY') }}</textarea>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="PAYMOB_CARD_INTEGRATION_ID">Paymob Card Integration ID</label>
                                 <input type="text" name="PAYMOB_CARD_INTEGRATION_ID" class="form-control"
                                     value="{{ env('PAYMOB_CARD_INTEGRATION_ID') }}" readonly>
@@ -116,7 +126,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID">Paymob Bank Installment Integration ID</label>
+                                <label for="PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID">Paymob Bank Installment Integration
+                                    ID</label>
                                 <input type="text" name="PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID" class="form-control"
                                     value="{{ env('PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID') }}" readonly>
                             </div>

@@ -15,7 +15,7 @@
                 <div class="col-lg-6 p-0">
                     <div class="about-text pt-3" style="background-color: #151515">
                         <div class="section-title">
-                            <h1 style="font-size: 25px">احنا <strong>Refit Academy</strong> قدارين نوصلك لاحسن نسخة من نفسك
+                            <h1 style="font-size: 25px">احنا <strong>Refit Academy</strong> قادرين نوصلك لاحسن نسخة من نفسك
                                 في اسرع وقت وباقل
                                 الامكانيات زي الآلاف
                                 اللي ساعدناهم في الخمس سنين اللي فاتوا وده لأن معانا </h1>

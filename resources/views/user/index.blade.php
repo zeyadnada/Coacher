@@ -10,10 +10,9 @@
 @endsection
 
 @section('content')
-
-    <!--Success Payment Section Begin (appear only in success payment) -->
+    <!-- Success Payment Section Begin -->
     @if (session('paymentSuccess'))
-        <section class="section-modalAlert" id="paymeny-status">
+        <section class="section-modalAlert" id="payment-status-success">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -27,7 +26,14 @@
                             <h6>رقم الاشتراك الخاص بك هو: <strong
                                     style="color: #f36100">{{ session('subscriptionId') }}</strong></h6>
                             <p>{{ session('paymentSuccess') }}</p>
-                            <a href="javascript:void(0)" class="pt-4" id="close-section">
+                            <p>
+                                إذا واجهتك أي مشاكل تواصل على الرقم
+                                <a href="https://wa.me/201508927684" target="_blank"
+                                    style="color: #f36100; text-decoration: none;">
+                                    201508927684+
+                                </a>
+                            </p>
+                            <a href="javascript:void(0)" class="pt-4" id="close-success">
                                 <i class="fa fa-home"></i>
                                 العودة للصفحة الرئيسية
                             </a>
@@ -37,11 +43,11 @@
             </div>
         </section>
     @endif
-    <!--Success Payment Section End (appear only in success payment) -->
+    <!-- Success Payment Section End -->
 
-    <!-- Failed Payment Section Begin (appear only in failed payment) -->
+    <!-- Failed Payment Section Begin -->
     @if (session('paymentFailed'))
-        <section class="section-modalAlert" id="paymeny-status">
+        <section class="section-modalAlert" id="payment-status-failed">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -50,10 +56,10 @@
                             <div class="status-icon">
                                 <img src="/user/img/error-icon.svg" alt="Failed Payment" />
                             </div>
-                            <h2> {{ session('paymentFailed') }}</h2>
+                            <h2>{{ session('paymentFailed') }}</h2>
                             <h4>لم تتم عملية الدفع</h4>
                             <p>نأسف، ولكن حدث خطأ أثناء محاولة الدفع. يرجى التحقق من تفاصيل الدفع أو المحاولة مرة أخرى.</p>
-                            <a href="javascript:void(0)" class="pt-4" id="close-section">
+                            <a href="javascript:void(0)" class="pt-4" id="close-failed">
                                 <i class="fa fa-home"></i>
                                 العودة للصفحة الرئيسية
                             </a>
@@ -63,7 +69,7 @@
             </div>
         </section>
     @endif
-    <!-- Failed Payment Section End (appear only in failed payment) -->
+    <!-- Failed Payment Section End -->
 
 
     <!-- promotion Section Begin -->
@@ -546,8 +552,14 @@
 @section('js')
     <script>
         // this script belong to success payment alert
-        document.getElementById('close-section').addEventListener('click', function() {
-            document.getElementById('paymeny-status').style.display = 'none';
+        // Success payment close button
+        document.getElementById('close-success').addEventListener('click', function() {
+            document.getElementById('payment-status-success').style.display = 'none';
+        });
+
+        // Failed payment close button
+        document.getElementById('close-failed').addEventListener('click', function() {
+            document.getElementById('payment-status-failed').style.display = 'none';
         });
     </script>
 

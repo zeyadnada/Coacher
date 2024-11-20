@@ -3,19 +3,9 @@
 @section('title', 'Add Training Package')
 
 @section('css')
-    <!-- iCheck for checkboxes and radio inputs -->
-    {{-- <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css"> --}}
     <!-- Select2 -->
     <link rel="stylesheet" href="/dashboard/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <!-- Bootstrap4 Duallistbox -->
-    {{-- <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-    <!-- BS Stepper -->
-    <link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
-    <!-- dropzonejs -->
-    <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="/dashboard/dist/css/adminlte.min.css">
 
@@ -119,6 +109,7 @@
                                         <th>Months</th>
                                         <th>Price</th>
                                         <th>Discount Price</th>
+                                        <th>Order</th>
                                         <th> <button type="button" class="btn btn-success" id="add_row">+</button></th>
                                     </tr>
                                 </thead>
@@ -170,6 +161,17 @@
                                                 @enderror
                                             </td>
                                             <td>
+                                                <input type="number" name="durations[{{ $key }}][order]"
+                                                    class="form-control @error('durations.' . $key . '.order') is-invalid @enderror"
+                                                    placeholder="Order"
+                                                    value="{{ old('durations.' . $key . '.order', $duration->order) }}">
+                                                @error('durations.' . $key . '.order')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </td>
+                                            <td>
                                                 <button type="button" class="btn btn-danger remove_row">-</button>
                                                 <input type="hidden" name="durations[{{ $key }}][id]"
                                                     value="{{ $duration->id }}">
@@ -193,37 +195,10 @@
 @endsection
 
 @section('js')
-
-    <!-- jQuery -->
-    {{-- <script src="/dashboard/plugins/jquery/jquery.min.js"></script> --}}
-    <!-- Bootstrap 4 -->
-    {{-- <script src="/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
     <!-- Select2 -->
     <script src="/dashboard/plugins/select2/js/select2.full.min.js"></script>
-    <!-- Bootstrap4 Duallistbox -->
-    {{-- <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-    <!-- InputMask -->
-    <script src="../../plugins/moment/moment.min.js"></script>
-    <script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
-    <!-- date-range-picker -->
-    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- bootstrap color picker -->
-    <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Bootstrap Switch -->
-    <script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-    <!-- BS-Stepper -->
-    <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
-    <!-- dropzonejs -->
-    <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script> --}}
-    <!-- Page specific script -->
-
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
     <script>
         // Select all textareas with class 'editor'
         document.querySelectorAll('.editor').forEach((textarea) => {
@@ -264,6 +239,9 @@
                     </td>
                     <td>
                         <input type="number" name="durations[${rowIndex}][discount_price]" class="form-control" placeholder="discount price" min="0">
+                    </td>
+                    <td>
+                        <input type="number" name="durations[${rowIndex}][order]" class="form-control" placeholder="Order" required>
                     </td>
                     <td>
                         <button type="button" class="btn btn-danger remove_row">-</button>
