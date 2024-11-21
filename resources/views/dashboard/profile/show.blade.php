@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.parent')
 
-@section('title', 'Admin profile')
+@section('title', 'My profile')
 
 @section('css')
     <style>
@@ -92,28 +92,10 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="{{ route('dashboard.adminprofile.edit', $admin->id) }}" class="btn btn-warning">Edit
+                    <a href="{{ route('dashboard.adminprofile.edit', $admin->id) }}" class="btn btn-warning">Edit My
                         Profile</a>
                 </div>
             </div>
-            {{-- <div class="col-lg-8">
-                <div class="ps-lg-1-6 ps-xl-5">
-                    <div class="mb-5 wow fadeIn">
-                        <div class="text-start mb-1-6 wow fadeIn">
-                            <h3 class="h1 mb-0 text-primary">Experiences</h3>
-                        </div>
-                        <p>{!! $trainer->experiences !!}</p>
-
-                    </div>
-                    <div class="mb-5 wow fadeIn">
-                        <div class="text-start mb-1-6 wow fadeIn">
-                            <h3 class="h1 mb-0 text-primary">Certificates</h3>
-                        </div>
-                        <p>{!! $trainer->certificates !!}</p>
-
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 @endsection

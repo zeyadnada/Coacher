@@ -97,9 +97,6 @@ Route::middleware(['admin'])
     ->group(function () {
         Route::get('/home', HomePage::class)->name('home');
 
-        // Route::get('showProfile', [AdminController::class, 'showProfile'])->name('showProfile');
-        // Route::get('editProfile', [AdminController::class, 'editProfile'])->name('editProfile');
-        // Route::put('UpdateAdminProfile', [AdminController::class, 'UpdateAdminProfile'])->name('UpdateAdminProfile');
         Route::get('/coupons', [CouponsController::class, 'index'])->name("coupon.index");
         Route::get('/coupons/create', [CouponsController::class, 'create'])->name("coupon.create");
         Route::post('/coupons/save', [CouponsController::class, 'save'])->name("coupon.save");
@@ -107,21 +104,28 @@ Route::middleware(['admin'])
         Route::put('/coupons/update/{id}', [CouponsController::class, 'update'])->name("coupon.update");
         Route::delete('/coupons/delete/{id}', [CouponsController::class, 'delete'])->name("coupon.delete");
 
+        // Custom routes for the Trainers and packages CRUDs
         Route::resource('trainers', TrainerController::class);
         Route::resource('training-packages', TrainingPackageController::class);
+        
         // Custom routes for specific subscription statuses
         Route::get('/subscriptions/paid', [SubscriptionController::class, 'paid'])->name('subscriptions.paid');
         Route::get('/subscriptions/pending', [SubscriptionController::class, 'pending'])->name('subscriptions.pending');
         Route::get('/subscriptions/canceled', [SubscriptionController::class, 'canceled'])->name('subscriptions.canceled');
         Route::resource('subscriptions', SubscriptionController::class);
-        Route::get('/adminprofile/{admin}', [AdminProfileController::class, 'show'])->name('adminprofile.show');
-        Route::get('/adminprofile/edit/{admin}', [AdminProfileController::class, 'edit'])->name('adminprofile.edit');
-        Route::put('/adminprofile/update/{admin}', [AdminProfileController::class, 'update'])->name('adminprofile.update');
+
+        // Custom routes for the Admin Profile
+        Route::middleware(['admin.profile.access'])->group(function () {
+            Route::get('/adminprofile/{admin}', [AdminProfileController::class, 'show'])->name('adminprofile.show');
+            Route::get('/adminprofile/edit/{admin}', [AdminProfileController::class, 'edit'])->name('adminprofile.edit');
+            Route::put('/adminprofile/update/{admin}', [AdminProfileController::class, 'update'])->name('adminprofile.update');
+        });
 
         Route::middleware(['super-admin-authorization'])->group(function () {
+            // Custom routes for Admins CRUDs
             Route::resource('admin', AdminController::class);
             Route::get('/admin/admin/{admin}', [AdminController::class, 'makeAdmin'])->name('admin.admin');
-            Route::get('/admin/super/{admin}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
+            Route::get('/admin/super-admin/{admin}', [AdminController::class, 'makeSuperAdmin'])->name('admin.super');
 
             ////////////////////////////////////////////{*-- Settings routes--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
             Route::get('/payment-settings', [PaymentconfigController::class, 'index'])->name('setting.paymentConfig.index');

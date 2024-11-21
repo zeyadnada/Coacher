@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminEditProfileRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AdminProfileController extends Controller
@@ -13,7 +14,7 @@ class AdminProfileController extends Controller
     public function show(string $id)
     {
         $admin = Admin::findOrFail($id);
-        return view('dashboard.admin.profile', compact('admin'));
+        return view('dashboard.profile.show', compact('admin'));
     }
 
     /**
@@ -22,7 +23,7 @@ class AdminProfileController extends Controller
     public function edit(string $id)
     {
         $admin = Admin::findOrFail($id);
-        return view('dashboard.admin.edit', compact('admin'));
+        return view('dashboard.profile.edit', compact('admin'));
     }
 
     /**
@@ -32,8 +33,10 @@ class AdminProfileController extends Controller
     {
         // Find the admin or throw a 404 error
         $admin = Admin::findOrFail($id);
-        // Gather all input data except the image
-        $data = $request->except('image');
+
+        // Gather all input data except the image and password
+        $data = $request->except('image','password','password_confirmation');
+
         // Handle image upload and deletion of the old image
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
@@ -44,7 +47,16 @@ class AdminProfileController extends Controller
             $imagePath = Storage::disk('public')->put('admin', $request->file('image'));
             $data['image'] = $imagePath;
         }
+
+        // Handle password update if provided
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        // Update the admin with the gathered data
         $admin->update($data);
+
+        // Redirect back with a success message
         return redirect()->route('dashboard.adminprofile.show', $admin->id)->with('success', 'Your profile updated successfully');
     }
 }

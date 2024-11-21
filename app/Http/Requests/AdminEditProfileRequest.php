@@ -22,11 +22,18 @@ class AdminEditProfileRequest extends FormRequest
      */
     public function rules(): array
     {
-        $adminId  = $this->route('admin'); //  Get the admin ID from the route (Will be null when creating a new admin)
+        $adminId = $this->route('admin'); //Get the admin ID from the route (Will be null when creating a new admin)
+        $passwordRule = ['sometimes', 'required', 'string', 'min:8', 'confirmed'];
+
+        // Customize password validation based on the route name
+        if (request()->routeIs('dashboard.adminprofile.update')) {
+            $passwordRule = ['nullable', 'string', 'min:8', 'confirmed'];
+        }
+
         return [
             'name' => ['required', 'string', 'max:255'],
-            'admin_type' => ['required', 'in:super_admin,admin'],
-            'password' => ['sometimes', 'required', 'string', 'min:8', 'confirmed'],
+            'admin_type' => ['sometimes', 'required', 'in:super_admin,admin'],
+            'password' => $passwordRule,
             'gender' => ['required', 'in:male,female'],
             'location' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:15', Rule::unique('admins', 'phone')->ignore($adminId)],

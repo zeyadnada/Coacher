@@ -47,15 +47,15 @@
                                             class="fas fa-eye"></i></a>
                                     <a href="{{ route('dashboard.admin.edit', $admin->id) }}" class="btn btn-warning"><i
                                             class="fas fa-solid fa-pen"></i></a>
-                                    @if ($admin->admin_type == 'super_admin')
-                                        <a href="{{ route('dashboard.admin.admin', ['admin' => $admin->id]) }}"
-                                            class="btn btn-success">Make Admin</a>
-                                    @else
+                                    @if ($admin->admin_type == 'admin')
+                                        {{-- <a href="{{ route('dashboard.admin.admin', ['admin' => $admin->id]) }}"
+                                            class="btn btn-success">Make Admin</a> --}}
                                         <a href="{{ route('dashboard.admin.super', ['admin' => $admin->id]) }}"
-                                            class="btn btn-success">Make Super Admin</a>
+                                            class="btn btn-dark">Make Super Admin</a>
+                                        <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                            data-id="{{ $admin->id }}"><i class="fas fa-trash"></i></a>
                                     @endif
-                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                                        data-id="{{ $admin->id }}"><i class="fas fa-trash"></i></a>
+
                                 </td>
                             </tr>
                         @empty

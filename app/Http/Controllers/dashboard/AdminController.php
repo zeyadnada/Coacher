@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminEditProfileRequest;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -37,7 +38,7 @@ class AdminController extends Controller
             $imagePath = Storage::disk('public')->put('admin',  $request->image);
             $data['image'] = $imagePath;
         }
-        $data['password'] = bcrypt($request->password);
+        $data['password'] = Hash::make($request->password);
         $admin = Admin::create($data);
         return redirect()->route('dashboard.admin.show', $admin->id)->with('success', 'Admin Updated successfully');
     }
@@ -48,7 +49,7 @@ class AdminController extends Controller
     public function show(string $id)
     {
         $admin = Admin::findOrFail($id);
-        return view('dashboard.admin.profile', compact('admin'));
+        return view('dashboard.admin.show', compact('admin'));
     }
 
     /**
@@ -82,6 +83,7 @@ class AdminController extends Controller
         $admin->update($data);
         return redirect()->route('dashboard.admin.show', $admin->id)->with('success', 'Admin updated successfully');
     }
+
 
 
     /**
