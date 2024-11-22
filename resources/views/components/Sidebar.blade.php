@@ -2,7 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard.home') }}" class="brand-link">
-        <img src="/assets/img/android-chrome-512x512.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-2" style="opacity: .9">
+        <img src="/assets/img/android-chrome-512x512.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-2"
+            style="opacity: .9">
         <span class="brand-text font-weight-light">Refit Dashboard</span>
     </a>
 
@@ -67,7 +68,7 @@
                 <!-- Trainers Section -->
                 <li class="nav-item {{ $isActiveTrainers ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ $isActiveTrainers ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-pills"></i>
+                        <i class="nav-icon fa fa-dumbbell"></i>
                         <p>
                             {{ __('Trainers') }}
                             <i class="right fas fa-angle-left"></i>
@@ -94,7 +95,7 @@
                 <!-- Training Packages Section -->
                 <li class="nav-item {{ $isActivePackages ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ $isActivePackages ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-pills"></i>
+                        <i class="nav-icon fa fa-layer-group"></i>
                         <p>
                             {{ __('Training Packages') }}
                             <i class="right fas fa-angle-left"></i>
@@ -121,7 +122,7 @@
                 <!-- Subscriptions Section -->
                 <li class="nav-item {{ $isActiveSubscriptions ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ $isActiveSubscriptions ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-pills"></i>
+                        <i class="nav-icon fa fa-users"></i>
                         <p>
                             {{ __('Subscriptions') }}
                             <i class="right fas fa-angle-left"></i>
@@ -174,7 +175,7 @@
                 <!-- Coupons Section -->
                 <li class="nav-item {{ $isActiveCoupon ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ $isActiveCoupon ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-pills"></i>
+                        <i class="nav-icon fa fa-star"></i>
                         <p>
                             {{ __('Coupons') }}
                             <i class="right fas fa-angle-left"></i>
@@ -202,7 +203,7 @@
                 @if (auth()->guard('admin')->user()->admin_type == 'super_admin')
                     <li class="nav-item {{ $isActiveAdmin ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ $isActiveAdmin ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-pills"></i>
+                            <i class="nav-icon fa fa-user-tie"></i>
                             <p>
                                 {{ __('Admins') }}
                                 <i class="right fas fa-angle-left"></i>

@@ -28,7 +28,7 @@
                     <p>Trainers</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-solid fa-user"></i>
+                    <i class="nav-icon fa fa-dumbbell"></i>
                 </div>
                 <a href="{{ route('dashboard.trainers.index') }}" class="small-box-footer">More info <i
                         class="fas fa-arrow-circle-right"></i></a>
@@ -58,7 +58,7 @@
                     <p>Copouns</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-solid fa-braille"></i>
+                    <i class="nav-icon fa fa-star"></i>
                 </div>
                 <a href="{{ route('dashboard.coupon.index') }}" class="small-box-footer">More info <i
                         class="fas fa-arrow-circle-right"></i></a>

@@ -4,18 +4,81 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Refit Academy" />
-    <meta name="keywords" content="Refit, Refit Academy, Coaching, online Coaching, Academy, Gym, unica, creative, html" />
+    <meta name="keywords"
+        content="Refit, Refit Academy, Coaching, online Coaching, Academy, Gym, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>@yield('title')</title>
 
+    <!-- Meta Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1602232677039685');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1602232677039685&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        ! function(w, d, t) {
+            w.TiktokAnalyticsObject = t;
+            var ttq = w[t] = w[t] || [];
+            ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias",
+                "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"
+            ], ttq.setAndDefer = function(t, e) {
+                t[e] = function() {
+                    t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+                }
+            };
+            for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+            ttq.instance = function(t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
+                return e
+            }, ttq.load = function(e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js",
+                    o = n && n.partner;
+                ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date,
+                    ttq._o = ttq._o || {}, ttq._o[e] = n || {};
+                n = document.createElement("script");
+                n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t;
+                e = document.getElementsByTagName("script")[0];
+                e.parentNode.insertBefore(n, e)
+            };
+
+
+            ttq.load('CSVHK9BC77UA1OP17DE0');
+            ttq.page();
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap"
         rel="stylesheet" />
+    {{-- <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet" /> --}}
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/css/bootstrap.min.css" type="text/css" />
@@ -66,9 +129,15 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
+            <a href="https://www.tiktok.com/@refitacademy">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="14" height="13"
+                    fill="currentColor">
+                    <path
+                        d="M412.19,107.33a109.09,109.09,0,0,1-77.61-32.16,110.24,110.24,0,0,1-32.18-77.61h-65.1V353.6a68.14,68.14,0,1,1-68.12-68.13,69.58,69.58,0,0,1,18.38,2.5v-70a138.17,138.17,0,0,0-18.38-1.34,137.78,137.78,0,1,0,137.78,137.77V181.36a109.42,109.42,0,0,0,23.56,15.31,108.18,108.18,0,0,0,46.87,10.72V142.29A107.67,107.67,0,0,1,412.19,107.33Z" />
+                </svg>
+            </a>
             <a href="https://www.facebook.com/people/Refit-Academy/61564070225405/?mibextid=ZbWKwL"><i
                     class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="http://www.youtube.com/@RefitAcademy-t4x"><i class="fa fa-youtube-play"></i></a>
             <a href="https://www.instagram.com/refitacademy?igsh=MTlnOXV3eWw1bTRsOQ%3D%3D"><i
                     class="fa fa-instagram"></i></a>
@@ -130,30 +199,6 @@
     <!-- Header End -->
     @yield('content')
 
-    <!-- Get In Touch Section Begin -->
-    {{-- <div class="gettouch-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="gt-text">
-                        <i class="fa fa-mobile"></i>
-                        <ul>
-                            <li>201551471731+</li>
-                            <li>201126518696+</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="gt-text email">
-                        <i class="fa fa-envelope"></i>
-                        <p>Support.gymcenter@gmail.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Get In Touch Section End -->
-
     <!-- Footer Section Begin -->
     <section class="footer-section section" id="footer">
         <div class="container">
@@ -168,15 +213,22 @@
                             الخمس سنين اللي فاتوا
                         </p>
                         <div class="fa-social">
+                            <a href="https://www.tiktok.com/@refitacademy">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="14"
+                                    height="13" fill="currentColor">
+                                    <path
+                                        d="M412.19,107.33a109.09,109.09,0,0,1-77.61-32.16,110.24,110.24,0,0,1-32.18-77.61h-65.1V353.6a68.14,68.14,0,1,1-68.12-68.13,69.58,69.58,0,0,1,18.38,2.5v-70a138.17,138.17,0,0,0-18.38-1.34,137.78,137.78,0,1,0,137.78,137.77V181.36a109.42,109.42,0,0,0,23.56,15.31,108.18,108.18,0,0,0,46.87,10.72V142.29A107.67,107.67,0,0,1,412.19,107.33Z" />
+                                </svg>
+                            </a>
                             <a href="https://www.facebook.com/people/Refit-Academy/61564070225405/?mibextid=ZbWKwL"><i
                                     class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="http://www.youtube.com/@RefitAcademy-t4x"><i class="fa fa-youtube-play"></i></a>
                             <a href="https://www.instagram.com/refitacademy?igsh=MTlnOXV3eWw1bTRsOQ%3D%3D"><i
                                     class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                            {{-- <i class="fab fa-tiktok"></i> --}}
+                            <a href="http://www.youtube.com/@RefitAcademy-t4x"><i class="fa fa-youtube-play"></i></a>
 
+                            <a href="mailto:refitacademy5@gmail.com">
+                                <i class="fa fa-envelope-o"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -195,7 +247,7 @@
                     <div class="fs-widget">
                         <h4>تواصل معنا</h4>
                         <ul>
-                            <li><a href="mailto:info@gmail.com">info@gmail.com</a></li>
+                            <li><a href="mailto:refitacademy5@gmail.com">refitacademy5@gmail.com</a></li>
                             <li>1126518696 (20+)</li>
                             <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
                         </ul>

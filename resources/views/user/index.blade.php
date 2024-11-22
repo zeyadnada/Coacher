@@ -10,67 +10,6 @@
 @endsection
 
 @section('content')
-    <!-- Success Payment Section Begin -->
-    @if (session('paymentSuccess'))
-        <section class="section-modalAlert" id="payment-status-success">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="modalAlert-text">
-                            <!-- Green circle with checkmark image -->
-                            <div class="status-icon">
-                                <img src="/user/img/confirm-icon.svg" alt="Success" />
-                            </div>
-                            <h2>تم اشتراكك</h2>
-                            <h4>تمت عملية الدفع بنجاح</h4>
-                            <h6>رقم الاشتراك الخاص بك هو: <strong
-                                    style="color: #f36100">{{ session('subscriptionId') }}</strong></h6>
-                            <p>{{ session('paymentSuccess') }}</p>
-                            <p>
-                                إذا واجهتك أي مشاكل تواصل على الرقم
-                                <a href="https://wa.me/201508927684" target="_blank"
-                                    style="color: #f36100; text-decoration: none;">
-                                    201508927684+
-                                </a>
-                            </p>
-                            <a href="javascript:void(0)" class="pt-4" id="close-success">
-                                <i class="fa fa-home"></i>
-                                العودة للصفحة الرئيسية
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-    <!-- Success Payment Section End -->
-
-    <!-- Failed Payment Section Begin -->
-    @if (session('paymentFailed'))
-        <section class="section-modalAlert" id="payment-status-failed">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="modalAlert-text">
-                            <!-- Red circle with cross mark image -->
-                            <div class="status-icon">
-                                <img src="/user/img/error-icon.svg" alt="Failed Payment" />
-                            </div>
-                            <h2>{{ session('paymentFailed') }}</h2>
-                            <h4>لم تتم عملية الدفع</h4>
-                            <p>نأسف، ولكن حدث خطأ أثناء محاولة الدفع. يرجى التحقق من تفاصيل الدفع أو المحاولة مرة أخرى.</p>
-                            <a href="javascript:void(0)" class="pt-4" id="close-failed">
-                                <i class="fa fa-home"></i>
-                                العودة للصفحة الرئيسية
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-    <!-- Failed Payment Section End -->
-
 
     <!-- promotion Section Begin -->
     {{-- <div class="offer-section" style="display: {{ \App\Models\Setting::where('key', 'offers')->first()->is_visible }}">
@@ -104,7 +43,6 @@
             </div>
         </section>
     </section> --}}
-
     <section class="hero-section">
         <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
             <div class="container">
@@ -304,7 +242,7 @@
                     <div class="bs-text service-banner">
                         <h2>التمرن الى اقصى الحدود</h2>
                         <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
-                        <a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="play-btn video-popup"><i
+                        <a href="https://www.youtube.com/shorts/w7q11QcA5cA" class="play-btn video-popup"><i
                                 class="fa fa-caret-right"></i></a>
                     </div>
                 </div>

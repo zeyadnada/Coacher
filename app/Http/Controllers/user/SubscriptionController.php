@@ -26,7 +26,7 @@ class SubscriptionController extends Controller
         $duration = TrainingPackageDuration::findOrFail($request->input('duration_id'));
         $order['amount_paid'] = $duration->final_price;
         session()->forget("coupon");
-       
+
 
         if ($request->payment_method === "paymob_card_payment") {
             return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
@@ -54,15 +54,10 @@ class SubscriptionController extends Controller
             'transaction_id' => $payment_details['id']
         ]);
         (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
-        // return  redirect()->route('home')->session('paymentSuccess', 'تم اشتراكك')->with('subscriptionId', $subscription->id);
-        session([
-            'paymentSuccess' => "شكراً $subscription->name ،تم اشتراكك برقم $subscription->whatsapp_phone. رقم الطلب هو $subscription->id ،وسيتم التواصل معك خلال 24 ساعة.",
-            'subscriptionId' => $subscription->id
-        ]);
-        return redirect()->route('home');
+        return redirect()->route('user.payment.status')
+            ->with('paymentSuccess', "شكراً $subscription->name ،تم اشتراكك برقم $subscription->whatsapp_phone. رقم الطلب هو $subscription->id ،وسيتم التواصل معك خلال 24 ساعة.")
+            ->with('subscriptionId', $subscription->id);
     }
-
-
 
     public  function failed_payment($order_id)
     {
@@ -70,7 +65,7 @@ class SubscriptionController extends Controller
         $subscription->update([
             'payment_status' => 'Failed',
         ]);
-        return  redirect()->route('home')->with('paymentFailed', 'فشل الاشتراك');
+        return  redirect()->route('user.payment.status')->with('paymentFailed', 'فشل الاشتراك');
     }
 
     // public  function notSecure_payment()

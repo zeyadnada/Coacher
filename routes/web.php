@@ -107,7 +107,7 @@ Route::middleware(['admin'])
         // Custom routes for the Trainers and packages CRUDs
         Route::resource('trainers', TrainerController::class);
         Route::resource('training-packages', TrainingPackageController::class);
-        
+
         // Custom routes for specific subscription statuses
         Route::get('/subscriptions/paid', [SubscriptionController::class, 'paid'])->name('subscriptions.paid');
         Route::get('/subscriptions/pending', [SubscriptionController::class, 'pending'])->name('subscriptions.pending');
@@ -156,3 +156,6 @@ Route::get('/notifications/read-all', [NotificationController::class, 'markAllAs
 ///////////////////////////////////////////////{*--PAYMENT--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Route::get('/paymob/callback', [PaymobController::class, 'callback']);
 Route::get('/paymob/refund/{transaction_id}/{amount}', [PaymobController::class, 'refund'])->name('paymob.refund');
+Route::get('user/payment/status', function () {
+    return view('user.transaction_pages.payment_status_screen');
+})->name('user.payment.status');
