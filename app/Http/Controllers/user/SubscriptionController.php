@@ -54,7 +54,9 @@ class SubscriptionController extends Controller
             'transaction_id' => $payment_details['id']
         ]);
         (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
-        return redirect()->route('user.payment.status')
+        return redirect()->route('user.payment.status', [
+            'status' => 'success',
+        ])
             ->with('paymentSuccess', "شكراً $subscription->name ،تم اشتراكك برقم $subscription->whatsapp_phone. رقم الطلب هو $subscription->id ،وسيتم التواصل معك خلال 24 ساعة.")
             ->with('subscriptionId', $subscription->id);
     }
@@ -65,7 +67,9 @@ class SubscriptionController extends Controller
         $subscription->update([
             'payment_status' => 'Failed',
         ]);
-        return  redirect()->route('user.payment.status')->with('paymentFailed', 'فشل الاشتراك');
+        return  redirect()->route('user.payment.status', [
+            'status' => 'failed',
+        ])->with('paymentFailed', 'فشل الاشتراك');
     }
 
     // public  function notSecure_payment()
