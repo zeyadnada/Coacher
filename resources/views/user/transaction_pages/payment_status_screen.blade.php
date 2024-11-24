@@ -120,17 +120,13 @@
                                 <i class="fa fa-home"></i>
                                 العودة للصفحة الرئيسية
                             </a>
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    @endif
-    <!-- Success Payment Section End -->
-
-    <!-- Failed Payment Section Begin -->
-    @if (session('paymentFailed'))
+    @elseif (session('paymentFailed'))
+        <!-- Failed Payment Section Begin -->
         <section class="section-modalAlert" id="payment-status-failed">
             <div class="container">
                 <div class="row">
@@ -144,18 +140,41 @@
                             <h4>لم تتم عملية الدفع</h4>
                             <p>نأسف، ولكن حدث خطأ أثناء محاولة الدفع. يرجى التحقق من تفاصيل الدفع أو
                                 المحاولة مرة أخرى.</p>
-                            <a href="{{ route('home') }}" class="pt-4" id="close-success">
+                            <a href="{{ route('home') }}" class="pt-4" id="close-failed">
                                 <i class="fa fa-home"></i>
                                 العودة للصفحة الرئيسية
                             </a>
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- Failed Payment Section End -->
+    @else
+        <!-- Default Message Section Begin -->
+        <section class="section-modalAlert" id="payment-status-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modalAlert-text">
+                            <!-- Gray circle with info icon -->
+                            <div class="status-icon">
+                                <img src="/user/img/warning-sign.png" alt="No Information" />
+                            </div>
+                            <h2>لا يوجد بيانات للعرض</h2>
+                            <p>لم يتم تقديم حالة الدفع بعد.</p>
+                            <a href="{{ route('home') }}" class="pt-4" id="close-none">
+                                <i class="fa fa-home"></i>
+                                العودة للصفحة الرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Default Message Section End -->
     @endif
-    <!-- Failed Payment Section End -->
 </body>
+
 
 </html>
