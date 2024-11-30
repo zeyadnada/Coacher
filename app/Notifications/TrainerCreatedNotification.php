@@ -12,12 +12,14 @@ class TrainerCreatedNotification  extends Notification implements ShouldQueue
     use Queueable;
 
     private $trainer;
+    private $action;
     /**
      * Create a new notification instance.
      */
-    public function __construct($trainer)
+    public function __construct($trainer, $action)
     {
         $this->trainer = $trainer;
+        $this->action = $action;
     }
 
     /**
@@ -45,9 +47,20 @@ class TrainerCreatedNotification  extends Notification implements ShouldQueue
      */
     public function toDatabase($notifiable): array
     {
+        $body = "";
+        $url = url("/dashboard/trainers/{$this->trainer->id}");
+
+        if ($this->action === 'add') {
+            $body =  "New Trainer ({$this->trainer->name}) Added";
+        } elseif ($this->action === 'delete') {
+            $body = "Trainer ({$this->trainer->name}) Deleted";
+            $url = url("/dashboard/trainers");
+        } else {
+            $body = "Trainer ({$this->trainer->name}) Updated";
+        }
         return [
-            'body' => "new Trainer {$this->trainer->name} Added",
-            'url' =>  url("/dashboard/trainers/{$this->trainer->id}")
+            'body' => $body,
+            'url' =>  $url
         ];
     }
 

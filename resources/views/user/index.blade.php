@@ -242,7 +242,7 @@
                     <div class="bs-text service-banner">
                         <h2>التمرن الى اقصى الحدود</h2>
                         <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
-                        <a href="https://www.youtube.com/shorts/w7q11QcA5cA" class="play-btn video-popup"><i
+                        <a href="https://www.youtube.com/watch?v=WTPQGED4S0E" class="play-btn video-popup"><i
                                 class="fa fa-caret-right"></i></a>
                     </div>
                 </div>
@@ -259,7 +259,7 @@
                     <div class="team-title">
                         <div class="section-title">
                             <span> فريقنا </span>
-                            <h2>تدرب مع <strong>فريقنا</strong> المحترف</h2>
+                            <h2>تدرب تحت إشراف أسطولنا الطبي</h2>
                         </div>
                         <a href="/#packages" class="primary-btn btn-normal appoinment-btn">
                             احجز الان

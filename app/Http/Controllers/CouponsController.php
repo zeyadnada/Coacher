@@ -29,6 +29,7 @@ class CouponsController extends Controller
     public function update(Request $request, $id)
     {
         $coupon = Coupon::findOrFail($id);
+        $admins = Admin::all();
 
         // Define common validation rules
         $rules = [
@@ -50,6 +51,9 @@ class CouponsController extends Controller
         // Update the coupon with validated data
         $coupon->update($validatedData);
 
+        // Send a notification to admins
+        Notification::send($admins, new CouponNotification($coupon, 'update'));
+
         // Redirect back with a success message
         return redirect()->route('dashboard.coupon.index')->with('success', 'Coupon has been updated successfully!');
     }
@@ -65,13 +69,15 @@ class CouponsController extends Controller
         ]);
         $coupon = Coupon::create($request->all());
         $admins = Admin::all();
-        Notification::send($admins, new CouponNotification($coupon));
+        Notification::send($admins, new CouponNotification($coupon, 'add'));
         return redirect()->route('dashboard.coupon.index')->with('success', 'Coupon has been added successfully!');
     }
     public function delete($id)
     {
         $coupon = Coupon::findOrFail($id);
+        $admins = Admin::all();
         $coupon->delete();
+        Notification::send($admins, new CouponNotification($coupon, 'delete'));
         return back()->with('success', 'Coupon Deleted Successfully.');
     }
 

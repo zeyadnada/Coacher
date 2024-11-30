@@ -43,9 +43,9 @@ class TrainerController extends Controller
         $trainer = Trainer::create($data);
         //notification event
         $admins = Admin::all();
-        Notification::send($admins, new TrainerCreatedNotification($trainer));
+        Notification::send($admins, new TrainerCreatedNotification($trainer, 'add'));
 
-        return redirect()->route('dashboard.trainers.show', $trainer->id)->with('success', 'Trainer Updated successfully');
+        return redirect()->route('dashboard.trainers.show', $trainer->id)->with('success', 'Trainer Added successfully');
     }
     /**
      * Display the specified resource.
@@ -80,6 +80,10 @@ class TrainerController extends Controller
             $data['image'] = $imagePath;
         }
         $trainer->update($data);
+        //notification event
+        $admins = Admin::all();
+        Notification::send($admins, new TrainerCreatedNotification($trainer, 'update'));
+        
         return redirect()->route('dashboard.trainers.show', $trainer->id)->with('success', 'Trainer Updated successfully');
     }
 
@@ -92,7 +96,16 @@ class TrainerController extends Controller
         if ($trainer->image && Storage::disk('public')->exists($trainer->image)) {
             Storage::disk('public')->delete($trainer->image);
         }
+        // Backup necessary attributes before deletion
+        $trainerData = [
+            'id' => $trainer->id,
+            'name' => $trainer->name,
+        ];
         $trainer->delete();
+
+        //notification event
+        $admins = Admin::all();
+        Notification::send($admins, new TrainerCreatedNotification((object) $trainerData, 'delete'));
         return back()->with('success', 'Trainer Deleted Successfully.');
     }
 }

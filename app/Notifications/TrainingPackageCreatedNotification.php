@@ -12,13 +12,15 @@ class TrainingPackageCreatedNotification extends Notification implements ShouldQ
     use Queueable;
 
     private $package;
+    private $action;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($package)
+    public function __construct($package, $action)
     {
         $this->package = $package;
+        $this->action = $action;
     }
 
     /**
@@ -49,9 +51,21 @@ class TrainingPackageCreatedNotification extends Notification implements ShouldQ
      */
     public function toDatabase(object $notifiable): array
     {
+        $body = "";
+        $url = url("/dashboard/training-packages/{$this->package->id}");
+
+        if ($this->action === 'add') {
+            $body = "new Package ({$this->package->title}) Added";
+        } elseif ($this->action === 'delete') {
+            $body = "Package ({$this->package->title}) Deleted";
+            $url = url("/dashboard/training-packages");
+        } else {
+            $body = "Package ({$this->package->title}) Updated";
+        }
+
         return [
-            "body" => "new Package ({$this->package->title}) Created",
-            "url" => url("/dashboard/training-packages/{$this->package->id}")
+            "body" => $body,
+            "url" => $url
         ];
     }
 }

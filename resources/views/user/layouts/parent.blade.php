@@ -249,7 +249,7 @@
                         <ul>
                             <li><a href="mailto:refitacademy5@gmail.com">refitacademy5@gmail.com</a></li>
                             <li>1126518696 (20+)</li>
-                            <li><a href="https://wa.me/201126518696" target="_blank"> اتصل بنا </a></li>
+                            <li><a href="https://wa.me/201551471731" target="_blank"> اتصل بنا </a></li>
                         </ul>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                         <p> صنع بكل
                             <i class="fa fa-heart" aria-hidden="true"></i>
                             بواسطة
-                            <a class="pr-1" href="https://wa.me/201208776273" target="_blank">CodeCrafters</a>
+                            <a class="pr-1">CodeCrafters</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
@@ -286,7 +286,7 @@
     <div class="contact-us">
         <span class="contact-text">اضغط للتواصل عبر واتساب</span>
         <div class="whatsapp-icon d-inline-block">
-            <a href="https://wa.me/201508927684" target="_blank">
+            <a href="https://wa.me/201551471731" target="_blank">
                 <img src="/user/img/whatsapp.png" alt="whatsapp" />
             </a>
         </div>

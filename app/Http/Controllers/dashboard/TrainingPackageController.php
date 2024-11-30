@@ -60,7 +60,7 @@ class TrainingPackageController extends Controller
 
         //notification event
         $admins = Admin::all();
-        Notification::send($admins, new TrainingPackageCreatedNotification($package));
+        Notification::send($admins, new TrainingPackageCreatedNotification($package, 'add'));
         return redirect()->route('dashboard.training-packages.show', $package->id)->with('success', 'Training Package Created Successfully');
     }
 
@@ -160,7 +160,8 @@ class TrainingPackageController extends Controller
         if (!empty($durationsData)) {
             TrainingPackageDuration::insert($durationsData);
         }
-
+        $admins = Admin::all();
+        Notification::send($admins, new TrainingPackageCreatedNotification($package, 'update'));
         return redirect()->route('dashboard.training-packages.show', $package->id)->with('success', 'Trainer Package Updated successfully');
     }
 
@@ -172,6 +173,11 @@ class TrainingPackageController extends Controller
     public function destroy($id)
     {
         $package = TrainingPackage::findOrFail($id);
+        // Backup necessary attributes before deletion
+        $packageData = [
+            'id' => $package->id,
+            'title' => $package->title,
+        ];
 
         try {
             if ($package->image && Storage::disk('public')->exists($package->image)) {
@@ -185,6 +191,8 @@ class TrainingPackageController extends Controller
             throw $e; // Re-throw for other database errors
 
         }
+        $admins = Admin::all();
+        Notification::send($admins, new TrainingPackageCreatedNotification((object)$packageData, 'delete'));
         return back()->with('success', 'Training Package Deleted Successfully.');
     }
 }
