@@ -29,13 +29,13 @@ class SubscriptionController extends Controller
 
 
         if ($request->payment_method === "paymob_card_payment") {
-            return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
+            return (new PaymobController())->checkingOut($order, config('services.paymob.card_integration_id'));
         } elseif ($request->payment_method === "paymob_wallet_payment") {
-            return (new PaymobController())->checkingOut($order, env('PAYMOB_MOBILE_WALLET_INTEGRATION_ID'));
+            return (new PaymobController())->checkingOut($order, config('services.paymob.wallet_integration_id'));
         } elseif ($request->payment_method === "paymob_value_payment") {
-            return (new PaymobController())->checkingOut($order, env('PAYMOB_CARD_INTEGRATION_ID'));
+            return (new PaymobController())->checkingOut($order, config('services.paymob.card_integration_id'));
         } elseif ($request->payment_method === "paymob_bank_installement_payment") {
-            return (new PaymobController())->checkingOut($order, env('PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID'));
+            return (new PaymobController())->checkingOut($order, config('services.paymob.bank_installment_integration_id'));
         } elseif ($request->payment_method === "instapay") {
             $subscription->update([
                 'transaction_id' => 'Instapay'
@@ -53,7 +53,7 @@ class SubscriptionController extends Controller
             'payment_status' => 'Paid',
             'transaction_id' => $payment_details['id']
         ]);
-        (new WhatsAppController())->order_confirmation(env('WHATSAPP_PHONE_NUMBER_ID'), $subscription->name, $subscription->whatsapp_phone, $subscription->package->title);
+        (new WhatsAppController())->order_confirmation(config('services.whatsapp.phone_number_id'), $subscription->id, $subscription->whatsapp_phone, $subscription->package->title);
         return redirect()->route('user.payment.status', [
             'status' => 'success',
         ])

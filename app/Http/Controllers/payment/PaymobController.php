@@ -18,10 +18,10 @@ class PaymobController extends Controller
 
     public function __construct()
     {
-        $this->paymob_api_key = env('PAYMOB_API_KEY');
-        $this->paymob_iframe_id =   env('PAYMOB_CARD_IFRAME_ID');
-        $this->paymob_secret_key = "Token" . " " . env('PAYMOB_SECRET_KEY');
-        $this->paymob_public_key  = env('PAYMOB_PUBLIC_KEY');
+        $this->paymob_api_key = config('services.paymob.api_key');
+        $this->paymob_iframe_id =  config('services.paymob.card_iframe_id');
+        $this->paymob_secret_key = "Token" . " " . config('services.paymob.secret_key');
+        $this->paymob_public_key  = config('services.paymob.public_key');
     }
 
     /**
@@ -142,7 +142,7 @@ class PaymobController extends Controller
     {
         $string = $request['amount_cents'] . $request['created_at'] . $request['currency'] . $request['error_occured'] . $request['has_parent_transaction'] . $request['id'] . $request['integration_id'] . $request['is_3d_secure'] . $request['is_auth'] . $request['is_capture'] . $request['is_refunded'] . $request['is_standalone_payment'] . $request['is_voided'] . $request['order'] . $request['owner'] . $request['pending'] . $request['source_data_pan'] . $request['source_data_sub_type'] . $request['source_data_type'] . $request['success'];
 
-        if (hash_equals(hash_hmac('sha512', $string, env('PAYMOB_HMAC')), $request['hmac'])) {
+        if (hash_equals(hash_hmac('sha512', $string, config('services.paymob.hmac')), $request['hmac'])) {
             if ($request['success'] == "true") {
                 $payment_details = ($request->all());
                 return (new SubscriptionController())->success_payment($payment_details);

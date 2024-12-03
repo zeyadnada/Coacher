@@ -31,4 +31,21 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'paymob' => [
+        'api_key' => env('PAYMOB_API_KEY'),
+        'secret_key' => env('PAYMOB_SECRET_KEY'),
+        'public_key' => env('PAYMOB_PUBLIC_KEY'),
+        'card_integration_id' => env('PAYMOB_CARD_INTEGRATION_ID'),
+        'card_iframe_id' => env('PAYMOB_CARD_IFRAME_ID'),
+        'wallet_integration_id' => env('PAYMOB_MOBILE_WALLET_INTEGRATION_ID'),
+        'bank_installment_integration_id' => env('PAYMOB_BANK_INSTALLMENT_INTEGRATION_ID'),
+        'hmac' => env('PAYMOB_HMAC'),
+
+    ],
+
+    'whatsapp' => [
+        'access_token' => env('WHATSAPP_ACCESS_TOKEN'),
+        'phone_number_id' => env('WHATSAPP_PHONE_NUMBER_ID'),
+    ],
+
 ];

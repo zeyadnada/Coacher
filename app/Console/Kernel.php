@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('notifications:delete-read')->dailyAt('05:00');
-        $schedule->job(new SendPendingSubscriptionsReminderMessage)->dailyAt('09:00');
-        $schedule->job(new DeletePendingSubscriptions)->dailyAt('10:00');
+        // $schedule->job(new SendPendingSubscriptionsReminderMessage)->dailyAt('09:00');
+        // $schedule->job(new DeletePendingSubscriptions)->dailyAt('10:00');
     }
 
     /**

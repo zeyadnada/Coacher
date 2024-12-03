@@ -242,7 +242,7 @@
                                     <p>{{ __('Transformation') }}</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('dashboard.setting.whatsApp.index') }}"
                                     class="nav-link {{ request()->routeIs('dashboard.setting.whatsApp.index') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
@@ -255,7 +255,7 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Payment') }}</p>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             {{-- <li class="nav-item">
                                 <a href="{{ route('dashboard.setting.index') }}"
