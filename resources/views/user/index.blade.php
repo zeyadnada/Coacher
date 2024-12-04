@@ -217,17 +217,14 @@
                 <div class="ts-slider owl-carousel">
                     @forelse ($transformations as $transformation)
                         <div class="col-lg-4">
-                            <a href="{{ route('user.trainer.show', $transformation->id) }}">
-                                <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $transformation->photo_path }}">
-                                    <div class="ts_text">
-                                        <span>{{ $transformation->description }}</span>
-                                    </div>
+                            <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $transformation->photo_path }}">
+                                <div class="ts_text">
+                                    <span>{{ $transformation->description }}</span>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     @empty
                     @endforelse
-
                 </div>
             </div>
         </div>

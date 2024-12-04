@@ -40,6 +40,7 @@
 @section('content')
     <!-- Class Details Section Begin -->
     <section class="class-details-section spad">
+        <br>
         <div class="container">
             @if (session('success'))
                 <div class="alert alert-success text-center mx-auto">
@@ -57,7 +58,7 @@
 
                         <div class="cd-single-item">
                             <h2>{{ $package->title }}</h2>
-                            <div class="mt-5">
+                            <div class="mt-4">
                                 <h4 style="font-size: 19px; margin-bottom:12px">{{ $package->introduction }}</h4>
                                 <h4 style="font-size: 17px;">{{ $package->target_audience }}</h4>
                             </div>
@@ -67,7 +68,7 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="sidebar-option">
                         <div class="so-categories">
-                            <h4 class="title">تفاصيل</h4>
+                            <h3 class="title">تفاصيل</h3>
                             <div class="class-details-text">
                                 <div class="cd-text">
                                     <div class="cd-single-item">
@@ -316,7 +317,7 @@
                                     </div>
 
                                     <!-- Bank Installment -->
-                                    <div class="col-6 col-md-3 mb-3 d-flex">
+                                    {{-- <div class="col-6 col-md-3 mb-3 d-flex">
                                         <div class="payment-card flex-fill">
                                             <input type="radio" id="paymob_bank_installement_payment"
                                                 name="payment_method" value="paymob_bank_installement_payment" hidden>
@@ -327,7 +328,7 @@
                                                 <h5 class="card-title mb-0">تقسيط بنكي</h5>
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 @error('payment_method')
                                     <span class="invalid-feedback d-block" role="alert">

@@ -248,8 +248,8 @@
                         <h4>تواصل معنا</h4>
                         <ul>
                             <li><a href="mailto:refitacademy5@gmail.com">refitacademy5@gmail.com</a></li>
-                            <li>1126518696 (20+)</li>
-                            <li><a href="https://wa.me/201551471731" target="_blank"> اتصل بنا </a></li>
+                            <li>1055459491 (20+)</li>
+                            <li><a href="https://wa.me/201055459491" target="_blank"> اتصل بنا </a></li>
                         </ul>
                     </div>
                 </div>
@@ -286,7 +286,7 @@
     <div class="contact-us">
         <span class="contact-text">اضغط للتواصل عبر واتساب</span>
         <div class="whatsapp-icon d-inline-block">
-            <a href="https://wa.me/201551471731" target="_blank">
+            <a href="https://wa.me/201055459491" target="_blank">
                 <img src="/user/img/whatsapp.png" alt="whatsapp" />
             </a>
         </div>
