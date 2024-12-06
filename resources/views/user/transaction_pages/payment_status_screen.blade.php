@@ -111,9 +111,9 @@
                             <p>{{ session('paymentSuccess') }}</p>
                             <p>
                                 إذا واجهتك أي مشاكل تواصل على الرقم
-                                <a href="https://wa.me/201508927684" target="_blank"
+                                <a href="https://wa.me/201055459491" target="_blank"
                                     style="color: #f36100; text-decoration: none;">
-                                    201508927684+
+                                    201055459491+
                                 </a>
                             </p>
                             <a href="{{ route('home') }}" class="pt-4" id="close-success">

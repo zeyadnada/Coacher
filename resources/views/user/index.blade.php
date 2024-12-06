@@ -232,14 +232,14 @@
     <!-- Transformation Section End -->
 
     <!-- Video Banner Section Begin -->
-    <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-2.jpg">
+    <section class="banner-section set-bg" data-setbg="/user/img/hero/video_cover2.jpeg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="bs-text service-banner">
-                        <h2>التمرن الى اقصى الحدود</h2>
+                        <h2>غير الواقع مع <strong style="color: #f36100">Refit Academy</strong></h2>
                         <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
-                        <a href="https://www.youtube.com/watch?v=WTPQGED4S0E" class="play-btn video-popup"><i
+                        <a href="https://www.youtube.com/watch?v=rx6mX3qps0U" class="play-btn video-popup"><i
                                 class="fa fa-caret-right"></i></a>
                     </div>
                 </div>

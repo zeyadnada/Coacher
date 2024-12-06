@@ -68,7 +68,7 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="sidebar-option">
                         <div class="so-categories">
-                            <h3 class="title">تفاصيل</h3>
+                            <h3 class="title mt-3 my-lg-0">تفاصيل</h3>
                             <div class="class-details-text">
                                 <div class="cd-text">
                                     <div class="cd-single-item">

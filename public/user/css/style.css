@@ -1105,9 +1105,11 @@ ol {
 }
 
 .ts-item {
-  height: 450px;
+  height: 357px;
   position: relative;
   overflow: hidden;
+  background-position: center;
+  background-size: contain;
 }
 
 .ts-item:hover .ts_text {
@@ -1935,7 +1937,7 @@ ol {
   color: #ffffff;
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 5px;
 }
 
 .sidebar-option .so-categories ul li {

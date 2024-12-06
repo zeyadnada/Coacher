@@ -48,7 +48,7 @@
                             <label for="name">Location</label>
                             <input type="text" name="location" id="location"
                                 class="form-control @error('location') is-invalid @enderror"
-                                placeholder="Enter Trainer Location" aria-describedby="helpId"
+                                placeholder="Enter Admin Location" aria-describedby="helpId"
                                 value="{{ $admin->location }}">
                             @error('location')
                                 <span class="invalid-feedback" role="alert">
