@@ -157,19 +157,40 @@ class PaymobController extends Controller
             // return (new SubscriptionController())->failed_payment();
         }
     }
-    // public function refund($transaction_id, $amount): array
-    // {
-    //     $request_new_token = Http::withHeaders(['content-type' => 'application/json'])
-    //         ->post('https://accept.paymobsolutions.com/api/auth/tokens', [
-    //             "api_key" => $this->paymob_api_key
-    //         ])->json();
-    //     $refund_process = Http::withHeaders(['content-type' => 'application/json', 'Authorization' => $request_new_token['token']])
-    //         ->post('https://accept.paymob.com/api/acceptance/void_refund/refund', ['auth_token' => $request_new_token['token'], 'transaction_id' => $transaction_id, 'amount_cents' => $amount])->json();
 
-    //     dd($refund_process);
-    //     return [
-    //         'transaction_id' => $transaction_id,
-    //         'amount' => $amount,
-    //     ];
-    // }
+
+    public function refund(Request $request): array
+    {
+        $validated = $request->validate([
+            'transaction_id' => 'required|string',
+            'amount' => 'required|integer|min:1', // amount in cents
+        ]);
+
+        $refund_process = Http::withHeaders([
+            'content-type' => 'application/json',
+            'Authorization' => $this->paymob_secret_key
+        ])->post('https://accept.paymob.com/api/acceptance/void_refund/refund', [
+            'transaction_id' => $validated['transaction_id'],
+            'amount_cents' => $validated['amount'],
+        ])->json();
+
+        return $refund_process; // Handle response appropriately
+    }
+
+
+    public function voidRefund(Request $request): array
+    {
+        $validated = $request->validate([
+            'transaction_id' => 'required|string',
+        ]);
+
+        $void_process = Http::withHeaders([
+            'content-type' => 'application/json',
+            'Authorization' => $this->paymob_secret_key
+        ])->post('https://accept.paymob.com/api/acceptance/void_refund/void', [
+            'transaction_id' => $validated['transaction_id'],
+        ])->json();
+
+        return $void_process; // Handle response appropriately
+    }
 }

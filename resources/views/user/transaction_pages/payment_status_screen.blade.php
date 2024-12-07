@@ -152,7 +152,7 @@
         <!-- Failed Payment Section End -->
     @else
         <!-- Default Message Section Begin -->
-        <section class="section-modalAlert" id="payment-status-none">
+        {{-- <section class="section-modalAlert" id="payment-status-none">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -164,6 +164,38 @@
                             <h2>لا يوجد بيانات للعرض</h2>
                             <p>لم يتم تقديم حالة الدفع بعد.</p>
                             <a href="{{ route('home') }}" class="pt-4" id="close-none">
+                                <i class="fa fa-home"></i>
+                                العودة للصفحة الرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> --}}
+        <section class="section-modalAlert" id="payment-status-success">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modalAlert-text">
+                            <!-- Green circle with checkmark image -->
+                            <div class="status-icon">
+                                <img src="/user/img/confirm-icon.svg" alt="Success" />
+                            </div>
+                            <h2>تم اشتراكك</h2>
+                            <h4>تمت عملية الدفع بنجاح</h4>
+                            <h6>رقم الاشتراك الخاص بك هو: <strong
+                                    style="color: #f36100">123</strong></h6>
+                            <p>شكراً محمد أحمد،  تم اشتراكك برقم 0123456789. رقم الطلب هو 123، وسيتم التواصل معك خلال 24
+                                ساعة.
+                            </p>
+                            <p>
+                                إذا واجهتك أي مشاكل تواصل على الرقم
+                                <a href="https://wa.me/201055459491" target="_blank"
+                                    style="color: #f36100; text-decoration: none;">
+                                    201055459491+
+                                </a>
+                            </p>
+                            <a href="{{ route('home') }}" class="pt-4" id="close-success">
                                 <i class="fa fa-home"></i>
                                 العودة للصفحة الرئيسية
                             </a>

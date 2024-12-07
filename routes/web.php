@@ -155,7 +155,8 @@ Route::get('/notifications/read-all', [NotificationController::class, 'markAllAs
 
 ///////////////////////////////////////////////{*--PAYMENT--*}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Route::get('/paymob/callback', [PaymobController::class, 'callback']);
-Route::get('/paymob/refund/{transaction_id}/{amount}', [PaymobController::class, 'refund'])->name('paymob.refund');
+Route::post('/paymob/refund', [PaymobController::class, 'refund'])->name('paymob.refund');
+Route::post('/paymob/void', [PaymobController::class, 'voidRefund'])->name('paymob.void');
 Route::get('user/payment/status', function () {
     return view('user.transaction_pages.payment_status_screen');
 })->name('user.payment.status');
