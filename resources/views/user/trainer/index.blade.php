@@ -21,14 +21,14 @@
                 @forelse ($trainers as $trainer)
                     <div class="col-lg-4 col-sm-6">
                         <a href="{{ route('user.trainer.show', $trainer->id) }}">
-
-                            <div class="ts-item set-bg"
-                                data-setbg="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}">
+                            <div class="ts-item">
+                                <div class="img-container">
+                                    <img loading="lazy" src="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}" alt="Trainer" />
+                                </div>
                                 <div class="ts_text">
                                     <h4>{{ $trainer->name }}</h4>
                                     <span>{{ $trainer->job_title }}</span>
                                     <div class="tt_social">
-
                                     </div>
                                 </div>
                             </div>

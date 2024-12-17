@@ -70,9 +70,12 @@
         content="Refit, Refit Academy, Coaching, online Coaching, Academy, Gym, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Refit Academy | Payment Status</title>
+    <title>Refit Academy | Instapay</title>
 
     <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap"
         rel="stylesheet" />
@@ -80,7 +83,7 @@
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="/user/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/user/css/style.min.css" type="text/css" />
     <link rel="stylesheet" href="/user/css/styleRTL.css" type="text/css" />
 
     <!-- Refit Icons  -->
@@ -93,87 +96,32 @@
 </head>
 
 <body>
-    <!-- Success Payment Section Begin -->
-    @if (session('paymentSuccess'))
-        <section class="section-modalAlert" id="payment-status-success">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="modalAlert-text">
-                            <!-- Green circle with checkmark image -->
-                            <div class="status-icon">
-                                <img src="/user/img/confirm-icon.svg" alt="Success" />
-                            </div>
-                            <h2>تم اشتراكك</h2>
-                            <h4>تمت عملية الدفع بنجاح</h4>
-                            <h6>رقم الاشتراك الخاص بك هو: <strong
-                                    style="color: #f36100">{{ session('subscriptionId') }}</strong></h6>
-                            <p>{{ session('paymentSuccess') }}</p>
-                            <p>
-                                إذا واجهتك أي مشاكل تواصل على الرقم
-                                <a href="https://wa.me/201055459491" target="_blank"
-                                    style="color: #f36100; text-decoration: none;">
-                                    201055459491+
-                                </a>
-                            </p>
-                            <a href="{{ route('home') }}" class="pt-4" id="close-success">
-                                <i class="fa fa-home"></i>
-                                العودة للصفحة الرئيسية
-                            </a>
+    <!-- Vodafone Cash Payment Section -->
+    <section class="section-modalAlert" id="payment-status-vodafone-cash"
+        style="border: 1px solid; border-image: linear-gradient(to right, #f60000, #c10101) 1;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="modalAlert-text">
+                        <!-- Vodafone Cash icon -->
+                        <div class="status-icon">
+                            <img src="/user/img/vodafone-cash.png" alt="Vodafone Cash Payment Instructions" />
                         </div>
+                        <h4 class="mt-4" dir="rtl">قم بالدفع من خلال الرقم: 01055459490</h4>
+                        <p dir="rtl">بعد إتمام عملية الدفع، أرسل لنا لقطة الشاشة (Screenshot) لعملية الدفع لتأكيد
+                            الاشتراك.</p>
+                        <a href="{{ route('home') }}" class="pt-4" id="close-section">
+                            <i class="fa fa-home"></i>
+                            العودة للصفحة الرئيسية
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
-    @elseif (session('paymentFailed'))
-        <!-- Failed Payment Section Begin -->
-        <section class="section-modalAlert" id="payment-status-failed">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="modalAlert-text">
-                            <!-- Red circle with cross mark image -->
-                            <div class="status-icon">
-                                <img src="/user/img/error-icon.svg" alt="Failed Payment" />
-                            </div>
-                            <h2>{{ session('paymentFailed') }}</h2>
-                            <h4>لم تتم عملية الدفع</h4>
-                            <p>نأسف، ولكن حدث خطأ أثناء محاولة الدفع. يرجى التحقق من تفاصيل الدفع أو
-                                المحاولة مرة أخرى.</p>
-                            <a href="{{ route('home') }}" class="pt-4" id="close-failed">
-                                <i class="fa fa-home"></i>
-                                العودة للصفحة الرئيسية
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Failed Payment Section End -->
-    @else
-        <!-- Default Message Section Begin -->
-        <section class="section-modalAlert" id="payment-status-none">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="modalAlert-text">
-                            <!-- Gray circle with info icon -->
-                            <div class="status-icon">
-                                <img src="/user/img/warning-sign.png" alt="No Information" />
-                            </div>
-                            <h2>لا يوجد بيانات للعرض</h2>
-                            <p>لم يتم تقديم حالة الدفع بعد.</p>
-                            <a href="{{ route('home') }}" class="pt-4" id="close-none">
-                                <i class="fa fa-home"></i>
-                                العودة للصفحة الرئيسية
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Default Message Section End -->
-    @endif
+        </div>
+    </section>
+    <!-- End Vodafone Cash Payment Section -->
+
+
 </body>
 
 </html>

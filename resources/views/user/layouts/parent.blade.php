@@ -76,22 +76,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap"
         rel="stylesheet" />
-    {{-- <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet" /> --}}
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/user/css/bootstrap.min.css" type="text/css" />
-
-    <link rel="stylesheet" href="/user/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/flaticon.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/owl.carousel.min.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/barfiller.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/magnific-popup.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/slicknav.min.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/style.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/styleRTL.css" type="text/css" />
-
+    <link rel="stylesheet" href="/user/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/user/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/user/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/user/css/magnific-popup.min.css" />
+    <link rel="stylesheet" href="/user/css/slicknav.min.css" />
+    <link rel="stylesheet" href="/user/css/style.min.css" />
+    <link rel="stylesheet" href="/user/css/styleRTL.min.css" />
+    
     <!-- Refit Icons  -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
@@ -152,7 +146,7 @@
                 <div class="col-lg-3 d-flex">
                     <div class="logo d-inline-block">
                         <a href="/">
-                            <img src="/user/img/logo.png" alt="Logo" />
+                            <img src="/user/img/logo.png" alt="Logo" loading="lazy" />
                         </a>
                     </div>
                     <div class="text-center d-lg-none d-inline-block flex-fill pl-4rem">
@@ -175,16 +169,6 @@
                         </ul>
                     </nav>
                 </div>
-                {{-- <div class="col-lg-3">
-                    <div class="top-option">
-                        <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="col-lg-3">
                     <div class="text-left top-option">
                         <a href="/#packages" class="btn btn-outline-primary ml-2"> اشترك الان </a>
@@ -206,7 +190,7 @@
                 <div class="col-lg-5">
                     <div class="fs-about">
                         <div class="fa-logo">
-                            <a href="#"><img src="/user/img/logo.png" alt="" /></a>
+                            <a href="#"><img src="/user/img/logo.png" alt="logo" loading="lazy" /></a>
                         </div>
                         <p>
                             قادرين نوصلك لاحسن نسخة من نفسك في اسرع وقت وباقل الامكانيات زي الآلاف اللي ساعدناهم في
@@ -287,7 +271,7 @@
         <span class="contact-text">اضغط للتواصل عبر واتساب</span>
         <div class="whatsapp-icon d-inline-block">
             <a href="https://wa.me/201055459491" target="_blank">
-                <img src="/user/img/whatsapp.png" alt="whatsapp" />
+                <img src="/user/img/whatsapp.png" loading="lazy" alt="whatsapp" />
             </a>
         </div>
     </div>
@@ -296,14 +280,13 @@
 
     <!-- Js Plugins -->
     <script src="/user/js/jquery-3.3.1.min.js"></script>
-    <script src="/user/js/bootstrap.min.js"></script>
-    <script src="/user/js/jquery.magnific-popup.min.js"></script>
-    <script src="/user/js/masonry.pkgd.min.js"></script>
-    <script src="/user/js/jquery.barfiller.js"></script>
-    <script src="/user/js/jquery.slicknav.js"></script>
-    <script src="/user/js/owl.carousel.min.js"></script>
-    <script src="/user/js/main.js"></script>
+    <script defer src="/user/js/bootstrap.min.js"></script>
+    <script defer src="/user/js/jquery.magnific-popup.min.js"></script>
+    <script defer src="/user/js/jquery.slicknav.min.js"></script>
+    <script defer src="/user/js/owl.carousel.min.js"></script>
+    <script defer src="/user/js/main.min.js"></script>
     @yield('js')
+
 </body>
 
 </html>

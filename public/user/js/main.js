@@ -51,11 +51,11 @@
     });
 
     //Masonary
-    $('.gallery').masonry({
-        itemSelector: '.gs-item',
-        columnWidth: '.grid-sizer',
-        gutter: 10
-    });
+    // $('.gallery').masonry({
+    //     itemSelector: '.gs-item',
+    //     columnWidth: '.grid-sizer',
+    //     gutter: 10
+    // });
 
     /*------------------
         Navigation
@@ -143,18 +143,18 @@
     /*------------------
         Barfiller
     --------------------*/
-    $('#bar1').barfiller({
-        barColor: '#ffffff',
-        duration: 2000
-    });
-    $('#bar2').barfiller({
-        barColor: '#ffffff',
-        duration: 2000
-    });
-    $('#bar3').barfiller({
-        barColor: '#ffffff',
-        duration: 2000
-    });
+    // $('#bar1').barfiller({
+    //     barColor: '#ffffff',z
+    //     duration: 2000
+    // });
+    // $('#bar2').barfiller({
+    //     barColor: '#ffffff',
+    //     duration: 2000
+    // });
+    // $('#bar3').barfiller({
+    //     barColor: '#ffffff',
+    //     duration: 2000
+    // });
 
     $('.table-controls ul li').on('click', function () {
         var tsfilter = $(this).data('tsfilter');

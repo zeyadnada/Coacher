@@ -200,7 +200,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="section-title">
-                                    <span>تريد الاشتراك في هذه البافة ؟</span>
+                                    <span>تريد الاشتراك في هذه الباقة ؟</span>
                                     <h2>اشترك الان</h2>
                                 </div>
                             </div>
@@ -283,7 +283,7 @@
                                                 value="paymob_card_payment" hidden>
                                             <label for="paymob_card_payment" class="card-body text-center border rounded">
                                                 <img src="/user/img/credit-card.svg" alt="Credit Card Logo"
-                                                    class="img-fluid mb-3">
+                                                    class="img-fluid mb-3" loading=lazy>
                                                 <h5 class="card-title mb-0">بطاقة ائتمان</h5>
                                             </label>
                                         </div>
@@ -297,7 +297,7 @@
                                             <label for="paymob_wallet_payment"
                                                 class="card-body text-center border rounded">
                                                 <img src="/user/img/mobile-wallet.png" alt="Wallet Payment Logo"
-                                                    class="img-fluid mb-3">
+                                                    class="img-fluid mb-3" loading="lazy">
                                                 <h5 class="card-title mb-0">محفظة الكترونيه</h5>
                                             </label>
                                         </div>
@@ -310,7 +310,7 @@
                                                 hidden>
                                             <label for="instapay" class="card-body text-center border rounded">
                                                 <img src="/user/img/instapay.png" alt="Instapay Logo"
-                                                    class="img-fluid mb-3">
+                                                    class="img-fluid mb-3" loading="lazy">
                                                 <h5 class="card-title mb-0">Instapay</h5>
                                             </label>
                                         </div>
@@ -324,11 +324,24 @@
                                             <label for="paymob_bank_installement_payment"
                                                 class="card-body text-center border rounded">
                                                 <img src="/user/img/installment.png" alt="Installment Logo"
-                                                    class="img-fluid mb-3">
+                                                    class="img-fluid mb-3" loading="lazy">
                                                 <h5 class="card-title mb-0">تقسيط بنكي</h5>
                                             </label>
                                         </div>
                                     </div> --}}
+
+                                    <!-- Vodafone Cash Payment -->
+                                    <div class="col-6 col-md-3 mb-3 d-flex">
+                                        <div class="payment-card flex-fill">
+                                            <input type="radio" id="vodafone_cash" name="payment_method"
+                                                value="vodafone_cash" hidden>
+                                            <label for="vodafone_cash" class="card-body text-center border rounded">
+                                                <img src="/user/img/vodafone-cash.png" alt="Vodafone Cash Logo"
+                                                    class="img-fluid mb-3" loading="lazy">
+                                                <h5 class="card-title mb-0">فودافون كاش</h5>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 @error('payment_method')
                                     <span class="invalid-feedback d-block" role="alert">

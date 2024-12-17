@@ -36,6 +36,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\SessionTimeout::class,
+
         ],
 
         'api' => [
@@ -68,6 +70,7 @@ class Kernel extends HttpKernel
         'admin-authorization' => \App\Http\Middleware\AdminMiddleware::class,
         'super-admin-authorization' => \App\Http\Middleware\SuperAdminMiddleware::class,
         'admin.profile.access' => \App\Http\Middleware\AdminProfileAccess::class,
+        'payment.status.timeout' => \App\Http\Middleware\SessionTimeout::class,
         // 'guest.admin'=> \App\Http\Middleware\RedirectIfAdmin::class,
 
     ];

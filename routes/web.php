@@ -159,4 +159,4 @@ Route::post('/paymob/refund', [PaymobController::class, 'refund'])->name('paymob
 Route::post('/paymob/void', [PaymobController::class, 'voidRefund'])->name('paymob.void');
 Route::get('user/payment/status', function () {
     return view('user.transaction_pages.payment_status_screen');
-})->name('user.payment.status');
+})->name('user.payment.status')->middleware('payment.status.timeout');

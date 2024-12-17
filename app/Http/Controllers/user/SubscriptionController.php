@@ -41,11 +41,15 @@ class SubscriptionController extends Controller
                 'transaction_id' => 'Instapay'
             ]);
             return view('user.transaction_pages.instapay');
+        } elseif ($request->payment_method === "vodafone_cash") {
+            $subscription->update([
+                'transaction_id' => 'Vodafone Cash'
+            ]);
+            return view('user.transaction_pages.vodafone_cash');
         }
     }
 
-
-    public  function success_payment($payment_details)
+    public function success_payment($payment_details)
     {
         $subscription = Subscription::findOrFail($payment_details['merchant_order_id']);
         $subscription->update([
@@ -53,13 +57,27 @@ class SubscriptionController extends Controller
             'payment_status' => 'Paid',
             'transaction_id' => $payment_details['id']
         ]);
-        (new WhatsAppController())->order_confirmation(config('services.whatsapp.phone_number_id'), $subscription->id, $subscription->whatsapp_phone, $subscription->package->title);
+
+        // Send WhatsApp confirmation
+        (new WhatsAppController())->order_confirmation(
+            config('services.whatsapp.phone_number_id'),
+            $subscription->id,
+            $subscription->whatsapp_phone,
+            $subscription->package->title
+        );
+
+        // Set session variables with expiration for payment status route 
+        session([
+            'paymentSuccess' => "شكراً $subscription->name ،تم اشتراكك برقم $subscription->whatsapp_phone. رقم الطلب هو $subscription->id ،وسيتم التواصل معك خلال 24 ساعة.",
+            'subscriptionId' => $subscription->id,
+        ]);
+        session()->put('session_start_time', now());
+
         return redirect()->route('user.payment.status', [
             'status' => 'success',
-        ])
-            ->with('paymentSuccess', "شكراً $subscription->name ،تم اشتراكك برقم $subscription->whatsapp_phone. رقم الطلب هو $subscription->id ،وسيتم التواصل معك خلال 24 ساعة.")
-            ->with('subscriptionId', $subscription->id);
+        ]);
     }
+
 
     public  function failed_payment($order_id)
     {

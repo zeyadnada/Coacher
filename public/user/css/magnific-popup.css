@@ -60,15 +60,6 @@
   cursor: -webkit-pointer;
   cursor: pointer; }
 
-.mfp-zoom {
-  cursor: pointer;
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in; }
-
-.mfp-auto-cursor .mfp-content {
-  cursor: auto; }
-
 .mfp-close,
 .mfp-arrow,
 .mfp-preloader,
@@ -340,12 +331,6 @@ img.mfp-img {
   .mfp-arrow {
     -webkit-transform: scale(0.75);
     transform: scale(0.75); }
-  .mfp-arrow-left {
-    -webkit-transform-origin: 0;
-    transform-origin: 0; }
-  .mfp-arrow-right {
-    -webkit-transform-origin: 100%;
-    transform-origin: 100%; }
   .mfp-container {
     padding-left: 6px;
     padding-right: 6px; } }

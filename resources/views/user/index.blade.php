@@ -43,22 +43,22 @@
             </div>
         </section>
     </section> --}}
-    <section class="hero-section">
-        <section class="banner-section set-bg" data-setbg="/user/img/hero/hero-1.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="bs-text">
-                            <h2>مع بعض <strong style="color: #f36100">هنغير </strong>الواقع</h2>
-                            <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
-                            <a href="#packages" class="primary-btn btn-normal"> اشترك الان
-                            </a>
-                        </div>
+    {{-- <section class="hero-section"> --}}
+    <section class="banner-section set-bg" data-setbg="/user/img/hero/hero.png">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="bs-text">
+                        <h2>مع بعض <strong style="color: #f36100">هنغير </strong>الواقع</h2>
+                        <div class="bt-tips">سجل الان وابدا رحلتك مع Refit</div>
+                        <a href="#packages" class="primary-btn btn-normal"> اشترك الان
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </section>
+    {{-- </section> --}}
     <!-- Header Hero Section End -->
 
     <!-- ChoseUs Section Begin -->
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-lg-3 col-6">
                     <div class="cs-item">
-                        <span class="flaticon-034-stationary-bike"></span>
+                        <span class="flaticon-008-calendar"></span>
                         <h4>متابعة يومية</h4>
                         <p>طوال ايام الاسبوع على مدار الساعة.</p>
                     </div>
@@ -185,7 +185,7 @@
                 <div class="col-lg-4 col-6">
                     <div class="cs-item">
                         <span style="font-size: 70px; font-weight: bold;">2</span>
-                        <h4>قم بالدفع عبر الطرق الدفع المتاحة</h4>
+                        <h4>قم بالدفع عبر طرق الدفع المتاحة</h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
@@ -217,7 +217,11 @@
                 <div class="ts-slider owl-carousel">
                     @forelse ($transformations as $transformation)
                         <div class="col-lg-4">
-                            <div class="ts-item set-bg" data-setbg="{{ '/storage/' . $transformation->photo_path }}">
+                            <div class="ts-item">
+                                <div class="img-container">
+                                    <img src="{{ '/storage/' . $transformation->photo_path }}" loading="lazy"
+                                        alt="Transformation Image" />
+                                </div>
                                 <div class="ts_text">
                                     <span>{{ $transformation->description }}</span>
                                 </div>
@@ -269,8 +273,11 @@
                     @forelse ($trainers as $trainer)
                         <div class="col-lg-4">
                             <a href="{{ route('user.trainer.show', $trainer->id) }}">
-                                <div class="ts-item set-bg"
-                                    data-setbg="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}">
+                                <div class="ts-item">
+                                    <div class="img-container">
+                                        <img src="{{ $trainer->image ? asset('storage/' . $trainer->image) : asset('/user/img/Refit.jpeg') }}"
+                                            loading="lazy" alt="{{ $trainer->name }}" />
+                                    </div>
                                     <div class="ts_text">
                                         <h4>{{ $trainer->name }}</h4>
                                         <span>{{ $trainer->job_title }}</span>
@@ -282,7 +289,6 @@
                     @endforelse
                 </div>
             </div>
-        </div>
         </div>
     </section>
     <!-- Team Section End -->
@@ -485,19 +491,6 @@
 @endsection
 
 @section('js')
-    <script>
-        // this script belong to success payment alert
-        // Success payment close button
-        document.getElementById('close-success').addEventListener('click', function() {
-            document.getElementById('payment-status-success').style.display = 'none';
-        });
-
-        // Failed payment close button
-        document.getElementById('close-failed').addEventListener('click', function() {
-            document.getElementById('payment-status-failed').style.display = 'none';
-        });
-    </script>
-
     <script>
         // this script for change price automatically according to change package durations
         $(document).ready(function() {

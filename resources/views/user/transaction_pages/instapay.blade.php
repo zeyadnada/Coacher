@@ -83,7 +83,7 @@
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="/user/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="/user/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/user/css/style.min.css" type="text/css" />
     <link rel="stylesheet" href="/user/css/styleRTL.css" type="text/css" />
 
     <!-- Refit Icons  -->
@@ -96,7 +96,7 @@
 </head>
 
 <body>
-    <!-- Payment Status Section -->
+    <!-- Instapay Payment Section -->
     <section class="section-modalAlert" id="payment-status"
         style="border: 1px solid; border-image: linear-gradient(to right, #f36100,purple) 1;">
         <div class="container">
@@ -107,12 +107,18 @@
                         <div class="status-icon">
                             <img src="/user/img/instapay.png" alt="Instapay Payment Instructions" />
                         </div>
-                        {{-- <h2>رقم الدفع الخاص بنا : 01208776273</h2> <!-- Payment number --> --}}
                         <div class="img-container d-inline-block mb-3" style="width: 230px">
                             <img src="/user/img/instapay_QR.jpg" alt="">
                         </div>
-                        <h4 dir="rtl"> انسخ (QR Code) او قم بالدفع من خلال الرقم :01551471731</h4>
-                        <p dir="rtl">قم بإتمام عملية الدفع إلى الرقم الموضح أعلاه. بعد الدفع، أرسل لنا لقطة
+                        <h4 dir="rtl">انسخ (QR Code) او قم بالدفع من خلال الرقم :01144714942</h4>
+                        <h5 dir="rtl" class="mb-2">
+                            أو
+                            <a href="https://ipn.eg/S/moustafa2425/instapay/6u8HPA" target="_blank"
+                                style="font-weight: bold; color: #f36100;">
+                                الضغط على هذا الرابط لإتمام عملية الدفع عبر Instapay
+                            </a>
+                        </h5>
+                        <p dir="rtl">قم بإتمام عملية الدفع و بعد الدفع، أرسل لنا لقطة
                             الشاشة (Screenshot) لعملية الدفع لتاكيد الاشتراك.</p>
                         <a href="{{ route('home') }}" class="pt-4" id="close-section">
                             <i class="fa fa-home"></i>
@@ -123,8 +129,7 @@
             </div>
         </div>
     </section>
-
-
+    <!-- Instapay Payment Section -->
 </body>
 
 </html>
