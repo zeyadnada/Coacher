@@ -24,8 +24,8 @@ class SubscriptionController extends Controller
         $order = $subscription->toArray();
         $order['payment_method'] = $request->payment_method;
         $duration = TrainingPackageDuration::findOrFail($request->input('duration_id'));
-        $order['amount_paid'] = $duration->final_price;
-        session()->forget("coupon");
+        $amount_paid = $duration->final_price;
+        $order['amount_paid'] = $amount_paid;
 
 
         if ($request->payment_method === "paymob_card_payment") {
@@ -40,12 +40,16 @@ class SubscriptionController extends Controller
             $subscription->update([
                 'transaction_id' => 'Instapay'
             ]);
-            return view('user.transaction_pages.instapay');
+            // Forget coupon after successful payment
+            session()->forget("coupon");
+            return view('user.transaction_pages.instapay', compact('amount_paid'));
         } elseif ($request->payment_method === "vodafone_cash") {
             $subscription->update([
                 'transaction_id' => 'Vodafone Cash'
             ]);
-            return view('user.transaction_pages.vodafone_cash');
+            // Forget coupon after successful payment
+            session()->forget("coupon");
+            return view('user.transaction_pages.vodafone_cash', compact('amount_paid'));
         }
     }
 
@@ -57,6 +61,9 @@ class SubscriptionController extends Controller
             'payment_status' => 'Paid',
             'transaction_id' => $payment_details['id']
         ]);
+
+        // Forget coupon after successful payment
+        session()->forget("coupon");
 
         // Send WhatsApp confirmation
         (new WhatsAppController())->order_confirmation(

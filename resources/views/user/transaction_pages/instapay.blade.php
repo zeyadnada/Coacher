@@ -64,6 +64,21 @@
     </script>
     <!-- TikTok Pixel Code End -->
 
+    <!-- clients sessions tracking Code  -->
+    <script type="text/javascript">
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "phwvz34aw1");
+    </script>
+    <!-- clients sessions tracking Code End -->
+
     <meta charset="UTF-8" />
     <meta name="description" content="Refit Academy" />
     <meta name="keywords"
@@ -73,12 +88,10 @@
     <title>Refit Academy | Instapay</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap"
         rel="stylesheet" />
+
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/css/bootstrap.min.css" type="text/css" />
@@ -98,7 +111,7 @@
 <body>
     <!-- Instapay Payment Section -->
     <section class="section-modalAlert" id="payment-status"
-        style="border: 1px solid; border-image: linear-gradient(to right, #f36100,purple) 1;">
+        style="border: 1px solid; border-image: linear-gradient(to right, #f36100, purple) 1;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -110,7 +123,12 @@
                         <div class="img-container d-inline-block mb-3" style="width: 230px">
                             <img src="/user/img/instapay_QR.jpg" alt="">
                         </div>
-                        <h4 dir="rtl">انسخ (QR Code) او قم بالدفع من خلال الرقم :01144714942</h4>
+                        <h4 dir="rtl">
+                            المبلغ المطلوب للدفع: <span style="font-weight: bold; color: #f36100;">{{ $amount_paid }}
+                                جنيه</span>
+                            <br>
+                            انسخ (QR Code) أو قم بالدفع من خلال الرقم : 01144714942
+                        </h4>
                         <h5 dir="rtl" class="mb-2">
                             أو
                             <a href="https://ipn.eg/S/moustafa2425/instapay/6u8HPA" target="_blank"
@@ -118,8 +136,10 @@
                                 الضغط على هذا الرابط لإتمام عملية الدفع عبر Instapay
                             </a>
                         </h5>
-                        <p dir="rtl">قم بإتمام عملية الدفع و بعد الدفع، أرسل لنا لقطة
-                            الشاشة (Screenshot) لعملية الدفع لتاكيد الاشتراك.</p>
+                        <p dir="rtl">
+                            قم بإتمام عملية الدفع وبعد الدفع، أرسل لنا لقطة الشاشة (Screenshot) لعملية الدفع لتأكيد
+                            الاشتراك.
+                        </p>
                         <a href="{{ route('home') }}" class="pt-4" id="close-section">
                             <i class="fa fa-home"></i>
                             العودة للصفحة الرئيسية

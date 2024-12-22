@@ -64,6 +64,21 @@
     </script>
     <!-- TikTok Pixel Code End -->
 
+    <!-- clients sessions tracking Code  -->
+    <script type="text/javascript">
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "phwvz34aw1");
+    </script>
+    <!-- clients sessions tracking Code End -->
+
     <meta charset="UTF-8" />
     <meta name="description" content="Refit Academy" />
     <meta name="keywords"
@@ -73,9 +88,6 @@
     <title>Refit Academy | Instapay</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap"
         rel="stylesheet" />
@@ -105,11 +117,17 @@
                     <div class="modalAlert-text">
                         <!-- Vodafone Cash icon -->
                         <div class="status-icon">
-                            <img src="/user/img/vodafone-cash.png" alt="Vodafone Cash Payment Instructions" />
+                            <img src="/user/img/vodafone-cash.jpg" alt="Vodafone Cash Payment Instructions" />
                         </div>
-                        <h4 class="mt-4" dir="rtl">قم بالدفع من خلال الرقم: 01055459490</h4>
-                        <p dir="rtl">بعد إتمام عملية الدفع، أرسل لنا لقطة الشاشة (Screenshot) لعملية الدفع لتأكيد
-                            الاشتراك.</p>
+                        <h4 class="mt-4" dir="rtl">
+                            المبلغ المطلوب للدفع: <span style="font-weight: bold; color: #f60000;">{{ $amount_paid }}
+                                جنيه</span>
+                            <br>
+                            قم بالدفع من خلال الرقم: 01055459490
+                        </h4>
+                        <p dir="rtl">
+                            بعد إتمام عملية الدفع، أرسل لنا لقطة الشاشة (Screenshot) لعملية الدفع لتأكيد الاشتراك.
+                        </p>
                         <a href="{{ route('home') }}" class="pt-4" id="close-section">
                             <i class="fa fa-home"></i>
                             العودة للصفحة الرئيسية
@@ -120,8 +138,6 @@
         </div>
     </section>
     <!-- End Vodafone Cash Payment Section -->
-
-
 </body>
 
 </html>

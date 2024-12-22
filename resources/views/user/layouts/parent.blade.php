@@ -72,6 +72,21 @@
     </script>
     <!-- TikTok Pixel Code End -->
 
+    <!-- clients sessions tracking Code  -->
+    <script type="text/javascript">
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "phwvz34aw1");
+    </script>
+    <!-- clients sessions tracking Code End -->
+
     <!-- Google Font -->
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap"
@@ -80,12 +95,10 @@
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/user/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/user/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="/user/css/magnific-popup.min.css" />
     <link rel="stylesheet" href="/user/css/slicknav.min.css" />
     <link rel="stylesheet" href="/user/css/style.min.css" />
     <link rel="stylesheet" href="/user/css/styleRTL.min.css" />
-    
+
     <!-- Refit Icons  -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
@@ -281,12 +294,9 @@
     <!-- Js Plugins -->
     <script src="/user/js/jquery-3.3.1.min.js"></script>
     <script defer src="/user/js/bootstrap.min.js"></script>
-    <script defer src="/user/js/jquery.magnific-popup.min.js"></script>
     <script defer src="/user/js/jquery.slicknav.min.js"></script>
-    <script defer src="/user/js/owl.carousel.min.js"></script>
-    <script defer src="/user/js/main.min.js"></script>
     @yield('js')
-
+    <script defer src="/user/js/main.min.js"></script>
 </body>
 
 </html>

@@ -336,7 +336,7 @@
                                             <input type="radio" id="vodafone_cash" name="payment_method"
                                                 value="vodafone_cash" hidden>
                                             <label for="vodafone_cash" class="card-body text-center border rounded">
-                                                <img src="/user/img/vodafone-cash.png" alt="Vodafone Cash Logo"
+                                                <img src="/user/img/vodafone-cash.jpg" alt="Vodafone Cash Logo"
                                                     class="img-fluid mb-3" loading="lazy">
                                                 <h5 class="card-title mb-0">فودافون كاش</h5>
                                             </label>

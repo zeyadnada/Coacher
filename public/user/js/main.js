@@ -60,86 +60,76 @@
     /*------------------
         Navigation
     --------------------*/
-    $(".mobile-menu").slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-    });
+    if ($.fn.slicknav) {
+        $(".mobile-menu").slicknav({
+            prependTo: '#mobile-menu-wrap',
+            allowParentLinks: true
+        });
+    }
 
     /*------------------
-        Carousel Slider
-    --------------------*/
-    var hero_s = $(".hs-slider");
-    hero_s.owlCarousel({
-        rtl: true,
-        loop: true,
-        margin: 0,
-        nav: true,
-        items: 1,
-        dots: false,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        navText: navText,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: false
-    });
-
-    /*------------------
-        Team Slider
-    --------------------*/
-    $(".ts-slider").owlCarousel({
-        rtl: true,
-        loop: true,
-        margin: 0,
-        items: 3,
-        dots: true,
-        dotsEach: 2,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-            320: {
+       Carousel Slider
+   --------------------*/
+    if ($.fn.owlCarousel) {
+        var hero_s = $(".hs-slider");
+        if (hero_s.length) {
+            hero_s.owlCarousel({
+                rtl: true,
+                loop: true,
+                margin: 0,
+                nav: true,
                 items: 1,
-            },
-            768: {
-                items: 2,
-            },
-            992: {
-                items: 3,
-            }
+                dots: false,
+                animateOut: 'fadeOut',
+                animateIn: 'fadeIn',
+                navText: navText,
+                smartSpeed: 1200,
+                autoHeight: false,
+                autoplay: false
+            });
         }
-    });
+
+        // Team Slider
+        $(".ts-slider").owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 0,
+            items: 3,
+            dots: true,
+            dotsEach: 2,
+            smartSpeed: 1200,
+            autoHeight: false,
+            autoplay: true,
+            responsive: {
+                320: { items: 1 },
+                768: { items: 2 },
+                992: { items: 3 }
+            }
+        });
+
+        //Testimonial Slider
+        $(".ts_slider").owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 0,
+            items: 1,
+            dots: false,
+            nav: true,
+            navText: navText,
+            smartSpeed: 1200,
+            autoHeight: false,
+            autoplay: true
+        });
+    }
 
     /*------------------
-        Testimonial Slider
+        Image and Video Popup
     --------------------*/
-    $(".ts_slider").owlCarousel({
-        rtl: true,
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: false,
-        nav: true,
-        navText: navText,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true
-    });
+    if ($.fn.magnificPopup) {
+        $('.image-popup').magnificPopup({ type: 'image' });
 
-    /*------------------
-        Image Popup
-    --------------------*/
-    $('.image-popup').magnificPopup({
-        type: 'image'
-    });
-
-    /*------------------
-        Video Popup
-    --------------------*/
-    $('.video-popup').magnificPopup({
-        type: 'iframe'
-    });
-
+        $('.video-popup').magnificPopup({ type: 'iframe' });
+    }
     /*------------------
         Barfiller
     --------------------*/

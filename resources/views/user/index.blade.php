@@ -2,6 +2,7 @@
 
 @section('title', 'Refit Academy')
 @section('css')
+    <link rel="stylesheet" href="/user/css/magnific&&owl.min.css" />
     <style>
         .header-section {
             top: 50px;
@@ -44,7 +45,7 @@
         </section>
     </section> --}}
     {{-- <section class="hero-section"> --}}
-    <section class="banner-section set-bg" data-setbg="/user/img/hero/hero.png">
+    <section class="banner-section set-bg" data-setbg="/user/img/hero/hero.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -491,6 +492,8 @@
 @endsection
 
 @section('js')
+    <script defer src="/user/js/magnific&&owl.min.js"></script>
+
     <script>
         // this script for change price automatically according to change package durations
         $(document).ready(function() {
