@@ -88,9 +88,11 @@
     <!-- clients sessions tracking Code End -->
 
     <!-- Google Font -->
-    <link
+    {{-- <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap"
-        rel="stylesheet" />
+        rel="stylesheet" /> --}}
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/css/bootstrap.min.css" />
@@ -162,9 +164,15 @@
                             <img src="/user/img/logo.png" alt="Logo" loading="lazy" />
                         </a>
                     </div>
-                    <div class="text-center d-lg-none d-inline-block flex-fill pl-4rem">
+                    {{-- <div class="text-center d-lg-none d-inline-block flex-fill pl-4rem">
                         <a href="/#packages" class="btn btn-outline-primary"> اشترك الان </a>
+                    </div> --}}
+                    <div class="text-center d-lg-none d-inline-block flex-fill pl-4rem">
+                        @section('subscribe_button')
+                            <a href="/#packages" class="btn btn-outline-primary"> اشترك الان </a>
+                        @show
                     </div>
+
                 </div>
                 <div class="col-lg-6">
                     <nav class="nav-menu">
@@ -223,7 +231,7 @@
                                     class="fa fa-instagram"></i></a>
                             <a href="http://www.youtube.com/@RefitAcademy-t4x"><i class="fa fa-youtube-play"></i></a>
 
-                            <a href="mailto:refitacademy5@gmail.com">
+                            <a href="mailto:info@refit-academy.com">
                                 <i class="fa fa-envelope-o"></i>
                             </a>
                         </div>
@@ -244,7 +252,7 @@
                     <div class="fs-widget">
                         <h4>تواصل معنا</h4>
                         <ul>
-                            <li><a href="mailto:refitacademy5@gmail.com">refitacademy5@gmail.com</a></li>
+                            <li><a href="mailto:info@refit-academy.com">info@refit-academy.com</a></li>
                             <li>1055459491 (20+)</li>
                             <li><a href="https://wa.me/201055459491" target="_blank"> اتصل بنا </a></li>
                         </ul>

@@ -37,7 +37,7 @@
                     @method('put')
                     <div class="form-row mb-3">
                         <div class="col-md-6">
-                            <label for="title">Code name</label>
+                            <label for="code">Code name</label>
                             <input type="text" name="code" id="code"
                                 class="form-control @error('code') is-invalid @enderror" placeholder="Enter Code"
                                 aria-describedby="helpId" value="{{ old('code', $coupon->code) }}" dir="auto">
@@ -47,38 +47,15 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-md-6">
-                            <label for="title">Value</label>
-                            <input type="number" name="value" id="value"
-                                class="form-control @error('value') is-invalid @enderror" placeholder="Enter Value"
-                                aria-describedby="helpId" value="{{ old('value', $coupon->value) }}">
-                            @error('value')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-row mb-3">
-                        <div class="col-md-6">
-                            <label for="title">percentage</label>
-                            <input type="number" name="percent_off" id="percentage"
-                                class="form-control @error('percentage') is-invalid @enderror"
-                                placeholder="Enter percentage percentage" aria-describedby="helpId"
-                                value="{{ old('percentage', $coupon->percent_off) }}" dir="auto">
-                            @error('percentage')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label>Type</label>
-                            <select class="form-control @error('type') is-invalid @enderror" name="type"
-                                data-placeholder="Select type" style="width: 100%;">
-                                <option value="fixed" @if ($coupon->type == 'fixed') ? selected @endif>Fixed</option>
-                                <option value="percent" @if ($coupon->type == 'percent') ? selected @endif>Percent</option>
 
+                        <div class="col-md-6">
+                            <label>Coupon Type</label>
+                            <select class="form-control @error('type') is-invalid @enderror" name="type"
+                                data-placeholder="Select Coupon type" style="width: 100%;">
+                                <option value="fixed" {{ old('type', $coupon->type) === 'fixed' ? 'selected' : '' }}>Fixed
+                                    Value</option>
+                                <option value="percent" {{ old('type', $coupon->type) === 'percent' ? 'selected' : '' }}>
+                                    Percent Off</option>
                             </select>
                             @error('type')
                                 <span class="invalid-feedback" role="alert">
@@ -87,12 +64,52 @@
                             @enderror
                         </div>
                     </div>
+
+                    <div class="form-row mb-3">
+                        <div class="col-md-3">
+                            <label for="value">Fixed Value</label>
+                            <input type="number" name="value" id="value"
+                                class="form-control @error('value') is-invalid @enderror" placeholder="Enter fixed value"
+                                aria-describedby="helpId" value="{{ old('value', $coupon->value) }}">
+                            @error('value')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-md-3">
+                            <label for="percent_off">Percentage Value</label>
+                            <input type="number" name="percent_off" id="percent_off"
+                                class="form-control @error('percent_off') is-invalid @enderror"
+                                placeholder="Enter percentage value" aria-describedby="helpId"
+                                value="{{ old('percent_off', $coupon->percent_off) }}" dir="auto">
+                            @error('percent_off')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="usage_limit">Usage Limit</label>
+                            <input type="number" name="usage_limit" id="usage_limit"
+                                class="form-control @error('usage_limit') is-invalid @enderror"
+                                placeholder="Enter number of times the coupon can be used" aria-describedby="helpId"
+                                value="{{ old('usage_limit', $coupon->usage_limit) }}" dir="auto">
+                            @error('usage_limit')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="form-row my-4">
                         <div class="col-3">
                             <input type="submit" class="btn btn-warning" value="Update Coupon">
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 body,
 html {
     height: 100%;
-    font-family: Zain, sans-serif;
+    font-family: "Vazirmatn", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
     text-align: right;
@@ -33,7 +33,7 @@ h6 {
     margin: 0;
     color: #f1f1f1;
     font-weight: 400;
-    font-family: Zain, sans-serif
+    font-family: "Vazirmatn", sans-serif;
 }
 
 h1 {
@@ -62,7 +62,7 @@ h6 {
 
 p {
     font-size: 14px;
-    font-family: Zain, sans-serif;
+    font-family: "Vazirmatn", sans-serif;
     color: #a9a9a9;
     font-weight: 400;
     line-height: 24px;
@@ -422,7 +422,7 @@ ul {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: Oswald, sans-serif;
+    font-family: "Vazirmatn", sans-serif;
     padding: 10px 0;
     position: relative;
     -webkit-transition: all .3s;
@@ -1680,7 +1680,7 @@ ul {
         color: #151515;
         border-bottom: 1px solid #151515;
         font-weight: 500;
-        font-family: Oswald, sans-serif;
+        font-family: "Vazirmatn", sans-serif;
         font-size: 15px
     }
 
@@ -1839,7 +1839,7 @@ ul {
         color: #151515;
         border-bottom: 1px solid #151515;
         font-weight: 500;
-        font-family: Oswald, sans-serif;
+        font-family: "Vazirmatn", sans-serif;
         font-size: 15px
     }
 

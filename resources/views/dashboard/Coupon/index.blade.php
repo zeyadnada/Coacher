@@ -26,7 +26,8 @@
                             <th>Code</th>
                             <th>Type</th>
                             <th>value</th>
-                            <th>Percentage</th>
+                            <th>Percent off</th>
+                            <th>Usage Limit</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -37,12 +38,13 @@
                                 <td>{{ $coupon->code }}</td>
                                 <td>{{ $coupon->type }}</td>
                                 @if ($coupon->type == 'fixed')
-                                    <td>{{ $coupon->value }}</td>
-                                    <td>0</td>
+                                    <td>{{ $coupon->value }} EGP</td>
+                                    <td>-</td>
                                 @else
-                                    <td>0</td>
-                                    <td>{{ $coupon->percent_off }}</td>
+                                    <td>-</td>
+                                    <td>{{ $coupon->percent_off }}%</td>
                                 @endif
+                                <td>{{ $coupon->usage_limit }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.coupon.edit', ['id' => $coupon->id]) }}"
                                         class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a>
@@ -64,7 +66,8 @@
                             <th>Code</th>
                             <th>Type</th>
                             <th>value</th>
-                            <th>Percentage</th>
+                            <th>Percent off</th>
+                            <th>Usage Limit</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>

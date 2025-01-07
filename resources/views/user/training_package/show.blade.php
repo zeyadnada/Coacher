@@ -35,8 +35,17 @@
             max-height: 64px;
             /* Control the image height for consistency */
         }
+
+        .invalid-feedback {
+            font-size: 96%;
+        }
     </style>
 @endsection
+
+@section('subscribe_button')
+    {{-- Leave this section empty to hide the button --}}
+@endsection
+
 @section('content')
     <!-- Class Details Section Begin -->
     <section class="class-details-section spad">
@@ -350,7 +359,7 @@
                                 @enderror
                             </div>
                             <br>
-                            <button type="submit">تأكيد الاشتراك</button>
+                            <button type="submit" style="font-size: 21px;">ادفع الآن</button>
                         </form>
                     </div>
                 </div>

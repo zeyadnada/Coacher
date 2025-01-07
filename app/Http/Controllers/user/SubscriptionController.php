@@ -6,6 +6,7 @@ use App\Http\Controllers\appendages\WhatsAppController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\payment\PaymobController;
 use App\Http\Requests\UserSubscriptionRequest;
+use App\Models\Coupon;
 use App\Models\Subscription;
 use App\Models\TrainingPackageDuration;
 
@@ -40,15 +41,15 @@ class SubscriptionController extends Controller
             $subscription->update([
                 'transaction_id' => 'Instapay'
             ]);
-            // Forget coupon after successful payment
-            session()->forget("coupon");
+            // Handle coupon usage
+            $this->handleCouponUsage();
             return view('user.transaction_pages.instapay', compact('amount_paid'));
         } elseif ($request->payment_method === "vodafone_cash") {
             $subscription->update([
                 'transaction_id' => 'Vodafone Cash'
             ]);
-            // Forget coupon after successful payment
-            session()->forget("coupon");
+            // Handle coupon usage
+            $this->handleCouponUsage();
             return view('user.transaction_pages.vodafone_cash', compact('amount_paid'));
         }
     }
@@ -62,16 +63,16 @@ class SubscriptionController extends Controller
             'transaction_id' => $payment_details['id']
         ]);
 
-        // Forget coupon after successful payment
-        session()->forget("coupon");
+        // Handle coupon usage
+        $this->handleCouponUsage();
 
-        // Send WhatsApp confirmation
-        (new WhatsAppController())->order_confirmation(
-            config('services.whatsapp.phone_number_id'),
-            $subscription->id,
-            $subscription->whatsapp_phone,
-            $subscription->package->title
-        );
+        // Send WhatsApp confirmation Message
+        // (new WhatsAppController())->order_confirmation(
+        //     config('services.whatsapp.phone_number_id'),
+        //     $subscription->id,
+        //     $subscription->whatsapp_phone,
+        //     $subscription->package->title
+        // );
 
         // Set session variables with expiration for payment status route 
         session([
@@ -101,4 +102,19 @@ class SubscriptionController extends Controller
     // {
     //     return  redirect()->route('home')->with('error', 'فشلت عملية الدفع! حاول  مرة أخرى');
     // }
+
+    protected function handleCouponUsage()
+    {
+        if (session()->has('coupon')) {
+            $coupon = Coupon::find(session('coupon.id'));
+
+            // Decrease coupon usage if valid
+            if ($coupon && $coupon->usage_limit > 0) {
+                $coupon->decrement('usage_limit');
+            }
+
+            // Forget coupon after successful usage
+            session()->forget('coupon');
+        }
+    }
 }
